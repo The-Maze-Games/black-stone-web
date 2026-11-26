@@ -4,7 +4,7 @@ import { setDataLang } from "./engine.js";
 const S = {
   es: {
     app: "Black Stone · The Maze",
-    theRolls: "Las Siete Tiradas", posterEmpty: "Una cámara nueva", boxes: (a, b) => `${a} de ${b} casillas con dado`, posterHint: "Tira el d% de la Cámara y escribe el resultado en la casilla 1.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
+    theRolls: "Las Siete Tiradas", rollsDetail: "Resultados y derivadas", posterEmpty: "Una cámara nueva", boxes: (a, b) => `${a} de ${b} casillas con dado`, posterHint: "Tira el d% de la Cámara y escribe el resultado en la casilla 1.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
     navChamber: "Cámara", navLog: "Registro", navRef: "Referencia",
     roll_chamber: "Cámara", roll_condition: "Condición", roll_entries: "Entradas", roll_timer: "Temporizador",
     roll_loot: "Botín", roll_inhabitant: "Habitantes", roll_mimic: "Mímicos",
@@ -56,7 +56,7 @@ const S = {
   },
   en: {
     app: "Black Stone · The Maze",
-    theRolls: "The Seven Rolls", posterEmpty: "A new chamber", boxes: (a, b) => `${a} of ${b} boxes rolled`, posterHint: "Roll the Chamber d% and type the result in box 1.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
+    theRolls: "The Seven Rolls", rollsDetail: "Results and derived rolls", posterEmpty: "A new chamber", boxes: (a, b) => `${a} of ${b} boxes rolled`, posterHint: "Roll the Chamber d% and type the result in box 1.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
     navChamber: "Chamber", navLog: "Log", navRef: "Reference",
     roll_chamber: "Chamber", roll_condition: "Condition", roll_entries: "Entries", roll_timer: "Timer",
     roll_loot: "Loot", roll_inhabitant: "Inhabitants", roll_mimic: "Mimics",

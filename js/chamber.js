@@ -135,12 +135,12 @@ export class ChamberView {
     const poster = this.poster(der);
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
     this.seen = this.fresh;
-    const side = (extra = "") => `<aside class="chamber-side">${poster}${this.ladder(ids, der)}${this.progress(sections)}${extra}</aside>`;
+    const side = (extra = "") => `<aside class="chamber-side">${poster}${this.ladder(ids, der)}${this.progress(this.ladder(ids, der) + sections)}${extra}</aside>`;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
         ${side()}
         <div class="chamber-body">
-          <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("theRolls"))}</summary>${sections}</details>
+          <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("rollsDetail"))}</summary>${sections}</details>
           ${this.playing(der)}
         </div>
       </div>`;
@@ -166,13 +166,13 @@ export class ChamberView {
     const items = ids.map((id, i) => {
       const skip = r.chamber != null && E.skipped(id, r, t);
       const fixed = skip && id === "entries" && der.entryChange === "fixed";
-      const v = fixed ? der.entries : skip ? "—" : id === "mimic" && d.mimicHidden && r[id] != null ? "•" : r[id];
-      const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : v != null ? "is-done" : "";
-      return `<li class="ladder-item ${state}"><button type="button" data-action="jump" data-to="${id}">
-        <span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span><span class="ladder-v">${v != null ? h(v) : ""}</span>
-      </button></li>`;
+      const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : r[id] != null || fixed ? "is-done" : "";
+      return `<li class="ladder-item ${state}">
+        <label class="ladder-label" for="${idOf(`roll.${id}`)}"><span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span></label>
+        ${this.rollBox(id, der, skip, fixed)}
+      </li>`;
     }).join("");
-    return `<nav class="ladder" aria-label="${h(T("theRolls"))}"><ol>${items}</ol></nav>`;
+    return `<section class="ladder" aria-label="${h(T("theRolls"))}"><h2 class="ladder-title">${h(T("theRolls"))}</h2><ol>${items}</ol></section>`;
   }
 
   /** Cuántas casillas de la pantalla ya tienen su dado. */
@@ -221,7 +221,8 @@ export class ChamberView {
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}" data-section="${id}">
+    const waiting = r[id] == null && !fixed && !skip;
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result">${body}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
@@ -246,27 +247,32 @@ export class ChamberView {
     return null;
   }
 
+  /** La cabeza de cada tirada abajo: sello con su numeral, nombre y lo que salió. Las casillas viven arriba. */
   head(id, n, der, skip, fixed) {
+    const r = this.d.rolls;
+    const v = fixed ? der.entries : skip ? "—" : id === "mimic" && this.d.mimicHidden && r[id] != null ? "•" : r[id];
+    return `<div class="roll-head"><h2 class="roll-label"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></h2>${v != null ? `<span class="roll-value">${h(v)}</span>` : ""}</div>`;
+  }
+
+  /** La casilla de una de las siete, para la lista de arriba. */
+  rollBox(id, der, skip, fixed) {
     const d = this.d, r = d.rolls;
     const input = idOf(`roll.${id}`);
-    const label = `<label class="roll-label" for="${input}"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></label>`;
-    if (fixed) return `<div class="roll-head">${label}<span class="roll-value">${h(der.entries)}</span></div>`;
-    if (skip) return `<div class="roll-head">${label}<span class="roll-value">—</span></div>`;
+    if (fixed) return `<span class="roll-value">${h(der.entries)}</span>`;
+    if (skip) return `<span class="roll-value">—</span>`;
     const die = id === "entries" ? der.entryDie : id === "timer" ? `${der.timerDice}d10` : E.rollDef(id).die;
     const raw = d.buffers[id] ?? (r[id] != null ? String(r[id]) : "");
-    if (d.locked) return `<div class="roll-head">${label}<span class="roll-value">${h(r[id] ?? "—")}</span></div>`;
+    const hidden = id === "mimic" && d.mimicHidden;
+    if (d.locked) return `<span class="roll-value">${hidden && r[id] != null ? "•" : h(r[id] ?? "—")}</span>`;
     const [a, b] = E.rangeOf(id, der);
     const v = E.typedValue(raw, die);
     const bad = String(raw).trim() !== "" && (v == null || v < a || v > b);
-    const hidden = id === "mimic" && d.mimicHidden;
     const waiting = id !== "chamber" && r.chamber == null;
-    return `<div class="roll-head">${label}
-      <input id="${input}" class="roll-input${bad ? " is-invalid" : ""}" data-roll="${id}" type="${hidden ? "password" : "text"}"
+    return `<input id="${input}" class="roll-input${bad ? " is-invalid" : ""}" data-roll="${id}" type="${hidden ? "password" : "text"}"
         inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(die)}"
         ${waiting ? "disabled" : ""} ${bad ? 'aria-invalid="true"' : ""} aria-describedby="${input}-die">
-      <span id="${input}-die" class="roll-die">${h(bad ? `${a}–${b}` : die)}</span>
-      ${id === "mimic" ? `<button type="button" class="quiet" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button>` : ""}
-    </div>`;
+      <span id="${input}-die" class="roll-die${bad ? " is-invalid" : ""}">${h(bad ? `${a}–${b}` : die)}</span>
+      ${id === "mimic" ? `<button type="button" class="quiet ladder-toggle" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button>` : ""}`;
   }
 
   /** El nombre del resultado con su página, y la nota plegada. */
@@ -594,15 +600,6 @@ export class ChamberView {
       const el = ev.target.closest("button[data-action]");
       if (!el) return;
       const a = el.dataset.action;
-      if (a === "jump") {
-        if (this.d.locked && !this.openRolls) { this.openRolls = true; rerender(); }
-        const s = root.querySelector(`[data-section="${el.dataset.to}"]`);
-        if (!s) return;
-        const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        s.scrollIntoView({ block: "start", behavior: still ? "auto" : "smooth" });
-        s.querySelector("input:not(:disabled)")?.focus({ preventScroll: true });
-        return;
-      }
       if (a === "mimic-toggle") this.d.mimicHidden = !this.d.mimicHidden;
       else if (a === "enter") { if (!this.enter(root)) return; window.scrollTo({ top: 0 }); }
       else if (a === "new" || a === "discard") { this.asking = a; rerender(); return; }
