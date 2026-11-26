@@ -134,8 +134,10 @@ export class ChamberView {
     const ids = E.ROLLS.map((x) => x.id).filter((id) => id !== "mimic" || this.mimics);
     const poster = this.poster(der);
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
+    const ladder = this.ladder(ids, der);
     this.seen = this.fresh;
-    const side = (extra = "") => `<aside class="chamber-side">${poster}${this.ladder(ids, der)}${this.progress(this.ladder(ids, der) + sections)}${extra}</aside>`;
+    const progress = this.progress(ladder + sections);
+    const side = (extra = "") => `<aside class="chamber-side">${poster}${ladder}${progress}${extra}</aside>`;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
         ${side()}
@@ -167,7 +169,8 @@ export class ChamberView {
       const skip = r.chamber != null && E.skipped(id, r, t);
       const fixed = skip && id === "entries" && der.entryChange === "fixed";
       const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : r[id] != null || fixed ? "is-done" : "";
-      return `<li class="ladder-item ${state}">
+      const stamp = r[id] != null ? this.isNew(`fill:${id}:${r[id]}`).replace("is-new", "is-stamped") : "";
+      return `<li class="ladder-item ${state}${stamp}">
         <label class="ladder-label" for="${idOf(`roll.${id}`)}"><span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span></label>
         ${this.rollBox(id, der, skip, fixed)}
       </li>`;
@@ -181,8 +184,11 @@ export class ChamberView {
     const open = boxes.filter((b) => !/\bdisabled\b/.test(b));
     const full = open.filter((b) => /\bvalue="[^"]/.test(b)).length;
     if (!open.length || this.d.locked || this.d.rolls.chamber == null) return "";
+    const pct = (100 * full / open.length).toFixed(1);
+    const from = this.lastPct;
+    this.lastPct = pct;
     return `<div class="progress"><p class="progress-text">${h(T("boxes")(full, open.length))}</p>
-      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${open.length}" aria-valuenow="${full}"><span style="width:${(100 * full / open.length).toFixed(1)}%"></span></div></div>`;
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${open.length}" aria-valuenow="${full}"><span style="--from:${from ?? pct}%;width:${pct}%"></span></div></div>`;
   }
 
   /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
@@ -206,7 +212,7 @@ export class ChamberView {
     return `<header class="poster${this.isNew("poster:" + r.chamber)}">
       <p class="poster-n">${h(String(r.chamber).padStart(2, "0"))}</p>
       <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
-      ${facts.length ? `<dl class="poster-facts">${facts.map(([k, v]) => `<div><dt>${h(T(`roll_${k}`))}</dt><dd>${h(v)}</dd></div>`).join("")}</dl>` : ""}
+      ${facts.length ? `<dl class="poster-facts">${facts.map(([k, v]) => `<div class="fact${this.isNew(`fact:${k}:${v}`)}"><dt>${h(T(`roll_${k}`))}</dt><dd>${h(v)}</dd></div>`).join("")}</dl>` : ""}
     </header>`;
   }
 
@@ -222,7 +228,8 @@ export class ChamberView {
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
     const waiting = r[id] == null && !fixed && !skip;
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}" data-section="${id}">
+    const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result">${body}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
@@ -249,9 +256,9 @@ export class ChamberView {
 
   /** La cabeza de cada tirada abajo: sello con su numeral, nombre y lo que salió. Las casillas viven arriba. */
   head(id, n, der, skip, fixed) {
-    const r = this.d.rolls;
+    const d = this.d, r = d.rolls;
     const v = fixed ? der.entries : skip ? "—" : id === "mimic" && this.d.mimicHidden && r[id] != null ? "•" : r[id];
-    return `<div class="roll-head"><h2 class="roll-label"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></h2>${v != null ? `<span class="roll-value">${h(v)}</span>` : ""}</div>`;
+    return `<div class="roll-head"><h2 class="roll-label"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></h2>${d.locked && v != null ? `<span class="roll-value">${h(v)}</span>` : ""}</div>`;
   }
 
   /** La casilla de una de las siete, para la lista de arriba. */

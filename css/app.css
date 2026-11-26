@@ -142,7 +142,8 @@ button:disabled { opacity: .35; cursor: default; }
 .progress { margin-top: 18px; }
 .progress-text { font: italic 400 15px var(--text); color: var(--dim); }
 .progress-bar { height: 3px; background: var(--line); margin-top: 6px; }
-.progress-bar span { display: block; height: 100%; background: var(--accent); transition: width .4s cubic-bezier(.2, .7, .2, 1); }
+.progress-bar span { display: block; height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: fill .7s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes fill { from { width: var(--from); } }
 .side-actions { margin-top: 18px; }
 .side-actions button { width: 100%; }
 
@@ -236,7 +237,35 @@ button:disabled { opacity: .35; cursor: default; }
 .is-new { animation: grow .28s cubic-bezier(.2, .7, .2, 1) both; }
 .poster.is-new { animation: flip .7s cubic-bezier(.2, .8, .2, 1) both; transform-origin: 50% 50%; }
 .poster.is-new .poster-n { animation: ember 1.4s ease-out .25s both; }
-@media (prefers-reduced-motion: reduce) { .is-new, .poster.is-new, .poster.is-new .poster-n { animation: none; } .progress-bar span { transition: none; } }
+/* Al llenar una de las siete, su ficha se sella con un destello de oro… */
+@keyframes seal { 0% { transform: scale(1.14); filter: brightness(1.35); } 100% { transform: none; filter: none; } }
+@keyframes glint { 0% { background-color: rgba(168, 134, 79, .28); } 100% { background-color: transparent; } }
+.ladder-item.is-stamped .roll-input { animation: seal .5s cubic-bezier(.2, .8, .2, 1); }
+.ladder-item.is-stamped:not(.is-current) { animation: glint 1s ease-out; }
+/* …y abajo su tirada se despliega como un pergamino: el árbol se dibuja de arriba abajo y las ramas entran una tras otra. */
+@keyframes unfold { from { opacity: 0; transform: translateY(-8px); clip-path: inset(0 -60px 100% -60px); } to { opacity: 1; transform: none; clip-path: inset(0 -60px -60px -60px); } }
+@keyframes draw { from { transform: scaleY(0); } to { transform: none; } }
+.roll-section.is-unfolding { animation: unfold .65s cubic-bezier(.2, .8, .2, 1) both; }
+.is-unfolding .roll-n::before { animation: spin .8s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes spin { from { transform: rotate(-135deg) scale(.4); opacity: 0; } to { transform: rotate(45deg); opacity: 1; } }
+.is-unfolding .derived::before { transform-origin: top; animation: draw .8s .12s cubic-bezier(.2, .8, .2, 1) both; }
+.is-unfolding .derived > * { animation: grow .4s cubic-bezier(.2, .7, .2, 1) both; animation-delay: .7s; }
+.is-unfolding .derived > :nth-child(1) { animation-delay: 0.23s; }
+.is-unfolding .derived > :nth-child(2) { animation-delay: 0.28s; }
+.is-unfolding .derived > :nth-child(3) { animation-delay: 0.33s; }
+.is-unfolding .derived > :nth-child(4) { animation-delay: 0.38s; }
+.is-unfolding .derived > :nth-child(5) { animation-delay: 0.43s; }
+.is-unfolding .derived > :nth-child(6) { animation-delay: 0.48s; }
+.is-unfolding .derived > :nth-child(7) { animation-delay: 0.53s; }
+.is-unfolding .derived > :nth-child(8) { animation-delay: 0.58s; }
+.is-unfolding .derived > :nth-child(9) { animation-delay: 0.63s; }
+.is-unfolding .derived > :nth-child(10) { animation-delay: 0.68s; }
+@media (prefers-reduced-motion: reduce) {
+  .is-new, .poster.is-new, .poster.is-new .poster-n, .ladder-item.is-stamped, .ladder-item.is-stamped .roll-input, .roll-section.is-unfolding,
+  .is-unfolding .roll-n::before, .is-unfolding .derived::before, .is-unfolding .derived > *, .progress-bar span { animation: none; }
+}
+/* Limpio: con la cámara ya elegida, las tiradas que aún no tienen nada que mostrar no ocupan sitio abajo. */
+.chamber:has(.poster:not(.is-empty)) .roll-section.is-waiting:not(:has(.derived, .roll-result, .choice)) { display: none; }
 
 /* Decisiones de la mesa */
 .choice { border: 0; border-left: 1px solid var(--gold-dim); margin: 8px 0 0 60px; padding: 2px 0 4px 22px; }
