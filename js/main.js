@@ -13,8 +13,8 @@ let chamber, reference;
 let askingClear = false;
 
 function route() {
-  const [, view = "chamber", sub = "tables"] = (location.hash || "#/chamber").split("/");
-  return { view, sub };
+  const [, view = "chamber", sub = "search", ...rest] = (location.hash || "#/chamber").split("/");
+  return { view, sub, rest };
 }
 
 function renderLog() {
@@ -36,13 +36,13 @@ function renderLog() {
 }
 
 function render() {
-  const { view, sub } = route();
+  const { view, sub, rest } = route();
   document.title = view === "ref" ? `${T("navRef")} · Black Stone` : view === "log" ? `${T("navLog")} · Black Stone` : T("app");
   const links = [["chamber", T("navChamber")], ["log", T("navLog")], ["ref", T("navRef")]];
   nav.innerHTML = links.map(([k, v]) => `<a href="#/${k}" ${k === view ? 'aria-current="page"' : ""}>${h(v)}</a>`).join("");
   langs.innerHTML = ["es", "en"].map((l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang()}">${l.toUpperCase()}</button>`).join("");
   keepFocus(() => {
-    main.innerHTML = view === "ref" ? reference.render(sub) : view === "log" ? renderLog() : chamber.render();
+    main.innerHTML = view === "ref" ? reference.render(sub, rest) : view === "log" ? renderLog() : chamber.render();
   });
   document.documentElement.dataset.ready = "1";
 }
@@ -50,14 +50,10 @@ function render() {
 async function start() {
   main.innerHTML = `<p class="empty">${h(T("loading"))}</p>`;
   try {
-    const [tables, bestiary, materials, magic] = await Promise.all([
-      Tables.load("data/"),
-      fetch("data/bestiary.json").then((r) => r.json()),
-      fetch("data/materials.json").then((r) => r.json()),
-      fetch("data/magic.json").then((r) => r.json()),
-    ]);
+    const tables = await Tables.load("data/");
     chamber = new ChamberView(tables, render);
-    reference = new ReferenceView(tables, { bestiary, materials, magic });
+    // La referencia lee la base de datos (db/) cuando se abre por primera vez.
+    reference = new ReferenceView(render);
   } catch (err) {
     console.error(err);
     main.innerHTML = `<p class="is-invalid">${h(T("loadError"))}</p>`;

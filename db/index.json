@@ -1,0 +1,48 @@
+{
+ "name": "Black Stone · The Maze database",
+ "source": "The Maze, M. A. Bastarrachea Magnani (Axo stories). Built from web/data; do not edit by hand.",
+ "schema_version": 1,
+ "generated": "2026-11-26T00:44Z",
+ "conventions": {
+  "id": "'<type>:<slug>' — stable, lowercase, ascii. Tables use their number: table:a, table:3-1.",
+  "page": "printed page of the rulebook (same as PDF page); null = no dedicated description",
+  "range": "[low, high] die faces, inclusive; d% 00 = 100",
+  "refs": "a row's refs point to the entity it produces (chamber, condition, creature)",
+  "appears_in": "back-links: which table rows / chambers mention this entity",
+  "text": "{en, es}: English is the book text; Spanish is a helper translation"
+ },
+ "collections": {
+  "tables": {
+   "file": "tables.json",
+   "count": 25
+  },
+  "chambers": {
+   "file": "chambers.json",
+   "count": 39
+  },
+  "conditions": {
+   "file": "conditions.json",
+   "count": 21
+  },
+  "creatures": {
+   "file": "creatures.json",
+   "count": 108
+  },
+  "items": {
+   "file": "items.json",
+   "count": 31
+  },
+  "materials": {
+   "file": "materials.json",
+   "count": 37
+  },
+  "rules": {
+   "file": "rules.json",
+   "count": 11
+  }
+ },
+ "search": {
+  "file": "search.json",
+  "count": 1037
+ }
+}

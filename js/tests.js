@@ -1,5 +1,6 @@
 // Pruebas del motor contra las tablas reales. Abrir tests.html: todas deben salir en verde.
 import * as E from "./engine.js";
+import { Db, tableId } from "./db.js";
 
 const results = [];
 const test = (name, fn) => {
@@ -11,6 +12,7 @@ const eq = (a, b, msg = "") => {
 const ok = (v, msg) => { if (!v) throw new Error(msg); };
 
 const t = await E.Tables.load("data/");
+const db = await Db.load("db/");
 const keys = (r, typed = {}) => E.children(r, E.derive(r, t), t, typed).map((c) => c.key);
 
 test("Dados del libro: 1d6+1, 20+1d%, 1d4-1, 10d%", () => {
@@ -110,6 +112,36 @@ test("Magia salvaje: se tira jugando en la Tabla 3.1", () => {
   const live = E.live(r, E.derive(r, t));
   eq(live.map((x) => x.extra.table), ["3.1"]);
   eq(E.resolveLive(live[0], { total: 7 }, t).text, t.name("3.1", 7));
+});
+
+test("La base de datos (db/) dice lo mismo que data/ en cada cara de cada tabla (si falla: python tools/build_db.py)", () => {
+  let faces = 0;
+  for (const [id, file] of Object.entries(t.files)) {
+    const table = db.get(tableId(id));
+    ok(table, `falta ${tableId(id)} en db/tables.json`);
+    for (const [n, v] of Object.entries(file.results ?? {})) {
+      const row = db.row(table, +n);
+      ok(row, `${id} ${n}: no está en db/`);
+      eq([row.label, row.page ?? null], [v.result, v.page ?? row.page ?? null], `${id} ${n}:`);
+      faces++;
+    }
+  }
+  ok(faces > 700, `sólo ${faces} caras`);
+});
+
+test("Cada enlace de la base lleva a una ficha que existe", () => {
+  for (const table of db.tables) for (const w of table.rows) for (const r of w.refs ?? []) ok(db.get(r), `${table.id} ${w.range}: ${r}`);
+  for (const c of db.creatures) for (const a of c.appears_in ?? []) ok(db.get(a.table ?? a.chamber), `${c.id}: ${JSON.stringify(a)}`);
+});
+
+test("Buscador: «A 57», «d 00», «p. 96» y por nombre", () => {
+  const a = db.jump("A 57");
+  eq([a.table.id, a.row.label], ["table:a", t.entry("A", 57).result]);
+  eq(db.jump("d 00").face, 100);
+  eq(db.jump("hydra"), null);
+  ok(db.search("p. 96").length && db.search("p. 96").every((x) => x.page === 96), "p. 96");
+  eq(db.search("darkest cave")[0].id, "chamber:the-darkest-cave");
+  ok(db.search("hydra", "creature").every((x) => x.type === "creature"), "filtro");
 });
 
 const ul = document.getElementById("results");

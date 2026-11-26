@@ -1,0 +1,3817 @@
+[
+ {
+  "id": "creature:air-elemental",
+  "type": "creature",
+  "name": "Air Elemental",
+  "page": 277,
+  "family": "Elemental",
+  "shared": null,
+  "stats": {
+   "ST": "Air-bane, Suffocator (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Large, neutral outsider (elemental)",
+   "AL": "Serious (12d10, High HP)",
+   "Speed": "Slow, (Fly, Swift)",
+   "Armor": "Natural (Very High AC)",
+   "Savings": "Stamina, Agile",
+   "Immunities": "electricity, grapple",
+   "L&Y": "The core of a dead, air elemental can be stored and employed to supply the air allowance of a single Bonfire during 1d6 Raid Time units",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Very High, 2d8+5. Ma: two]"
+   ],
+   "Special": [
+    "Air Form",
+    "Suffocation",
+    "Whirlwind"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     15,
+     15
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:azata",
+  "type": "creature",
+  "name": "Azata",
+  "page": 258,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Immunities": "electricity, poison, and petrification",
+   "Resistances": "cold, fire (moderate) and physical damage (moderate)",
+   "Weaknesses": "Cold iron or evil-aligned weapons overcome their damage resistance",
+   "Special": [
+    "Truespeech",
+    "Faerie Court"
+   ]
+  }
+ },
+ {
+  "id": "creature:bear",
+  "type": "creature",
+  "name": "Bear",
+  "page": 267,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Medium, unaligned beast",
+   "AL": "Moderate (4d10/5d8, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing) [Moderate, 1d8+4]",
+    "Claws (slashing) [Moderate, 2d6+4. Ma: 2]"
+   ],
+   "Special": [
+    "Keen Smell"
+   ]
+  }
+ },
+ {
+  "id": "creature:beasts",
+  "type": "creature",
+  "name": "Beasts",
+  "page": 266,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "Hunter (after killing 5), Beast-killer, Boar-hunter, Bear-slayer, etc",
+   "Role": "Brute, Scoundrel",
+   "Perception": "Low-light vision, scent",
+   "Savings": "Agile, Stamina",
+   "Immunities": "mind-affecting (only Vermin)",
+   "Weaknesses": "Beasts and Vermin are not very clever",
+   "L&Y": "Meat, hide, fur, chiton, and bone according to their size, 1d4 of poison units per size category (only Vermin)",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Charge",
+    "Pounce"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     63,
+     64
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     65,
+     65
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     66,
+     66
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     67,
+     69
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     70,
+     73
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:black-bishop-greater-mirrorfolk",
+  "type": "creature",
+  "name": "Black Bishop: Greater Mirrorfolk",
+  "page": 353,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Black Bishop (After discovering and killing at least one)",
+   "Role": "Scoundrel, Mystic",
+   "S&T": ": Medium neutral evil monstrosity (shapechanger)",
+   "AL": "Severe (9d8, High)",
+   "Perception": "Darkvision",
+   "Speed": "Medium",
+   "Armor": "Natural (High AC)",
+   "Savings": "Agile, Mental, Spiritual",
+   "Immunities": "restrain, sleep, and mind-affecting",
+   "Weaknesses": "Silver makes damage to Mirrorfolk as if it would be fire",
+   "L&Y": "Meat, bone, and leather as a medium creature, a functional Oktar's Mask that preserves its magical properties",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 2d6+4. Ma: 2]",
+    "Surprise Attack",
+    "Dispell Rend (psychic)"
+   ],
+   "Special": [
+    "Perfect copy",
+    "Consume identity",
+    "Ambusher",
+    "Mimicry",
+    "Read Thoughts",
+    "Major Black Piece",
+    "Caster"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     26,
+     27
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:black-stone-gargoyle",
+  "type": "creature",
+  "name": "Black Stone Gargoyle",
+  "page": 283,
+  "family": "Gargoyle",
+  "shared": null,
+  "stats": {
+   "ST": "Daysunder (after killing one)",
+   "Role": "Brute, Scoundrel",
+   "S&T": "Medium, chaotic evil, elemental",
+   "AL": "Serious (12d10, Very High)",
+   "Speed": "Medium (Fly, Quick)",
+   "Armor": "Natural (Very High AC)",
+   "Savings": "Stamina, Spiritual",
+   "Resistances": "acid, cold, electricity, fire (low), and physical damage (very high)",
+   "Weaknesses": "Blacksteel and Adamantine weapons overcome damage resistance",
+   "L&Y": "1d4 units of Black Stone",
+   "Chamber": "Wanderer, The Infinite Library",
+   "Attacks": [
+    "Bite (piercing) [Very High, close reach, 1d8+4. Ma: two]",
+    "Claws (slashing) [Very High, close reach, 1d8+4. Ma: two]",
+    "Rend"
+   ],
+   "Special": [
+    "Blackstone skin",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-infinite-library"
+   }
+  ]
+ },
+ {
+  "id": "creature:boar",
+  "type": "creature",
+  "name": "Boar",
+  "page": 268,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Medium, unaligned beast",
+   "AL": "Low (2d8, Very Low)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Tusk (slashing) [Moderate, 1d6]",
+    "Charge (slashing) [Low, 2d6+1]"
+   ],
+   "Special": [
+    "Relentless"
+   ]
+  }
+ },
+ {
+  "id": "creature:bonfire-horse",
+  "type": "creature",
+  "name": "Bonfire Horse",
+  "page": 318,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "Role": "Scoundrel",
+   "AL": "High (7d8, Moderate HP)",
+   "Armor": "Studded leather (High AC)",
+   "Savings": "Agile",
+   "L&Y": "Studded leather armor (common metal), 4 x knife (common metal), thieves' tools",
+   "Attacks": [
+    "Mtw Knife combo (slashing) [High, 1d4+5. Ma: 3]"
+   ],
+   "Special": [
+    "Rogue Training"
+   ]
+  }
+ },
+ {
+  "id": "creature:bonfire-king-or-queen",
+  "type": "creature",
+  "name": "Bonfire King or Queen",
+  "page": 322,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Anarchist (After killing one)",
+   "Role": "Scoundrel",
+   "AL": "Serious (10d8, High HP)",
+   "Armor": "Chain Shirt (High AC)",
+   "Savings": "Agile, Mental",
+   "Weaknesses": "Depending on the Bonfire Leader's alignment, they will surrender if the population of their Bonfire is threatened, so they will try to solve problems by…",
+   "L&Y": "Chain Shirt (Mithral), 2 magic knives +1 (Orichalcum)",
+   "Chamber": ": Bonfires",
+   "Attacks": [
+    "Mtw Knife combo (slashing) [High, 1d4+5. Ma: 4]"
+   ],
+   "Special": [
+    "Rogue Training"
+   ]
+  }
+ },
+ {
+  "id": "creature:bralani",
+  "type": "creature",
+  "name": "Bralani",
+  "page": 260,
+  "family": "Azata",
+  "shared": null,
+  "stats": {
+   "ST": "Count (after killing one)",
+   "Role": "Brute, Mystic",
+   "S&T": "Medium, chaotic good, outsider (Azata)",
+   "AL": "High (7d10, High HP)",
+   "Perception": "Low-light vision, Darkvision",
+   "Speed": "Quick, (Fly, Swift)",
+   "Armor": "Natural (High AC)",
+   "Savings": "Stamina, Agile",
+   "Weaknesses": "They do not need to eat or drink, but they are easily seduced by spicy food and strong drinks",
+   "L&Y": "Magical enhanced scimitar and longbow",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 1d6+7. Ma:two]",
+    "Scimitar (slashing) [High, 1d6+8. Ma:two]",
+    "Longbow (piercing) [High, ranged (distant), 1d8+6. Ma:two]",
+    "Whirlwind blast (bludgeoning) [Medium range line, 3d6]"
+   ],
+   "Special": [
+    "Whirlwind shape",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     91,
+     92
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:brute-veteran-bonfire-rook",
+  "type": "creature",
+  "name": "Brute Veteran (Bonfire Rook)",
+  "page": 317,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "Role": "Brute",
+   "AL": "High (7d10, Moderate HP)",
+   "Armor": "Scale Mail, Heavy Shield, Helmet (Very High AC)",
+   "Savings": "Stamina",
+   "L&Y": "One-handed blade (common metal), Scale Mail (common metal), Helmet (common metal), Heavy Shield (common metal)",
+   "Attacks": [
+    "Mtw One-handed blade (slashing) [High, 1d8+6. Ma: 2]",
+    "Mtw Shield (bludgeoning) [High, 1d4+6. Ma: 2]",
+    "Blade and Shield Combo"
+   ],
+   "Special": [
+    "Warrior Training"
+   ]
+  }
+ },
+ {
+  "id": "creature:builders",
+  "type": "creature",
+  "name": "Builders",
+  "page": 264,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Wrecker (after killing one)",
+   "Role": "Brute",
+   "S&T": "Medium neutral humanoid (dwarf)",
+   "AL": "Moderate (4d8, Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Slow",
+   "Armor": "None (Low AC)",
+   "Savings": "Stamina, Mental",
+   "Resistances": "poison, magic (high)",
+   "Weaknesses": "They must protect the Builder's Chamber and sleep there until further command",
+   "L&Y": "Builder's Tool (See Chapter 4: Resources) The blood of a builder can be employed to enhance curse removing or enchantment breaking effects",
+   "Chamber": "Builder's Hall",
+   "Attacks": [
+    "Builder's Tool (bludgeoning or piercing) [Low, 1d8+2]"
+   ],
+   "Special": [
+    "Tools"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-builders-hall"
+   }
+  ]
+ },
+ {
+  "id": "creature:butlers",
+  "type": "creature",
+  "name": "Butlers",
+  "page": 265,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Assface (Everyone despises Raiders who kill Butlers)",
+   "Role": "Mystic",
+   "S&T": "Medium construct (incorporeal)",
+   "AL": "Moderate (6d10, Low)",
+   "Perception": "Darkvision",
+   "Speed": "Very Slow (Fly, Quick)",
+   "Armor": "None (Low AC)",
+   "Savings": "Mental, Spiritual",
+   "Immunities": "cold, necrotic, poison, acid, fire, electric, sonic, physical damage, charm, exhaustion, fear, grapple, paralysis, petrification, poisoned, prone, restrained",
+   "Weaknesses": "They only exist inside the Chamber where they were created",
+   "L&Y": "None",
+   "Chamber": "Training Halls",
+   "Special": [
+    "Incorporeal Movement"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:training-hall"
+   }
+  ]
+ },
+ {
+  "id": "creature:clay-golem",
+  "type": "creature",
+  "name": "Clay Golem",
+  "page": 285,
+  "family": "Golem",
+  "shared": null,
+  "stats": {
+   "ST": "Brick-breaker (after killing one)",
+   "Role": "Brute",
+   "S&T": "Large, neutral, construct",
+   "AL": "Severe (14d10, Very High)",
+   "Speed": "Slow",
+   "Armor": "Natural (High AC)",
+   "Immunities": "acid",
+   "Resistances": "Physical damage (low)",
+   "L&Y": "1d10 units of clay",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Very High, 2d10+5. Ma: two]",
+    "Drain"
+   ],
+   "Special": [
+    "Acid Absorption",
+    "Haste"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:old-gods-temple"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     20,
+     20
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:common-hitmen",
+  "type": "creature",
+  "name": "Common Hitmen",
+  "page": 339,
+  "family": "Oktar's Hitmen",
+  "shared": null,
+  "stats": {
+   "ST": "Capo (After killing 10), Consigliere (After killing 15)",
+   "Role": "Scoundrel",
+   "S&T": "Medium neutral evil humanoid",
+   "AL": "Low (3d8, Moderate HP)",
+   "Speed": "Quick",
+   "Armor": "Studded leather (High AC)",
+   "Weaknesses": "None",
+   "L&Y": "Studded leather armor (steel), 4 knives (steel), Oktar's Mask",
+   "Chamber": "Wanderer, Hitmen Outpost, Black Square: The Black King's Headquarters",
+   "Attacks": [
+    "Knife combo (slashing) [Low, 1d4+3. Ma: 2]"
+   ],
+   "Special": [
+    "Rogue training",
+    "Knife fighting",
+    "Assassination",
+    "Camouflage",
+    "Hit",
+    "Resurrection resistance"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:hitmen-outpost"
+   },
+   {
+    "table": "table:3-5",
+    "range": [
+     21,
+     40
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     31,
+     50
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     34,
+     34
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     36,
+     36
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     38,
+     38
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     40,
+     40
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     42,
+     42
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     44,
+     44
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:common-mazeknight",
+  "type": "creature",
+  "name": "Common Mazeknight",
+  "page": 344,
+  "family": "Mazeknights",
+  "shared": null,
+  "stats": {
+   "ST": "Sergeant (After killing 10), Lieutenant (After killing 15)",
+   "Role": "Brute",
+   "S&T": "Medium, lawful evil, humanoid (undead)",
+   "AL": "Low (3d10, Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Medium (With armor, Slow)",
+   "Immunities": "disease, poison, sleep, and stun",
+   "Weaknesses": "None",
+   "L&Y": "Heavy flail (steel)",
+   "Chamber": "Wanderer, Mazeknight Outpost, Death Square: The Red Queen's Headquarters",
+   "Attacks": [
+    "Heavy Flail (bludgeoning, piercing) [Moderate, 1d10+5. Ma: 2]",
+    "Alignment"
+   ],
+   "Special": [
+    "Martial training",
+    "Red Queen's Law",
+    "Armor attunement",
+    "Red Undead",
+    "Magic"
+   ]
+  }
+ },
+ {
+  "id": "creature:common-mimic",
+  "type": "creature",
+  "name": "Common Mimic",
+  "page": 296,
+  "family": "Mimics",
+  "shared": null,
+  "stats": {
+   "ST": "Spotter (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Medium, neutral, aberration (shapechanger)",
+   "AL": "High (9d8, Moderate HP)",
+   "Perception": "Darkvision",
+   "Speed": "Slow",
+   "Armor": "Natural (Moderate AC)",
+   "Weaknesses": "None",
+   "L&Y": "Meat, 1d4 units of a powerful adhesive and 1d4 units of acid When a Mimic dies its outer skin hardens offer 1d6 units of chitin",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Pseudopod (bludgeoning) [High, 1d8+3]",
+    "Bite (piercing, acid) [High, 1d8+3 plus 1d8]",
+    "Acid Spit (acid) [Moderate, ranged close distance, 1d6]",
+    "Constrict"
+   ],
+   "Special": [
+    "Adhesive",
+    "Mimic Object"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:trap-cube"
+   }
+  ]
+ },
+ {
+  "id": "creature:common-ooze",
+  "type": "creature",
+  "name": "Common Ooze",
+  "page": 310,
+  "family": "Ooze",
+  "shared": null,
+  "stats": {
+   "ST": "Pudding (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Large, unaligned, ooze",
+   "AL": "High (8d10, High HP)",
+   "Speed": "Slow",
+   "Armor": "None (Very Low AC)",
+   "L&Y": "Meat (surprisingly, oozes can be eaten), 1d4 units of acid",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Pseudopod (acid) [Low, 3d6]",
+    "Engulf (acid)"
+   ],
+   "Special": [
+    "Transparent",
+    "Corrode"
+   ]
+  }
+ },
+ {
+  "id": "creature:common-raider",
+  "type": "creature",
+  "name": "Common Raider",
+  "page": 314,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Serial Killer (After killing 10)",
+   "Role": "Brute",
+   "AL": "Moderate (4d10, Low HP)",
+   "Armor": "Hide armor, leather helmet (Moderate AC)",
+   "Weaknesses": "None",
+   "L&Y": "One-handed blade (iron), hide armor, helmet (leather)",
+   "Attacks": [
+    "One-handed blade (slashing) [Moderate, hit 1d8+6]"
+   ],
+   "Special": [
+    "Warrior Training"
+   ]
+  }
+ },
+ {
+  "id": "creature:crocodile",
+  "type": "creature",
+  "name": "Crocodile",
+  "page": 270,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Low (3d10/3d8, Very Low HP)",
+   "Speed": "Slow (Swim, Medium)",
+   "Armor": "Natural (High AC)",
+   "Attacks": [
+    "Bite (piercing)",
+    "Tail (bludgeoning) [Low, 1d8+2]",
+    "Grappler",
+    "Sweep"
+   ],
+   "Special": [
+    "Hold Breath",
+    "Death Roll",
+    "Sprint"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-river"
+   }
+  ]
+ },
+ {
+  "id": "creature:dark-hunter-black-horse",
+  "type": "creature",
+  "name": "Dark Hunter (Black Horse)",
+  "page": 348,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Black Quarry (after eluding one),Black Horse (After eluding and killing at least one)",
+   "Role": "Brute, Scoundrel",
+   "S&T": "Medium lawful evil outsider",
+   "AL": "Severe (12d8, Very High)",
+   "Perception": "Darkvision",
+   "Speed": "Quick",
+   "Armor": "Natural and Deflection (Legendary AC)",
+   "Savings": "Agile, Mental, Stamina",
+   "Weaknesses": "Gold makes damage to Dark Hunters as if it would be fire",
+   "L&Y": "Meat, bone, and leather as a medium creature",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Claw (slashing) [Legendary, 1d6+7. Ma: 2]",
+    "Dart (piercing, poison) [Very High, ranged (very long), 1d4+7 plus paralysis]",
+    "Paralysis",
+    "Sneak Attack"
+   ],
+   "Special": [
+    "Track",
+    "Swift Tracker",
+    "Maze Tracker",
+    "Elusiveness",
+    "Readiness",
+    "Camouflage",
+    "Evasion",
+    "Intimidating Visage",
+    "Major Black Piece",
+    "Persistent Antagonist"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     30,
+     30
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     31,
+     31
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:deer",
+  "type": "creature",
+  "name": "Deer",
+  "page": 269,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Medium, unaligned beast",
+   "AL": "Low (1d8/2d8, Very Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing) [Very Low, 1d4]"
+   ]
+  }
+ },
+ {
+  "id": "creature:diatryma-or-axe-beak",
+  "type": "creature",
+  "name": "Diatryma or Axe Beak",
+  "page": 269,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Low (3d8, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing)",
+    "Charge (piercing) [Moderate, 2d8+2]"
+   ],
+   "Special": [
+    "Mount"
+   ]
+  }
+ },
+ {
+  "id": "creature:dire-wolf",
+  "type": "creature",
+  "name": "Dire Wolf",
+  "page": 276,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Moderate (5d10/5d8, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing) [Moderate, 2d6+3]",
+    "Grab"
+   ],
+   "Special": [
+    "Keen smell and hearing",
+    "Pack Tactics"
+   ]
+  }
+ },
+ {
+  "id": "creature:earth-elemental",
+  "type": "creature",
+  "name": "Earth Elemental",
+  "page": 278,
+  "family": "Elemental",
+  "shared": null,
+  "stats": {
+   "ST": "Earth-bane, Earth-shatter, Stonebreaker (after killing one)",
+   "Role": "Brute",
+   "S&T": "Large, neutral, outsider (elemental)",
+   "AL": "Serious (12d10, Very High HP)",
+   "Perception": "Tremorsense",
+   "Speed": "Medium, (Burrow, Medium)",
+   "Armor": "Natural (Very High AC)",
+   "Savings": "Stamina, Spiritual",
+   "Immunities": "prone",
+   "Resistances": "acid (low)",
+   "Weaknesses": "Electricity",
+   "L&Y": "Rocks and minerals from an elemental body make good stone weapons",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Very High, close reach, 2d8+5. Ma: two]"
+   ],
+   "Special": [
+    "Earth Form",
+    "Natural",
+    "Integration"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     16,
+     16
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:elemental",
+  "type": "creature",
+  "name": "Elemental",
+  "page": 277,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Perception": "Darkvision",
+   "Immunities": "exhaustion, paralysis, petrification, poison, prone, or unconscious",
+   "Resistances": "physical damage (low)",
+   "Weaknesses": "Magical weapons overcome damage resistance",
+   "Special": [
+    "Self-sustained"
+   ]
+  }
+ },
+ {
+  "id": "creature:elk",
+  "type": "creature",
+  "name": "Elk",
+  "page": 271,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Low (2d10, Very Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Ram (bludgeoning) [Moderate, 1d6+3]",
+    "Hooves (bludgeoning) [Moderate, 2d4+3]",
+    "Charge (bludgeoning) [Moderate, 3d6+3]"
+   ]
+  }
+ },
+ {
+  "id": "creature:fire-elemental",
+  "type": "creature",
+  "name": "Fire Elemental",
+  "page": 280,
+  "family": "Elemental",
+  "shared": null,
+  "stats": {
+   "ST": "Fire-bane, Firefighter (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Large, neutral, outsider (elemental)",
+   "AL": "Serious (12d10, High HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)]",
+   "Savings": "Stamina, Agile",
+   "Immunities": "fire, grapple",
+   "Resistances": "electricity (low)",
+   "L&Y": "The core of a dead, fire elemental can be stored and used to supply the fuel allowance of a single Bonfire during 1d8 Raid Time units",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Touch (fire) [High, 2d6+3. Ma: two]"
+   ],
+   "Special": [
+    "Fire Form",
+    "Fire Touch",
+    "Illumination"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     17,
+     17
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:fungal-spawn",
+  "type": "creature",
+  "name": "Fungal Spawn",
+  "page": 302,
+  "family": "Mikites",
+  "shared": null,
+  "stats": {
+   "ST": "Spore (after killing 5)",
+   "Role": "Brute",
+   "S&T": "Medium neutral humanoid (plant)",
+   "AL": "Low (1d8, Very Low HP)",
+   "Perception": "Darkvision, low-light vision",
+   "Speed": "Slow",
+   "Armor": "None (Low AC)",
+   "Savings": "Stamina",
+   "L&Y": "Myconid meat",
+   "Chamber": "Wanderer, The Garden",
+   "Attacks": [
+    "Fist (bludgeoning) [Very Low, 1d4-1]"
+   ],
+   "Special": [
+    "Fungal Metabolism",
+    "Poisonous Blood",
+    "Spore Cloud",
+    "Sleep Spore Cloud",
+    "Paralyzing Spore Cloud",
+    "Hallucinatory Spore Cloud"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     87,
+     87
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     88,
+     88
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:gargoyle",
+  "type": "creature",
+  "name": "Gargoyle",
+  "page": 282,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Perception": "Darkvision",
+   "Immunities": "poison, exhaustion, and petrification",
+   "Resistances": "physical damage (moderate)",
+   "Special": [
+    "Stone Still",
+    "Elemental Nature"
+   ]
+  }
+ },
+ {
+  "id": "creature:ghaele",
+  "type": "creature",
+  "name": "Ghaele",
+  "page": 261,
+  "family": "Azata",
+  "shared": null,
+  "stats": {
+   "ST": "Duke (after killing one)",
+   "Role": "Brute, Mystic",
+   "S&T": "Medium chaotic good outsider (azata)",
+   "AL": "High (13d10, Very High HP)",
+   "Perception": "Low-light vision, Darkvision, detect evil, See Invisibility",
+   "Speed": "Quick, (Fly, Fast)",
+   "Armor": "Natural and Deflection (Very High AC)",
+   "Savings": "Stamina, Spiritual",
+   "Resistances": "magic (legendary)",
+   "Weaknesses": "Ghaele can be lured easily to a trap if the motivation is to perform an epic deed, however, it is not easy to lie to them",
+   "L&Y": "Magically enhanced greatsword",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Greatsword (slashing) [Legendary, 2d6+10. Ma*:* 3]",
+    "Ray of light [Very High, ranged (distant), 2d12. Ma:two]"
+   ],
+   "Special": [
+    "Clergy",
+    "Death Gaze",
+    "Light shape",
+    "Innate Magic",
+    "Holy"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     93,
+     94
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:ghast",
+  "type": "creature",
+  "name": "Ghast",
+  "page": 331,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Lupine (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Medium Undead",
+   "AL": "High (8d8, Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Normal",
+   "Armor": "Natural (High AC)",
+   "Savings": "Mental, Spiritual",
+   "L&Y": "Ghast body fluids can be used to infect others of the Ghast Fever effect",
+   "Chamber": "Wanderer, Bonfires",
+   "Attacks": [
+    "Bite (piercing) [Low, 2d6+2 plus disease]",
+    "Claw (slashing) [Moderate, 2d4+2 plus paralysis]",
+    "Ghoul Fever",
+    "Paralysis"
+   ],
+   "Special": [
+    "Turning Defiance",
+    "Stench",
+    "Vendetta",
+    "Raider Status"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     55,
+     55
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:ghost",
+  "type": "creature",
+  "name": "Ghost",
+  "page": 328,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Ghostbuster (After utterly destroying one Ghost)",
+   "Role": "Scoundrel",
+   "S&T": "Medium Undead",
+   "AL": "Low (7d8-10d8, Moderate HP)",
+   "Perception": "Darkvision",
+   "Speed": "Slow (Fly, Quick)",
+   "Armor": "Deflection (Moderate AC)",
+   "Savings": "Stamina, Spiritual",
+   "Immunities": "cold, necrotic, poison, charm, exhaustion, fear, grapple, paralysis, petrification, poison, prone, restrained",
+   "Resistances": "acid, fire, lightning, thunder, bludgeoning, piercing and slashing (low)",
+   "L&Y": "1d10 units of ectoplasm",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Withering Touch (Necrotic) [Moderate, 4d6+3]",
+    "Crippling Moan"
+   ],
+   "Special": [
+    "Incorporeal Movement",
+    "Rejuvenation",
+    "Raider Status"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-temples-of-hao"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     77,
+     77
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     78,
+     79
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:ghouls",
+  "type": "creature",
+  "name": "Ghouls",
+  "page": 330,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Canine (After killing at least 5 Ghouls)",
+   "Role": "Scoundrel",
+   "S&T": "Medium Undead",
+   "AL": "Low (5d8, Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Normal",
+   "Armor": "Natural (Moderate AC)",
+   "Savings": "Mental, Spiritual",
+   "L&Y": "Ghoul body fluids can be used to infect others of the Ghoul Fever effect",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Bite (piercing) [Low, 2d6+2 plus disease]",
+    "Claw (slashing) [Moderate, 2d4+2 plus paralysis]",
+    "Ghoul Fever",
+    "Paralysis"
+   ],
+   "Special": [
+    "Turning Defiance",
+    "Black Spot",
+    "Raider Status"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     50,
+     50
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     55,
+     55
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     56,
+     56
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     97,
+     98
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:giant-ape",
+  "type": "creature",
+  "name": "Giant Ape",
+  "page": 267,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Severe (15d12, Very High HP)",
+   "Speed": "Quick, (Climb, Quick)",
+   "Armor": "Natural (High AC)",
+   "Attacks": [
+    "Slam (bludgeoning) [High, close reach, 3d10+6. Ma: 2]",
+    "Rock (bludgeoning) [High, range (long), 7d6+6]"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-boar",
+  "type": "creature",
+  "name": "Giant Boar",
+  "page": 268,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Low (5d10, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Tusk (slashing) [High, 2d6+9]",
+    "Charge (slashing) [High, 3d6+9]"
+   ],
+   "Special": [
+    "Relentless"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-centipede",
+  "type": "creature",
+  "name": "Giant Centipede",
+  "page": 268,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Medium, unaligned vermin",
+   "AL": "Low (1d8, Very Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Quick, (Climb, Quick)",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing, poison) [Very low, close reach, 1d6 plus 3d6]",
+    "Poison [PFR: injury, 1d3 Dex, 6 rounds, 1 save to cure]",
+    "Paralysis"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-crocodile",
+  "type": "creature",
+  "name": "Giant Crocodile",
+  "page": 271,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Huge, unaligned beast",
+   "AL": "High (9d12, Moderate HP)",
+   "Speed": "Medium",
+   "Armor": "Natural (High AC)",
+   "Attacks": [
+    "Bite (piercing) [High, 3d10+5]",
+    "Tail (bludgeoning) [High, 2d8+5]",
+    "Grappler",
+    "Sweep"
+   ],
+   "Special": [
+    "Hold Breath",
+    "Death Roll",
+    "Sprint"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-elk",
+  "type": "creature",
+  "name": "Giant Elk",
+  "page": 272,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Huge, unaligned beast",
+   "AL": "Moderate (5d12, Moderate HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (High AC)",
+   "Attacks": [
+    "Ram (bludgeoning) [Moderate, 2d6+4]",
+    "Hooves (bludgeoning) [Moderate, 4d8+4]",
+    "Charge (bludgeoning) [Moderate, 4d6+4]"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-goat",
+  "type": "creature",
+  "name": "Giant Goat",
+  "page": 272,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Low (3d10, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Ram (bludgeoning) [Moderate, 2d4+3]",
+    "Hooves (bludgeoning) [Moderate, 4d8+4]",
+    "Charge (bludgeoning) [Moderate, 4d4+3]"
+   ],
+   "Special": [
+    "Sure-footed"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-scorpion",
+  "type": "creature",
+  "name": "Giant Scorpion",
+  "page": 274,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned vermin",
+   "AL": "High (7d10, Moderate HP)",
+   "Perception": "Blindsight (long-distance)",
+   "Speed": "Quick",
+   "Armor": "Natural (Very High AC)",
+   "L&Y": "The claws of a scorpion can be used to make bludgeoning weapons and its sting to make a piercing one",
+   "Attacks": [
+    "Claw (bludgeoning) [Moderate, close reach, 1d8+2]",
+    "Sting (piercing, poison) [Moderate, close reach, 1d10+2 plus 4d10]",
+    "Grappler",
+    "Constrict",
+    "Poison [PFR: injury, 1d4 Str and 1d4 Con and staggered, 6 rounds, 2 save to cure]"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-spider",
+  "type": "creature",
+  "name": "Giant Spider",
+  "page": 274,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned vermin",
+   "AL": "Moderate (4d10/5d8, Low HP)",
+   "Perception": "Darkvision, Blindsight (close distance)",
+   "Speed": "Medium, (Climb, Medium)",
+   "Armor": "Natural (Moderate AC)",
+   "L&Y": "Webbings can be used to make clothes",
+   "Attacks": [
+    "Bite (piercing, poison) [High, close reach, 1d8+3 plus 2d8]",
+    "Web [High, ranged (long)]",
+    "Poison [PFR: injury, 1d4 Con and staggered, 6 rounds, 2 save to cure]",
+    "Paralysis"
+   ],
+   "Special": [
+    "Spider Climb",
+    "Web Sense",
+    "Web Walker"
+   ]
+  }
+ },
+ {
+  "id": "creature:giant-venomous-constrictor-snake",
+  "type": "creature",
+  "name": "Giant, Venomous, Constrictor Snake",
+  "page": 270,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "High (8d12/7d8, Moderate HP)",
+   "Perception": "Blindsight",
+   "Speed": "Normal (Swim, Normal)",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing, poison) [Moderate, close reach, 2d6+4 plus 3d6]",
+    "Constrict (bludgeoning) [Moderate, 2d6+4]",
+    "Grab",
+    "Poison [PFR: injury, 1d6 Dex, 6 rounds, 2 save to cure]"
+   ]
+  }
+ },
+ {
+  "id": "creature:golem",
+  "type": "creature",
+  "name": "Golem",
+  "page": 284,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Perception": "Darkvision",
+   "Savings": "Stamina, Spiritual",
+   "Immunities": "death effects, disease, exhaustion, mind-affecting, pain, paralysis, petrification, poison, polymorph, and unconscious",
+   "Weaknesses": "Adamantine or harder weapons overcome damage resistance",
+   "Attacks": [
+    "Magic weapon"
+   ],
+   "Special": [
+    "Self-sustained",
+    "Berserk",
+    "Insensitive"
+   ]
+  }
+ },
+ {
+  "id": "creature:gray-gargoyle",
+  "type": "creature",
+  "name": "Gray Gargoyle",
+  "page": 283,
+  "family": "Gargoyle",
+  "shared": null,
+  "stats": {
+   "ST": "Daybreak (after killing one)",
+   "Role": "Brute, Scoundrel",
+   "S&T": "Medium, chaotic evil, elemental",
+   "AL": "High (7d8, Moderate HP)",
+   "Speed": "Medium (Fly, Quick)",
+   "Armor": "Natural (High AC)",
+   "Savings": "Stamina",
+   "Weaknesses": "Magic weapons overcome damage resistance",
+   "L&Y": "Rocks, beautifully useless rocks",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Bite (piercing) [Moderate, melee, one, 1d6+2]",
+    "Claws (slashing) [Moderate, 1d6+2. Ma: two]"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     13,
+     14
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:hydra",
+  "type": "creature",
+  "name": "Hydra",
+  "page": 288,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Hydraslayer (after killing one), Hero (after killing 5), Legend (after killing 10)",
+   "Role": "Brute",
+   "S&T": "Huge, neutral, monstrosity",
+   "AL": "High (3d12 + 3d12 per extra head, Very High HP)",
+   "Speed": "Medium (Swim, Medium)",
+   "Armor": "Natural (Very High AC)",
+   "L&Y": "Meat, bone, and leather units as per a huge creature, 2d10 units of hydra's blood",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Bite (piercing) [High, close reach, 1d10+5]",
+    "Multiattack"
+   ],
+   "Special": [
+    "Multiple Heads",
+    "Regenerate Heads",
+    "Fast Healing",
+    "Evolution",
+    "Reactive Heads",
+    "Hold Breath",
+    "Wakeful",
+    "Hydras Blood"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-river"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     6,
+     6
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     7,
+     12
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:imp",
+  "type": "creature",
+  "name": "Imp",
+  "page": 290,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Whistleblower (after taking one as a companion), Exhorter (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Tiny, lawful evil, fiend (devil, shapechanger)",
+   "AL": "Low (3d4, Very Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Normal (Fly, Quick)",
+   "Armor": "None (Moderate AC)",
+   "Immunities": "fire, poison",
+   "Resistances": "acid, cold (low), physical damage (low), and magic (moderate)",
+   "Weaknesses": "Imps receive damage from holy water as it would be acid damage",
+   "L&Y": "1d2 units of poison, 1 unit of meat, 1 unit of Fiend blood and a small vest",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Sting (piercing, poison) [Moderate, 1d4+3 plus 3d6]",
+    "Poison [PFR: DC 13, injury, 1d2 Dex, 6 rounds, 2 saves to cure]"
+   ],
+   "Special": [
+    "Devil Eyes",
+    "Diabolic Whisperer",
+    "Shapechanger"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-broken-elevator"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     53,
+     54
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:incubus-succubus-red-horse",
+  "type": "creature",
+  "name": "Incubus/succubus (Red Horse)",
+  "page": 350,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Red Horse (After killing at least one)",
+   "Role": "Mystic, Scoundrel",
+   "S&T": "Medium neutral evil fiend (shapechanger)",
+   "AL": "Severe (12d8/8d10, Moderate HP)",
+   "Perception": "Darkvision, detect good",
+   "Speed": "Medium (Fly, Quick)",
+   "Armor": "Natural (High AC)",
+   "Savings": "Agile, Mental, Spiritual",
+   "Immunities": "Fire, lightning, poison",
+   "Resistances": "cold, acid (low), physical damage (low), magic (high)",
+   "Weaknesses": "Cold iron or good-aligned weapons overcome damage resistance",
+   "L&Y": "Meat, bone, and leather as a medium creature",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Claw (slashing) [High, 1d6+3. Ma: two]",
+    "Charm",
+    "Draining Kiss (psychic, drain) [5e: 5d10+5. The maximum HP of the target is reduced equal to the damage taken. If the attack reduces the maximum HP of the victim, it dies. 1 HP healed per HP stolen]"
+   ],
+   "Special": [
+    "Tongues",
+    "Telepathy",
+    "Telepathic Bond",
+    "Shapechanger",
+    "Delight",
+    "Etherealness",
+    "Consume Soul",
+    "Profane Gift",
+    "Innate Magic",
+    "Major Red Piece"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     32,
+     32
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     33,
+     33
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:inquisitor",
+  "type": "creature",
+  "name": "Inquisitor",
+  "page": 293,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Incense-touched (after escaping one), Inquisitor (after killing one)",
+   "Role": "Brute, Mystic",
+   "S&T": "Gargantuan neutral evil dragon",
+   "AL": "Archfiend (20d20/27d12, Epic HP)",
+   "Perception": "Long-range Darkvision, Blindsight (medium distance)",
+   "Speed": "Quick, (Fly, Swift)",
+   "Armor": "Natural (Epic AC)",
+   "Immunities": "acid, fire, paralysis and sleep",
+   "Resistances": "physical damage resistance (very high), magic resistance (epic)",
+   "Weaknesses": "A cunning Raider could gain time by telling stories to the Inquisitor",
+   "L&Y": "Inquisitor's Censer",
+   "Chamber": "Wanderer, Dragon's Maze",
+   "Attacks": [
+    "Bite (piercing) [Epic, close reach, 4d6+19]",
+    "Claw (slashing) [5e: Epic, close reach, 2d6+8]",
+    "Tail (bludgeoning) [Epic, medium reach, 2d8+8, legendary action]",
+    "Wings (bludgeoning) [Close radius area, 2d6+8 plus knocked prone, legendary action]",
+    "Breath Weapon (fire) [Very long cone, 26d6]",
+    "Crush (bludgeoning) [Medium radius area, 4d6+8]",
+    "Tail sweep (bludgeoning) [Medium cone area, 2d8+8]",
+    "Frightful Presence",
+    "Deadly Question",
+    "Multiattack",
+    "Keen"
+   ],
+   "Special": [
+    "Detection",
+    "Legendary Resistance",
+    "Change Shape",
+    "Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-sapient-metal-ore"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     3,
+     4
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:iron-golem",
+  "type": "creature",
+  "name": "Iron Golem",
+  "page": 286,
+  "family": "Golem",
+  "shared": null,
+  "stats": {
+   "ST": "Plate-breaker (after killing one)",
+   "Role": "Brute",
+   "S&T": "Large, neutral construct",
+   "AL": "Archfiend (20d10, Legendary HP)",
+   "Speed": "Medium",
+   "Armor": "Natural (Legendary AC)",
+   "Immunities": "Fire",
+   "Resistances": "physical damage (high)",
+   "L&Y": "2d10 units of iron",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Legendary, 3d8+7. Ma: two]",
+    "Sword (slashing) [Legendary, close reach, 3d10+7. Ma: two]",
+    "Poison Breath (poison) [Close cone, several, 10d8]",
+    "Poison [PFR: inhaled, 1d4 Con, 4 rounds, 2 saves to cure]"
+   ],
+   "Special": [
+    "Fire Absorption"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:old-gods-temple"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     19,
+     19
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:lillend",
+  "type": "creature",
+  "name": "Lillend",
+  "page": 263,
+  "family": "Azata",
+  "shared": null,
+  "stats": {
+   "ST": "Princess or Prince (after killing one)",
+   "Role": "Mystic",
+   "S&T": "Large chaotic good outsider (azata)",
+   "AL": "High (7d10, High HP)",
+   "Perception": "Low-light vision, Darkvision, detect evil, see invisibility",
+   "Speed": "Normal, (Fly, Swift)",
+   "Armor": "Natural and Deflection (High AC)",
+   "Savings": "Agile, Mental, Spiritual",
+   "Resistances": "cold and fire (moderate)",
+   "Weaknesses": "None",
+   "L&Y": "Magically enhanced longsword",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Longsword (large, slashing) [Very High, close reach, 2d6+8. Ma: 2]",
+    "Tail slap (bludgeoning) [Very High, close reach, 2d6+8]",
+    "Constrict"
+   ],
+   "Special": [
+    "Bardic performance",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     95,
+     96
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:lion",
+  "type": "creature",
+  "name": "Lion",
+  "page": 272,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Moderate (4d10/5d8, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing) [Moderate, 1d8+3]",
+    "Claw (slashing) [Moderate, 1d6+3]",
+    "Pounce (Average DC)",
+    "Rake"
+   ],
+   "Special": [
+    "Keen Smell",
+    "Pack Tactics",
+    "Running Leap"
+   ]
+  }
+ },
+ {
+  "id": "creature:lyrakien",
+  "type": "creature",
+  "name": "Lyrakien",
+  "page": 259,
+  "family": "Azata",
+  "shared": null,
+  "stats": {
+   "ST": "Baron (after killing one)",
+   "Role": "Scoundrel, Mystic",
+   "S&T": "Tiny, chaotic, good outsider (Azata)",
+   "AL": "Low (3d10, Very Low HP)",
+   "Perception": "Low-light vision, Darkvision, Detect magic",
+   "Speed": "Medium (Fly, Swift)",
+   "Armor": "None (moderate)",
+   "Savings": "Agile, Spiritual",
+   "Weaknesses": "When the Raiders defeat a Lyrakien, they can decide to make it their slave",
+   "L&Y": "A small musical instrument, their wing dust can be employed as a magical focus for light spells",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Very low, 1]",
+    "Starlight Blast (radiant) [Very close area (radius), 1d4]"
+   ],
+   "Special": [
+    "Traveler's Friend",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     89,
+     90
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:master-hitmen-black-pawn",
+  "type": "creature",
+  "name": "Master Hitmen (Black Pawn)",
+  "page": 340,
+  "family": "Oktar's Hitmen",
+  "shared": null,
+  "stats": {
+   "ST": "Underboss (They title is gained as many times as Pawns defeated, for example, if four are killed by the Raider, it becomes Underboss IV)",
+   "Role": "Scoundrel",
+   "S&T": "Medium, neutral evil, humanoid",
+   "AL": "High (7d8, Moderate)",
+   "Speed": "Quick",
+   "Armor": "Studded leather (High AC)",
+   "Weaknesses": "None",
+   "L&Y": "Studded leather armor (steel), 6 knives (steel), Oktar's Mask",
+   "Chamber": "Wanderer, Hitmen Outpost, Black Square: The Black King's Headquarters",
+   "Attacks": [
+    "Mtw Knife combo (slashing) [Moderate, 1d6+5. Ma: 2]"
+   ],
+   "Special": [
+    "Rogue training",
+    "Knife fighting",
+    "Razor fiend",
+    "Assassination",
+    "Camouflage",
+    "Hit",
+    "Resurrection resistance",
+    "Shapechanger impersonator",
+    "Black Pawn"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:hitmen-outpost"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     34,
+     34
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     36,
+     36
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     38,
+     38
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     40,
+     40
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     42,
+     42
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     44,
+     44
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     46,
+     46
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     48,
+     48
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:maze-mimic",
+  "type": "creature",
+  "name": "Maze Mimic",
+  "page": 297,
+  "family": "Mimics",
+  "shared": null,
+  "stats": {
+   "ST": "Glued (After escaping and killing one),Eagle-eye (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Medium, neutral, aberration (shapechanger)",
+   "AL": "Serious (12d8, High HP)",
+   "Perception": "Darkvision",
+   "Speed": "Slow",
+   "Armor": "Natural (High AC)",
+   "Weaknesses": "None",
+   "L&Y": "Meat, 1d8 units of a powerful adhesive and 1d8 units of acid",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Pseudopod (bludgeoning, acid) [Very High, 1d8+4 plus 1d8. Ma: 2]",
+    "Bite (piercing, acid) [Very High, 1d8+4 plus 1d8. Ma: 2]",
+    "Acid Spit (acid) [Very High, ranged (close), 1d8]",
+    "Constrict"
+   ],
+   "Special": [
+    "Strong Acid Adhesive",
+    "Mimic Resource"
+   ]
+  }
+ },
+ {
+  "id": "creature:mazeborn",
+  "type": "creature",
+  "name": "Mazeborn",
+  "page": 316,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Orphan-killer (After killing 10)",
+   "Role": "Brute",
+   "AL": "Low (3d12, Low HP)",
+   "Speed": "Quick",
+   "Armor": "None (Moderate AC)",
+   "Weaknesses": "None",
+   "L&Y": "Two-Handed Axe (steel)",
+   "Attacks": [
+    "Two-Handed Axe (slashing) [Low, hit 1d4+1]"
+   ],
+   "Special": [
+    "Rage training"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:old-dons-bonfire"
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     63,
+     74
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     87,
+     98
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     99,
+     100
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     83,
+     83
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:mazeknight-rookie",
+  "type": "creature",
+  "name": "Mazeknight (Rookie)",
+  "page": 343,
+  "family": "Mazeknights",
+  "shared": null,
+  "stats": {
+   "ST": "Corporal (After killing 10), Private (After killing 15)",
+   "Role": "Brute",
+   "S&T": "Medium lawful evil humanoid",
+   "AL": "Low (1d10, Very Low HP)",
+   "Speed": "Medium",
+   "L&Y": "Heavy flail (steel)",
+   "Chamber": "Wanderer, Mazeknight Outpost, Death Square: The Red Queen's Headquarters",
+   "Attacks": [
+    "Heavy Flail (bludgeoning, piercing) [Low, 1d10+5]"
+   ],
+   "Special": [
+    "Martial training"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:mazeknight-outpost"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     58,
+     58
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     60,
+     60
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:mazeknight-captain-red-pawn",
+  "type": "creature",
+  "name": "Mazeknight Captain (Red Pawn)",
+  "page": 345,
+  "family": "Mazeknights",
+  "shared": null,
+  "stats": {
+   "ST": "Captain (They title is gained as many times as Pawns defeated, for example, if two are killed by the Raider, it becomes Captain II)",
+   "Role": "Brute",
+   "S&T": "Medium, lawful evil, humanoid (undead)",
+   "AL": "High (7d10, Moderate HP)",
+   "Perception": "Darkvision",
+   "Speed": "Medium",
+   "Immunities": "bleed, death, disease, draining effects, fatigue, fear, mind-affecting, paralysis, poison, sleep, stunning, ability and nonlethal damage",
+   "Weaknesses": "None",
+   "L&Y": "Heavy flail (steel)",
+   "Chamber": "Wanderer, Mazeknight Outpost, Death Square: The Red Queen's Headquarters",
+   "Attacks": [
+    "Mtw Heavy Flail (bludgeoning, piercing, force) [High, 1d10+4 plus 1d8. Ma: two]",
+    "Alignment"
+   ],
+   "Special": [
+    "Martial training",
+    "Red Queen's Law",
+    "Judgment",
+    "For the Red Queen",
+    "Major armor attunement",
+    "Greater Red Undead",
+    "Red Pawn",
+    "Magic",
+    "3/Chamber"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:mazeknight-outpost"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     35,
+     35
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     37,
+     37
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     39,
+     39
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     41,
+     41
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     43,
+     43
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     45,
+     45
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     47,
+     47
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     49,
+     49
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:mazeknights",
+  "type": "creature",
+  "name": "Mazeknights",
+  "page": 342,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Armor": "Mazeknight Armor (full plate) (High AC)",
+   "Savings": "Stamina, Mental",
+   "Resistances": "energy damage (low), physical damage (low), and",
+   "Special": [
+    "Red Aura",
+    "Crimson Combat Style"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:mazeknight-outpost"
+   },
+   {
+    "chamber": "chamber:death-square-the-red-queens-headquarters"
+   },
+   {
+    "table": "table:3-5",
+    "range": [
+     1,
+     20
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     15,
+     30
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     35,
+     35
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     37,
+     37
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     39,
+     39
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     41,
+     41
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     43,
+     43
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     45,
+     45
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:merchant",
+  "type": "creature",
+  "name": "Merchant",
+  "page": 315,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Bandit (After killing 1)",
+   "Role": "Scoundrel",
+   "AL": "Low (3d8, Low HP)",
+   "Armor": "Leather (Moderate AC)",
+   "Weaknesses": "Merchants have the encumbered condition",
+   "L&Y": "2d10+10 units of water, food, or wood, merchandise",
+   "Attacks": [
+    "Knife (slashing, piercing) [Low, 1d4+1]"
+   ],
+   "Special": [
+    "Rogue training"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     80,
+     80
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:mikites",
+  "type": "creature",
+  "name": "Mikites",
+  "page": 300,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Amanita (after killing one), Faeungus (after befriending one)",
+   "Role": "Scoundrel/Mystic",
+   "S&T": "Medium,chaotic neutral, plant (fey)",
+   "AL": "High (8d8, High HP)",
+   "Perception": "Darkvision, low-light vision",
+   "Speed": "Medium (Swim, Slow)",
+   "Armor": "Deflection, Natural (High AC)",
+   "Savings": "Stamina, Agile, Spiritual",
+   "Immunities": "disease, mind-affecting, paralysis, poison, poly-",
+   "Resistances": "physical damage (moderate)",
+   "Weaknesses": ": Iron magical weapons overcome a Mikite's damage resistance",
+   "L&Y": "Meat, blood, and leather as per medium creature",
+   "Chamber": "Wanderer, The Garden",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 1d4+2]",
+    "Poison Spore Cloud (poison) [PFR: inhaled, 1d4 Con, 6 rounds, 2 saves to cure]",
+    "Stunning Glance"
+   ],
+   "Special": [
+    "Blinding Beauty",
+    "Primal Training",
+    "Inspiration",
+    "Create Spawn",
+    "Poisonous Blood",
+    "Fungal Empathy",
+    "Fungal Metabolism",
+    "Unearthly Grace",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-garden"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     87,
+     87
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     88,
+     88
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:mimics",
+  "type": "creature",
+  "name": "Mimics",
+  "page": 295,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Immunities": "Acid, and prone",
+   "Special": [
+    "Natural Grappler"
+   ]
+  }
+ },
+ {
+  "id": "creature:mirrorfolk",
+  "type": "creature",
+  "name": "Mirrorfolk",
+  "page": 299,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Detective (After discovering and killing at least one)",
+   "Role": "Scoundrel",
+   "S&T": "Medium, evil, monstrosity (shapechanger)",
+   "AL": "Serious (8d8/4d10, Moderate HP)",
+   "Perception": "Darkvision",
+   "Speed": "Medium",
+   "Armor": "Natural (Moderate AC)",
+   "Savings": "Agile, Mental, Spiritual",
+   "Immunities": "sleep and charm",
+   "Weaknesses": "Silver makes damage to Mirrorfolk as if it was fire",
+   "L&Y": "Meat, bone, and leather as a medium creature",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 1d6+4. Ma: two]",
+    "Surprise Attack"
+   ],
+   "Special": [
+    "Perfect copy",
+    "Assassination",
+    "Mimicry",
+    "Read Thoughts"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     61,
+     62
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:moon-giant-black-rook",
+  "type": "creature",
+  "name": "Moon Giant (Black Rook)",
+  "page": 360,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Black Rook (After killing one), Moon smasher (If defeated in single combat)",
+   "Role": "Brute, Mystic",
+   "S&T": "Huge chaotic evil giant",
+   "AL": "Archfiend (19d12/21d8, Legendary HP)",
+   "Perception": "Truesight",
+   "Speed": "Quick",
+   "Armor": "Natural, Scale mail (Legendary AC)",
+   "Savings": "Stamina, Spiritual",
+   "Immunities": "cold",
+   "Resistances": "fire (low), magic (very high)",
+   "Weaknesses": "The temperature decrease in the New Moon phase is one way to detect an invisible Moon Giant is the proximity",
+   "L&Y": "Mtw Greatmace (steel), the heart of the Moon Giant can be used to create powerful potions of resistance and constitution enhancement, the Black Rooks have the…",
+   "Chamber": "Wanderer, Oktarion Table 5.2: Lunar Phases table Lunar Phase d% Full Moon Phase 01-13",
+   "Attacks": [
+    "Mtw Greatmace (bludgeoning) [Epic, close reach, 3d8+16. Ma: 2]",
+    "Rock (bludgeoning, ranged) [Legendary, ranged (long) 3d12+16 plus impact crater. Ma: 2]",
+    "Impact crater"
+   ],
+   "Special": [
+    "Lunar Phase",
+    "Lunar Aura",
+    "New Moon",
+    "Catch",
+    "Major Black Piece",
+    "Arcane training",
+    "Innate magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     22,
+     23
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:myconid",
+  "type": "creature",
+  "name": "Myconid",
+  "page": 304,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Immunities": "disease, mind-affecting, paralysis, poison, polymorph, sleep, and stun",
+   "Attacks": [
+    "Spore Cloud"
+   ],
+   "Special": [
+    "Fungal Affinity",
+    "Fungal Metabolism",
+    "Maze Dweller",
+    "Raider Status"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:the-garden"
+   }
+  ]
+ },
+ {
+  "id": "creature:myconid-merchant",
+  "type": "creature",
+  "name": "Myconid Merchant",
+  "page": 306,
+  "family": "Myconid",
+  "shared": null,
+  "stats": {
+   "ST": "Thief (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Medium, neutral, humanoid (plant)",
+   "AL": "Moderate (5d8, Low HP)",
+   "Perception": "Darkvision, low-light vision",
+   "Speed": "Slow",
+   "Armor": "Natural, Leather (Moderate AC)",
+   "Savings": "Agile",
+   "Weaknesses": "None",
+   "L&Y": "Myconid meat, Iron knife, bone knife, Myconid, leather armor, merchandise",
+   "Chamber": "Wanderer, Myconid Markets",
+   "Attacks": [
+    "Knife (slashing, piercing) [Moderate, 1d4+1]"
+   ],
+   "Special": [
+    "Rogue Training"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     81,
+     81
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:myconid-raider",
+  "type": "creature",
+  "name": "Myconid Raider",
+  "page": 307,
+  "family": "Myconid",
+  "shared": null,
+  "stats": {
+   "ST": "Toad (After killing 10)",
+   "Role": "Brute",
+   "S&T": "Medium, neutral, humanoid (plant)",
+   "AL": "Moderate (3d10, Low HP)",
+   "Perception": "Darkvision, low-light vision",
+   "Speed": "Slow",
+   "Armor": "Natural, Leather (Moderate AC)",
+   "Savings": "Stamina",
+   "Weaknesses": "None",
+   "L&Y": "Myconid meat, common metal spear, leather armor",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Spear (piercing) [Moderate, 1d8+3]"
+   ],
+   "Special": [
+    "Brute Training"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     82,
+     82
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:myconid-sprout",
+  "type": "creature",
+  "name": "Myconid Sprout",
+  "page": 305,
+  "family": "Myconid",
+  "shared": null,
+  "stats": {
+   "ST": "Coward (after killing 1)",
+   "Role": "Brute",
+   "S&T": "Medium, neutral, humanoid (plant)",
+   "AL": "Low (1d10, Very Low HP)",
+   "Perception": "Darkvision, low-light vision",
+   "Speed": "Slow",
+   "Armor": "None (Low AC)",
+   "Savings": "Stamina",
+   "Weaknesses": "None",
+   "L&Y": "Myconid meat",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Fist (bludgeoning) [Very Low, hit 1d4-1]"
+   ],
+   "Special": [
+    "Distressing Spores"
+   ]
+  }
+ },
+ {
+  "id": "creature:mystic-veteran-bonfire-bishop",
+  "type": "creature",
+  "name": "Mystic Veteran (Bonfire Bishop)",
+  "page": 318,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "Role": "Mystic",
+   "AL": "High (7d6, Low HP)",
+   "Armor": "None (Low AC)",
+   "Savings": "Mental, Spiritual",
+   "L&Y": "Quarterstaff (wood), Spellbook, Ink",
+   "Attacks": [
+    "Mtw Quarterstaff (bludgeoning) [Low, 1d6+1]",
+    "Magical Missile (force) [Automatic, ranged (very long), three creatures, 1d4+1]",
+    "Fireball (fire) [Medium radius area, 8d6]"
+   ],
+   "Special": [
+    "Arcane School Training"
+   ]
+  }
+ },
+ {
+  "id": "creature:nothic",
+  "type": "creature",
+  "name": "Nothic",
+  "page": 308,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Watcher (after killing one)",
+   "Role": "Brute, Scoundrel",
+   "S&T": "Medium, neutral evil, aberration",
+   "AL": "Low (5d8, Moderate HP)",
+   "Perception": "Truesight",
+   "Speed": "Medium",
+   "Armor": "Natural (High AC)",
+   "Immunities": "fire, poison",
+   "Resistances": "cold (low), physical damage (low), and magic resistance (high)",
+   "Weaknesses": "Silver and magic weapons overcome their damage resistance",
+   "L&Y": "Meat and bone, nothic's eye",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Claw (slashing) [Moderate, 1d6+3, Ma: 2]",
+    "Rotting Gaze"
+   ],
+   "Special": [
+    "Keen Sight",
+    "Fractured Mind",
+    "Weird Insight"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     51,
+     51
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     52,
+     52
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:oktars-hitmen",
+  "type": "creature",
+  "name": "Oktar's Hitmen",
+  "page": 336,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Perception": "Truesight",
+   "Savings": "Agile, Mental",
+   "Immunities": "scrying and locating spells (via Oktar's Mask)",
+   "Special": [
+    "Black Aura",
+    "Stealthy"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:black-square-the-black-kings-headquarters"
+   }
+  ]
+ },
+ {
+  "id": "creature:ooze",
+  "type": "creature",
+  "name": "Ooze",
+  "page": 309,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Perception": "They are blind, but they possess blindsight (long-distance)",
+   "Immunities": "deafened, exhaustion, fear, gaze attacks, illusions, mind-affecting, and visual effects or other attack forms that rely on sight, paralysis, polymorph, prone,…",
+   "Weaknesses": "They are blind beyond its blindsight",
+   "Special": [
+    "Mindless",
+    "Sleepless"
+   ]
+  }
+ },
+ {
+  "id": "creature:raiders",
+  "type": "creature",
+  "name": "Raiders",
+  "page": 313,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "S&T": "Medium humanoid",
+   "Perception": "Standard",
+   "Speed": "Medium",
+   "L&Y": "Meat, bones, and leather as per humanoid creature",
+   "Chamber": "Wanderer, Bonfires, Training Halls"
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:old-dons-bonfire"
+   },
+   {
+    "chamber": "chamber:deep-rest-temple"
+   },
+   {
+    "table": "table:3-5",
+    "range": [
+     81,
+     99
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     51,
+     62
+    ]
+   },
+   {
+    "table": "table:3-6",
+    "range": [
+     75,
+     86
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     84,
+     84
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     85,
+     85
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     86,
+     86
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:raptor",
+  "type": "creature",
+  "name": "Raptor",
+  "page": 273,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Medium, unaligned beast",
+   "AL": "Moderate (4d8, Low HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Talons (slashing) [Moderate, 1d8+2. Ma: 2]",
+    "Bite (piercing) [Moderate, 1d8+2. Ma: 2]",
+    "Pounce (Easy DC)"
+   ]
+  }
+ },
+ {
+  "id": "creature:red-bishop",
+  "type": "creature",
+  "name": "Red Bishop",
+  "page": 356,
+  "family": "Contract Devil",
+  "shared": null,
+  "stats": {
+   "ST": "Soulless (After establishing a contract with the Red Bishop), Red Bishop",
+   "Role": "Mystic, Scoundrel",
+   "S&T": "Medium lawful evil devil",
+   "AL": "Severe (13d10, Very High HP)",
+   "Perception": "Perfect darkvision",
+   "Speed": "Medium",
+   "Armor": "Natural and deflection (Very High AC)",
+   "Savings": "Agile, Mental, Spiritual",
+   "Immunities": "fire, poison, mind-affecting",
+   "Resistances": "acid, cold (low), physical damage (low), and magic (very high)",
+   "Weaknesses": "Cold iron or good-aligned weapons overcome damage resistance",
+   "L&Y": "Meat, bone, and leather as a medium creature, Red Bishops carry 1d4 souls stored in contracts with them, as well as 1d6 active contracts, 1d6 units of Fiends…",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Longsword (slashing) [Very High, 1d6+7. Ma: two]",
+    "Gore (piercing) [High, hit 2d6+3]",
+    "Bleed"
+   ],
+   "Special": [
+    "Telepathy",
+    "Tongues",
+    "Contract",
+    "Soul Location",
+    "Arcane Training",
+    "Innate Magic",
+    "Soul Funnel",
+    "Major Red Piece"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:fiernas-emporium"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     28,
+     29
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:rezzt-drims-lord-of-dreams",
+  "type": "creature",
+  "name": "Rezzt Drims, Lord of Dreams",
+  "page": 323,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Nightmare Scourge (After defeating it)",
+   "Role": "Mystic",
+   "S&T": "Large evil outsider (oniric)",
+   "AL": "Moderate (5d8, Low HP)",
+   "Perception": "Tremorsense, Dreamsense (it can sense creatures able to dream, excluding elves)",
+   "Speed": "Slow",
+   "Armor": "Natural and Deflection (Moderate AC)",
+   "Savings": "Mental, Spiritual",
+   "Immunities": "sleep",
+   "Resistances": "physical damage (low), magic (moderate)",
+   "L&Y": "If the Dream Lord used its spit attack Raider can retrieve 1d2 units of Astral Matter",
+   "Chamber": "Chamber of Dreams and Wishes",
+   "Attacks": [
+    "Lick (bludgeoning) [Moderate, close reach, 1d6+3 plus dream absorption]",
+    "Dream Absorption",
+    "Oniric Spit (acid) [Moderate, ranged (very long), 1d6 per creature trapped in the Chamber]",
+    "Frightful Presence",
+    "Sleep Gaze",
+    "Agonic Death"
+   ],
+   "Special": [
+    "Sheep Counting",
+    "Blurry Nightmare"
+   ]
+  }
+ },
+ {
+  "id": "creature:rhinoceros",
+  "type": "creature",
+  "name": "Rhinoceros",
+  "page": 273,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Moderate (6d10/5d8, Moderate HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Gore (bludgeoning) [High, 2d8+5]",
+    "Charge (bludgeoning) [High, 4d8+5]"
+   ]
+  }
+ },
+ {
+  "id": "creature:rookie",
+  "type": "creature",
+  "name": "Rookie",
+  "page": 313,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Monster (after killing 5)",
+   "Role": "Brute",
+   "AL": "Low (1d10, Very Low HP)",
+   "Armor": "None (Low AC)",
+   "Weaknesses": "Rookies usually do not know anything about the Maze",
+   "Attacks": [
+    "Spear (piercing) [Low, 1d8+2]"
+   ],
+   "Special": [
+    "Warrior training"
+   ]
+  }
+ },
+ {
+  "id": "creature:rookie-hitman",
+  "type": "creature",
+  "name": "Rookie Hitman",
+  "page": 338,
+  "family": "Oktar's Hitmen",
+  "shared": null,
+  "stats": {
+   "ST": "Wiseman (After killing 10), Mobster (After killing 15)",
+   "Role": "Scoundrel",
+   "S&T": "Medium neutral evil humanoid",
+   "AL": "Low (1d8, Very Low HP)",
+   "Speed": "Quick",
+   "Armor": "Studded leather (Moderate AC)",
+   "Weaknesses": "None",
+   "L&Y": "Studded leather armor (steel), 2 knives (steel), Oktar's Mask",
+   "Chamber": "Wanderer, Hitmen Outpost, Black Square: The Black King's Headquarters",
+   "Attacks": [
+    "Knife combo (slashing) [Low, 1d4+1, Ma: 2]"
+   ],
+   "Special": [
+    "Rogue training",
+    "Knife fighting"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:hitmen-outpost"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     57,
+     57
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     59,
+     59
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:saber-toothed-tiger",
+  "type": "creature",
+  "name": "Saber-toothed Tiger",
+  "page": 273,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Large, unaligned beast",
+   "AL": "Moderate (7d10, Moderate HP)",
+   "Speed": "Quick",
+   "Armor": "Natural (Moderate AC)",
+   "Attacks": [
+    "Bite (piercing) [Moderate, 1d10+5 plus bleeding]",
+    "Claw (slashing) [Moderate, 2d6+5]",
+    "Bleeding",
+    "Pounce (Average DC)",
+    "Rake"
+   ],
+   "Special": [
+    "Keen Smell"
+   ]
+  }
+ },
+ {
+  "id": "creature:skeletons",
+  "type": "creature",
+  "name": "Skeletons",
+  "page": 327,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Osseus (After killing more than 10 Skeletons), Ossified (After killing more than 20 Skeletons)",
+   "Role": "Brute",
+   "S&T": "Medium Undead",
+   "AL": "Low (2d8, Very Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Normal",
+   "Armor": "Armor scraps (Moderate AC)",
+   "Savings": "Mental, Spiritual",
+   "Immunities": "Cold damage",
+   "Resistances": "Slashing and piercing damage resistance (low)",
+   "Weaknesses": "Bludgeon damage vulnerability",
+   "L&Y": "Dry bones are highly valuable in the Maze, as they can be used to heat Bonfires",
+   "Attacks": [
+    "Blade (slashing) [Low, 1d6+2]",
+    "Claws (slashing) [Low, 1d4+2]"
+   ],
+   "Special": [
+    "Quick Response",
+    "Undead Fortitude",
+    "Stripping"
+   ]
+  }
+ },
+ {
+  "id": "creature:spirit-ooze",
+  "type": "creature",
+  "name": "Spirit Ooze",
+  "page": 311,
+  "family": "Ooze",
+  "shared": null,
+  "stats": {
+   "ST": "Mystic Pudding (after killing one)",
+   "Role": "Scoundrel",
+   "S&T": "Large, unaligned, ooze",
+   "AL": "High (8d10, High HP)",
+   "Speed": "Slow (Fly, Slow)",
+   "Armor": "None (Very Low AC)",
+   "L&Y": "Meat (Surprisingly, oozes can be eaten), 1d4 units of ectoplasm",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Pseudopod (psychic) [Low, 3d6]",
+    "Engulf",
+    "Paralysis",
+    "Breath Weapon [medium area cone, sleep]"
+   ],
+   "Special": [
+    "Glow"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     76,
+     76
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:stone-golem",
+  "type": "creature",
+  "name": "Stone Golem",
+  "page": 287,
+  "family": "Golem",
+  "shared": null,
+  "stats": {
+   "ST": "Boulder-breaker (after killing one)",
+   "Role": "Brute",
+   "S&T": "Large, neutral construct",
+   "AL": "Critical (17d10, Legendary HP)",
+   "Speed": "Medium",
+   "Armor": "Natural (Legendary AC)",
+   "Immunities": "cold",
+   "Resistances": "physical damage (low)",
+   "Weaknesses": "None",
+   "L&Y": "1d10 units of marble or granite",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Legendary, 3d8+6. Ma: two]",
+    "Slow"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:old-gods-temple"
+   },
+   {
+    "table": "table:d",
+    "range": [
+     21,
+     21
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:sun-giant-red-rook",
+  "type": "creature",
+  "name": "Sun Giant (Red Rook)",
+  "page": 363,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Red Rook (After killing one), Sun extinguisher (If defeated in single combat)",
+   "Role": "Brute, Mystic",
+   "S&T": "Huge neutral giant",
+   "AL": "Archfiend (19d12/21d8, Legendary HP)",
+   "Perception": "Truesight",
+   "Speed": "Quick, Medium (with armor)",
+   "Armor": "Natural, Scale mail (Legendary AC)",
+   "Savings": "Stamina, Spiritual",
+   "Resistances": "cold (low) and magical (very high)",
+   "Weaknesses": "Sun Giants are weak to compliments",
+   "L&Y": "Huge mtw greatsword (steel), and huge mtw composite longbow, the heart of a Sun Giant can be used to create powerful potions of resistance and constitution…",
+   "Chamber": "Wanderer, Oktarion Table 5.3: Solar Phases table Solar Phase d% Night Phase 01-20 Day Phase 21-80 Sunset Phase 81-00",
+   "Attacks": [
+    "Mtw Greatsword (slashing) [Epic, close reach, 6d6+15. Ma: 2]",
+    "Mtw composite longbow (piercing, radiant, ranged) [Legendary, ranged (distant), 3d10 plus sun dart. Ma: 2]",
+    "Sun Dart (radiant)"
+   ],
+   "Special": [
+    "Solar Phase",
+    "Solar aura",
+    "Black Hole",
+    "Catch",
+    "Major Red Piece",
+    "Arcane training",
+    "Innate magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     24,
+     25
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:the-beauty-phoeb-archfiend-of-luxury",
+  "type": "creature",
+  "name": "The Beauty: Phoeb, Archfiend of Luxury",
+  "page": 406,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Pious",
+   "Role": "Scoundrel, Mystic",
+   "Perception": "Blindsight",
+   "Speed": "Quick (Fly, Quick)",
+   "Immunities": "The Beauty is immune to mind-affecting effects and to gaze attacks (via the Armor of Temperance)",
+   "Weaknesses": "The Beauty despises those Raiders that keep their desire and lust in control",
+   "L&Y": "The Armor of Temperance, the +5 earspoon spear Desire, and as many units of Aether as the Raiders can carry",
+   "Chamber": ": The Decan House of Luxury",
+   "Attacks": [
+    "Desire (piercing, radiant) [Epic, medium reach, 3d10+8 plus 3d6 plus charm. Ma: 3]",
+    "Charm",
+    "Draining Kiss (psychic, drain) [5e: 10d10+5. The maximum HP of the target is reduced equal to the damage taken. If the attack reduces the maximum HP of the victim, it dies. [PFR: energy drain 8 negative levels. If the drained levels are equal to the creature's level, it dies]",
+    "Charming Beauty",
+    "Stunning Glance"
+   ],
+   "Special": [
+    "Sorcerous Training",
+    "Aether Snap",
+    "The Punishment of Luxury"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-black-queen",
+  "type": "creature",
+  "name": "The Black Queen",
+  "page": 366,
+  "family": "Stonegaze",
+  "shared": null,
+  "stats": {
+   "ST": "Black Queen",
+   "Role": "Scoundrel",
+   "S&T": "Medium, chaotic evil, monstrous humanoid (medusa)",
+   "AL": "Critical (8d10+8d8, Very High)",
+   "Perception": "Darkvision, all-around vision",
+   "Speed": "Medium",
+   "Armor": "Natural, Mtw blacksteel studded leather armor (Very High)",
+   "Savings": "Stamina, Agile, Mental",
+   "Immunities": "mind-affecting and petrification effects",
+   "L&Y": "Two sapient metal knives, studded leather armor (steel), mtw longbow (sapient wood), 20 arrows",
+   "Chamber": "Wanderer, Oktarion",
+   "Attacks": [
+    "Mtw sapient metal knife (slashing) [Very High, 1d4 plus 3d6 raw magic. Ma: 4]",
+    "Snake-hair (piercing, poison) [High, 1d4 plus 4d6]",
+    "Poison [PFR: injury; 1d3 Str, 6 rounds, 2 saves to cure]",
+    "+5 mtw sapient wood longbow [Legendary, ranged (distant). 1d8+5 plus 3d6 raw magic. Ma: 3]",
+    "Multiattack",
+    "Petrifying Gaze"
+   ],
+   "Special": [
+    "Rogue Training",
+    "All-around vision",
+    "Maze Tracker",
+    "Major Black Piece"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     2,
+     2
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:the-bull-iapet-archfiend-of-sadness",
+  "type": "creature",
+  "name": "The Bull: Iapet, Archfiend of Sadness",
+  "page": 380,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Joyous",
+   "Role": "Brute",
+   "Perception": "Tremorsense",
+   "Speed": "Slow",
+   "Immunities": "mind-affecting (via the Armor of Patience), sonic, sonic based effects, and petrification",
+   "Weaknesses": "The Bull has the deafen condition",
+   "L&Y": "The Armor of Bliss, the bardiche Sorrow, and as many units of Astral Matter as the Raiders can carry",
+   "Chamber": "The Decan House of Sadness",
+   "Attacks": [
+    "Sorrow (slashing, sonic) [Epic, medium reach, 3d10+12 plus 3d6 plus slow. Ma: 3]",
+    "Slam (bludgeoning) [Legendary, close reach, 2d8+11]",
+    "Gore (bludgeoning) [Legendary, close reach, 3d8+11]",
+    "Slow",
+    "Charge (bludgeoning) [Legendary, close reach, 5d8+11]",
+    "Improved Grab",
+    "Impale (piercing)"
+   ],
+   "Special": [
+    "Annoying Sobbing",
+    "The Punishment of Sadness"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-crustacean-coes-demon-of-cupidity",
+  "type": "creature",
+  "name": "The Crustacean: Coes, Demon of Cupidity",
+  "page": 386,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Lavish",
+   "Role": "Brute, Scoundrel",
+   "Perception": "None",
+   "Speed": "Normal",
+   "Immunities": "cold (replacing fire), charm and polymorph (via the Armor of Continence) and to the Night's Water effects",
+   "Weaknesses": "The Crab despises generosity, and those who neglect material attachment",
+   "L&Y": "The Armor of Continence and the corseque Avarice",
+   "Chamber": "The Decan House of Greed",
+   "Attacks": [
+    "Thrift (piercing, acid and necrotic) [Epic, medium reach, 3d10+8+3d6. Ma: 3]",
+    "Petrification",
+    "Claw (bludgeoning) [Legendary, close reach, 3d8+8. Ma: 2]",
+    "Grappler",
+    "Constrict",
+    "Bite (piercing, acid) [Legendary, close reach, 2d6+8.Ma: 2]",
+    "Multiattack"
+   ],
+   "Special": [
+    "Archfiend Knowledge",
+    "Archfiend Minions",
+    "Maze Tracker",
+    "Arcane Training",
+    "The Punishment of Cupidity"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-fate-them-archfiend-of-injustice",
+  "type": "creature",
+  "name": "The Fate: Them, Archfiend of Injustice",
+  "page": 396,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Just",
+   "Role": "Brute",
+   "Perception": "All-around vision",
+   "Speed": "Normal",
+   "Armor": "Full plate, Natural and Deflection (Epic DC)",
+   "Immunities": "death, disease, necromancy, paralysis, poison, restraining effects, sleep, and stunning, and mind-affecting (via the Armor of Justice)",
+   "Weaknesses": "None",
+   "L&Y": "The Armor of Justice, Damnation, and as many Blue Flowers as the Raiders can take",
+   "Chamber": "The Decan House of Injustice",
+   "Attacks": [
+    "Damnation (slashing, force) [Epic, medium reach 3d10+8 plus 3d6 plus paralysis. Ma: 3]",
+    "Paralysis",
+    "Slam (bludgeoning) [Legendary, close reach, 3d4+8. Ma: 2]"
+   ],
+   "Special": [
+    "Legendary Resistance",
+    "Ultimate Fortification",
+    "Two-weapon training",
+    "Innate Magic",
+    "The Punishment of Injustice"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-fish-thet-archfiend-of-fickleness",
+  "type": "creature",
+  "name": "The Fish: Thet, Archfiend of Fickleness",
+  "page": 409,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Relentless",
+   "Role": "Scoundrel, Brute",
+   "Perception": "Blindsight, Scent",
+   "Speed": "Slow, (Swim, Swift)",
+   "Immunities": "cold (replacing fire), polymorph and aging effects",
+   "Weaknesses": "The Fish despises constant, determined and sure-footed Raiders",
+   "L&Y": "The Armor of Constancy, the +5 lucerne hammer and spear Ca- pricious, and as many units of Tears of the Gods as the Raiders can carry",
+   "Chamber": "The Decan House of Fickleness Table 5.4: The Fickleness table",
+   "Attacks": [
+    "Capricious (piercing, acid) [Epic, medium reach, 3d10+8 plus 3d6 plus sicken. Ma: 3]",
+    "Sicken",
+    "Bite (piercing) [Legendary, close reach, 3d6+8]",
+    "Absolute Grapple"
+   ],
+   "Special": [
+    "Extra Health",
+    "Water Form",
+    "Water breathing",
+    "Separation",
+    "Rogue Training",
+    "The Punishment of Fickleness"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-goat-mnemon-archfiend-of-ignorance",
+  "type": "creature",
+  "name": "The Goat: Mnemon, Archfiend of Ignorance",
+  "page": 403,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Wise",
+   "Role": "Brute, Mystic",
+   "Perception": "Tremorsense",
+   "Speed": "Quick, (Fly, Swift)",
+   "Immunities": "blindness, deafness, fear and effects reducing its mental scores",
+   "Resistances": "psychic (high)",
+   "Weaknesses": "The Goat despises Raiders who know too much",
+   "L&Y": "The Armor of Prudence, the axe Obtuse, and as many Dipolarite as the Raiders can carry",
+   "Chamber": "The Decan House of Ignorance",
+   "Attacks": [
+    "Obtuse (slashing, electric) [Epic, medium reach, 3d10+8 plus 3d6 plus stupefy. Ma: 3]",
+    "Stupefy",
+    "Gore (bludgeoning) [Legendary, hit 3d6+8]",
+    "Charge (bludgeoning) [Legendary, 5d6+8]"
+   ],
+   "Special": [
+    "Maze Scholar",
+    "Haste",
+    "Dipolarite Web",
+    "Arcane Training",
+    "The Punishment of Ignorance"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-lion-hyper-archfiend-of-fraud",
+  "type": "creature",
+  "name": "The Lion: Hyper, Archfiend of Fraud",
+  "page": 391,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Bright",
+   "Role": "Brute, Scoundrel",
+   "Perception": "Scent",
+   "Speed": "Quick",
+   "Immunities": "magical darkness (Via the Armor of Brightness)",
+   "Weaknesses": "The Lion despises others who take from him the spotlight",
+   "L&Y": "The Armor of Brightness, the glaive Impostor, and as many units of Infernal Fire as the Raiders can carry",
+   "Chamber": "The Decan House of Fraud",
+   "Attacks": [
+    "Impostor (slashing, necrotic) [Epic, medium reach, 3d10+8 plus 3d6 plus blind. Ma: 3]",
+    "Blinding",
+    "Bite (piercing) [Legendary, 3d8+3]",
+    "Claw (slashing) [Legendary, close reach, 3d6+8. Ma: 2]",
+    "Pounce"
+   ],
+   "Special": [
+    "Keen Smell",
+    "Black Fire Aura",
+    "The Punishment of Fraud"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-maiden-rhe-archfiend-of-deception",
+  "type": "creature",
+  "name": "The Maiden: Rhe, Archfiend of Deception",
+  "page": 393,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Truthful",
+   "Role": "Scoundrel, Mystic",
+   "Perception": "Telepathy",
+   "Speed": "Normal, (Fly, Swift)",
+   "Immunities": "mind-affecting (via the Armor of Truth), paralysis, psychic, and sleep",
+   "Weaknesses": "Any revealing spell that effectively targets it makes it an additional 2d6 psychic damage",
+   "L&Y": "The Armor of Truth, the longspear Suspicion, and as many units of Primordial Soil the Raiders can carry Also, there is a variety of plants, fruits, and seeds…",
+   "Chamber": "The Decan House of Deception",
+   "Attacks": [
+    "Suspicion (piercing, psychic) [Epic, medium reach, 3d10+8 plus 3d6 plus sleep. Ma: 3]",
+    "Sleep",
+    "Claws (slashing) [Legendary, close reach, 3d4+8. Ma:2]",
+    "Mind Reader",
+    "Unconscious Killer"
+   ],
+   "Special": [
+    "Control plants",
+    "Innate Magic",
+    "The Punishment of Deception"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-master-cron-archfiend-of-temerity",
+  "type": "creature",
+  "name": "The Master: Cron, Archfiend of Temerity",
+  "page": 401,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Cautious",
+   "Role": "Brute, Mystic",
+   "Perception": "None",
+   "Speed": "Swift",
+   "Immunities": "fear and death effects (the last via the Armor of Life)",
+   "Weaknesses": "The Master despises careful Raiders and those who resurrect others",
+   "L&Y": "The Armor of Life, the warscythe Assurance and as many Raw Mag- ic as the Raiders can take",
+   "Chamber": "The Decan House of Temerity",
+   "Attacks": [
+    "Assurance (slashing, fire and radiant) [Epic, 3d10+8 plus 3d6 plus fear. Ma: 3]",
+    "Fear",
+    "Hooves (bludgeoning) [Legendary, close reach, 3d6+8]",
+    "Charge (bludgeoning) [Legendary, close reach, 3d6+8]",
+    "Multiattack",
+    "Extract Astral Body"
+   ],
+   "Special": [
+    "Fighter Training",
+    "Martial Master",
+    "The Punishment of Temerity"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-ram-crius-archfiend-of-anger",
+  "type": "creature",
+  "name": "The Ram: Crius, Archfiend of Anger",
+  "page": 378,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Patient",
+   "Role": "Brute",
+   "Immunities": "mind-affecting (via the Armor of Patience)",
+   "Weaknesses": "The Ram despises tranquility and calmness",
+   "L&Y": "The Armor of Patience, the voulge Wrath, and as many units of Dragon's Fire as the Raiders can carry",
+   "Chamber": "The Decan House of Wrath",
+   "Attacks": [
+    "Oblivion (slashing, fire) [Epic, medium reach, 3d10+8 plus 3d6 plus confusion, Ma: 3]",
+    "Confusion",
+    "Gore (bludgeoning) [Legendary, close reach, 3d6+8]",
+    "Charge (bludgeoning) [Legendary, close reach, 5d6+8]",
+    "Fire Breath (fire) [Very long cone area, 22d6]"
+   ],
+   "Special": [
+    "Extra Health",
+    "Rage",
+    "Fire Aura",
+    "Master Smith",
+    "The Punishment of Anger"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-red-king",
+  "type": "creature",
+  "name": "The Red King",
+  "page": 368,
+  "family": "The Bloodknight",
+  "shared": null,
+  "stats": {
+   "ST": "Red King",
+   "Role": "Brute",
+   "S&T": "Legal evil medium undead",
+   "AL": "Serious (4d8+10d10, Legendary HP)",
+   "Perception": "Darkvision",
+   "Speed": "Medium",
+   "Armor": "Mtw sapient wood full plate, mtw steel heavy shield (Epic AC)",
+   "Savings": "Stamina, Spiritual, Mental",
+   "Immunities": "cold, electricity, bleed, death, disease, draining effects, fatigue, mind-affecting, paralysis, poison, sleep, stunning, ability damage and nonlethal damage",
+   "Resistances": "physical damage (high), energy damage (high), and magical (very high)",
+   "L&Y": "One-handed blade (blacksteel), The First Armor (sapient wood), mtw heavy shield (blacksteel)",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Mtw one-handed, blacksteel blade (slashing) [Legendary, 1d8+6 plus life eater. Ma: 3]",
+    "Mtw blacksteel shield (bludgeoning) [Very High, 1d4+6. Ma: 2]",
+    "Multiattack",
+    "Life eater (necrotic, drain) [5e: 3d6. The maximum HP of the target is reduced equal to the damage taken. If the attack reduces the maximum HP of the victim, it dies. 1 HP healed per HP stolen]",
+    "Dreadful presence"
+   ],
+   "Special": [
+    "Martial Training",
+    "Major armor attunement",
+    "Red Undead",
+    "Unlife",
+    "Rage",
+    "Lord of the undead",
+    "Major Red Piece"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     1,
+     1
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:the-scorpion-achean-demon-of-resentment",
+  "type": "creature",
+  "name": "The Scorpion: Achean, Demon of Resentment",
+  "page": 398,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Confident",
+   "Role": "Scoundrel, Brute",
+   "Perception": "Scent",
+   "Speed": "Swift",
+   "Armor": "Full plate, Natural and Deflection (Epic DC)",
+   "Immunities": "poison, ability damage, ability drain, energy drain, and to the effects of Ichor, and to critical hits and precision damage (via the Armor of Confidence)",
+   "Weaknesses": "The Scorpion despises Raiders who have confidence and determination",
+   "L&Y": "The Armor of Confidence, the lance Resentment, and as many Ichor as the Raiders can carry",
+   "Chamber": "The Decan House of Resentment",
+   "Attacks": [
+    "Bitterness (piercing, poison) [Epic, medium reach, 3d10+8 plus 3d6 and bitter poison. Ma: 3]",
+    "Bitter Poison [PFR: injury, 1d6 Dex, 6 rounds, 1 save to cure]",
+    "Claw (bludgeoning) [Epic, close reach, 3d8+8, Ma: 2]",
+    "Constrict",
+    "Dismemberment",
+    "Sting (piercing, poison) [Legendary, 3d10+8 plus 4d10 plus 3d10+8]",
+    "Poison [PFR: injury, 1d6 Str and 1d6 Con. 6 rounds, 2 save to cure]",
+    "Pin",
+    "Multiattack"
+   ],
+   "Special": [
+    "The Punishment of Resentment"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-ten-zephyr",
+  "type": "creature",
+  "name": "The Ten Zephyr",
+  "page": 413,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Chosen (if the Zephyr grants the Raider the divine favor)",
+   "Role": "Brute, Mystic",
+   "S&T": "Medium chaotic good outsider (azata)",
+   "AL": "Critical (17d10, Legendary HP)",
+   "Perception": "Low-light vision, darkvision, detect evil, true seeing",
+   "Speed": "Quick, (Fly, Fast)",
+   "Armor": "Natural and Deflection (Legendary AC)",
+   "Savings": "Stamina, Spiritual",
+   "Immunities": "electricity and petrification",
+   "Resistances": "cold, fire (high), physical damage (high) and magic (epic)",
+   "Weaknesses": "Magic cold iron and magic evil aligned weapons overcome damage resistance",
+   "L&Y": "Magical enhanced greatsword",
+   "Chamber": "Wanderer Table 5.5: The Zephyr Encounter",
+   "Attacks": [
+    "Greatsword (slashing, holy, radiant) [Legendary, 2d6+8, Ma:3]",
+    "Ray of light (radiant) [Very High, ranged (distant), 2d12. Ma:two]"
+   ],
+   "Special": [
+    "Truespeech",
+    "Divine Awareness",
+    "Clergy",
+    "Regeneration",
+    "Death Gaze",
+    "Light shape",
+    "Innate Magic"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:3-5",
+    "range": [
+     100,
+     100
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     99,
+     100
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:the-twelve-punishments",
+  "type": "creature",
+  "name": "The Twelve Punishments",
+  "page": 376,
+  "family": null,
+  "shared": null,
+  "stats": {
+   "ST": "Defiled (upon surviving a Decan House),Knight of the Maze (upon defeating an Archfiend)",
+   "S&T": "Large chaotic evil fiend (demon)",
+   "AL": "Archfiend (24d10, Epic HP)",
+   "Perception": "Truesight, see perfectly in darkness",
+   "Speed": "Quick",
+   "Armor": "Natural, Deflection, and Archfiend Armor (Epic AC)",
+   "Savings": "Stamina, Agile, Cunning, Spiritual",
+   "Immunities": "electricity, fire, and poison",
+   "Resistances": "acid, psychic and cold (low), physical damage (high), and magic (legendary)",
+   "Weaknesses": "Magic cold iron, magic silver, and magic good-aligned weapons overcome damage resistance and prevent them from regenerating",
+   "L&Y": "Meat and bone as a large creature, archfiend blood",
+   "Chamber": "When the Chess Board advances (see later in this Chapter), the Archfiends become wanderers",
+   "Attacks": [
+    "Alignment"
+   ],
+   "Special": [
+    "The Punishments",
+    "Persistent Curse",
+    "Regeneration",
+    "Fear Aura",
+    "Innate Magic",
+    "Masters of the Maze"
+   ]
+  }
+ },
+ {
+  "id": "creature:the-twins-theie-and-dioe-archfiend-of-malice",
+  "type": "creature",
+  "name": "The Twins: Theie and Dioe, Archfiend of Malice",
+  "page": 383,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "ST": "The Benevolent (By killing the Right Twin), The Virtuous (By killing the Left Twin)",
+   "Role": "Scoundrel",
+   "Perception": "Shared vision (what one Twin sees the other sees it too)",
+   "Speed": "Quick",
+   "Immunities": "necrotic and bleed (via the Armor of Goodness), magic effects targeting them (via the Angel Crown)",
+   "Weaknesses": "Magic Mithral and magic silver weapons cancel the Twins fast healing",
+   "L&Y": "The Armor of Goodness, the double-blade Rancor, and a large amount of Angel Feathers",
+   "Chamber": "The Decan House of Malice",
+   "Attacks": [
+    "Rancor (piercing, cold) [Epic, close reach, hit 3d8+8 plus 3d6 plus bleed. Ma: 3]",
+    "Bleed",
+    "Claws (slashing) [Legendary, close reach, 3d4+8. Ma:2]",
+    "Pain Attack",
+    "Vampiric Aura"
+   ],
+   "Special": [
+    "Rogue Training",
+    "The Punishment of Malice"
+   ]
+  }
+ },
+ {
+  "id": "creature:tyrannosaurus",
+  "type": "creature",
+  "name": "Tyrannosaurus",
+  "page": 275,
+  "family": "Beasts",
+  "shared": null,
+  "stats": {
+   "S&T": "Huge, unaligned beast",
+   "AL": "Moderate to Critical (13d12, Very High)",
+   "Speed": "Quick",
+   "Armor": "Natural (High AC)",
+   "Attacks": [
+    "Bite (piercing) [Very High, close reach, 4d12+7]",
+    "Tail (bludgeoning) [Very High, close reach, 3d8+7]",
+    "Multiattack",
+    "Grappler",
+    "Swallow whole"
+   ]
+  }
+ },
+ {
+  "id": "creature:undead",
+  "type": "creature",
+  "name": "Undead",
+  "page": 325,
+  "family": null,
+  "shared": true,
+  "stats": {
+   "Weaknesses": "Undead receive acid damage from holy water",
+   "Special": [
+    "Unlife",
+    "Unliving sustenance"
+   ]
+  },
+  "appears_in": [
+   {
+    "chamber": "chamber:tombs"
+   },
+   {
+    "chamber": "chamber:death-square-the-red-queens-headquarters"
+   }
+  ]
+ },
+ {
+  "id": "creature:vampires",
+  "type": "creature",
+  "name": "Vampires",
+  "page": 333,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Sanguine (after surviving an encounter against a Vampire), Lackey (after serving a Vampire), Vampire-Slayer (after utterly destroying a Vampire)",
+   "Role": "Brute, Scoundrel, and Mystic",
+   "S&T": "Medium Undead",
+   "AL": "Critical (8d8-17d8, Very High HP)",
+   "Perception": "Long-range Darkvision",
+   "Speed": "Medium",
+   "Armor": "Natural and Armor (Very High)",
+   "Savings": "Stamina, Agility, Mental, Spiritual",
+   "Resistances": "electric, cold, necrotic (high), physical damage (low)",
+   "Chamber": "Wanderer, Bonfires",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 1d8+4 plus life eater. Ma:2]",
+    "Life eater (necrotic, drain) [5e: 2d6. The maximum HP of the target is reduced equal to the damage taken. If the attack reduces the maximum HP of the victim, it dies. 1 HP healed per HP stolen]",
+    "Bite (piercing) [High, 1d6+4 plus blood drain. Ma*:* 2]",
+    "Blood Drain (necrotic) [5e: 3d6, 1 HP healed per HP sucked. PFR: 1d4 constitution damage, 5 HP healed per HP sucked]",
+    "Dominance"
+   ],
+   "Special": [
+    "Turning Defiance",
+    "Fast Healing",
+    "Change Shape",
+    "Spider Climb",
+    "Create Vampire",
+    "Rejuvenation",
+    "Raider Status"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     5,
+     5
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:veteran-raider",
+  "type": "creature",
+  "name": "Veteran Raider",
+  "page": 316,
+  "family": "Raiders",
+  "shared": true,
+  "stats": {
+   "Weaknesses": "None"
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     84,
+     84
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     85,
+     85
+    ]
+   },
+   {
+    "table": "table:d",
+    "range": [
+     86,
+     86
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:water-elemental",
+  "type": "creature",
+  "name": "Water Elemental",
+  "page": 281,
+  "family": "Elemental",
+  "shared": null,
+  "stats": {
+   "ST": "Water-bane, Dryer (after killing one)",
+   "Role": "Brute",
+   "S&T": "Large, neutral, outsider (elemental)",
+   "AL": "Serious (12d10, Very High HP)",
+   "Speed": "Medium, (Swim, Swift)",
+   "Armor": "Natural (High AC)",
+   "Savings": "Stamina, Agile",
+   "Immunities": "acid, grapple",
+   "L&Y": "The core of a dead, water elemental can be stored and used to supply the water allowance of a Bonfire during 1d8 Raid Time units",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [High, 2d8+4. Ma: two]"
+   ],
+   "Special": [
+    "Water Form",
+    "Whelm"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     18,
+     18
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:whisperer",
+  "type": "creature",
+  "name": "Whisperer",
+  "page": 319,
+  "family": "Raiders",
+  "shared": null,
+  "stats": {
+   "ST": "Screamer (After killing two), Avenger (after killing an evil one)",
+   "Role": "Mystic",
+   "AL": "High (9d8, High HP)",
+   "Armor": "Breastplate, Heavy Shield, Helmet (High AC)",
+   "Savings": "Spiritual, Stamina",
+   "L&Y": "Breastplate (steel), Heavy Shield (steel), Helmet (steel), Mace (steel), Holy Symbol, Holy Text, 1d4 emptied Whisper bottles There is 50%< a Whisperer is…",
+   "Attacks": [
+    "Mace (bludgeoning) [Moderate, 1d6+1]"
+   ],
+   "Special": [
+    "Divine Training",
+    "Resurrection"
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:d",
+    "range": [
+     97,
+     98
+    ]
+   }
+  ]
+ },
+ {
+  "id": "creature:white-mazeknight",
+  "type": "creature",
+  "name": "White Mazeknight",
+  "page": 347,
+  "family": "Mazeknights",
+  "shared": null,
+  "stats": {
+   "ST": "White Captain",
+   "Role": "Brute",
+   "S&T": "Medium lawful evil humanoid",
+   "AL": "Critical (12d10, High HP)",
+   "Perception": "Darkvision",
+   "Speed": "Medium",
+   "Immunities": "mind-affecting",
+   "Weaknesses": "None",
+   "L&Y": "Heavy flail (steel)",
+   "Chamber": "Fierna's Emporium",
+   "Attacks": [
+    "Mtw Heavy Flail (bludgeoning, piercing, force) [Very High, hit 1d10+4 plus 1d8. Ma: 3]",
+    "Alignment"
+   ],
+   "Special": [
+    "Martial training",
+    "Red Queen's Law",
+    "Judgment",
+    "For the Red Queen",
+    "Superior armor attunement",
+    "White Pawn",
+    "Magic"
+   ]
+  }
+ },
+ {
+  "id": "creature:zombies",
+  "type": "creature",
+  "name": "Zombies",
+  "page": 325,
+  "family": "Undead",
+  "shared": null,
+  "stats": {
+   "ST": "Rotten (After killing more than 10 zombies)",
+   "Role": "Brute",
+   "S&T": "Medium Undead",
+   "AL": "Low (3d8, Very Low HP)",
+   "Perception": "Darkvision",
+   "Speed": "Slow",
+   "Armor": "Natural (Very Low AC)",
+   "Savings": "Mental, Spiritual",
+   "Resistances": "slashing",
+   "L&Y": "Zombie's body fluids can be used to infect others of the Necromantic Mist's effect",
+   "Chamber": "Wanderer",
+   "Attacks": [
+    "Slam (bludgeoning) [Low, 1d6+1]",
+    "Bite (piercing) [Low, 1d4+1 plus disease]",
+    "Zombie Rot"
+   ],
+   "Special": [
+    "Undead Fortitude"
+   ]
+  }
+ }
+]

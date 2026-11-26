@@ -1,0 +1,326 @@
+[
+ {
+  "id": "item:aether",
+  "type": "item",
+  "name": "Aether",
+  "page": 219,
+  "kind": "component",
+  "stats": {
+   "element": "Power"
+  }
+ },
+ {
+  "id": "item:angels-feathers",
+  "type": "item",
+  "name": "Angel's Feathers",
+  "page": 218,
+  "kind": "component",
+  "stats": {
+   "element": "Permanence"
+  }
+ },
+ {
+  "id": "item:archfiend-armor",
+  "type": "item",
+  "name": "Archfiend Armor",
+  "page": 217,
+  "kind": "magic",
+  "stats": {
+   "Category": "Armor",
+   "Rarity": "Legendary (artifact)"
+  }
+ },
+ {
+  "id": "item:astral-matter",
+  "type": "item",
+  "name": "Astral Matter",
+  "page": 223,
+  "kind": "component",
+  "stats": {
+   "element": "Permanence"
+  }
+ },
+ {
+  "id": "item:black-armor",
+  "type": "item",
+  "name": "Black Armor",
+  "page": 207,
+  "kind": "magic",
+  "stats": {
+   "Category": "Armor",
+   "Rarity": "Very Rare"
+  }
+ },
+ {
+  "id": "item:book-of-roots",
+  "type": "item",
+  "name": "Book of Roots",
+  "page": 208,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item",
+   "Rarity": "Common"
+  }
+ },
+ {
+  "id": "item:builders-tool",
+  "type": "item",
+  "name": "Builder's Tool",
+  "page": 208,
+  "kind": "magic",
+  "stats": {
+   "Category": "Weapon/Tool",
+   "Rarity": "Legendary"
+  }
+ },
+ {
+  "id": "item:butler-beans",
+  "type": "item",
+  "name": "Butler Beans",
+  "page": 209,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item (consumable)",
+   "Rarity": "Very Rare"
+  }
+ },
+ {
+  "id": "item:cuzgulda",
+  "type": "item",
+  "name": "Cuzgulda",
+  "page": 209,
+  "kind": "magic",
+  "stats": {
+   "Category": "Weapon",
+   "Rarity": "Very Rare"
+  }
+ },
+ {
+  "id": "item:dipolarite",
+  "type": "item",
+  "name": "Dipolarite",
+  "page": 225,
+  "kind": "component",
+  "stats": {
+   "element": "Power"
+  }
+ },
+ {
+  "id": "item:dragons-fire",
+  "type": "item",
+  "name": "Dragon's Fire",
+  "page": 222,
+  "kind": "component",
+  "stats": {
+   "element": "Power"
+  }
+ },
+ {
+  "id": "item:fresh-air-potion",
+  "type": "item",
+  "name": "Fresh Air Potion",
+  "page": 210,
+  "kind": "magic",
+  "stats": {
+   "Category": "Potion (consumable)",
+   "Rarity": "Uncommon"
+  }
+ },
+ {
+  "id": "item:fruits-of-wonder",
+  "type": "item",
+  "name": "Fruits of Wonder",
+  "page": 210,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item (consumable)",
+   "Rarity": "Legendary"
+  }
+ },
+ {
+  "id": "item:hearth-cord",
+  "type": "item",
+  "name": "Hearth Cord",
+  "page": 213,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item (consumable)",
+   "Rarity": "Very Rare"
+  }
+ },
+ {
+  "id": "item:ichor",
+  "type": "item",
+  "name": "Ichor",
+  "page": 226,
+  "kind": "component",
+  "stats": {
+   "element": "Permanence"
+  }
+ },
+ {
+  "id": "item:infernal-fire",
+  "type": "item",
+  "name": "Infernal Fire",
+  "page": 221,
+  "kind": "component",
+  "stats": {
+   "element": "Permanence"
+  }
+ },
+ {
+  "id": "item:infinite-fire",
+  "type": "item",
+  "name": "Infinite Fire",
+  "page": 223,
+  "kind": "component",
+  "stats": {
+   "element": null
+  }
+ },
+ {
+  "id": "item:inquisitors-censer",
+  "type": "item",
+  "name": "Inquisitor's Censer",
+  "page": 214,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item",
+   "Rarity": "Legendary"
+  }
+ },
+ {
+  "id": "item:mazeknight-armor",
+  "type": "item",
+  "name": "Mazeknight Armor",
+  "page": 214,
+  "kind": "magic",
+  "stats": {
+   "Category": "Armor",
+   "Rarity": "Rare"
+  }
+ },
+ {
+  "id": "item:nights-water",
+  "type": "item",
+  "name": "Night's Water",
+  "page": 227,
+  "kind": "component",
+  "stats": {
+   "element": "Power"
+  }
+ },
+ {
+  "id": "item:nymph-staff",
+  "type": "item",
+  "name": "Nymph Staff",
+  "page": 216,
+  "kind": "magic",
+  "stats": {
+   "Category": "Staff",
+   "Rarity": "Very Rare"
+  }
+ },
+ {
+  "id": "item:oktars-mask",
+  "type": "item",
+  "name": "Oktar's Mask",
+  "page": 215,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item",
+   "Rarity": "Rare"
+  }
+ },
+ {
+  "id": "item:primordial-soil",
+  "type": "item",
+  "name": "Primordial Soil",
+  "page": 224,
+  "kind": "component",
+  "stats": {
+   "element": "Renewal"
+  }
+ },
+ {
+  "id": "item:raw-magic",
+  "type": "item",
+  "name": "Raw Magic",
+  "page": 222,
+  "kind": "component",
+  "stats": {
+   "element": "Renewal"
+  }
+ },
+ {
+  "id": "item:sapient-metal",
+  "type": "item",
+  "name": "Sapient Metal",
+  "page": 229,
+  "kind": "component",
+  "stats": {
+   "element": "Thirteenth Component"
+  }
+ },
+ {
+  "id": "item:smoke-of-blue-flower",
+  "type": "item",
+  "name": "Smoke of Blue Flower",
+  "page": 219,
+  "kind": "component",
+  "stats": {
+   "element": "Renewal"
+  }
+ },
+ {
+  "id": "item:tears-of-the-gods",
+  "type": "item",
+  "name": "Tears of the Gods",
+  "page": 227,
+  "kind": "component",
+  "stats": {
+   "element": "Renewal"
+  }
+ },
+ {
+  "id": "item:the-impassible-clay",
+  "type": "item",
+  "name": "The Impassible Clay",
+  "page": 226,
+  "kind": "component",
+  "stats": {
+   "element": null
+  }
+ },
+ {
+  "id": "item:the-incessant-liquid",
+  "type": "item",
+  "name": "The Incessant Liquid",
+  "page": 228,
+  "kind": "component",
+  "stats": {
+   "element": null
+  }
+ },
+ {
+  "id": "item:the-obdurate-breath",
+  "type": "item",
+  "name": "The Obdurate Breath",
+  "page": 220,
+  "kind": "component",
+  "stats": {
+   "element": null
+  }
+ },
+ {
+  "id": "item:whisper-bottle",
+  "type": "item",
+  "name": "Whisper Bottle",
+  "page": 216,
+  "kind": "magic",
+  "stats": {
+   "Category": "Wondrous Item",
+   "Rarity": "Rare"
+  }
+ }
+]

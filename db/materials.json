@@ -1,0 +1,446 @@
+[
+ {
+  "id": "material:the-black-stone",
+  "type": "material",
+  "name": "(The) Black Stone",
+  "page": 200,
+  "kind": "special",
+  "stats": {
+   "HP": "80/inch",
+   "Hardness": "40",
+   "Uses": "If it has any use, the Black Stone would be employed only for construction"
+  }
+ },
+ {
+  "id": "material:adamantine",
+  "type": "material",
+  "name": "Adamantine",
+  "page": 198,
+  "kind": "special",
+  "stats": {
+   "HP": "40/inch",
+   "Hardness": "20",
+   "Uses": "Adamantine can be used to craft armor, shields, and weapons"
+  }
+ },
+ {
+  "id": "material:aurorum",
+  "type": "material",
+  "name": "Aurorum",
+  "page": 199,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "10",
+   "Uses": "Aurorum is employed to craft weapons, armor, and tools"
+  }
+ },
+ {
+  "id": "material:blacksteel",
+  "type": "material",
+  "name": "Blacksteel",
+  "page": 200,
+  "kind": "special",
+  "stats": {
+   "HP": "50/inch",
+   "Hardness": "30",
+   "Uses": "Blacksteel can be used to craft armor, shields, and weapons"
+  }
+ },
+ {
+  "id": "material:bone",
+  "type": "material",
+  "name": "Bone",
+  "page": 189,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "One of the most important uses of dried bones in the Maze is to ignite and feed the Bonfires"
+  }
+ },
+ {
+  "id": "material:brass",
+  "type": "material",
+  "name": "Brass",
+  "page": 190,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "9",
+   "Uses": "It can be employed to craft pieces and parts of complex devices, like clocks, musical instruments, and magic items"
+  }
+ },
+ {
+  "id": "material:bronze",
+  "type": "material",
+  "name": "Bronze",
+  "page": 190,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "9",
+   "Uses": "It can be used to craft armor and weapons"
+  }
+ },
+ {
+  "id": "material:carbon",
+  "type": "material",
+  "name": "Carbon",
+  "page": 191,
+  "kind": "common",
+  "stats": {
+   "HP": "5/inch",
+   "Hardness": "2",
+   "Uses": "The main use of coal is for combustion in the Bonfires"
+  }
+ },
+ {
+  "id": "material:chitin",
+  "type": "material",
+  "name": "Chitin",
+  "page": 191,
+  "kind": "common",
+  "stats": {
+   "HP": "8/inch",
+   "Hardness": "4",
+   "Uses": "It can be used to craft shields, medium and heavy armor"
+  }
+ },
+ {
+  "id": "material:copper",
+  "type": "material",
+  "name": "Copper",
+  "page": 192,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "The softness of copper prevents it from being used for crafting armor and weapons, but it can be used to coat armor and weapons"
+  }
+ },
+ {
+  "id": "material:darkwood",
+  "type": "material",
+  "name": "Darkwood",
+  "page": 201,
+  "kind": "special",
+  "stats": {
+   "HP": "5/inch",
+   "Hardness": "10",
+   "Uses": "Darkwood can be used to craft any wooden item, making it more durable"
+  }
+ },
+ {
+  "id": "material:electrum",
+  "type": "material",
+  "name": "Electrum",
+  "page": 192,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "9",
+   "Uses": "It can be used to craft armor and weapons"
+  }
+ },
+ {
+  "id": "material:flint",
+  "type": "material",
+  "name": "Flint",
+  "page": 193,
+  "kind": "common",
+  "stats": {
+   "HP": "15/inch",
+   "Hardness": "8",
+   "Uses": "Flint can be used to craft light and one-handed, bludgeoning weapons, spears, axes, daggers, and arrowheads"
+  }
+ },
+ {
+  "id": "material:gemstones",
+  "type": "material",
+  "name": "Gemstones",
+  "page": 193,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "10",
+   "Uses": "In the Maze, they are almost useless except to craft magic items and complex devices"
+  }
+ },
+ {
+  "id": "material:gold",
+  "type": "material",
+  "name": "Gold",
+  "page": 193,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "5",
+   "Uses": "Because of its softness, it is not usually employed to craft armor or weapons"
+  }
+ },
+ {
+  "id": "material:granite",
+  "type": "material",
+  "name": "Granite",
+  "page": 194,
+  "kind": "common",
+  "stats": {
+   "HP": "15/inch",
+   "Hardness": "10",
+   "Uses": "Granite can be employed for building, mainly doors and barricades to defend the Bonfires"
+  }
+ },
+ {
+  "id": "material:halite",
+  "type": "material",
+  "name": "Halite",
+  "page": 194,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "Salt can be used to cure and dry food, as a flavor enhancer, and to preserve ice"
+  }
+ },
+ {
+  "id": "material:impervious-quartz",
+  "type": "material",
+  "name": "Impervious Quartz",
+  "page": 201,
+  "kind": "special",
+  "stats": {
+   "HP": "15/inch",
+   "Hardness": "10",
+   "Uses": "Impervious Quartz can be used to make weapons and tools"
+  }
+ },
+ {
+  "id": "material:inertial-granite",
+  "type": "material",
+  "name": "Inertial Granite",
+  "page": 201,
+  "kind": "special",
+  "stats": {
+   "HP": "15/inch",
+   "Hardness": "8",
+   "Uses": "Inertial Granite is mainly employed to craft bludgeoning weapons"
+  }
+ },
+ {
+  "id": "material:iron",
+  "type": "material",
+  "name": "Iron",
+  "page": 194,
+  "kind": "common",
+  "stats": {
+   "HP": "25/inch",
+   "Hardness": "9",
+   "Uses": "It can be employed to craft weapons, armor, and any kind of tools or equipment"
+  }
+ },
+ {
+  "id": "material:lead",
+  "type": "material",
+  "name": "Lead",
+  "page": 195,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "9",
+   "Uses": "It can be used to craft pieces and parts of simple devices like bullets and pipes"
+  }
+ },
+ {
+  "id": "material:leather",
+  "type": "material",
+  "name": "Leather",
+  "page": 195,
+  "kind": "common",
+  "stats": {
+   "HP": "5/inch",
+   "Hardness": "2",
+   "Uses": "It can be used to make light and medium armor"
+  }
+ },
+ {
+  "id": "material:marble",
+  "type": "material",
+  "name": "Marble",
+  "page": 196,
+  "kind": "common",
+  "stats": {
+   "HP": "15/inch",
+   "Hardness": "8",
+   "Uses": "Marble can be employed for sculpture, building, and even pottery"
+  }
+ },
+ {
+  "id": "material:mithral",
+  "type": "material",
+  "name": "Mithral",
+  "page": 202,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "15",
+   "Uses": "Due to its flexibility, it is optimal to craft lighter armors, but it is possible to find weapons made of it"
+  }
+ },
+ {
+  "id": "material:mournsteel",
+  "type": "material",
+  "name": "Mournsteel",
+  "page": 202,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "10",
+   "Uses": "While it is favored for weapons, it can be used to make armor too"
+  }
+ },
+ {
+  "id": "material:occasium",
+  "type": "material",
+  "name": "Occasium",
+  "page": 203,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "10",
+   "Uses": "Occasium has broad uses, from weapons and armor to components of complex devices and wondrous items"
+  }
+ },
+ {
+  "id": "material:orichalcum",
+  "type": "material",
+  "name": "Orichalcum",
+  "page": 203,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "15",
+   "Uses": "Orichalcum is employed to craft armors and weapons"
+  }
+ },
+ {
+  "id": "material:pewter",
+  "type": "material",
+  "name": "Pewter",
+  "page": 196,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "5",
+   "Uses": "Although it is possible to make weapons and armor made of Pewter, it is better suited to craft pots, pans, tableware, and tools"
+  }
+ },
+ {
+  "id": "material:sapient-metal",
+  "type": "material",
+  "name": "Sapient Metal",
+  "page": 205,
+  "kind": "special",
+  "stats": {
+   "HP": "100/inch",
+   "Hardness": "50",
+   "Uses": "Finding Sapient Metal is a once-in-a-lifetime event, just like forging it"
+  }
+ },
+ {
+  "id": "material:sapient-wood",
+  "type": "material",
+  "name": "Sapient Wood",
+  "page": 204,
+  "kind": "special",
+  "stats": {
+   "HP": "50/inch",
+   "Hardness": "30",
+   "Uses": "Sapient Wood is mostly employed to make wondrous items"
+  }
+ },
+ {
+  "id": "material:seide",
+  "type": "material",
+  "name": "Seide",
+  "page": 206,
+  "kind": "special",
+  "stats": {
+   "HP": "2/inch",
+   "Hardness": "10",
+   "Uses": "Clothes, light armor, and chain shirts can be made of Seide"
+  }
+ },
+ {
+  "id": "material:silver",
+  "type": "material",
+  "name": "Silver",
+  "page": 197,
+  "kind": "common",
+  "stats": {
+   "HP": "20/inch",
+   "Hardness": "5",
+   "Uses": "Just like Gold, Silver is usually not suitable to craft armor or weapons, but it can be used to make light weapons that do piercing or slashing damage"
+  }
+ },
+ {
+  "id": "material:steel",
+  "type": "material",
+  "name": "Steel",
+  "page": 197,
+  "kind": "common",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "10",
+   "Uses": "It is the base metal for armor, weapons, and tools"
+  }
+ },
+ {
+  "id": "material:tin",
+  "type": "material",
+  "name": "Tin",
+  "page": 198,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "The main use of Tin is to combine it to obtain Bronze and Pewter"
+  }
+ },
+ {
+  "id": "material:umbrium",
+  "type": "material",
+  "name": "Umbrium",
+  "page": 206,
+  "kind": "special",
+  "stats": {
+   "HP": "30/inch",
+   "Hardness": "10",
+   "Uses": "Umbrium is employed to craft light weapons and armor"
+  }
+ },
+ {
+  "id": "material:wood",
+  "type": "material",
+  "name": "Wood",
+  "page": 196,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "Although the primary use of wood is to feed the Bonfires, it can be used to make weapons and armor"
+  }
+ },
+ {
+  "id": "material:zinc",
+  "type": "material",
+  "name": "Zinc",
+  "page": 198,
+  "kind": "common",
+  "stats": {
+   "HP": "10/inch",
+   "Hardness": "5",
+   "Uses": "The main use of Zinc is to combine it to obtain Brass"
+  }
+ }
+]

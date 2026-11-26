@@ -1,0 +1,793 @@
+[
+ {
+  "id": "condition:sealed-chamber",
+  "type": "condition",
+  "name": "Sealed Chamber",
+  "page": 87,
+  "faces": [
+   [
+    1,
+    1
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "The Chamber never opens again: the party starves inside",
+    "es": "La cámara no se vuelve a abrir: el grupo muere de hambre dentro"
+   },
+   "affects": [
+    "exit"
+   ],
+   "page": 87,
+   "timer": "sealed"
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     1,
+     1
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:jammed-entrance",
+  "type": "condition",
+  "name": "Jammed Entrance",
+  "page": 87,
+  "faces": [
+   [
+    2,
+    6
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Every exit is jammed and needs a check to open it (Hard DC)",
+    "es": "Cada salida está atascada y pide una prueba para abrirla (Dificultad Difícil)"
+   },
+   "affects": [
+    "exit"
+   ],
+   "page": 87,
+   "timer": "jammed"
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     2,
+     6
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:extended-time",
+  "type": "condition",
+  "name": "Extended Time",
+  "page": 87,
+  "faces": [
+   [
+    7,
+    11
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Doubles the Timer's rounds",
+    "es": "Dobla las rondas del Temporizador"
+   },
+   "affects": [
+    "timer"
+   ],
+   "page": 87,
+   "timer": "x2"
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     7,
+     11
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:wild-magic",
+  "type": "condition",
+  "name": "Wild Magic",
+  "page": 87,
+  "faces": [
+   [
+    12,
+    16
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Magic runs wild: every spell, magical ability or activated item rolls an effect",
+    "es": "La magia se desboca: cada conjuro, habilidad mágica u objeto activado tira un efecto"
+   },
+   "affects": [
+    "magic"
+   ],
+   "page": 87,
+   "rolls": [
+    {
+     "die": "1d%",
+     "table": "3.1",
+     "repeat": "magic-use",
+     "of": {
+      "en": "Table 3.1, wild magic effect, every time magic is used",
+      "es": "Tabla 3.1, efecto de magia salvaje, cada vez que se usa magia"
+     }
+    }
+   ],
+   "check": {
+    "en": "Check with the Sistema de Incursión: there, magic is rune shaping (Moldeo), so what triggers a Table 3.1 effect has to be matched",
+    "es": "Verificar con el Sistema de Incursión: allí la magia es moldear runas, así que hay que cuadrar qué dispara un efecto de la Tabla 3.1"
+   }
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     12,
+     16
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:magically-infected-monster",
+  "type": "condition",
+  "name": "Magically Infected Monster",
+  "page": 89,
+  "faces": [
+   [
+    17,
+    21
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "The Inhabitants are infected and pass it on to whoever they hit, unless they make a save",
+    "es": "Los habitantes están infectados y contagian a quien golpeen, salvo con una prueba de salvación"
+   },
+   "affects": [
+    "inhabitants",
+    "raiders"
+   ],
+   "page": 89,
+   "check": {
+    "en": "Check with the Sistema de Incursión: which of its four saves applies, and which rune school breaks the infection",
+    "es": "Verificar con el Sistema de Incursión: cuál de sus cuatro salvaciones aplica, y qué escuela de runas rompe la infección"
+   }
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     17,
+     21
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:necromantic-mist",
+  "type": "condition",
+  "name": "Necromantic Mist",
+  "page": 89,
+  "faces": [
+   [
+    22,
+    26
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A mist raises whoever dies inside as a Zombie, and some are already attacking",
+    "es": "Una niebla levanta como Zombie a quien muere dentro, y ya hay algunos atacando"
+   },
+   "affects": [
+    "inhabitants",
+    "raiders"
+   ],
+   "page": 89,
+   "rolls": [
+    {
+     "die": "1d4-1",
+     "of": {
+      "en": "Zombies attacking on arrival",
+      "es": "Zombies que atacan al entrar"
+     }
+    },
+    {
+     "die": "1d4",
+     "of": {
+      "en": "rounds until a dead body rises",
+      "es": "rondas hasta que un muerto se levanta"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     22,
+     26
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:polymorphic-field",
+  "type": "condition",
+  "name": "Polymorphic Field",
+  "page": 89,
+  "faces": [
+   [
+    27,
+    31
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A field turns whoever steps in into a beast of the Maze, body and mind; each part is avoided with its own save",
+    "es": "Un campo convierte en bestia del Laberinto a quien lo pisa, en cuerpo y mente; cada parte se evita con su prueba de salvación"
+   },
+   "affects": [
+    "raiders",
+    "magic"
+   ],
+   "page": 89,
+   "check": {
+    "en": "Check with the Sistema de Incursión: the book's Stamina and Spiritual saves against its own saves (Aguante, Voluntad…)",
+    "es": "Verificar con el Sistema de Incursión: las salvaciones Stamina y Spiritual del libro frente a las suyas (Aguante, Voluntad…)"
+   }
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     27,
+     31
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:mistchamber",
+  "type": "condition",
+  "name": "Mistchamber",
+  "page": 90,
+  "faces": [
+   [
+    32,
+    36
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A mist blocks sight; its kind comes from its own table, and there is always a safe route",
+    "es": "Una niebla impide la vista; su tipo sale de su propia tabla, y siempre hay una ruta segura"
+   },
+   "affects": [
+    "vision"
+   ],
+   "page": 90,
+   "rolls": [
+    {
+     "die": "1d%",
+     "of": {
+      "en": "Table 3.2, which mist it is",
+      "es": "Tabla 3.2, qué niebla es"
+     },
+     "table": "3.2"
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     32,
+     36
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:double-monster",
+  "type": "condition",
+  "name": "Double Monster",
+  "page": 92,
+  "faces": [
+   [
+    37,
+    41
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Double Monster: roll Inhabitants twice, or double the result",
+    "es": "Doble monstruo: se tiran dos veces los Habitantes, o se dobla el resultado"
+   },
+   "affects": [
+    "inhabitants"
+   ],
+   "page": 92,
+   "rolls": [
+    {
+     "die": "1d%",
+     "of": {
+      "en": "second Inhabitants roll",
+      "es": "segunda tirada de Habitantes"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     37,
+     41
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:ghoul-pack",
+  "type": "condition",
+  "name": "Ghoul Pack",
+  "page": 92,
+  "faces": [
+   [
+    42,
+    45
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A pack of Ghouls is raiding the Chamber; their Black Spot brings them back in later Raids",
+    "es": "Una manada de Ghouls saquea la cámara; su Black Spot los trae de vuelta en otras incursiones"
+   },
+   "affects": [
+    "inhabitants"
+   ],
+   "page": 92,
+   "rolls": [
+    {
+     "die": "1d4+1",
+     "of": {
+      "en": "Ghouls",
+      "es": "Ghouls"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     42,
+     45
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:no-condition",
+  "type": "condition",
+  "name": "No condition",
+  "page": null,
+  "faces": [
+   [
+    46,
+    55
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "No condition: the Chamber is as its entry describes it",
+    "es": "Sin condición: la cámara es la que describe su entrada"
+   },
+   "affects": [],
+   "page": null
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     46,
+     55
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:raiders-in-distress",
+  "type": "condition",
+  "name": "Raiders in Distress",
+  "page": 92,
+  "faces": [
+   [
+    56,
+    59
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A group of Raiders in distress is fighting the Inhabitants: helping them brings recruits or contact with another Bonfire",
+    "es": "Un grupo de Incursores en apuros pelea con los habitantes: ayudarlos da reclutas o contacto con otra Hoguera"
+   },
+   "affects": [
+    "inhabitants"
+   ],
+   "page": 92,
+   "rolls": [
+    {
+     "die": "1d4+1",
+     "of": {
+      "en": "Raiders in distress",
+      "es": "Incursores en apuros"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     56,
+     59
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:torcher",
+  "type": "condition",
+  "name": "Torcher",
+  "page": 92,
+  "faces": [
+   [
+    60,
+    64
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "An infected Myconid alerts the whole Chamber; if it doesn't die in time, it draws another Inhabitant",
+    "es": "Un Myconid infectado alerta a toda la cámara; si no muere a tiempo, atrae otro habitante"
+   },
+   "affects": [
+    "inhabitants"
+   ],
+   "page": 92,
+   "rolls": [
+    {
+     "die": "1d10",
+     "of": {
+      "en": "rounds before it draws another Inhabitant",
+      "es": "rondas antes de que atraiga otro habitante"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     60,
+     64
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:legendary-raider",
+  "type": "condition",
+  "name": "Legendary Raider",
+  "page": 92,
+  "faces": [
+   [
+    65,
+    69
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A Legendary Raider appears, who may help, threaten or join the party",
+    "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
+   },
+   "affects": [
+    "inhabitants"
+   ],
+   "page": 92,
+   "rolls": [
+    {
+     "die": "1d12",
+     "table": "3.3",
+     "of": {
+      "en": "Legendary Raider · Table 3.3",
+      "es": "Legendary Raider · tabla 3.3"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     65,
+     69
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:myconid-market",
+  "type": "condition",
+  "name": "Myconid Market",
+  "page": 93,
+  "faces": [
+   [
+    70,
+    74
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "A Myconid market: you can trade, and if there are many, Raiders from another Bonfire are visiting",
+    "es": "Un mercado de Myconids: se puede comerciar, y si son muchos hay visitas de otra Hoguera"
+   },
+   "affects": [
+    "loot",
+    "inhabitants"
+   ],
+   "page": 93,
+   "rolls": [
+    {
+     "die": "2d10",
+     "of": {
+      "en": "Myconids",
+      "es": "Myconids"
+     }
+    },
+    {
+     "per": "inhabitant",
+     "of": {
+      "en": "one roll on Table C and one on Table 4.1 per Myconid: what they sell",
+      "es": "una tirada en la Tabla C y otra en la 4.1 por Myconid: lo que venden"
+     }
+    },
+    {
+     "die": "1d4",
+     "of": {
+      "en": "Raiders from another Bonfire, if there are more than 10 Myconids",
+      "es": "Incursores de otra Hoguera, si hay más de 10 Myconids"
+     }
+    }
+   ]
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     70,
+     74
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:circle",
+  "type": "condition",
+  "name": "Circle",
+  "page": 93,
+  "faces": [
+   [
+    75,
+    79
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "There is a Circle: it lets them escape to a random or a marked Chamber",
+    "es": "Hay un Círculo: sirve para huir a una cámara al azar o a una marcada"
+   },
+   "affects": [
+    "exit",
+    "map"
+   ],
+   "page": 93
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     75,
+     79
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:school-forbiddance",
+  "type": "condition",
+  "name": "School Forbiddance",
+  "page": 94,
+  "faces": [
+   [
+    80,
+    84
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Runes cancel one school of magic: no spells, abilities or items of that school",
+    "es": "Unas runas anulan una escuela de magia: no hay conjuros, habilidades ni objetos de esa escuela"
+   },
+   "affects": [
+    "magic"
+   ],
+   "page": 94,
+   "rolls": [
+    {
+     "die": "1d8",
+     "of": {
+      "en": "Table 3.4, which school is cancelled",
+      "es": "Tabla 3.4, qué escuela se anula"
+     },
+     "table": "3.4"
+    }
+   ],
+   "check": {
+    "en": "Check with the Sistema de Incursión: Table 3.4 names the book's schools, and the Sistema has its own rune schools (p. IV)",
+    "es": "Verificar con el Sistema de Incursión: la Tabla 3.4 nombra las escuelas del libro, y el Sistema tiene sus propias escuelas de runas (p. IV)"
+   }
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     80,
+     84
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:rain",
+  "type": "condition",
+  "name": "Rain",
+  "page": 94,
+  "faces": [
+   [
+    85,
+    89
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "It rains inside: they can fill every container they carry with water",
+    "es": "Llueve dentro: se puede llenar de agua todo lo que se cargue"
+   },
+   "affects": [
+    "loot"
+   ],
+   "page": 94
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     85,
+     89
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:reduced-time",
+  "type": "condition",
+  "name": "Reduced Time",
+  "page": 95,
+  "faces": [
+   [
+    90,
+    94
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Half the Timer's rounds, rounded down",
+    "es": "Mitad de rondas del Temporizador, redondeando hacia abajo"
+   },
+   "affects": [
+    "timer"
+   ],
+   "page": 95,
+   "timer": "half"
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     90,
+     94
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:open-entrance",
+  "type": "condition",
+  "name": "Open Entrance",
+  "page": 95,
+  "faces": [
+   [
+    95,
+    99
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "They can leave whenever they want through an entry; no countdown, but they still have to find it",
+    "es": "Se puede salir cuando se quiera por una entrada; no hay cuenta atrás, pero hay que encontrarla"
+   },
+   "affects": [
+    "exit"
+   ],
+   "page": 95,
+   "timer": "free"
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     95,
+     99
+    ]
+   }
+  ]
+ },
+ {
+  "id": "condition:check-point-chamber",
+  "type": "condition",
+  "name": "Check Point Chamber",
+  "page": 95,
+  "faces": [
+   [
+    100,
+    100
+   ]
+  ],
+  "effect": {
+   "note": {
+    "en": "Check Point Chamber: it's marked on the map for good and they can come back",
+    "es": "Cámara de control: se marca en el mapa para siempre y se puede volver"
+   },
+   "affects": [
+    "map"
+   ],
+   "page": 95
+  },
+  "appears_in": [
+   {
+    "table": "table:b",
+    "range": [
+     100,
+     100
+    ]
+   }
+  ]
+ }
+]

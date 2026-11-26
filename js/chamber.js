@@ -218,20 +218,21 @@ export class ChamberView {
     const t = this.t, r = this.d.rolls, n = r[id];
     if (n == null) return "";
     if (id === "mimic" && this.d.mimicHidden) return `<p class="result is-hidden">${h(T("hidden"))}</p>`;
-    const line = (name, page, cls = "") => `<p class="result${cls}"><span class="result-name">${h(name)}</span>${page ? ` <span class="page">${h(T("page")(page))}</span>` : ""}</p>`;
+    // Con `ref` (tabla, número) el nombre lleva a su ficha en la Referencia.
+    const line = (name, page, cls = "", ref = null) => `<p class="result${cls}">${ref ? `<a class="result-name" href="#/ref/roll/${ref[0]}/${ref[1]}">${h(name)}</a>` : `<span class="result-name">${h(name)}</span>`}${page ? ` <span class="page">${h(T("page")(page))}</span>` : ""}</p>`;
     const note = (title, ...texts) => {
       const body = texts.filter(Boolean).map((x) => `<p>${h(x)}</p>`).join("");
       return body ? `<details class="roll-note"><summary>${h(title)}</summary>${body}</details>` : "";
     };
     switch (id) {
       case "chamber":
-        return line(t.chamberName(n), t.page("A", n)) + note(T("chamberRules"), E.loc(der.rule?.note));
+        return line(t.chamberName(n), t.page("A", n), "", ["A", n]) + note(T("chamberRules"), E.loc(der.rule?.note));
       case "condition": {
         if (der.conditionExcluded) {
           return line(t.name("B", n), null, " is-invalid") + `<p class="result-hint">${h(der.rule?.reroll ? E.loc(der.rule.reroll) : T("excluded"))}</p>`;
         }
         const c = der.rule?.fixedCondition ?? n;
-        return line(t.name("B", c), t.page("B", c)) + note(T("effect"), E.loc(der.fx?.note));
+        return line(t.name("B", c), t.page("B", c), "", ["B", c]) + note(T("effect"), E.loc(der.fx?.note));
       }
       case "entries":
         return der.entryChange === "raised" ? `<p class="result"><span class="result-name">${h(der.entries)}</span> <span class="result-hint">${h(T("raised"))}</span></p>` : "";
@@ -248,7 +249,7 @@ export class ChamberView {
         const raw = t.entry(tb, n).result;
         const mark = /^\*+|[†ª]+$/.exec(raw)?.[0] ?? (raw.includes("(") ? "plain" : null);
         const foot = mark && !(READING_NOTES[tb] ?? []).includes(mark) && !(tb === "C" && mark === "*") ? t.footnote(tb, n) : null;
-        return line(t.name(tb, n), t.page(tb, n)) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
+        return line(t.name(tb, n), t.page(tb, n), "", tb === "D" ? ["D", n] : null) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
       }
       case "mimic":
         return line(T("mimic")[E.mimicKind(n)], null, E.mimicKind(n) !== "none" ? " is-danger" : "");

@@ -1,0 +1,8967 @@
+[
+ {
+  "id": "table:a",
+  "type": "table",
+  "code": "A",
+  "name": "A",
+  "roll": "chamber",
+  "die": "d%",
+  "page": 448,
+  "source_file": "data/table-a.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Infernal Hydra's Nest",
+    "page": 111,
+    "refs": [
+     "chamber:hydras-infernal-nest"
+    ]
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "*Decan House (10d10)",
+    "page": 112,
+    "qty": "10d10",
+    "marks": "*",
+    "refs": [
+     "chamber:decan-house"
+    ]
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "*Decan House (5d10)",
+    "page": 112,
+    "qty": "5d10",
+    "marks": "*",
+    "refs": [
+     "chamber:decan-house"
+    ]
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "*Decan House (2d10)",
+    "page": 112,
+    "qty": "2d10",
+    "marks": "*",
+    "refs": [
+     "chamber:decan-house"
+    ]
+   },
+   {
+    "range": [
+     5,
+     7
+    ],
+    "label": "The Darkest Cave",
+    "page": 114,
+    "refs": [
+     "chamber:the-darkest-cave"
+    ]
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Deep Tombs (12d10)",
+    "page": 96,
+    "qty": "12d10",
+    "refs": [
+     "chamber:deep-tombs"
+    ]
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "Deep Tombs (8d10)",
+    "page": 96,
+    "qty": "8d10",
+    "refs": [
+     "chamber:deep-tombs"
+    ]
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "Deep Tombs (6d10)",
+    "page": 96,
+    "qty": "6d10",
+    "refs": [
+     "chamber:deep-tombs"
+    ]
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "Tombs (4d10)",
+    "page": 97,
+    "qty": "4d10",
+    "refs": [
+     "chamber:tombs"
+    ]
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "Tombs (4d10) [Cuzgulda]",
+    "page": 97,
+    "qty": "4d10",
+    "refs": [
+     "chamber:tombs"
+    ]
+   },
+   {
+    "range": [
+     13,
+     13
+    ],
+    "label": "Vaugrelokth's Garden by Daniel Ortiz",
+    "page": 116,
+    "refs": [
+     "chamber:vaugrelokhts-garden"
+    ]
+   },
+   {
+    "range": [
+     14,
+     15
+    ],
+    "label": "Tombs (2d10)",
+    "page": 97,
+    "qty": "2d10",
+    "refs": [
+     "chamber:tombs"
+    ]
+   },
+   {
+    "range": [
+     16,
+     16
+    ],
+    "label": "Graveyard of Behemoths by Nell Raban",
+    "page": 118,
+    "refs": [
+     "chamber:graveyard-of-the-behemoths"
+    ]
+   },
+   {
+    "range": [
+     17,
+     18
+    ],
+    "label": "Tombs (1d10)",
+    "page": 97,
+    "qty": "1d10",
+    "refs": [
+     "chamber:tombs"
+    ]
+   },
+   {
+    "range": [
+     19,
+     19
+    ],
+    "label": "The Temples of Ha'o by Camdon Wright",
+    "page": 119,
+    "refs": [
+     "chamber:the-temples-of-hao"
+    ]
+   },
+   {
+    "range": [
+     20,
+     20
+    ],
+    "label": "Mazeknight Outpost (4d10)",
+    "page": 101,
+    "qty": "4d10",
+    "refs": [
+     "chamber:mazeknight-outpost"
+    ]
+   },
+   {
+    "range": [
+     21,
+     21
+    ],
+    "label": "Bloody Trap Cube (10d10)",
+    "page": 101,
+    "qty": "10d10",
+    "refs": [
+     "chamber:bloody-trap-cube"
+    ]
+   },
+   {
+    "range": [
+     22,
+     23
+    ],
+    "label": "Caves (8d10)",
+    "page": 98,
+    "qty": "8d10",
+    "refs": [
+     "chamber:caves"
+    ]
+   },
+   {
+    "range": [
+     24,
+     24
+    ],
+    "label": "Arrival Circle (4d10)",
+    "page": 105,
+    "qty": "4d10",
+    "refs": [
+     "chamber:arrival-circle"
+    ]
+   },
+   {
+    "range": [
+     25,
+     25
+    ],
+    "label": "Caves (6d10)",
+    "page": 98,
+    "qty": "6d10",
+    "refs": [
+     "chamber:caves"
+    ]
+   },
+   {
+    "range": [
+     26,
+     26
+    ],
+    "label": "Caves (6d10) [Cuzgulda]",
+    "page": 98,
+    "qty": "6d10",
+    "refs": [
+     "chamber:caves"
+    ]
+   },
+   {
+    "range": [
+     27,
+     27
+    ],
+    "label": "Hellmouth by Jason Pitre",
+    "page": 121,
+    "refs": [
+     "chamber:the-hellmouth"
+    ]
+   },
+   {
+    "range": [
+     28,
+     28
+    ],
+    "label": "Hostile Bonfire (12d10)",
+    "page": 108,
+    "qty": "12d10",
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     29,
+     29
+    ],
+    "label": "Bloody Trap Cube (8d10)",
+    "page": 101,
+    "qty": "8d10",
+    "refs": [
+     "chamber:bloody-trap-cube"
+    ]
+   },
+   {
+    "range": [
+     30,
+     30
+    ],
+    "label": "Occupied Bonfire (10d10)",
+    "page": 108,
+    "qty": "10d10",
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     31,
+     31
+    ],
+    "label": "Bloody Trap Cube (6d10)",
+    "page": 101,
+    "qty": "6d10",
+    "refs": [
+     "chamber:bloody-trap-cube"
+    ]
+   },
+   {
+    "range": [
+     32,
+     32
+    ],
+    "label": "Oktarion, Black King's Dominion",
+    "page": 123,
+    "refs": [
+     "chamber:oktarion-the-black-kings-dominion"
+    ]
+   },
+   {
+    "range": [
+     33,
+     33
+    ],
+    "label": "Black Square, Black King's Headquarters",
+    "page": 124,
+    "refs": [
+     "chamber:black-square-the-black-kings-headquarters"
+    ]
+   },
+   {
+    "range": [
+     34,
+     34
+    ],
+    "label": "The Sandbox by Ammr",
+    "page": 125,
+    "refs": [
+     "chamber:the-sandbox"
+    ]
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "Standard Cube (10d10)",
+    "page": 104,
+    "qty": "10d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "Arena (10d10)",
+    "page": 104,
+    "qty": "10d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "Standard Cube (10d10) [Water]",
+    "page": 104,
+    "qty": "10d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     38,
+     38
+    ],
+    "label": "Bloody Trap Cube (4d10)",
+    "page": 101,
+    "qty": "4d10",
+    "refs": [
+     "chamber:bloody-trap-cube"
+    ]
+   },
+   {
+    "range": [
+     39,
+     39
+    ],
+    "label": "Mazeknight Outpost (2d10)",
+    "page": 101,
+    "qty": "2d10",
+    "refs": [
+     "chamber:mazeknight-outpost"
+    ]
+   },
+   {
+    "range": [
+     40,
+     40
+    ],
+    "label": "Arena (10d10)",
+    "page": 104,
+    "qty": "10d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "Standard Cube (8d10)",
+    "page": 104,
+    "qty": "8d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "Old Don's Bonfire",
+    "page": 127,
+    "refs": [
+     "chamber:old-dons-bonfire"
+    ]
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "Hitmen Outpost (4d10)",
+    "page": 99,
+    "qty": "4d10",
+    "refs": [
+     "chamber:hitmen-outpost"
+    ]
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "Arena (8d10)",
+    "page": 104,
+    "qty": "8d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "Standard Cube (8d10) [Cuzgulda]",
+    "page": 104,
+    "qty": "8d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     46,
+     46
+    ],
+    "label": "Arrival Circle (2d10)",
+    "page": 105,
+    "qty": "2d10",
+    "refs": [
+     "chamber:arrival-circle"
+    ]
+   },
+   {
+    "range": [
+     47,
+     47
+    ],
+    "label": "Standard Cube (6d10)",
+    "page": 104,
+    "qty": "6d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     48,
+     48
+    ],
+    "label": "Arena (8d10)",
+    "page": 104,
+    "qty": "8d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "Standard Cube (6d10)",
+    "page": 104,
+    "qty": "6d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Old Gods Temple",
+    "page": 128,
+    "refs": [
+     "chamber:old-gods-temple"
+    ]
+   },
+   {
+    "range": [
+     51,
+     51
+    ],
+    "label": "The Builder's Hall",
+    "page": 129,
+    "refs": [
+     "chamber:the-builders-hall"
+    ]
+   },
+   {
+    "range": [
+     52,
+     52
+    ],
+    "label": "Standard Cube (4d10)",
+    "page": 104,
+    "qty": "4d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     53,
+     53
+    ],
+    "label": "Arena (6d10)",
+    "page": 104,
+    "qty": "6d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     54,
+     54
+    ],
+    "label": "Standard Cube (4d10)",
+    "page": 104,
+    "qty": "4d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "Arrival Circle (2d10)",
+    "page": 105,
+    "qty": "2d10",
+    "refs": [
+     "chamber:arrival-circle"
+    ]
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "Standard Cube (2d10)",
+    "page": 104,
+    "qty": "2d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "Arena (6d10)",
+    "page": 104,
+    "qty": "6d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "Hitmen Outpost (2d10)",
+    "page": 99,
+    "qty": "2d10",
+    "refs": [
+     "chamber:hitmen-outpost"
+    ]
+   },
+   {
+    "range": [
+     59,
+     59
+    ],
+    "label": "Chamber of Dreams and Wishes by Daniel Maximiliano Ruiz Cruz",
+    "page": 130,
+    "refs": [
+     "chamber:the-chamber-of-dreams-and-wishes"
+    ]
+   },
+   {
+    "range": [
+     60,
+     60
+    ],
+    "label": "Standard Cube (2d10)",
+    "page": 104,
+    "qty": "2d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     61,
+     61
+    ],
+    "label": "Arena (4d10)",
+    "page": 104,
+    "qty": "4d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     62,
+     62
+    ],
+    "label": "Mazeknight Outpost (1d10)",
+    "page": 101,
+    "qty": "1d10",
+    "refs": [
+     "chamber:mazeknight-outpost"
+    ]
+   },
+   {
+    "range": [
+     63,
+     63
+    ],
+    "label": "Trap Cube (6d10)",
+    "page": 102,
+    "qty": "6d10",
+    "refs": [
+     "chamber:trap-cube"
+    ]
+   },
+   {
+    "range": [
+     64,
+     64
+    ],
+    "label": "Standard Cube (1d10) [Water]",
+    "page": 104,
+    "qty": "1d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     65,
+     65
+    ],
+    "label": "Arena (4d10)",
+    "page": 104,
+    "qty": "4d10",
+    "refs": [
+     "chamber:arena"
+    ]
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "Standard Cube (1d10)",
+    "page": 104,
+    "qty": "1d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     67,
+     67
+    ],
+    "label": "The Broken Elevator by Brandon Leon-Gambetta",
+    "page": 131,
+    "refs": [
+     "chamber:the-broken-elevator"
+    ]
+   },
+   {
+    "range": [
+     68,
+     68
+    ],
+    "label": "Blood Chrysanthemum, Red Queen's Dominion",
+    "page": 133,
+    "refs": [
+     "chamber:blood-chrysanthemum-the-red-queens-dominion"
+    ]
+   },
+   {
+    "range": [
+     69,
+     69
+    ],
+    "label": "Death Square, Red Queen's Headquarters",
+    "page": 134,
+    "refs": [
+     "chamber:death-square-the-red-queens-headquarters"
+    ]
+   },
+   {
+    "range": [
+     70,
+     70
+    ],
+    "label": "Trap Cube (4d10)",
+    "page": 102,
+    "qty": "4d10",
+    "refs": [
+     "chamber:trap-cube"
+    ]
+   },
+   {
+    "range": [
+     71,
+     71
+    ],
+    "label": "Occupied Bonfire (10d10)",
+    "page": 108,
+    "qty": "10d10",
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     72,
+     72
+    ],
+    "label": "Trap Cube (2d10)",
+    "page": 102,
+    "qty": "2d10",
+    "refs": [
+     "chamber:trap-cube"
+    ]
+   },
+   {
+    "range": [
+     73,
+     73
+    ],
+    "label": "Occupied Bonfire (8d10)",
+    "page": 108,
+    "qty": "8d10",
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     74,
+     74
+    ],
+    "label": "Standard Cube (1d10)",
+    "page": 104,
+    "qty": "1d10",
+    "refs": [
+     "chamber:standard-cube"
+    ]
+   },
+   {
+    "range": [
+     75,
+     76
+    ],
+    "label": "Caves (4d10)",
+    "page": 98,
+    "qty": "4d10",
+    "refs": [
+     "chamber:caves"
+    ]
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "Arrival Circle (1d10)",
+    "page": 105,
+    "qty": "1d10",
+    "refs": [
+     "chamber:arrival-circle"
+    ]
+   },
+   {
+    "range": [
+     78,
+     79
+    ],
+    "label": "Caves (2d10)",
+    "page": 98,
+    "qty": "2d10",
+    "refs": [
+     "chamber:caves"
+    ]
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "Trap Cube (1d10)",
+    "page": 102,
+    "qty": "1d10",
+    "refs": [
+     "chamber:trap-cube"
+    ]
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "Hitmen Outpost (1d10)",
+    "page": 99,
+    "qty": "1d10",
+    "refs": [
+     "chamber:hitmen-outpost"
+    ]
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "Hall of the Vanquished by Jason Pitre",
+    "page": 135,
+    "refs": [
+     "chamber:the-hall-of-the-vanquished"
+    ]
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "The River (10d10)",
+    "page": 103,
+    "qty": "10d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "The River (8d10)",
+    "page": 103,
+    "qty": "8d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     85,
+     85
+    ],
+    "label": "Bonfire (8d10)",
+    "page": 108,
+    "qty": "8d10",
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     86,
+     86
+    ],
+    "label": "The River (6d10)",
+    "page": 103,
+    "qty": "6d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     87,
+     87
+    ],
+    "label": "The River (4d10)",
+    "page": 103,
+    "qty": "4d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "Bonfire (Empty)",
+    "page": 108,
+    "refs": [
+     "chamber:bonfire"
+    ]
+   },
+   {
+    "range": [
+     89,
+     89
+    ],
+    "label": "The River (2d10)",
+    "page": 103,
+    "qty": "2d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     90,
+     90
+    ],
+    "label": "The River [Cuzgulda] (1d10)",
+    "page": 103,
+    "qty": "1d10",
+    "refs": [
+     "chamber:the-river"
+    ]
+   },
+   {
+    "range": [
+     91,
+     91
+    ],
+    "label": "Training Hall",
+    "page": 110,
+    "refs": [
+     "chamber:training-hall"
+    ]
+   },
+   {
+    "range": [
+     92,
+     92
+    ],
+    "label": "Training Hall [Circle]",
+    "page": 110,
+    "refs": [
+     "chamber:training-hall"
+    ]
+   },
+   {
+    "range": [
+     93,
+     93
+    ],
+    "label": "Deep Rest Temple",
+    "page": 137,
+    "refs": [
+     "chamber:deep-rest-temple"
+    ]
+   },
+   {
+    "range": [
+     94,
+     94
+    ],
+    "label": "Fierna's Emporium",
+    "page": 137,
+    "refs": [
+     "chamber:fiernas-emporium"
+    ]
+   },
+   {
+    "range": [
+     95,
+     95
+    ],
+    "label": "The Observatory",
+    "page": 139,
+    "refs": [
+     "chamber:the-observatory"
+    ]
+   },
+   {
+    "range": [
+     96,
+     96
+    ],
+    "label": "The Garden",
+    "page": 140,
+    "refs": [
+     "chamber:the-garden"
+    ]
+   },
+   {
+    "range": [
+     97,
+     97
+    ],
+    "label": "The Tree of Wonders",
+    "page": 141,
+    "refs": [
+     "chamber:the-tree-of-wonders"
+    ]
+   },
+   {
+    "range": [
+     98,
+     98
+    ],
+    "label": "Dragon's Maze",
+    "page": 142,
+    "refs": [
+     "chamber:dragons-maze"
+    ]
+   },
+   {
+    "range": [
+     99,
+     99
+    ],
+    "label": "Sapient Metal Ore",
+    "page": 143,
+    "refs": [
+     "chamber:the-sapient-metal-ore"
+    ]
+   },
+   {
+    "range": [
+     100,
+     100
+    ],
+    "label": "The Infinite Library",
+    "page": 144,
+    "refs": [
+     "chamber:the-infinite-library"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:b",
+  "type": "table",
+  "code": "B",
+  "name": "B",
+  "roll": "condition",
+  "die": "d%",
+  "page": 451,
+  "source_file": "data/table-b.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Sealed Chamber",
+    "page": 87,
+    "fx": {
+     "note": {
+      "en": "The Chamber never opens again: the party starves inside",
+      "es": "La cámara no se vuelve a abrir: el grupo muere de hambre dentro"
+     },
+     "affects": [
+      "exit"
+     ],
+     "page": 87,
+     "timer": "sealed"
+    },
+    "refs": [
+     "condition:sealed-chamber"
+    ]
+   },
+   {
+    "range": [
+     2,
+     6
+    ],
+    "label": "Jammed Entrance",
+    "page": 87,
+    "fx": {
+     "note": {
+      "en": "Every exit is jammed and needs a check to open it (Hard DC)",
+      "es": "Cada salida está atascada y pide una prueba para abrirla (Dificultad Difícil)"
+     },
+     "affects": [
+      "exit"
+     ],
+     "page": 87,
+     "timer": "jammed"
+    },
+    "refs": [
+     "condition:jammed-entrance"
+    ]
+   },
+   {
+    "range": [
+     7,
+     11
+    ],
+    "label": "Extended Time",
+    "page": 87,
+    "fx": {
+     "note": {
+      "en": "Doubles the Timer's rounds",
+      "es": "Dobla las rondas del Temporizador"
+     },
+     "affects": [
+      "timer"
+     ],
+     "page": 87,
+     "timer": "x2"
+    },
+    "refs": [
+     "condition:extended-time"
+    ]
+   },
+   {
+    "range": [
+     12,
+     16
+    ],
+    "label": "Wild Magic",
+    "page": 87,
+    "fx": {
+     "note": {
+      "en": "Magic runs wild: every spell, magical ability or activated item rolls an effect",
+      "es": "La magia se desboca: cada conjuro, habilidad mágica u objeto activado tira un efecto"
+     },
+     "affects": [
+      "magic"
+     ],
+     "page": 87,
+     "rolls": [
+      {
+       "die": "1d%",
+       "table": "3.1",
+       "repeat": "magic-use",
+       "of": {
+        "en": "Table 3.1, wild magic effect, every time magic is used",
+        "es": "Tabla 3.1, efecto de magia salvaje, cada vez que se usa magia"
+       }
+      }
+     ],
+     "check": {
+      "en": "Check with the Sistema de Incursión: there, magic is rune shaping (Moldeo), so what triggers a Table 3.1 effect has to be matched",
+      "es": "Verificar con el Sistema de Incursión: allí la magia es moldear runas, así que hay que cuadrar qué dispara un efecto de la Tabla 3.1"
+     }
+    },
+    "refs": [
+     "condition:wild-magic"
+    ],
+    "see": [
+     "table:3-1"
+    ]
+   },
+   {
+    "range": [
+     17,
+     21
+    ],
+    "label": "Magically Infected Monster",
+    "page": 89,
+    "fx": {
+     "note": {
+      "en": "The Inhabitants are infected and pass it on to whoever they hit, unless they make a save",
+      "es": "Los habitantes están infectados y contagian a quien golpeen, salvo con una prueba de salvación"
+     },
+     "affects": [
+      "inhabitants",
+      "raiders"
+     ],
+     "page": 89,
+     "check": {
+      "en": "Check with the Sistema de Incursión: which of its four saves applies, and which rune school breaks the infection",
+      "es": "Verificar con el Sistema de Incursión: cuál de sus cuatro salvaciones aplica, y qué escuela de runas rompe la infección"
+     }
+    },
+    "refs": [
+     "condition:magically-infected-monster"
+    ]
+   },
+   {
+    "range": [
+     22,
+     26
+    ],
+    "label": "Necromantic Mist",
+    "page": 89,
+    "fx": {
+     "note": {
+      "en": "A mist raises whoever dies inside as a Zombie, and some are already attacking",
+      "es": "Una niebla levanta como Zombie a quien muere dentro, y ya hay algunos atacando"
+     },
+     "affects": [
+      "inhabitants",
+      "raiders"
+     ],
+     "page": 89,
+     "rolls": [
+      {
+       "die": "1d4-1",
+       "of": {
+        "en": "Zombies attacking on arrival",
+        "es": "Zombies que atacan al entrar"
+       }
+      },
+      {
+       "die": "1d4",
+       "of": {
+        "en": "rounds until a dead body rises",
+        "es": "rondas hasta que un muerto se levanta"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:necromantic-mist"
+    ]
+   },
+   {
+    "range": [
+     27,
+     31
+    ],
+    "label": "Polymorphic Field",
+    "page": 89,
+    "fx": {
+     "note": {
+      "en": "A field turns whoever steps in into a beast of the Maze, body and mind; each part is avoided with its own save",
+      "es": "Un campo convierte en bestia del Laberinto a quien lo pisa, en cuerpo y mente; cada parte se evita con su prueba de salvación"
+     },
+     "affects": [
+      "raiders",
+      "magic"
+     ],
+     "page": 89,
+     "check": {
+      "en": "Check with the Sistema de Incursión: the book's Stamina and Spiritual saves against its own saves (Aguante, Voluntad…)",
+      "es": "Verificar con el Sistema de Incursión: las salvaciones Stamina y Spiritual del libro frente a las suyas (Aguante, Voluntad…)"
+     }
+    },
+    "refs": [
+     "condition:polymorphic-field"
+    ]
+   },
+   {
+    "range": [
+     32,
+     36
+    ],
+    "label": "Mistchamber by Rob Donoghue",
+    "page": 90,
+    "fx": {
+     "note": {
+      "en": "A mist blocks sight; its kind comes from its own table, and there is always a safe route",
+      "es": "Una niebla impide la vista; su tipo sale de su propia tabla, y siempre hay una ruta segura"
+     },
+     "affects": [
+      "vision"
+     ],
+     "page": 90,
+     "rolls": [
+      {
+       "die": "1d%",
+       "of": {
+        "en": "Table 3.2, which mist it is",
+        "es": "Tabla 3.2, qué niebla es"
+       },
+       "table": "3.2"
+      }
+     ]
+    },
+    "refs": [
+     "condition:mistchamber"
+    ],
+    "see": [
+     "table:3-2"
+    ]
+   },
+   {
+    "range": [
+     37,
+     41
+    ],
+    "label": "Double Monster",
+    "page": 92,
+    "fx": {
+     "note": {
+      "en": "Double Monster: roll Inhabitants twice, or double the result",
+      "es": "Doble monstruo: se tiran dos veces los Habitantes, o se dobla el resultado"
+     },
+     "affects": [
+      "inhabitants"
+     ],
+     "page": 92,
+     "rolls": [
+      {
+       "die": "1d%",
+       "of": {
+        "en": "second Inhabitants roll",
+        "es": "segunda tirada de Habitantes"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:double-monster"
+    ]
+   },
+   {
+    "range": [
+     42,
+     45
+    ],
+    "label": "*Ghoul Pack (1d4+1)",
+    "page": 92,
+    "qty": "1d4+1",
+    "marks": "*",
+    "fx": {
+     "note": {
+      "en": "A pack of Ghouls is raiding the Chamber; their Black Spot brings them back in later Raids",
+      "es": "Una manada de Ghouls saquea la cámara; su Black Spot los trae de vuelta en otras incursiones"
+     },
+     "affects": [
+      "inhabitants"
+     ],
+     "page": 92,
+     "rolls": [
+      {
+       "die": "1d4+1",
+       "of": {
+        "en": "Ghouls",
+        "es": "Ghouls"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:ghoul-pack"
+    ]
+   },
+   {
+    "range": [
+     46,
+     55
+    ],
+    "label": "No condition",
+    "page": null,
+    "fx": {
+     "note": {
+      "en": "No condition: the Chamber is as its entry describes it",
+      "es": "Sin condición: la cámara es la que describe su entrada"
+     },
+     "affects": [],
+     "page": null
+    },
+    "refs": [
+     "condition:no-condition"
+    ]
+   },
+   {
+    "range": [
+     56,
+     59
+    ],
+    "label": "*Raiders in Distress (1d4+1)",
+    "page": 92,
+    "qty": "1d4+1",
+    "marks": "*",
+    "fx": {
+     "note": {
+      "en": "A group of Raiders in distress is fighting the Inhabitants: helping them brings recruits or contact with another Bonfire",
+      "es": "Un grupo de Incursores en apuros pelea con los habitantes: ayudarlos da reclutas o contacto con otra Hoguera"
+     },
+     "affects": [
+      "inhabitants"
+     ],
+     "page": 92,
+     "rolls": [
+      {
+       "die": "1d4+1",
+       "of": {
+        "en": "Raiders in distress",
+        "es": "Incursores en apuros"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:raiders-in-distress"
+    ]
+   },
+   {
+    "range": [
+     60,
+     64
+    ],
+    "label": "Torcher",
+    "page": 92,
+    "fx": {
+     "note": {
+      "en": "An infected Myconid alerts the whole Chamber; if it doesn't die in time, it draws another Inhabitant",
+      "es": "Un Myconid infectado alerta a toda la cámara; si no muere a tiempo, atrae otro habitante"
+     },
+     "affects": [
+      "inhabitants"
+     ],
+     "page": 92,
+     "rolls": [
+      {
+       "die": "1d10",
+       "of": {
+        "en": "rounds before it draws another Inhabitant",
+        "es": "rondas antes de que atraiga otro habitante"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:torcher"
+    ]
+   },
+   {
+    "range": [
+     65,
+     69
+    ],
+    "label": "Legendary Raider",
+    "page": 92,
+    "fx": {
+     "note": {
+      "en": "A Legendary Raider appears, who may help, threaten or join the party",
+      "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
+     },
+     "affects": [
+      "inhabitants"
+     ],
+     "page": 92,
+     "rolls": [
+      {
+       "die": "1d12",
+       "table": "3.3",
+       "of": {
+        "en": "Legendary Raider · Table 3.3",
+        "es": "Legendary Raider · tabla 3.3"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:legendary-raider"
+    ],
+    "see": [
+     "table:3-3"
+    ]
+   },
+   {
+    "range": [
+     70,
+     74
+    ],
+    "label": "*Myconid Market (2d10)",
+    "page": 93,
+    "qty": "2d10",
+    "marks": "*",
+    "fx": {
+     "note": {
+      "en": "A Myconid market: you can trade, and if there are many, Raiders from another Bonfire are visiting",
+      "es": "Un mercado de Myconids: se puede comerciar, y si son muchos hay visitas de otra Hoguera"
+     },
+     "affects": [
+      "loot",
+      "inhabitants"
+     ],
+     "page": 93,
+     "rolls": [
+      {
+       "die": "2d10",
+       "of": {
+        "en": "Myconids",
+        "es": "Myconids"
+       }
+      },
+      {
+       "per": "inhabitant",
+       "of": {
+        "en": "one roll on Table C and one on Table 4.1 per Myconid: what they sell",
+        "es": "una tirada en la Tabla C y otra en la 4.1 por Myconid: lo que venden"
+       }
+      },
+      {
+       "die": "1d4",
+       "of": {
+        "en": "Raiders from another Bonfire, if there are more than 10 Myconids",
+        "es": "Incursores de otra Hoguera, si hay más de 10 Myconids"
+       }
+      }
+     ]
+    },
+    "refs": [
+     "condition:myconid-market"
+    ],
+    "see": [
+     "table:c",
+     "table:4-1"
+    ]
+   },
+   {
+    "range": [
+     75,
+     79
+    ],
+    "label": "Circle",
+    "page": 93,
+    "fx": {
+     "note": {
+      "en": "There is a Circle: it lets them escape to a random or a marked Chamber",
+      "es": "Hay un Círculo: sirve para huir a una cámara al azar o a una marcada"
+     },
+     "affects": [
+      "exit",
+      "map"
+     ],
+     "page": 93
+    },
+    "refs": [
+     "condition:circle"
+    ]
+   },
+   {
+    "range": [
+     80,
+     84
+    ],
+    "label": "School Forbiddance",
+    "page": 94,
+    "fx": {
+     "note": {
+      "en": "Runes cancel one school of magic: no spells, abilities or items of that school",
+      "es": "Unas runas anulan una escuela de magia: no hay conjuros, habilidades ni objetos de esa escuela"
+     },
+     "affects": [
+      "magic"
+     ],
+     "page": 94,
+     "rolls": [
+      {
+       "die": "1d8",
+       "of": {
+        "en": "Table 3.4, which school is cancelled",
+        "es": "Tabla 3.4, qué escuela se anula"
+       },
+       "table": "3.4"
+      }
+     ],
+     "check": {
+      "en": "Check with the Sistema de Incursión: Table 3.4 names the book's schools, and the Sistema has its own rune schools (p. IV)",
+      "es": "Verificar con el Sistema de Incursión: la Tabla 3.4 nombra las escuelas del libro, y el Sistema tiene sus propias escuelas de runas (p. IV)"
+     }
+    },
+    "refs": [
+     "condition:school-forbiddance"
+    ],
+    "see": [
+     "table:3-4"
+    ]
+   },
+   {
+    "range": [
+     85,
+     89
+    ],
+    "label": "Rain",
+    "page": 94,
+    "fx": {
+     "note": {
+      "en": "It rains inside: they can fill every container they carry with water",
+      "es": "Llueve dentro: se puede llenar de agua todo lo que se cargue"
+     },
+     "affects": [
+      "loot"
+     ],
+     "page": 94
+    },
+    "refs": [
+     "condition:rain"
+    ]
+   },
+   {
+    "range": [
+     90,
+     94
+    ],
+    "label": "Reduced Time",
+    "page": 95,
+    "fx": {
+     "note": {
+      "en": "Half the Timer's rounds, rounded down",
+      "es": "Mitad de rondas del Temporizador, redondeando hacia abajo"
+     },
+     "affects": [
+      "timer"
+     ],
+     "page": 95,
+     "timer": "half"
+    },
+    "refs": [
+     "condition:reduced-time"
+    ]
+   },
+   {
+    "range": [
+     95,
+     99
+    ],
+    "label": "Open Entrance",
+    "page": 95,
+    "fx": {
+     "note": {
+      "en": "They can leave whenever they want through an entry; no countdown, but they still have to find it",
+      "es": "Se puede salir cuando se quiera por una entrada; no hay cuenta atrás, pero hay que encontrarla"
+     },
+     "affects": [
+      "exit"
+     ],
+     "page": 95,
+     "timer": "free"
+    },
+    "refs": [
+     "condition:open-entrance"
+    ]
+   },
+   {
+    "range": [
+     100,
+     100
+    ],
+    "label": "Check Point Chamber",
+    "page": 95,
+    "fx": {
+     "note": {
+      "en": "Check Point Chamber: it's marked on the map for good and they can come back",
+      "es": "Cámara de control: se marca en el mapa para siempre y se puede volver"
+     },
+     "affects": [
+      "map"
+     ],
+     "page": 95
+    },
+    "refs": [
+     "condition:check-point-chamber"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:c",
+  "type": "table",
+  "code": "C",
+  "name": "C",
+  "roll": "loot",
+  "die": "d%",
+  "page": 452,
+  "source_file": "data/table-c.json",
+  "note": null,
+  "footnotes": {
+   "*": {
+    "en": "The number in parentheses is how many times the matching table is rolled · p. 167",
+    "es": "El número entre paréntesis es cuántas veces se tira la tabla correspondiente · p. 167"
+   },
+   "**": {
+    "en": "The Maze Master decides the specific magic item · p. 167",
+    "es": "El objeto mágico concreto lo decide el Amo del Laberinto · p. 167"
+   },
+   "plain": {
+    "en": "The number in parentheses is the units obtained · p. 167",
+    "es": "El número entre paréntesis son las unidades que se obtienen · p. 167"
+   },
+   "ore": {
+    "en": "Roll on the corresponding material table to identify the deposit · pp. 176–178.",
+    "es": "Tira en la tabla del material correspondiente para identificar la veta · pp. 176–178."
+   }
+  },
+  "rows": [
+   {
+    "range": [
+     1,
+     2
+    ],
+    "label": "Magical Infection",
+    "page": 89
+   },
+   {
+    "range": [
+     3,
+     10
+    ],
+    "label": "*Weapons (1d6+1)",
+    "page": 180,
+    "qty": "1d6+1",
+    "marks": "*"
+   },
+   {
+    "range": [
+     11,
+     18
+    ],
+    "label": "*Armors (1d6+1)",
+    "page": 180,
+    "qty": "1d6+1",
+    "marks": "*"
+   },
+   {
+    "range": [
+     19,
+     26
+    ],
+    "label": "*Gear and Tools (1d6)",
+    "page": 185,
+    "qty": "1d6",
+    "marks": "*"
+   },
+   {
+    "range": [
+     27,
+     32
+    ],
+    "label": "*Clothing (1d6+1)",
+    "page": 178,
+    "qty": "1d6+1",
+    "marks": "*"
+   },
+   {
+    "range": [
+     33,
+     37
+    ],
+    "label": "*Foraging (1d4+1)",
+    "page": 172,
+    "qty": "1d4+1",
+    "marks": "*"
+   },
+   {
+    "range": [
+     38,
+     40
+    ],
+    "label": "Textile Plant",
+    "page": 178,
+    "note": {
+     "en": "Each plant yields 1d10 fabric units and one seed · p. 178.",
+     "es": "Cada planta da 1d10 unidades de tejido y una semilla · p. 178."
+    }
+   },
+   {
+    "range": [
+     41,
+     42
+    ],
+    "label": "Alcohol",
+    "page": 188
+   },
+   {
+    "range": [
+     43,
+     45
+    ],
+    "label": "Old Corpses (1d6)",
+    "page": 188,
+    "qty": "1d6",
+    "note": {
+     "en": "Per corpse: 1d4 supplies and one roll on each clothing, armor and weapon table. The text also gives a >10% chance of one alcohol unit · p. 188.",
+     "es": "Por cadáver: 1d4 provisiones y una tirada en cada tabla de ropa, armaduras y armas. El texto también indica >10% de encontrar una unidad de alcohol · p. 188."
+    }
+   },
+   {
+    "range": [
+     46,
+     48
+    ],
+    "label": "Fresh Corpses (1d6)",
+    "page": 188,
+    "qty": "1d6",
+    "note": {
+     "en": "Per corpse: 1d4 supplies and one roll on each clothing, armor and weapon table. The text also gives a >10% chance of one alcohol unit · p. 188.",
+     "es": "Por cadáver: 1d4 provisiones y una tirada en cada tabla de ropa, armaduras y armas. El texto también indica >10% de encontrar una unidad de alcohol · p. 188."
+    }
+   },
+   {
+    "range": [
+     49,
+     58
+    ],
+    "label": "*Common Metal Ore",
+    "page": 176,
+    "marks": "*"
+   },
+   {
+    "range": [
+     59,
+     63
+    ],
+    "label": "*Mineral Ore",
+    "page": 177,
+    "marks": "*"
+   },
+   {
+    "range": [
+     64,
+     68
+    ],
+    "label": "Supplies (1d10+1)",
+    "page": 175,
+    "qty": "1d10+1",
+    "note": {
+     "en": "Table C specifies 1d10+1 supplies; the prose on p. 175 instead says 2d10. This result follows Table C. Each supply contains one water unit and one food unit.",
+     "es": "La tabla C indica 1d10+1 provisiones; el texto de la p. 175 dice 2d10. Este resultado sigue la tabla C. Cada provisión contiene una unidad de agua y una de comida."
+    }
+   },
+   {
+    "range": [
+     69,
+     83
+    ],
+    "label": "Water",
+    "page": 171
+   },
+   {
+    "range": [
+     84,
+     86
+    ],
+    "label": "Dry Wood",
+    "page": 175
+   },
+   {
+    "range": [
+     87,
+     88
+    ],
+    "label": "Seide",
+    "page": 206
+   },
+   {
+    "range": [
+     89,
+     91
+    ],
+    "label": "Forest",
+    "page": 176
+   },
+   {
+    "range": [
+     92,
+     96
+    ],
+    "label": "*Special Metal Ore",
+    "page": 177,
+    "marks": "*"
+   },
+   {
+    "range": [
+     97,
+     98
+    ],
+    "label": "Darkwood",
+    "page": 201
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "**Magic Item",
+    "page": 207,
+    "marks": "**",
+    "note": {
+     "en": "Choose the specific item from the magic items section (p. 207 onward) at the Maze Master’s discretion. Table C does not supply a random item table.",
+     "es": "El Amo del Laberinto elige el objeto concreto de la sección de objetos mágicos (p. 207 en adelante). La tabla C no indica una tabla aleatoria de objetos."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:d",
+  "type": "table",
+  "code": "D",
+  "name": "D",
+  "roll": "inhabitant",
+  "die": "d%",
+  "page": 453,
+  "source_file": "data/table-d.json",
+  "note": null,
+  "footnotes": {
+   "*": {
+    "en": "Roll 1d4+1 for each Hydra's heads · p. 255",
+    "es": "Tira 1d4+1 para las cabezas de cada Hydra · p. 255"
+   },
+   "**": {
+    "en": "Roll on Table 5.1, Beasts · p. 255",
+    "es": "Tira en la Tabla 5.1 de Bestias · p. 255"
+   },
+   "†": {
+    "en": "Only appears with the Chessboard rules · p. 255",
+    "es": "Sólo aparece con las reglas del Tablero de ajedrez · p. 255"
+   },
+   "††": {
+    "en": "Whisperers and Ghouls are enemies of each other · p. 255",
+    "es": "Los Whisperers y los Ghouls son enemigos entre sí · p. 255"
+   },
+   "ª": {
+    "en": "One or more are disguised as Raiders; if needed, another Inhabitants roll · p. 255",
+    "es": "Uno o varios van disfrazados de Incursor; si hace falta, otra tirada de Habitantes · p. 255"
+   }
+  },
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "The Red King & The Red Queen†",
+    "page": 373,
+    "marks": "†",
+    "refs": [
+     "creature:the-red-king"
+    ]
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "The Black Queen & The Black King†",
+    "page": 372,
+    "marks": "†",
+    "refs": [
+     "creature:the-black-queen"
+    ]
+   },
+   {
+    "range": [
+     3,
+     4
+    ],
+    "label": "Inquisitor",
+    "page": 293,
+    "refs": [
+     "creature:inquisitor"
+    ]
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Vampire",
+    "page": 333,
+    "refs": [
+     "creature:vampires"
+    ]
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "*1d4+1 Hydras",
+    "page": 288,
+    "qty": "1d4+1",
+    "marks": "*",
+    "refs": [
+     "creature:hydra"
+    ]
+   },
+   {
+    "range": [
+     7,
+     12
+    ],
+    "label": "*Hydra",
+    "page": 288,
+    "marks": "*",
+    "refs": [
+     "creature:hydra"
+    ]
+   },
+   {
+    "range": [
+     13,
+     14
+    ],
+    "label": "1d2 Gray Gargoyle",
+    "page": 283,
+    "qty": "1d2",
+    "refs": [
+     "creature:gray-gargoyle"
+    ]
+   },
+   {
+    "range": [
+     15,
+     15
+    ],
+    "label": "Air Elemental",
+    "page": 277,
+    "refs": [
+     "creature:air-elemental"
+    ]
+   },
+   {
+    "range": [
+     16,
+     16
+    ],
+    "label": "Earth Elemental",
+    "page": 278,
+    "refs": [
+     "creature:earth-elemental"
+    ]
+   },
+   {
+    "range": [
+     17,
+     17
+    ],
+    "label": "Fire Elemental",
+    "page": 280,
+    "refs": [
+     "creature:fire-elemental"
+    ]
+   },
+   {
+    "range": [
+     18,
+     18
+    ],
+    "label": "Water Elemental",
+    "page": 281,
+    "refs": [
+     "creature:water-elemental"
+    ]
+   },
+   {
+    "range": [
+     19,
+     19
+    ],
+    "label": "Iron Golem",
+    "page": 286,
+    "refs": [
+     "creature:iron-golem"
+    ]
+   },
+   {
+    "range": [
+     20,
+     20
+    ],
+    "label": "Clay Golem",
+    "page": 285,
+    "refs": [
+     "creature:clay-golem"
+    ]
+   },
+   {
+    "range": [
+     21,
+     21
+    ],
+    "label": "Stone Golem)",
+    "page": 287,
+    "refs": [
+     "creature:stone-golem"
+    ]
+   },
+   {
+    "range": [
+     22,
+     23
+    ],
+    "label": "Moon Giant (Black Rook)",
+    "page": 360,
+    "refs": [
+     "creature:moon-giant-black-rook"
+    ]
+   },
+   {
+    "range": [
+     24,
+     25
+    ],
+    "label": "Sun Giant (Red Rook)",
+    "page": 363,
+    "refs": [
+     "creature:sun-giant-red-rook"
+    ]
+   },
+   {
+    "range": [
+     26,
+     27
+    ],
+    "label": "Major Mirrorfolk (Black Bishop)ª",
+    "page": 353,
+    "marks": "ª",
+    "refs": [
+     "creature:black-bishop-greater-mirrorfolk"
+    ]
+   },
+   {
+    "range": [
+     28,
+     29
+    ],
+    "label": "Contract Devil (Red Bishop)",
+    "page": 356,
+    "refs": [
+     "creature:red-bishop"
+    ]
+   },
+   {
+    "range": [
+     30,
+     30
+    ],
+    "label": "Dark Stalker (Black Horse",
+    "page": 348,
+    "refs": [
+     "creature:dark-hunter-black-horse"
+    ]
+   },
+   {
+    "range": [
+     31,
+     31
+    ],
+    "label": "Dark Stalker (Black Horse)",
+    "page": 348,
+    "refs": [
+     "creature:dark-hunter-black-horse"
+    ]
+   },
+   {
+    "range": [
+     32,
+     32
+    ],
+    "label": "Succubus (Red Horse)ª",
+    "page": 350,
+    "marks": "ª",
+    "refs": [
+     "creature:incubus-succubus-red-horse"
+    ]
+   },
+   {
+    "range": [
+     33,
+     33
+    ],
+    "label": "Incubus (Red Horse)ª",
+    "page": 350,
+    "marks": "ª",
+    "refs": [
+     "creature:incubus-succubus-red-horse"
+    ]
+   },
+   {
+    "range": [
+     34,
+     34
+    ],
+    "label": "Black Pawn plus 1d8+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "Red Pawn plus 1d6+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "Black Pawn plus 1d8+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "Red Pawn plus 1d6+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     38,
+     38
+    ],
+    "label": "Black Pawn plus 1d6+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     39,
+     39
+    ],
+    "label": "Red Pawn plus 1d4+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     40,
+     40
+    ],
+    "label": "Black Pawn plus 1d6+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "Red Pawn plus 1d4+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "Black Pawn plus 1d4+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "Red Pawn plus 1d2+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "Black Pawn plus 1d4+1 Hitmen",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn",
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "Red Pawn plus 1d2+1 Mazeknights",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn",
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     46,
+     46
+    ],
+    "label": "Master Hitman (Black Pawn)",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn"
+    ]
+   },
+   {
+    "range": [
+     47,
+     47
+    ],
+    "label": "Mazeknight Captain (Red Pawn)",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn"
+    ]
+   },
+   {
+    "range": [
+     48,
+     48
+    ],
+    "label": "Master Hitman (Black Pawn)",
+    "page": 340,
+    "refs": [
+     "creature:master-hitmen-black-pawn"
+    ]
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "Mazeknight Captain (Red Pawn)",
+    "page": 345,
+    "refs": [
+     "creature:mazeknight-captain-red-pawn"
+    ]
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Evil Whisperer plus 1d4+2 Ghouls††",
+    "page": 319,
+    "marks": "††",
+    "refs": [
+     "creature:ghouls"
+    ]
+   },
+   {
+    "range": [
+     51,
+     51
+    ],
+    "label": "1d6+1 Nothics",
+    "page": 308,
+    "qty": "1d6+1",
+    "refs": [
+     "creature:nothic"
+    ]
+   },
+   {
+    "range": [
+     52,
+     52
+    ],
+    "label": "Nothic",
+    "page": 308,
+    "refs": [
+     "creature:nothic"
+    ]
+   },
+   {
+    "range": [
+     53,
+     54
+    ],
+    "label": "Maze Imp",
+    "page": 290,
+    "refs": [
+     "creature:imp"
+    ]
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "Ghast and 1d6+1 Ghouls",
+    "page": 331,
+    "refs": [
+     "creature:ghast",
+     "creature:ghouls"
+    ]
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "1d6+2 Ghouls",
+    "page": 330,
+    "qty": "1d6+2",
+    "refs": [
+     "creature:ghouls"
+    ]
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "1d8+2 Rookie Hitmen",
+    "page": 338,
+    "qty": "1d8+2",
+    "refs": [
+     "creature:rookie-hitman"
+    ]
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "1d6+2 Rookie Mazeknight",
+    "page": 343,
+    "qty": "1d6+2",
+    "refs": [
+     "creature:mazeknight-rookie"
+    ]
+   },
+   {
+    "range": [
+     59,
+     59
+    ],
+    "label": "1d6+1 Rookie Hitmen",
+    "page": 338,
+    "qty": "1d6+1",
+    "refs": [
+     "creature:rookie-hitman"
+    ]
+   },
+   {
+    "range": [
+     60,
+     60
+    ],
+    "label": "1d4+1 Rookie Mazeknight",
+    "page": 343,
+    "qty": "1d4+1",
+    "refs": [
+     "creature:mazeknight-rookie"
+    ]
+   },
+   {
+    "range": [
+     61,
+     62
+    ],
+    "label": "1d6 Mirrorfolkª",
+    "page": 299,
+    "qty": "1d6",
+    "marks": "ª",
+    "refs": [
+     "creature:mirrorfolk"
+    ]
+   },
+   {
+    "range": [
+     63,
+     64
+    ],
+    "label": "**1d8+1 Beasts",
+    "page": 266,
+    "qty": "1d8+1",
+    "marks": "**",
+    "refs": [
+     "creature:beasts"
+    ]
+   },
+   {
+    "range": [
+     65,
+     65
+    ],
+    "label": "**1d6+1 Beasts",
+    "page": 266,
+    "qty": "1d6+1",
+    "marks": "**",
+    "refs": [
+     "creature:beasts"
+    ]
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "**1d6+1 Beast",
+    "page": 266,
+    "qty": "1d6+1",
+    "marks": "**",
+    "refs": [
+     "creature:beasts"
+    ]
+   },
+   {
+    "range": [
+     67,
+     69
+    ],
+    "label": "**1d4+1 Beast",
+    "page": 266,
+    "qty": "1d4+1",
+    "marks": "**",
+    "refs": [
+     "creature:beasts"
+    ]
+   },
+   {
+    "range": [
+     70,
+     73
+    ],
+    "label": "**Beast",
+    "page": 266,
+    "marks": "**",
+    "refs": [
+     "creature:beasts"
+    ]
+   },
+   {
+    "range": [
+     74,
+     75
+    ],
+    "label": "Maze Ooze",
+    "page": 309
+   },
+   {
+    "range": [
+     76,
+     76
+    ],
+    "label": "Spiritual Ooze",
+    "page": 311,
+    "refs": [
+     "creature:spirit-ooze"
+    ]
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "1d6+1 Ghosts",
+    "page": 328,
+    "qty": "1d6+1",
+    "refs": [
+     "creature:ghost"
+    ]
+   },
+   {
+    "range": [
+     78,
+     79
+    ],
+    "label": "Ghost",
+    "page": 328,
+    "refs": [
+     "creature:ghost"
+    ]
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "1 Merchant Raider",
+    "page": 315,
+    "qty": "1",
+    "refs": [
+     "creature:merchant"
+    ]
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "1d4 Myconid Merchants",
+    "page": 306,
+    "qty": "1d4",
+    "refs": [
+     "creature:myconid-merchant"
+    ]
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "1d6+1 Myconid Raiders (Hostile)",
+    "page": 307,
+    "qty": "1d6+1",
+    "refs": [
+     "creature:myconid-raider"
+    ]
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "1d4+1 Mazeborn",
+    "page": 316,
+    "qty": "1d4+1",
+    "refs": [
+     "creature:mazeborn"
+    ]
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "Veteran Raider (Rook) & 1d6 Raiders",
+    "page": 316,
+    "refs": [
+     "creature:veteran-raider",
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     85,
+     85
+    ],
+    "label": "Veteran Raider (Bishop) & 1d6 Raiders",
+    "page": 316,
+    "refs": [
+     "creature:veteran-raider",
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     86,
+     86
+    ],
+    "label": "Veteran Raider (Horse) & 1d6 Raiders",
+    "page": 316,
+    "refs": [
+     "creature:veteran-raider",
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     87,
+     87
+    ],
+    "label": "1d4 Mikite +1d8+1 Fungal Spawn",
+    "page": 302,
+    "qty": "1d4",
+    "refs": [
+     "creature:mikites",
+     "creature:fungal-spawn"
+    ]
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "Mikite +1d4+1 Fungal Spawn",
+    "page": 302,
+    "refs": [
+     "creature:mikites",
+     "creature:fungal-spawn"
+    ]
+   },
+   {
+    "range": [
+     89,
+     90
+    ],
+    "label": "Lyrakien (Azata)",
+    "page": 259,
+    "refs": [
+     "creature:lyrakien"
+    ]
+   },
+   {
+    "range": [
+     91,
+     92
+    ],
+    "label": "Bralani (Azata)",
+    "page": 260,
+    "refs": [
+     "creature:bralani"
+    ]
+   },
+   {
+    "range": [
+     93,
+     94
+    ],
+    "label": "Ghaelee (Azata)",
+    "page": 261,
+    "refs": [
+     "creature:ghaele"
+    ]
+   },
+   {
+    "range": [
+     95,
+     96
+    ],
+    "label": "Lillend (Azata)",
+    "page": 263,
+    "refs": [
+     "creature:lillend"
+    ]
+   },
+   {
+    "range": [
+     97,
+     98
+    ],
+    "label": "Whisperer plus 1d4+2 Ghouls††",
+    "page": 319,
+    "marks": "††",
+    "refs": [
+     "creature:whisperer",
+     "creature:ghouls"
+    ]
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "Zephyr",
+    "page": 413,
+    "refs": [
+     "creature:the-ten-zephyr"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:3-1",
+  "type": "table",
+  "code": "3.1",
+  "name": "3.1",
+  "roll": "wild magic",
+  "die": "d%",
+  "page": 88,
+  "source_file": "data/table-3-1.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Calling the Punishment",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "A signal is sent throughout the Chambers until it reaches the closest Decan House. During the next Raid, one of the Twelve Punishments will appear in the Chamber and fight the Raiders in any Chamber they visit. Roll once on the Decan House Encounter table 3.7.",
+      "es": "Una señal recorre las cámaras hasta la Decan House más cercana: en la próxima incursión uno de los Doce Castigos aparece en la cámara y pelea con los Incursores en cualquier cámara que visiten; se tira una vez en la tabla 3.7 (Decan House Encounter, p. 114)"
+     },
+     "page": 88
+    },
+    "see": [
+     "table:3-7"
+    ]
+   },
+   {
+    "range": [
+     2,
+     6
+    ],
+    "label": "Forbiddance",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The School Forbiddance condition activates twice. Roll twice on the School Forbiddance table 3.4 and apply them.",
+      "es": "La condición School Forbiddance se activa dos veces: se tira dos veces en la tabla 3.4 (School Forbiddance, p. 94) y se aplican las dos"
+     },
+     "page": 88
+    },
+    "see": [
+     "table:3-4"
+    ]
+   },
+   {
+    "range": [
+     7,
+     13
+    ],
+    "label": "Strong Rebound",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell or magical effect rebounds on the caster with twice the effect (double damage, area of effect, and duration). The caster is not entitled to a saving throw. If the effect cannot rebound, it fails.",
+      "es": "El conjuro o efecto mágico rebota con el doble de efecto (daño, área y duración) sobre quien lo lanzó, que no tiene prueba de salvación; si el efecto no puede rebotar, falla"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     14,
+     20
+    ],
+    "label": "Rebound",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell rebounds on the caster with normal effect. If it cannot rebound, it fails. Saving throw allowed.",
+      "es": "El conjuro rebota en quien lo lanzó con efecto normal, y con prueba de salvación; si no puede rebotar, falla"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     21,
+     27
+    ],
+    "label": "Harm",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell does not work and transforms into negative or necrotic energy. Everyone (friend or foe) within a medium-range to the caster receives 1d8 of necrotic damage per caster level of the original source. Stamina halves (Average DC).",
+      "es": "El conjuro falla y se vuelve energía negativa o necrótica: todos los que estén a distancia media de quien lo lanzó, amigos o no, reciben 1d8 de daño necrótico por nivel de lanzador de la fuente original; Stamina lo reduce a la mitad (Dificultad Media)"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     28,
+     34
+    ],
+    "label": "Quench and Consumption",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell does not function. Everything used to cast it is consumed. An item loses charges.",
+      "es": "El conjuro no funciona y se consume todo lo que se usó para lanzarlo; si fue un objeto, pierde cargas"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     35,
+     50
+    ],
+    "label": "Normal",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell functions normally.",
+      "es": "El conjuro funciona con normalidad"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     51,
+     59
+    ],
+    "label": "To review",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "Table 3.1 has no result for 51-59 or 81-87 (p. 88): the book skips them, so the Maze Master decides",
+      "es": "La Tabla 3.1 no trae resultado para el 51-59 ni el 81-87 (p. 88): el libro se los salta, así que decide el Amo del Laberinto"
+     },
+     "page": 88,
+     "gap": true
+    }
+   },
+   {
+    "range": [
+     60,
+     66
+    ],
+    "label": "Quench",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell does not function. Everything used to cast it is not consumed. An item does not use charges.",
+      "es": "El conjuro no funciona, pero no se consume nada de lo que se usó para lanzarlo; si fue un objeto, no gasta cargas"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     67,
+     73
+    ],
+    "label": "Heal",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell does not work and transforms into positive or radiant energy. Everyone (friend or foe) within a medium-range to the caster heals 1d8 of damage per caster level of the original source. Stamina halves (Average DC). It counts as radiant damage for the undead.",
+      "es": "El conjuro falla y se vuelve energía positiva o radiante: todos los que estén a distancia media de quien lo lanzó, amigos o no, curan 1d8 de daño por nivel de lanzador de la fuente original; Stamina lo reduce a la mitad (Dificultad Media), y en los no muertos cuenta como daño radiante"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     74,
+     80
+    ],
+    "label": "Random",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell affects a random target or area.",
+      "es": "El conjuro afecta a un objetivo o a un área al azar"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     81,
+     87
+    ],
+    "label": "To review",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "Table 3.1 has no result for 51-59 or 81-87 (p. 88): the book skips them, so the Maze Master decides",
+      "es": "La Tabla 3.1 no trae resultado para el 51-59 ni el 81-87 (p. 88): el libro se los salta, así que decide el Amo del Laberinto"
+     },
+     "page": 88,
+     "gap": true
+    }
+   },
+   {
+    "range": [
+     88,
+     94
+    ],
+    "label": "Double effect",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell functions with twice the effect (double damage, area of effect, and duration). If it cannot, it fails.",
+      "es": "El conjuro funciona con el doble de efecto (daño, área y duración); si no puede, falla"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     95,
+     99
+    ],
+    "label": "No Save",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "The spell functions normally, but the spell is so powerful that target or targets are not entitled to a saving throw.",
+      "es": "El conjuro funciona con normalidad, pero es tan potente que los objetivos no tienen prueba de salvación"
+     },
+     "page": 88
+    }
+   },
+   {
+    "range": [
+     100,
+     100
+    ],
+    "label": "Calling the Zephyr",
+    "page": 88,
+    "fx": {
+     "note": {
+      "en": "A signal is sent through the Chambers until it reaches the closest Zephyr. During the next Raid, one of the Ten Zephyr will appear in the Chamber and attend a Raiders' request. Roll once on the Zephyr Encounter table 5.5.",
+      "es": "Una señal recorre las cámaras hasta el Zephyr más cercano: en la próxima incursión uno de los diez aparece en la cámara y atiende una petición de los Incursores; se tira una vez en la tabla 5.5 (Zephyr Encounter, p. 415)"
+     },
+     "page": 88
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-2",
+  "type": "table",
+  "code": "3.2",
+  "name": "3.2 · Mistchamber",
+  "roll": null,
+  "die": null,
+  "page": 92,
+  "source_file": "data/table-3-2.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     25
+    ],
+    "label": "Greymist",
+    "page": 92,
+    "note": {
+     "es": "La niebla bloquea la visibilidad incluso con visiones especiales, amortigua el sonido y dificulta orientarse o detectar amenazas. La Máscara de Oktar permite ignorar su impedimento visual."
+    }
+   },
+   {
+    "range": [
+     26,
+     50
+    ],
+    "label": "Sparkmist",
+    "page": 92,
+    "fx": {
+     "rolls": [
+      {
+       "die": "1d6",
+       "table": "3.2.spark",
+       "of": {
+        "es": "Variante de Sparkmist"
+       }
+      }
+     ]
+    },
+    "note": {
+     "es": "Tras tres rondas, las chispas afectan a los seres vivos. Conserva las dificultades de visibilidad de Greymist. Consulta la variante de energía."
+    }
+   },
+   {
+    "range": [
+     51,
+     75
+    ],
+    "label": "Mistwalls",
+    "page": 92,
+    "fx": {
+     "rolls": [
+      {
+       "die": "1d6",
+       "table": "3.2.wall",
+       "of": {
+        "es": "Clave elemental de Mistwalls"
+       }
+      }
+     ]
+    },
+    "note": {
+     "es": "La niebla forma un muro sólido; su clave elemental puede dispersarlo durante una hora. Un resultado 6 requiere una decisión del Amo."
+    }
+   },
+   {
+    "range": [
+     76,
+     100
+    ],
+    "label": "Misttides",
+    "page": 92,
+    "note": {
+     "es": "La niebla se espesa o forma corrientes que desplazan a los viajeros; el Amo resuelve el recorrido y las salvaciones."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-2-wall",
+  "type": "table",
+  "code": "3.2 Mistwalls",
+  "name": "3.2 · Mistwalls",
+  "roll": null,
+  "die": null,
+  "page": 92,
+  "source_file": "data/table-3-2-wall.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Fire · fuego",
+    "page": 92
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Cold · frío",
+    "page": 92
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Electricity · electricidad",
+    "page": 92
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Force · fuerza",
+    "page": 92
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Thunder · trueno",
+    "page": 92
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Maze Master's choice · elección del Amo",
+    "page": 92
+   }
+  ]
+ },
+ {
+  "id": "table:3-2-spark",
+  "type": "table",
+  "code": "3.2 Sparkmist",
+  "name": "3.2 · Sparkmist",
+  "roll": null,
+  "die": null,
+  "page": 92,
+  "source_file": "data/table-3-2-spark.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Sparkmist · electricidad",
+    "page": 92
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Flaremist · fuego",
+    "page": 92
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Sparkmist · electricidad",
+    "page": 92
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Hoarmist · frío",
+    "page": 92
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Sparkmist · electricidad",
+    "page": 92
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Blackmist · energía necrótica",
+    "page": 92
+   }
+  ]
+ },
+ {
+  "id": "table:3-3",
+  "type": "table",
+  "code": "3.3",
+  "name": "3.3 · Legendary Raiders",
+  "roll": null,
+  "die": null,
+  "page": 93,
+  "source_file": "data/table-3-3.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Bookburner",
+    "page": 57,
+    "note": {
+     "en": "A human mage with obsidian black hair and bright blue eyes that glow in the darkness. She is a Veteran Raider that was the Librarian of a Bonfire in the past. Those days are now long gone. She wanders The Maze looking for any knowledge on the origins of the Black King. She can be found in a chamber that has enclosed secrets and clues about the Black Pieces, and is actively seeking the Infinite Library. She is helpful toward any Raider group, but she is not an ally. Hence, she won't hesitate to betray anyone that goes with her on his quest for knowledge. Additionally, she carries some magical cursed objects including an obsidian stone that can negate all damage once.",
+     "es": "Maga humana de cabello negro y ojos azules luminosos; antigua Bibliotecaria. Busca información sobre el Rey Negro y la Biblioteca Infinita. Puede ayudar, pero prioriza su búsqueda. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Bonebreaker",
+    "page": 58,
+    "note": {
+     "en": "She is a lizardfolk warrior with lustrous black scales, obsidian eyes, and a slim, tall figure. She is a versatile and marvelous fighter, who once be- longed to Old Don's Bonfire. For a long time, she helped to find resources for the Bonfire and the components of the Ultimate Weapon. Then, she visited the Infinite Library and decided to abandon Old Don's Bonfire to record information about the Maze in the company of a walking sapient metal book that writes everything by itself.",
+     "es": "Guerrera reptiliana de escamas negras. Dejó la Hoguera de Old Don para registrar información del Laberinto junto a un libro ambulante de Metal Sapiente. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Braids the Smith",
+    "page": 60,
+    "note": {
+     "en": "Braids is a human barbarian, bald and with a long red-haired beard that he wears in a long braid, so he can forge items without burning it. He has blue eyes and has a large build for a human, almost as large as an ogre. He does not trust others easily, but grants his confidence to those that support their words in actions. He is a blacksmith, whose skin has blackened due to the intense fire he uses and the lack of a bath.",
+     "es": "Herrero humano corpulento, calvo y de larga barba roja trenzada. Desconfía de las promesas y respeta a quienes respaldan sus palabras con acciones. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Epick Henpc",
+    "page": 61,
+    "note": {
+     "en": "Epick is a human with medium height and very thin complexion. He has caucasian features, light brown hair, and wears humble bartender clothes. He has a pair of warm and joyful blue eyes and is known because he carries everywhere a necklace made of fresh garlic. Even though he lives with fear because of the monsters in the Maze, he has full confidence in the Raiders and their intentions.",
+     "es": "Humano delgado de aspecto humilde, ojos azules alegres y un collar de ajo fresco. Teme a los monstruos, pero confía en los Raiders. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Gliblis",
+    "page": 63,
+    "note": {
+     "en": "A Half-giant fighter with short, dark hair and a friendly face that is in- congruous with his fearsome silhouette clad in patchwork armor of scav- enged leather and metal, wielding what looks like a tree branch with a big, black rock tied to it. He is an experienced Raider that joined up with Old Don's Bonfire upon arriving in the Maze. He can be found in any chamber tied to the Builders, where Builder activity has been detected, or where an entrance has jammed, smashing his weapon against it to force it open. Good-natured, he will happily help out fellow friendly Raiders if they cross his path, but often leaves as soon as the group diverges from his search for the Builders and their tools. He also tends to stick his foot in his mouth by revealing opinions or bits of information that he ought not to, a trait that causes some friction with Old Don and the Council of the Three whenever he visits the Bonfire.",
+     "es": "Guerrero semigigante amistoso, con armadura de retazos. Busca a los Constructores y sus herramientas; ayuda a otros Raiders mientras coincidan con su recorrido. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Jim Foulweather",
+    "page": 65,
+    "note": {
+     "en": "Jim Foulweather is a mazeborn halfling in his mid-thirties, with messy, brown hair and an untended, short beard. He wears a battered span- genhelm-style helmet, with worn-out studded leather armor, thick linen trousers, and explorer's boots. If you pay attention, behind his messy hair and tucked inside his armor, you could see a thin iron chain wrapped around his neck. Jim had a Bonfire a long time ago, but he was kicked out for reasons unknown to most people (and the Raiders). He now wanders The Maze, trying to find a Raid Pack that would take him back to their Bonfire. He is extremely nimble and dexterous, despite his beer belly, and can throw almost anything with incredible precision. He is known to steal resources and food from Red and Black Outposts, and then use the bounty to try to get another Raiders' favor. The few times he has been caught on these outposts, he managed to escape by incredibly fortuitous coincidences, earning him the \"Lucky Charm\" title.",
+     "es": "Mediano nacido en el Laberinto, expulsado de una Hoguera. Busca un grupo que lo acoja y suele robar recursos de los puestos rojos y negros. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Nutcrusher",
+    "page": 67,
+    "note": {
+     "en": "He is a middle-aged human with long, dark hair that covers his face almost entirely, only allowing his broad, terrifying smile to be seen. Countless battles in the Maze have covered his brown skin with scars. He does not wear anything but a pair of snugged and worn-out black leather trousers. On his shoulders and knees, he brazenly wears as an ornament the masks and helmets of the Hitmen and Mazeknights he has executed. He employs pieces of their armors as bracelets and greaves, which he has covered with spikes.",
+     "es": "Humano de largo cabello oscuro, sonrisa inquietante y muchas cicatrices. Lleva máscaras y piezas de armadura de los Hitmen y Mazeknights que ha ejecutado. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Pawndissolver",
+    "page": 68,
+    "note": {
+     "en": "She is a medium size Tortle with blue eyes (she is not blind). Like most of the Raiders, she has scars across arms and legs, but the most distinguished one is on her shell. It runs through the length of her shell and cuts deep, but it does not hit the flesh underneath. Most Raiders know that, when they go out with Pawndissolver, they should always keep her within sight as she is known to throw explosives or acids at any given moment. She carries a bag with a portable lab.",
+     "es": "Tortle de ojos azules y gran cicatriz en el caparazón. Lleva un laboratorio portátil y es conocida por recurrir a ácidos y explosivos. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "Petra Moor",
+    "page": 69,
+    "note": {
+     "en": "Petra is a beautiful woman in her late twenties. She is of medium height and has a skinny complexion. Her body shows signs of famine and weari- ness, but it is also well-trained as a result of her continuous travels around the Maze. She has long, red hair, pale skin, and grey eyes; she is not too worried about her appearance, however. That is why her hair is scruffy and has random dreadlocks. She avoids taking baths regularly, so her skin is caked with dirt and blood, something she claims is necessary to protect herself from the dangers in the Maze. She wears studded, leather armor and often carries both fresh and spoiled meat from creatures killed by her party of Raiders. Petra is a defiant, annoying, and sarcastic person who seems too bored and careless all the time. Nevertheless, Petra has a very good perception, and her reflexes have saved her and her companions countless times. She is always chewing and eating, alleging she needs ev- ery nutrient she can get.",
+     "es": "Viajera humana pelirroja, de ojos grises y aspecto descuidado. Sarcástica y desafiante, se mantiene alerta y suele llevar carne recogida durante las incursiones. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "Pike Jumper",
+    "page": 71,
+    "note": {
+     "en": "Pike Jumper is a human warrior with long brown hair, tanned skin, and a long tattoo on his left shoulder. He is recognized for carrying two un- matched heavy swords meant for the Red Queen and the Black King. He wanders the Maze surviving on the spoils resulting from the clash between the Red and Black Pieces. Pike Jumper is an avid fighter of both the Red Queen's and the Black King's guilds. He wants to escape the Maze and is convinced the only way to achieve that end is to forge an alliance between all the standing Bonfires. He appears every once in a while near the Bon- fires to trade goods and share information, and would gladly step forward to fight alongside the Raiders, mostly against the Pieces.",
+     "es": "Guerrero humano que porta dos grandes espadas. Combate a ambas facciones y cree que una alianza entre las Hogueras permitirá escapar. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "Ser Failures",
+    "page": 73,
+    "note": {
+     "en": "Ser Failures is a human warrior with a strong complexion. He is blond, with braided hair and beard, pale skin, and deep blue eyes. He wears steel chainmail under a heavily worn tabard that used to be blue, with what would seem like a heraldic gryphon drawn over it. He carries both a longsword and a shortsword and often uses them together when fighting. Ser Failures tends to study an old book that is filled with his notes. He has a cheerful and somewhat lax personality, something rarely found inside the Maze. Although many of his acquaintances consider him a doofus, he has something that sets him apart from other Raiders: he remembers. He keeps some memories about a mission in his previous life, because he is in fact, a devotee of the Goddess of Magic. His proof is a scarred tattoo of her symbol engraved on his chest.",
+     "es": "Guerrero humano rubio con tabardo gastado y un libro lleno de notas. Es alegre y conserva recuerdos de una misión anterior al Laberinto. El Amo decide su participación en el encuentro."
+    }
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "Spell-Eater",
+    "page": 75,
+    "note": {
+     "en": "He is a young, weathered shadow of a man vested in threadbare robes. His patchy, shaved head and messy goatee frame the face of a mad- man. Faded tattoos scattered over his jaundiced skin betray a criminal past. His bloodshot eyes dart nervously over the place, compulsively scratching his arms and face. When he speaks, his drained voice trig- gers feelings of danger and pity. Spell-Eater is a pathetic little man. He paces furtively, searching desperately for something, and carries any conversation in a cynical, sarcastic tone. His only joy seems to come from belittling any person compassionate enough to engage him.",
+     "es": "Hombre joven de aspecto consumido, ropas raídas y tatuajes desvaídos. Se mueve nerviosamente y conversa con cinismo y sarcasmo. El Amo decide su participación en el encuentro."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-4",
+  "type": "table",
+  "code": "3.4",
+  "name": "3.4 · School Forbiddance",
+  "roll": null,
+  "die": null,
+  "page": 94,
+  "source_file": "data/table-3-4.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Abjuration",
+    "page": 94
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Conjuration",
+    "page": 94
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Divination",
+    "page": 94
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Enchantment",
+    "page": 94
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Evocation",
+    "page": 94
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Illusion",
+    "page": 94
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Necromancy",
+    "page": 94
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Transmutation",
+    "page": 94
+   }
+  ]
+ },
+ {
+  "id": "table:3-5",
+  "type": "table",
+  "code": "3.5",
+  "name": "3.5",
+  "roll": null,
+  "die": "d%",
+  "page": 108,
+  "source_file": "data/table-3-5.json",
+  "note": {
+   "en": "One additional visitor encounter, besides the normal Inhabitants roll (p. 105). Printed 00 means 100.",
+   "es": "Un encuentro adicional de visitantes, además de la tirada normal de Habitantes (p. 105). El 00 impreso equivale a 100."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     20
+    ],
+    "label": "1d4+1 Mazeknights",
+    "page": 108,
+    "qty": "1d4+1",
+    "refs": [
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     21,
+     40
+    ],
+    "label": "1d6+1 Hitmen",
+    "page": 108,
+    "qty": "1d6+1",
+    "refs": [
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     41,
+     80
+    ],
+    "label": "No additional Inhabitant",
+    "page": 108,
+    "note": {
+     "en": "No additional visitor from this table; this does not cancel the normal Inhabitants roll.",
+     "es": "Esta tabla no añade visitantes; no cancela la tirada normal de Habitantes."
+    }
+   },
+   {
+    "range": [
+     81,
+     99
+    ],
+    "label": "1d4+1 Raiders",
+    "page": 108,
+    "qty": "1d4+1",
+    "refs": [
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     100,
+     100
+    ],
+    "label": "Zephyr",
+    "page": 108,
+    "refs": [
+     "creature:the-ten-zephyr"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:3-6",
+  "type": "table",
+  "code": "3.6",
+  "name": "3.6",
+  "roll": null,
+  "die": "d%",
+  "page": 110,
+  "source_file": "data/table-3-6.json",
+  "note": {
+   "en": "The 50%< Veteran Raider footnote applies only to starred results (51–100); the Captain and Black Pawn checks apply only to their own rows. No inhabitant quantity is supplied by this table.",
+   "es": "La nota de 50%< de Veteran Raider solo se aplica a resultados con asterisco (51–100); Captain y Black Pawn tienen sus propias pruebas. Esta tabla no indica una cantidad de habitantes."
+  },
+  "footnotes": {
+   "*": {
+    "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+    "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+   }
+  },
+  "rows": [
+   {
+    "range": [
+     1,
+     2
+    ],
+    "label": "Magical Infected Undead Raiders and Necromantic Mist",
+    "page": 110,
+    "note": {
+     "en": "Undead Raiders with Magical Infection; the chamber also has Necromantic Mist.",
+     "es": "Incursores no muertos con Magical Infection; la cámara también tiene Necromantic Mist."
+    }
+   },
+   {
+    "range": [
+     3,
+     14
+    ],
+    "label": "Undead Raiders",
+    "page": 110
+   },
+   {
+    "range": [
+     15,
+     30
+    ],
+    "label": "Mazeknights",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "75%< (1–74): defended by a Mazeknight Captain (Red Pawn).",
+      "es": "75%< (1–74): defendida por un Mazeknight Captain (Red Pawn)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "75%<",
+       "of": {
+        "en": "Mazeknight Captain (Red Pawn)",
+        "es": "Mazeknight Captain (Red Pawn)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "75%< (1–74): defended by a Mazeknight Captain (Red Pawn).",
+     "es": "75%< (1–74): defendida por un Mazeknight Captain (Red Pawn)."
+    },
+    "refs": [
+     "creature:mazeknights"
+    ]
+   },
+   {
+    "range": [
+     31,
+     50
+    ],
+    "label": "Hitmen",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "75%< (1–74): defended by a Black Pawn.",
+      "es": "75%< (1–74): defendida por un Black Pawn."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "75%<",
+       "of": {
+        "en": "Black Pawn",
+        "es": "Black Pawn"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "75%< (1–74): defended by a Black Pawn.",
+     "es": "75%< (1–74): defendida por un Black Pawn."
+    },
+    "refs": [
+     "creature:common-hitmen"
+    ]
+   },
+   {
+    "range": [
+     51,
+     62
+    ],
+    "label": "Hostile Raiders",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+      "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "50%<",
+       "of": {
+        "en": "Veteran Raider (Horse, Bishop or Rook)",
+        "es": "Veteran Raider (Horse, Bishop or Rook)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+     "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+    },
+    "refs": [
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     63,
+     74
+    ],
+    "label": "Hostile Mazeborn",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+      "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "50%<",
+       "of": {
+        "en": "Veteran Raider (Horse, Bishop or Rook)",
+        "es": "Veteran Raider (Horse, Bishop or Rook)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+     "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+    },
+    "refs": [
+     "creature:mazeborn"
+    ]
+   },
+   {
+    "range": [
+     75,
+     86
+    ],
+    "label": "Indifferent Raiders",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+      "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "50%<",
+       "of": {
+        "en": "Veteran Raider (Horse, Bishop or Rook)",
+        "es": "Veteran Raider (Horse, Bishop or Rook)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+     "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+    },
+    "refs": [
+     "creature:raiders"
+    ]
+   },
+   {
+    "range": [
+     87,
+     98
+    ],
+    "label": "Indifferent Mazeborn",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+      "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "50%<",
+       "of": {
+        "en": "Veteran Raider (Horse, Bishop or Rook)",
+        "es": "Veteran Raider (Horse, Bishop or Rook)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+     "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+    },
+    "refs": [
+     "creature:mazeborn"
+    ]
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "Helpful Mazeborn",
+    "page": 110,
+    "fx": {
+     "page": 110,
+     "note": {
+      "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+      "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+     },
+     "rolls": [
+      {
+       "kind": "inhabitant",
+       "chance": "50%<",
+       "of": {
+        "en": "Veteran Raider (Horse, Bishop or Rook)",
+        "es": "Veteran Raider (Horse, Bishop or Rook)"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "50%< (1–49): defended by a Veteran Raider (Horse, Bishop or Rook).",
+     "es": "50%< (1–49): defendida por un Veteran Raider (Horse, Bishop o Rook)."
+    },
+    "refs": [
+     "creature:mazeborn"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:3-7",
+  "type": "table",
+  "code": "3.7",
+  "name": "3.7",
+  "roll": null,
+  "die": "d12",
+  "page": 114,
+  "source_file": "data/table-3-7.json",
+  "note": {
+   "en": "The Serpent Sun (Imbalance; Sapient Metal splinter) has '?' rather than a die face. Its House begins appearing only after the first Punishment is killed; consult the Chess Board rules. No d12 outcome is replaced or invented here.",
+   "es": "Serpent Sun (Imbalance; Sapient Metal splinter) tiene '?' en vez de una cara del dado. Su Casa empieza a aparecer solo después de matar al primer Castigo; consultar el Tablero de Ajedrez. Aquí no se sustituye ni inventa una cara del d12."
+  },
+  "footnotes": {
+   "?": {
+    "en": "The Serpent Sun (Imbalance; Sapient Metal splinter) has '?' rather than a die face. Its House begins appearing only after the first Punishment is killed; consult the Chess Board rules. No d12 outcome is replaced or invented here.",
+    "es": "Serpent Sun (Imbalance; Sapient Metal splinter) tiene '?' en vez de una cara del dado. Su Casa empieza a aparecer solo después de matar al primer Castigo; consultar el Tablero de Ajedrez. Aquí no se sustituye ni inventa una cara del d12."
+   }
+  },
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "The Ram (Anger)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Dragon Fire. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Dragon Fire. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "The Bull (Sadness)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Astral Matter. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Astral Matter. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "The Twins (Malice)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Angel Feathers. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Angel Feathers. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "The Crab (Greed)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Night's Water. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Night's Water. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "The Lion (Fraud)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Infernal Fire. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Infernal Fire. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "The Maiden (Deception)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Primordial Soil. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Primordial Soil. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "The Fate (Injustice)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Incense of Blue Flower. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Incense of Blue Flower. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "The Scorpio (Resentment)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Ichor. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Ichor. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "The Centaur (Temerity)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Raw Magic. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Raw Magic. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "The Goat (Ignorance)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Dipolarite. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Dipolarite. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "The Beauty (Lust)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Aether. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Aether. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "The Fishman (Fickleness)",
+    "page": 114,
+    "note": {
+     "en": "Ultimate Weapon component: Tears of the Gods. The Punishment's armor and weapons are loot only if it is defeated (pp. 113–114).",
+     "es": "Componente del Arma Definitiva: Tears of the Gods. La armadura y las armas del Castigo solo se obtienen si es derrotado (pp. 113–114)."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-8",
+  "type": "table",
+  "code": "3.8",
+  "name": "3.8",
+  "roll": null,
+  "die": "d10",
+  "page": 120,
+  "source_file": "data/table-3-8.json",
+  "note": {
+   "en": "Roll 1d10 twice and reroll duplicate results to locate the two floor trapdoors. Printed 0 is the tenth face (10); these are temple locations, not attacking traps.",
+   "es": "Tira 1d10 dos veces y repite duplicados para ubicar las dos trampillas. El 0 impreso es la décima cara (10); son ubicaciones de templos, no trampas que ataquen."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Hyena",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Hyena temple.",
+     "es": "Trampilla en el templo de Hiena."
+    }
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Lion",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Lion temple.",
+     "es": "Trampilla en el templo de León."
+    }
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Goat",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Goat temple.",
+     "es": "Trampilla en el templo de Cabra."
+    }
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Goose",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Goose temple.",
+     "es": "Trampilla en el templo de Ganso."
+    }
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Donkey",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Donkey temple.",
+     "es": "Trampilla en el templo de Burro."
+    }
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Monkey",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Monkey temple.",
+     "es": "Trampilla en el templo de Mono."
+    }
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Baboon",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Baboon temple.",
+     "es": "Trampilla en el templo de Babuino."
+    }
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Crocodile",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Crocodile temple.",
+     "es": "Trampilla en el templo de Cocodrilo."
+    }
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "Elephant",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Elephant temple.",
+     "es": "Trampilla en el templo de Elefante."
+    }
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "Snake",
+    "page": 120,
+    "note": {
+     "en": "Trapdoor located at the Snake temple.",
+     "es": "Trampilla en el templo de Serpiente."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-9",
+  "type": "table",
+  "code": "3.9",
+  "name": "3.9",
+  "roll": null,
+  "die": "d6",
+  "page": 136,
+  "source_file": "data/table-3-9.json",
+  "note": {
+   "en": "These are the next Raiders after the party defeats the current Hall Wardens; they have the same level as the players. To escape, the new Wardens must lose to them. No numerical party-size die appears in this table.",
+   "es": "Son los siguientes Incursores después de vencer a los guardianes actuales; tienen el mismo nivel que los personajes. Para escapar, los nuevos guardianes deben perder contra ellos. Esta tabla no trae dado de cantidad de integrantes."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "An elven scouting party, armed with sword and bow.",
+    "page": 136,
+    "note": {
+     "en": "An elven scouting party, armed with sword and bow.",
+     "es": "Exploradores elfos armados con espada y arco."
+    }
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "A group of Halfling cannibals, armed with bone knives and slings.",
+    "page": 136,
+    "note": {
+     "en": "A group of Halfling cannibals, armed with bone knives and slings.",
+     "es": "Caníbales Halfling armados con cuchillos de hueso y hondas."
+    }
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "A set of human thieves who skulk in the twilight.",
+    "page": 136,
+    "note": {
+     "en": "A set of human thieves who skulk in the twilight.",
+     "es": "Ladrones humanos que se ocultan en la penumbra."
+    }
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "A team of human knights, who approach in formation.",
+    "page": 136,
+    "note": {
+     "en": "A team of human knights, who approach in formation.",
+     "es": "Caballeros humanos que se acercan en formación."
+    }
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "A conclave of cultists and warlocks.",
+    "page": 136,
+    "note": {
+     "en": "A conclave of cultists and warlocks.",
+     "es": "Un cónclave de cultistas y brujos."
+    }
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "A small horde of kobolds, armed with scavenged weapons.",
+    "page": 136,
+    "note": {
+     "en": "A small horde of kobolds, armed with scavenged weapons.",
+     "es": "Una pequeña horda de kobolds con armas recuperadas."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:3-10",
+  "type": "table",
+  "code": "3.10",
+  "name": "3.10",
+  "roll": null,
+  "die": "d12",
+  "page": 160,
+  "source_file": "data/table-3-10.json",
+  "note": {
+   "en": "Use 1d8 for simple Trap Cubes; otherwise this table uses 1d12. Choosing custom traps instead is allowed by the chamber descriptions. The table is a selector: see the individual trap rules on pp. 150–160. Energy Channel is called Energy Streamer in its description (p. 152).",
+   "es": "Usa 1d8 para Trap Cubes simples; en otro caso esta tabla usa 1d12. Las cámaras permiten elegir trampas propias en su lugar. La tabla es un selector: consultar reglas de cada trampa en pp. 150–160. Energy Channel se llama Energy Streamer en su descripción (p. 152)."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Trapdoor",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 150. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 150. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Spiked Pit",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 150–151. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 150–151. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Blowpipe",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 151. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 151. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Energy Channel",
+    "page": 160,
+    "fx": {
+     "page": 160,
+     "note": {
+      "en": "Roll 1d4 for energy type: 1 fire, 2 cold, 3 electricity, 4 acid. See Energy Streamer, p. 152.",
+      "es": "Tira 1d4 para el tipo de energía: 1 fuego, 2 frío, 3 electricidad, 4 ácido. Ver Energy Streamer, p. 152."
+     },
+     "rolls": [
+      {
+       "kind": "special",
+       "die": "1d4",
+       "of": {
+        "en": "Energy: 1 fire, 2 cold, 3 electricity, 4 acid",
+        "es": "Energía: 1 fuego, 2 frío, 3 electricidad, 4 ácido"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "Roll 1d4 for energy type: 1 fire, 2 cold, 3 electricity, 4 acid. See Energy Streamer, p. 152.",
+     "es": "Tira 1d4 para el tipo de energía: 1 fuego, 2 frío, 3 electricidad, 4 ácido. Ver Energy Streamer, p. 152."
+    }
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "Crippler",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 152–153. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 152–153. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Rolling Blades",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 153. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 153. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Infection Spreader",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 154. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 154. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Enfeebler/Disempower",
+    "page": 160,
+    "fx": {
+     "page": 160,
+     "note": {
+      "en": "Roll 1d2: 1 Enfeeble, 2 Disempower. See p. 155.",
+      "es": "Tira 1d2: 1 Enfeeble, 2 Disempower. Ver p. 155."
+     },
+     "rolls": [
+      {
+       "kind": "special",
+       "die": "1d2",
+       "of": {
+        "en": "1 Enfeeble, 2 Disempower",
+        "es": "1 Enfeeble, 2 Disempower"
+       }
+      }
+     ]
+    },
+    "note": {
+     "en": "Roll 1d2: 1 Enfeeble, 2 Disempower. See p. 155.",
+     "es": "Tira 1d2: 1 Enfeeble, 2 Disempower. Ver p. 155."
+    }
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "Necromantic Box",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 156–157. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 156–157. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "Catatonic Switch",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 157. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 157. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "Shadow Stealer",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 158. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 158. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "Compressor",
+    "page": 160,
+    "note": {
+     "en": "Full trap rules: p. 159–160. Table 3.10 gives no further effect for this row.",
+     "es": "Reglas completas de la trampa: p. 159–160. La Tabla 3.10 no añade otro efecto a este resultado."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:4-1",
+  "type": "table",
+  "code": "4.1",
+  "name": "4.1 · Trinkets",
+  "roll": null,
+  "die": null,
+  "page": 168,
+  "source_file": "data/table-4-1.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "A pair of cursed unmatched stinking socks",
+    "page": 168
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "A cap with louse",
+    "page": 168
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "1d4 units of Fiend Blood",
+    "page": 168,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "3d10 gold coins",
+    "page": 168,
+    "qty": "3d10"
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "A mummified Raider",
+    "page": 168
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "A set of porcelain dishes",
+    "page": 168
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Cheese of Elks from the Maze",
+    "page": 168
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Myconid Soap",
+    "page": 168
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "A cursed pillow and a nice set of bedsheets",
+    "page": 169
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "A bottled ghost",
+    "page": 169
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "1d10 units of sugar or honey†",
+    "page": 169,
+    "qty": "1d10",
+    "marks": "†"
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "A broken truth mirror",
+    "page": 169
+   },
+   {
+    "range": [
+     13,
+     13
+    ],
+    "label": "A phylactery emitting a dark force",
+    "page": 169
+   },
+   {
+    "range": [
+     14,
+     14
+    ],
+    "label": "A collection of songs made by bards in the Maze",
+    "page": 169
+   },
+   {
+    "range": [
+     15,
+     15
+    ],
+    "label": "A reliquary with the ashes of Bonfire Leader",
+    "page": 169
+   },
+   {
+    "range": [
+     16,
+     16
+    ],
+    "label": "**A slave Vampire bard",
+    "page": 169,
+    "marks": "**"
+   },
+   {
+    "range": [
+     17,
+     17
+    ],
+    "label": "A Maze Teddy Bear or any other toy",
+    "page": 169
+   },
+   {
+    "range": [
+     18,
+     18
+    ],
+    "label": "A bone chest with 2d10 gems",
+    "page": 170
+   },
+   {
+    "range": [
+     19,
+     19
+    ],
+    "label": "A Heavy Key to somewhere in the Maze",
+    "page": 170
+   },
+   {
+    "range": [
+     20,
+     20
+    ],
+    "label": "Several units of pink paint",
+    "page": 170
+   },
+   {
+    "range": [
+     21,
+     21
+    ],
+    "label": "Several units of candles",
+    "page": 170
+   },
+   {
+    "range": [
+     22,
+     22
+    ],
+    "label": "2d8 units of fruit grown by Myconids",
+    "page": 170,
+    "qty": "2d8"
+   },
+   {
+    "range": [
+     23,
+     23
+    ],
+    "label": "2d8 units of cereals grown by Myconids",
+    "page": 170,
+    "qty": "2d8"
+   },
+   {
+    "range": [
+     24,
+     24
+    ],
+    "label": "2d8 units of medicinal herbs grown by Myconids",
+    "page": 170,
+    "qty": "2d8"
+   },
+   {
+    "range": [
+     25,
+     25
+    ],
+    "label": "A fine suit to attend a Masquerade",
+    "page": 170
+   },
+   {
+    "range": [
+     26,
+     26
+    ],
+    "label": "1d6 units of bone",
+    "page": 170,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     27,
+     27
+    ],
+    "label": "2d6 units of bone",
+    "page": 170,
+    "qty": "2d6"
+   },
+   {
+    "range": [
+     28,
+     28
+    ],
+    "label": "4d6 units of bone",
+    "page": 170,
+    "qty": "4d6"
+   },
+   {
+    "range": [
+     29,
+     29
+    ],
+    "label": "8d6 units of bone",
+    "page": 171,
+    "qty": "8d6"
+   },
+   {
+    "range": [
+     30,
+     30
+    ],
+    "label": "4d6 units of beast meat",
+    "page": 171,
+    "qty": "4d6"
+   },
+   {
+    "range": [
+     31,
+     31
+    ],
+    "label": "6d6 units of beast meat",
+    "page": 171,
+    "qty": "6d6"
+   },
+   {
+    "range": [
+     32,
+     32
+    ],
+    "label": "8d6 units of beast meat",
+    "page": 171,
+    "qty": "8d6"
+   },
+   {
+    "range": [
+     33,
+     33
+    ],
+    "label": "An invitation to the Red Masquerade",
+    "page": 171
+   },
+   {
+    "range": [
+     34,
+     34
+    ],
+    "label": "1d4 functional musical instruments",
+    "page": 171,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "A holy symbol of an unknown God",
+    "page": 168
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "A mysterious invisible book",
+    "page": 168
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "A book containing the rules of a Bonfire",
+    "page": 168
+   },
+   {
+    "range": [
+     38,
+     38
+    ],
+    "label": "A bag full of Raider's teeth",
+    "page": 168
+   },
+   {
+    "range": [
+     39,
+     39
+    ],
+    "label": "Fangs and claws of unknown beasts",
+    "page": 168
+   },
+   {
+    "range": [
+     40,
+     40
+    ],
+    "label": "A magical brush",
+    "page": 168
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "The Book of Roots",
+    "page": 168
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "1d6 books and maps with unintelligible scribblings",
+    "page": 168,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "**A slave Raider Zombie",
+    "page": 169,
+    "marks": "**"
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "A diary in an unknown language",
+    "page": 169
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "Random pieces of clothing (1d6+1)††",
+    "page": 169,
+    "qty": "1d6+1",
+    "marks": "††"
+   },
+   {
+    "range": [
+     46,
+     46
+    ],
+    "label": "An old music box",
+    "page": 169
+   },
+   {
+    "range": [
+     47,
+     47
+    ],
+    "label": "Random tools (1d6+1)††",
+    "page": 169,
+    "qty": "1d6+1",
+    "marks": "††"
+   },
+   {
+    "range": [
+     48,
+     48
+    ],
+    "label": "Random pieces of armor (1d6+1)††",
+    "page": 169,
+    "qty": "1d6+1",
+    "marks": "††"
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "A jar of seeds (1d10)",
+    "page": 169,
+    "qty": "1d10"
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Rusty but useful weapons (1d8+1)††",
+    "page": 169,
+    "qty": "1d8+1",
+    "marks": "††"
+   },
+   {
+    "range": [
+     51,
+     51
+    ],
+    "label": "1d6 units of water",
+    "page": 169,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     52,
+     52
+    ],
+    "label": "2d6 units of water",
+    "page": 170,
+    "qty": "2d6"
+   },
+   {
+    "range": [
+     53,
+     53
+    ],
+    "label": "4d6 units of water",
+    "page": 170,
+    "qty": "4d6"
+   },
+   {
+    "range": [
+     54,
+     54
+    ],
+    "label": "8d6 units of water",
+    "page": 170,
+    "qty": "8d6"
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "1d0+2 units of very bad alcohol",
+    "page": 170,
+    "qty": "1d0+2",
+    "note": {
+     "es": "El libro impreso, p. 170, muestra «1d0+2». El Amo debe verificar y registrar el dado correcto antes de resolver una cantidad; la app no inventa una equivalencia."
+    }
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "1d0+2 units of the finest Maze alcohol",
+    "page": 170,
+    "qty": "1d0+2",
+    "note": {
+     "es": "El libro impreso, p. 170, muestra «1d0+2». El Amo debe verificar y registrar el dado correcto antes de resolver una cantidad; la app no inventa una equivalencia."
+    }
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "A Black King's faction small badge",
+    "page": 170
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "A bestiary of the Maze",
+    "page": 170
+   },
+   {
+    "range": [
+     59,
+     59
+    ],
+    "label": "**A token from one the Archfiend",
+    "page": 170,
+    "marks": "**"
+   },
+   {
+    "range": [
+     60,
+     60
+    ],
+    "label": "An animated magical Bed with ego",
+    "page": 170
+   },
+   {
+    "range": [
+     61,
+     61
+    ],
+    "label": "1d6 units of perfume",
+    "page": 170,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     62,
+     62
+    ],
+    "label": "1d6 units of soil",
+    "page": 170,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     63,
+     63
+    ],
+    "label": "2d6 units of soil",
+    "page": 171,
+    "qty": "2d6"
+   },
+   {
+    "range": [
+     64,
+     64
+    ],
+    "label": "4d6 units of soil",
+    "page": 171,
+    "qty": "4d6"
+   },
+   {
+    "range": [
+     65,
+     65
+    ],
+    "label": "8d6 units of soil",
+    "page": 171,
+    "qty": "8d6"
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "**A slave living Raider",
+    "page": 171,
+    "marks": "**"
+   },
+   {
+    "range": [
+     67,
+     67
+    ],
+    "label": "A set of cold iron cutlery",
+    "page": 171
+   },
+   {
+    "range": [
+     68,
+     68
+    ],
+    "label": "1d10 goats for cattle",
+    "page": 171,
+    "qty": "1d10"
+   },
+   {
+    "range": [
+     69,
+     69
+    ],
+    "label": "A purple, magical hat that belonged to an Archmage",
+    "page": 168
+   },
+   {
+    "range": [
+     70,
+     70
+    ],
+    "label": "A broad variety of material components for spells",
+    "page": 168
+   },
+   {
+    "range": [
+     71,
+     71
+    ],
+    "label": "A pair of Magical crutches",
+    "page": 168
+   },
+   {
+    "range": [
+     72,
+     72
+    ],
+    "label": "1d6 units of fresh humanoid meat",
+    "page": 168,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     73,
+     73
+    ],
+    "label": "2d6 units of fresh humanoid meat",
+    "page": 168,
+    "qty": "2d6"
+   },
+   {
+    "range": [
+     74,
+     74
+    ],
+    "label": "4d6 units of fresh humanoid meat",
+    "page": 168,
+    "qty": "4d6"
+   },
+   {
+    "range": [
+     75,
+     75
+    ],
+    "label": "8d6 units of fresh humanoid meat",
+    "page": 168,
+    "qty": "8d6"
+   },
+   {
+    "range": [
+     76,
+     76
+    ],
+    "label": "A Parlarama set depicting the Red Queen and the Black King",
+    "page": 168
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "A petrified, living, Raider Mazeborn child with an arrow in their chest.",
+    "page": 169
+   },
+   {
+    "range": [
+     78,
+     78
+    ],
+    "label": "Several units of the incense the Black King employs to meditate",
+    "page": 169
+   },
+   {
+    "range": [
+     79,
+     79
+    ],
+    "label": "A magical portable toilet",
+    "page": 169
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "1d10+1 units of Maze Tea",
+    "page": 169,
+    "qty": "1d10+1"
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "A Red Queen's faction small badge",
+    "page": 169
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "A living, jailed Maze small cat",
+    "page": 169
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "A mechanical artificial orichalcum familiar",
+    "page": 169
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "A rusted, magical, very old, but functional cauldron",
+    "page": 169
+   },
+   {
+    "range": [
+     85,
+     85
+    ],
+    "label": "A broad variety of spices, the best in the Maze",
+    "page": 169
+   },
+   {
+    "range": [
+     86,
+     86
+    ],
+    "label": "A Cuzgulda",
+    "page": 170
+   },
+   {
+    "range": [
+     87,
+     87
+    ],
+    "label": "An Axebeak chick that can be trained as a mount",
+    "page": 170
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "A receipt of a deposit in Fierna's Emporium by an unknown Raider",
+    "page": 170
+   },
+   {
+    "range": [
+     89,
+     89
+    ],
+    "label": "A lucky charm",
+    "page": 170
+   },
+   {
+    "range": [
+     90,
+     90
+    ],
+    "label": "A strange, magical compass",
+    "page": 170
+   },
+   {
+    "range": [
+     91,
+     91
+    ],
+    "label": "1d4 Butler's Beans",
+    "page": 170,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     92,
+     92
+    ],
+    "label": "One Builder's Tools",
+    "page": 170
+   },
+   {
+    "range": [
+     93,
+     93
+    ],
+    "label": "1d4 bows plus 3d10 arrows",
+    "page": 170,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     94,
+     94
+    ],
+    "label": "2d6 units of wood",
+    "page": 170,
+    "qty": "2d6"
+   },
+   {
+    "range": [
+     95,
+     95
+    ],
+    "label": "1d6 units of darkwood",
+    "page": 170,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     96,
+     96
+    ],
+    "label": "1d4 units of Primordial Soil",
+    "page": 170,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     97,
+     97
+    ],
+    "label": "1d4 Blue Flowers",
+    "page": 171,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     98,
+     98
+    ],
+    "label": "1d4 Angel Feathers",
+    "page": 171,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     99,
+     99
+    ],
+    "label": "1d4 Fruit of Wonder",
+    "page": 171,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     100,
+     100
+    ],
+    "label": "A Sapient Metal splinter",
+    "page": 171
+   }
+  ]
+ },
+ {
+  "id": "table:4-2",
+  "type": "table",
+  "code": "4.2",
+  "name": "4.2",
+  "roll": null,
+  "die": null,
+  "page": 174,
+  "source_file": "data/table-4-2.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     9
+    ],
+    "label": "Tea herbs",
+    "page": 174
+   },
+   {
+    "range": [
+     10,
+     18
+    ],
+    "label": "Spices",
+    "page": 174
+   },
+   {
+    "range": [
+     19,
+     27
+    ],
+    "label": "Fruits (1d6 units)",
+    "page": 174,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     28,
+     36
+    ],
+    "label": "Nuts",
+    "page": 174
+   },
+   {
+    "range": [
+     37,
+     45
+    ],
+    "label": "Mushrooms (1d6 units)",
+    "page": 174,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     46,
+     54
+    ],
+    "label": "Cereal (1d8 units)",
+    "page": 174,
+    "qty": "1d8 units"
+   },
+   {
+    "range": [
+     55,
+     63
+    ],
+    "label": "Vegetables (1d10 units)",
+    "page": 174,
+    "qty": "1d10 units"
+   },
+   {
+    "range": [
+     64,
+     72
+    ],
+    "label": "Poisonous herbs",
+    "page": 174
+   },
+   {
+    "range": [
+     73,
+     81
+    ],
+    "label": "Medicinal herbs",
+    "page": 174
+   },
+   {
+    "range": [
+     82,
+     90
+    ],
+    "label": "Magical Herbs",
+    "page": 174
+   },
+   {
+    "range": [
+     91,
+     97
+    ],
+    "label": "Everglowing Mushroom (1d4 units)",
+    "page": 174,
+    "qty": "1d4 units"
+   },
+   {
+    "range": [
+     98,
+     100
+    ],
+    "label": "Blue Flower (1d4 units)",
+    "page": 174,
+    "qty": "1d4 units"
+   }
+  ]
+ },
+ {
+  "id": "table:4-3",
+  "type": "table",
+  "code": "4.3",
+  "name": "4.3",
+  "roll": null,
+  "die": null,
+  "page": 177,
+  "source_file": "data/table-4-3.json",
+  "note": {
+   "en": "A deposit, not collected loot. Extraction needs suitable tools (hardness at least that of the material), proficiency and a successful skill check. Roll the yield only after success · pp. 176–177.",
+   "es": "Es una veta, no botín recogido. Extraer requiere herramientas de dureza suficiente, competencia y una prueba de habilidad exitosa. Tira la cantidad solo después del éxito · pp. 176–177."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     2
+    ],
+    "label": "*Mineral",
+    "page": 177,
+    "marks": "*",
+    "note": {
+     "en": "Roll on table 4.5 to identify the mineral.",
+     "es": "Tira en la tabla 4.5 para identificar el mineral."
+    },
+    "see": [
+     "table:4-5"
+    ]
+   },
+   {
+    "range": [
+     3,
+     12
+    ],
+    "label": "Zinc",
+    "page": 177
+   },
+   {
+    "range": [
+     13,
+     20
+    ],
+    "label": "Lead",
+    "page": 177
+   },
+   {
+    "range": [
+     21,
+     28
+    ],
+    "label": "Tin",
+    "page": 177
+   },
+   {
+    "range": [
+     29,
+     36
+    ],
+    "label": "Pewter",
+    "page": 177
+   },
+   {
+    "range": [
+     37,
+     44
+    ],
+    "label": "Copper",
+    "page": 177
+   },
+   {
+    "range": [
+     45,
+     52
+    ],
+    "label": "Iron",
+    "page": 177
+   },
+   {
+    "range": [
+     53,
+     60
+    ],
+    "label": "Gold",
+    "page": 177
+   },
+   {
+    "range": [
+     61,
+     68
+    ],
+    "label": "Silver",
+    "page": 177
+   },
+   {
+    "range": [
+     69,
+     76
+    ],
+    "label": "Brass",
+    "page": 177
+   },
+   {
+    "range": [
+     77,
+     84
+    ],
+    "label": "Bronze",
+    "page": 177
+   },
+   {
+    "range": [
+     85,
+     90
+    ],
+    "label": "Electrum",
+    "page": 177
+   },
+   {
+    "range": [
+     91,
+     98
+    ],
+    "label": "Steel",
+    "page": 177
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "**Special Metal",
+    "page": 177,
+    "marks": "**",
+    "note": {
+     "en": "Roll on table 4.4 to identify the special metal.",
+     "es": "Tira en la tabla 4.4 para identificar el metal especial."
+    },
+    "see": [
+     "table:4-4"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "table:4-4",
+  "type": "table",
+  "code": "4.4",
+  "name": "4.4",
+  "roll": null,
+  "die": null,
+  "page": 177,
+  "source_file": "data/table-4-4.json",
+  "note": {
+   "en": "A deposit, not collected loot. Extraction needs suitable tools (hardness at least that of the material), proficiency and a successful skill check. Roll the yield only after success · pp. 176–177.",
+   "es": "Es una veta, no botín recogido. Extraer requiere herramientas de dureza suficiente, competencia y una prueba de habilidad exitosa. Tira la cantidad solo después del éxito · pp. 176–177."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     2
+    ],
+    "label": "Common Metal",
+    "page": 177,
+    "note": {
+     "en": "Roll on table 4.3 to identify the common metal.",
+     "es": "Tira en la tabla 4.3 para identificar el metal común."
+    },
+    "see": [
+     "table:4-3"
+    ]
+   },
+   {
+    "range": [
+     3,
+     14
+    ],
+    "label": "Mournsteel (1d6 units)",
+    "page": 177,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     15,
+     26
+    ],
+    "label": "Aurorum (1d4 units)",
+    "page": 177,
+    "qty": "1d4 units"
+   },
+   {
+    "range": [
+     27,
+     38
+    ],
+    "label": "Adamantium (1d2 units)",
+    "page": 177,
+    "qty": "1d2 units"
+   },
+   {
+    "range": [
+     39,
+     50
+    ],
+    "label": "Mithral (1d6 units)",
+    "page": 177,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     51,
+     62
+    ],
+    "label": "Occasium (1d6 units)",
+    "page": 177,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     63,
+     74
+    ],
+    "label": "Umbrium (1d6 units)",
+    "page": 177,
+    "qty": "1d6 units"
+   },
+   {
+    "range": [
+     75,
+     86
+    ],
+    "label": "Blacksteel (1d2 units)",
+    "page": 177,
+    "qty": "1d2 units"
+   },
+   {
+    "range": [
+     87,
+     98
+    ],
+    "label": "Orichalcum (1d2 units)",
+    "page": 177,
+    "qty": "1d2 units"
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "Sapient Metal (1 unit)",
+    "page": 177,
+    "qty": "1 unit"
+   }
+  ]
+ },
+ {
+  "id": "table:4-5",
+  "type": "table",
+  "code": "4.5",
+  "name": "4.5",
+  "roll": null,
+  "die": null,
+  "page": 178,
+  "source_file": "data/table-4-5.json",
+  "note": {
+   "en": "A deposit, not collected loot. Extraction needs suitable tools (hardness at least that of the material), proficiency and a successful skill check. Roll the yield only after success · pp. 176–177.",
+   "es": "Es una veta, no botín recogido. Extraer requiere herramientas de dureza suficiente, competencia y una prueba de habilidad exitosa. Tira la cantidad solo después del éxito · pp. 176–177."
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     5
+    ],
+    "label": "Carbon (Coal or Graphite) (1d10)",
+    "page": 178,
+    "qty": "1d10"
+   },
+   {
+    "range": [
+     6,
+     20
+    ],
+    "label": "Halite (1d10)",
+    "page": 178,
+    "qty": "1d10"
+   },
+   {
+    "range": [
+     21,
+     35
+    ],
+    "label": "Marble (1d6)",
+    "page": 178,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     36,
+     50
+    ],
+    "label": "Flint (1d10)",
+    "page": 178,
+    "qty": "1d10"
+   },
+   {
+    "range": [
+     51,
+     65
+    ],
+    "label": "Gemstones (1d6)",
+    "page": 178,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     66,
+     80
+    ],
+    "label": "Granite (1d6)",
+    "page": 178,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     81,
+     88
+    ],
+    "label": "Impervious Quartz (1d4)",
+    "page": 178,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     89,
+     96
+    ],
+    "label": "Inertial Granite (1d4)",
+    "page": 178,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     97,
+     98
+    ],
+    "label": "Dipolarite",
+    "page": 178
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "Astral Matter",
+    "page": 178
+   }
+  ]
+ },
+ {
+  "id": "table:4-6",
+  "type": "table",
+  "code": "4.6",
+  "name": "4.6",
+  "roll": null,
+  "die": null,
+  "page": 179,
+  "source_file": "data/table-4-6.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     2
+    ],
+    "label": "Sack (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     3,
+     4
+    ],
+    "label": "Ropes (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     5,
+     6
+    ],
+    "label": "Bedroll (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     7,
+     8
+    ],
+    "label": "Tent (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     9,
+     10
+    ],
+    "label": "Pants (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     11,
+     12
+    ],
+    "label": "Shirt (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     13,
+     14
+    ],
+    "label": "Cap (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     15,
+     16
+    ],
+    "label": "Backpack (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     17,
+     18
+    ],
+    "label": "Robes (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     19,
+     20
+    ],
+    "label": "Hat (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     21,
+     22
+    ],
+    "label": "Jacket (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     23,
+     24
+    ],
+    "label": "Doublet (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     25,
+     26
+    ],
+    "label": "Skirt (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     27,
+     28
+    ],
+    "label": "Scarf (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     29,
+     30
+    ],
+    "label": "Dress (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     31,
+     32
+    ],
+    "label": "Trousers (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     33,
+     34
+    ],
+    "label": "Blanket (Fabric)",
+    "page": 179
+   },
+   {
+    "range": [
+     35,
+     36
+    ],
+    "label": "Sack (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     37,
+     38
+    ],
+    "label": "Backpack (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     39,
+     40
+    ],
+    "label": "Pouch (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     41,
+     42
+    ],
+    "label": "Tent (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     43,
+     44
+    ],
+    "label": "Gloves (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     45,
+     46
+    ],
+    "label": "Shoes (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     47,
+     48
+    ],
+    "label": "Shirt (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     49,
+     50
+    ],
+    "label": "Boots (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     51,
+     52
+    ],
+    "label": "Waterskin (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     53,
+     54
+    ],
+    "label": "Pants (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     55,
+     56
+    ],
+    "label": "Pouch (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     57,
+     58
+    ],
+    "label": "Cap (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     59,
+     60
+    ],
+    "label": "Jacket (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     61,
+     62
+    ],
+    "label": "Doublet (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     63,
+     64
+    ],
+    "label": "Skirt (Leather)",
+    "page": 179
+   },
+   {
+    "range": [
+     65,
+     66
+    ],
+    "label": "Robe (Feathers)",
+    "page": 179
+   },
+   {
+    "range": [
+     67,
+     68
+    ],
+    "label": "Pants (Fur)",
+    "page": 179
+   },
+   {
+    "range": [
+     69,
+     70
+    ],
+    "label": "Coat (Fur)",
+    "page": 179
+   },
+   {
+    "range": [
+     71,
+     72
+    ],
+    "label": "Robe (Fur)",
+    "page": 179
+   },
+   {
+    "range": [
+     73,
+     74
+    ],
+    "label": "Trousers (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     75,
+     76
+    ],
+    "label": "Rope (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     77,
+     78
+    ],
+    "label": "Robes (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     79,
+     80
+    ],
+    "label": "Shirt (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     81,
+     82
+    ],
+    "label": "Pants (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     83,
+     84
+    ],
+    "label": "Gloves (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     85,
+     86
+    ],
+    "label": "Dress (Silk)",
+    "page": 179
+   },
+   {
+    "range": [
+     87,
+     88
+    ],
+    "label": "Rope (Seide)",
+    "page": 179
+   },
+   {
+    "range": [
+     89,
+     90
+    ],
+    "label": "Pants (Seide)",
+    "page": 179
+   },
+   {
+    "range": [
+     91,
+     92
+    ],
+    "label": "Backpack (Seide)",
+    "page": 179
+   },
+   {
+    "range": [
+     93,
+     94
+    ],
+    "label": "Jacket (Seide)",
+    "page": 179
+   },
+   {
+    "range": [
+     95,
+     96
+    ],
+    "label": "Dress (Seide)",
+    "page": 179
+   },
+   {
+    "range": [
+     97,
+     98
+    ],
+    "label": "Robe (Angel's feathers)",
+    "page": 179
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "*Magical clothing",
+    "page": 179,
+    "marks": "*",
+    "note": {
+     "en": "Roll again on table 4.6 to determine the type of clothing. Its magical properties are not specified here.",
+     "es": "Vuelve a tirar en la tabla 4.6 para determinar la prenda. Aquí no se especifican sus propiedades mágicas."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:4-7",
+  "type": "table",
+  "code": "4.7",
+  "name": "4.7",
+  "roll": null,
+  "die": null,
+  "page": 181,
+  "source_file": "data/table-4-7.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     5
+    ],
+    "label": "Padded Armor",
+    "page": 181
+   },
+   {
+    "range": [
+     6,
+     10
+    ],
+    "label": "Leather Armor",
+    "page": 181
+   },
+   {
+    "range": [
+     11,
+     13
+    ],
+    "label": "Studded leather (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     14,
+     16
+    ],
+    "label": "Helmet (leather)",
+    "page": 181
+   },
+   {
+    "range": [
+     17,
+     19
+    ],
+    "label": "Helmet (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     20,
+     22
+    ],
+    "label": "Hide Armor",
+    "page": 181
+   },
+   {
+    "range": [
+     23,
+     24
+    ],
+    "label": "Scale mail (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     25,
+     26
+    ],
+    "label": "Breastplate (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     27,
+     28
+    ],
+    "label": "Half plate (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     29,
+     29
+    ],
+    "label": "Plate (bone or chitin)",
+    "page": 181
+   },
+   {
+    "range": [
+     30,
+     34
+    ],
+    "label": "Studded leather (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "Helmet (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "Chain shirt (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "Scale mail (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     38,
+     40
+    ],
+    "label": "Breastplate (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "Half plate (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "Ringmail (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "Chain mail (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "Splint (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "Plate (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     46,
+     48
+    ],
+    "label": "Shield (iron)",
+    "page": 181
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "Studded leather (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Helmet (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     51,
+     51
+    ],
+    "label": "Chain shirt (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     52,
+     52
+    ],
+    "label": "Scale mail (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     53,
+     53
+    ],
+    "label": "Breastplate (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     54,
+     54
+    ],
+    "label": "Half plate (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "Ring mail (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "Chain mail (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "Splint (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "Plate (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     59,
+     61
+    ],
+    "label": "Shield (common metal)",
+    "page": 182
+   },
+   {
+    "range": [
+     62,
+     62
+    ],
+    "label": "Studded leather (steel)",
+    "page": 182
+   },
+   {
+    "range": [
+     63,
+     65
+    ],
+    "label": "Shield (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "Helmet (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     67,
+     67
+    ],
+    "label": "Chain shirt (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     68,
+     68
+    ],
+    "label": "Scale mail (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     69,
+     69
+    ],
+    "label": "Breastplate (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     70,
+     70
+    ],
+    "label": "Half plate (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     71,
+     71
+    ],
+    "label": "Ring mail (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     72,
+     72
+    ],
+    "label": "Chain mail (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     73,
+     73
+    ],
+    "label": "Splint (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     74,
+     74
+    ],
+    "label": "Plate (steel)",
+    "page": 181
+   },
+   {
+    "range": [
+     75,
+     75
+    ],
+    "label": "Studded leather (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     76,
+     76
+    ],
+    "label": "Helmet (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "Chain shirt (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     78,
+     78
+    ],
+    "label": "Scale mail (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     79,
+     79
+    ],
+    "label": "Breastplate (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "Half plate (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "Ringmail (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "Chain mail (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "Splint (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "Plate (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     85,
+     87
+    ],
+    "label": "Shield (special metal)",
+    "page": 181
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "Chain shirt (seide)",
+    "page": 182
+   },
+   {
+    "range": [
+     89,
+     89
+    ],
+    "label": "Chain mail (seide)",
+    "page": 182
+   },
+   {
+    "range": [
+     90,
+     90
+    ],
+    "label": "Wooden armor",
+    "page": 182
+   },
+   {
+    "range": [
+     91,
+     92
+    ],
+    "label": "Shield (wood)",
+    "page": 182
+   },
+   {
+    "range": [
+     93,
+     93
+    ],
+    "label": "Wooden armor (darkwood)",
+    "page": 182
+   },
+   {
+    "range": [
+     94,
+     94
+    ],
+    "label": "Shield (darkwood)",
+    "page": 182
+   },
+   {
+    "range": [
+     95,
+     95
+    ],
+    "label": "*Magical helmet",
+    "page": 182,
+    "marks": "*",
+    "note": {
+     "en": "The Maze Master determines the magical item.",
+     "es": "El Amo del Laberinto determina el objeto mágico."
+    }
+   },
+   {
+    "range": [
+     96,
+     96
+    ],
+    "label": "*Magical shield",
+    "page": 182,
+    "marks": "*",
+    "note": {
+     "en": "The Maze Master determines the magical item.",
+     "es": "El Amo del Laberinto determina el objeto mágico."
+    }
+   },
+   {
+    "range": [
+     97,
+     97
+    ],
+    "label": "*Magical light armor",
+    "page": 182,
+    "marks": "*",
+    "note": {
+     "en": "The Maze Master determines the magical item.",
+     "es": "El Amo del Laberinto determina el objeto mágico."
+    }
+   },
+   {
+    "range": [
+     98,
+     98
+    ],
+    "label": "*Magical medium armor",
+    "page": 182,
+    "marks": "*",
+    "note": {
+     "en": "The Maze Master determines the magical item.",
+     "es": "El Amo del Laberinto determina el objeto mágico."
+    }
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "*Magical heavy armor",
+    "page": 182,
+    "marks": "*",
+    "note": {
+     "en": "The Maze Master determines the magical item.",
+     "es": "El Amo del Laberinto determina el objeto mágico."
+    }
+   }
+  ]
+ },
+ {
+  "id": "table:4-8",
+  "type": "table",
+  "code": "4.8",
+  "name": "4.8",
+  "roll": "Weapon Loot",
+  "die": "d%",
+  "page": 183,
+  "source_file": "data/table-4-8.json",
+  "note": {
+   "en": "Common metal: roll on Table 4.3; if the metal is absurd, iron. A magical weapon: roll again for its type · p. 183",
+   "es": "Metal común: tira en la Tabla 4.3; si el metal es absurdo, hierro. Un arma mágica: tira otra vez su tipo · p. 183"
+  },
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Sling",
+    "page": 183
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Whip",
+    "page": 183
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "Knife (flint)",
+    "page": 183
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "One-handed Axe (flint)",
+    "page": 183
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "One-handed Hammer (flint)",
+    "page": 183
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Two-handed Hammer (flint)",
+    "page": 183
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Knife (chitin)",
+    "page": 183
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Club (chitin)",
+    "page": 183
+   },
+   {
+    "range": [
+     9,
+     10
+    ],
+    "label": "Knife (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "Club (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "Quarterstaff (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     13,
+     13
+    ],
+    "label": "One-handed Axe (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     14,
+     14
+    ],
+    "label": "One-handed Blade (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     15,
+     15
+    ],
+    "label": "Two-handed Blade (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     16,
+     16
+    ],
+    "label": "Brawl Weapon (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     17,
+     17
+    ],
+    "label": "Spear (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     18,
+     18
+    ],
+    "label": "Spiked Chain (bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     19,
+     21
+    ],
+    "label": "Knife (iron)",
+    "page": 183
+   },
+   {
+    "range": [
+     22,
+     22
+    ],
+    "label": "Thrown (iron)",
+    "page": 183
+   },
+   {
+    "range": [
+     23,
+     23
+    ],
+    "label": "Brawl Weapon (iron)",
+    "page": 183
+   },
+   {
+    "range": [
+     24,
+     24
+    ],
+    "label": "One-handed Blade (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     25,
+     25
+    ],
+    "label": "Two-handed Blade (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     26,
+     26
+    ],
+    "label": "One-handed Axe (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     27,
+     27
+    ],
+    "label": "Two-handed Axe (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     28,
+     28
+    ],
+    "label": "One-handed Mace (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     29,
+     29
+    ],
+    "label": "Two-handed Mace (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     30,
+     30
+    ],
+    "label": "Flail (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     31,
+     31
+    ],
+    "label": "One-handed Hammer (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     32,
+     32
+    ],
+    "label": "Two-handed Hammer (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     33,
+     33
+    ],
+    "label": "Pick (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     34,
+     34
+    ],
+    "label": "Polearm (iron+bone)",
+    "page": 184
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "Spear (iron+bone)",
+    "page": 184
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "Spiked Chain (iron)",
+    "page": 184
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "Knife (common metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     38,
+     38
+    ],
+    "label": "One-handed Blade (common metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     39,
+     39
+    ],
+    "label": "Two-handed Blade (common metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     40,
+     40
+    ],
+    "label": "One-handed Axe (common metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "Two-handed Axe (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "One-handed Mace (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "Two-handed Mace (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "One-handed Hammer (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "Two-handed Hammer (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     46,
+     46
+    ],
+    "label": "Pick (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     47,
+     47
+    ],
+    "label": "Polearm (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     48,
+     48
+    ],
+    "label": "Spear (common metal)",
+    "page": 185
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "Quarterstaff (wood)",
+    "page": 185
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Crossbow (wood)",
+    "page": 185
+   },
+   {
+    "range": [
+     51,
+     52
+    ],
+    "label": "Short Bow (wood)",
+    "page": 183
+   },
+   {
+    "range": [
+     53,
+     54
+    ],
+    "label": "Longbow (wood)",
+    "page": 183
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "Knife (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "Thrown (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "Brawl Weapon (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "One-handed Blade (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     59,
+     59
+    ],
+    "label": "Two-handed Blade (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     60,
+     60
+    ],
+    "label": "One-handed Axe (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     61,
+     61
+    ],
+    "label": "Two-handed Axe (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     62,
+     62
+    ],
+    "label": "One-handed Mace (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     63,
+     63
+    ],
+    "label": "Two-handed Mace (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     64,
+     64
+    ],
+    "label": "One-handed Hammer (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     65,
+     65
+    ],
+    "label": "Two-handed Hammer (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "Flail (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     67,
+     67
+    ],
+    "label": "Pick (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     68,
+     68
+    ],
+    "label": "Polearm (steel+bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     69,
+     69
+    ],
+    "label": "Spear (steel+bone)",
+    "page": 183
+   },
+   {
+    "range": [
+     70,
+     70
+    ],
+    "label": "Spiked Chain (steel)",
+    "page": 183
+   },
+   {
+    "range": [
+     71,
+     71
+    ],
+    "label": "Knife (special metal)",
+    "page": 183
+   },
+   {
+    "range": [
+     72,
+     72
+    ],
+    "label": "Thrown (special metal)",
+    "page": 183
+   },
+   {
+    "range": [
+     73,
+     73
+    ],
+    "label": "Brawl Weapon (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     74,
+     74
+    ],
+    "label": "One-handed Blade (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     75,
+     75
+    ],
+    "label": "Two-handed Blade (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     76,
+     76
+    ],
+    "label": "One-handed Axe (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "Two-handed Axe (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     78,
+     78
+    ],
+    "label": "One-handed Mace (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     79,
+     79
+    ],
+    "label": "Two-handed Mace (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "Flail (steel)",
+    "page": 184
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "One-handed Hammer (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "Two-handed Hammer (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "Pick (special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "Polearm (wood+special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     85,
+     85
+    ],
+    "label": "Spear (wood+special metal)",
+    "page": 184
+   },
+   {
+    "range": [
+     86,
+     86
+    ],
+    "label": "Spiked Chain (steel)",
+    "page": 184
+   },
+   {
+    "range": [
+     87,
+     87
+    ],
+    "label": "Club (inertial granite)",
+    "page": 184
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "One-handed Mace (inertial granite)",
+    "page": 184
+   },
+   {
+    "range": [
+     89,
+     89
+    ],
+    "label": "Two-handed Mace (inertial granite)",
+    "page": 184
+   },
+   {
+    "range": [
+     90,
+     90
+    ],
+    "label": "One-handed Hammer (inertial granite)",
+    "page": 185
+   },
+   {
+    "range": [
+     91,
+     91
+    ],
+    "label": "Two-handed Hammer (inertial granite)",
+    "page": 185
+   },
+   {
+    "range": [
+     92,
+     92
+    ],
+    "label": "Quarterstaff (darkwood)",
+    "page": 185
+   },
+   {
+    "range": [
+     93,
+     93
+    ],
+    "label": "Short bow (darkwood)",
+    "page": 185
+   },
+   {
+    "range": [
+     94,
+     94
+    ],
+    "label": "Longbow (darkwood)",
+    "page": 185
+   },
+   {
+    "range": [
+     95,
+     95
+    ],
+    "label": "Quarterstaff (sapient wood)",
+    "page": 185
+   },
+   {
+    "range": [
+     96,
+     96
+    ],
+    "label": "Short Bow (sapient wood)",
+    "page": 185
+   },
+   {
+    "range": [
+     97,
+     97
+    ],
+    "label": "Longbow (sapient wood)",
+    "page": 185
+   },
+   {
+    "range": [
+     98,
+     98
+    ],
+    "label": "Cuzgulda",
+    "page": 185,
+    "note": {
+     "en": "A magic pistol of orichalcum and souls: see its item · p. 209",
+     "es": "Una pistola mágica de oricalco y almas: ver su objeto · p. 209"
+    }
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "*Magical Weapon",
+    "page": 185,
+    "marks": "*",
+    "note": {
+     "en": "Roll on the table again to know its type · p. 183",
+     "es": "Tira otra vez en la tabla para saber su tipo · p. 183"
+    }
+   }
+  ],
+  "weapons": {
+   "Knife": {
+    "size": {
+     "en": "Small · one hand",
+     "es": "Pequeña · una mano"
+    },
+    "craft": {
+     "en": "1 metal or mineral unit",
+     "es": "1 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": false,
+    "sistema": "dagas"
+   },
+   "Quarterstaff": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": false,
+    "sistema": "bastones"
+   },
+   "Brawl Weapon": {
+    "size": {
+     "en": "Small · one hand",
+     "es": "Pequeña · una mano"
+    },
+    "craft": {
+     "en": "1 metal or mineral unit",
+     "es": "1 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Thrown": {
+    "size": {
+     "en": "Small · thrown",
+     "es": "Pequeña · arrojadiza"
+    },
+    "craft": {
+     "en": "1 metal or mineral unit",
+     "es": "1 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Sling": {
+    "size": {
+     "en": "Small · ranged",
+     "es": "Pequeña · a distancia"
+    },
+    "craft": {
+     "en": "1 metal or mineral unit",
+     "es": "1 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Whip": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d4",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "One-handed Blade": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d6",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": false,
+    "sistema": "espadas"
+   },
+   "One-handed Mace": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d6",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": false,
+    "sistema": "mazas ligeras"
+   },
+   "Club": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d6",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "One-handed Axe": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d6",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Short Bow": {
+    "size": {
+     "en": "Bow · two hands",
+     "es": "Arco · dos manos"
+    },
+    "craft": {
+     "en": "1 fuel unit",
+     "es": "1 de combustible"
+    },
+    "damage": "1d6",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": false,
+    "sistema": "arcos"
+   },
+   "One-handed Hammer": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": false,
+    "sistema": "martillos de guerra"
+   },
+   "Longbow": {
+    "size": {
+     "en": "Bow · two hands",
+     "es": "Arco · dos manos"
+    },
+    "craft": {
+     "en": "1 fuel unit",
+     "es": "1 de combustible"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": false,
+    "sistema": "arcos largos"
+   },
+   "Flail": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Spear": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Pick": {
+    "size": {
+     "en": "One hand",
+     "es": "Una mano"
+    },
+    "craft": {
+     "en": "2 metal or mineral units",
+     "es": "2 de metal o mineral"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Crossbow": {
+    "size": {
+     "en": "Crossbow · two hands",
+     "es": "Ballesta · dos manos"
+    },
+    "craft": {
+     "en": "2 fuel units",
+     "es": "2 de combustible"
+    },
+    "damage": "1d8",
+    "type": {
+     "en": "piercing",
+     "es": "punzante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   },
+   "Two-handed Blade": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": true,
+    "sistema": "armas a dos manos",
+    "note": {
+     "en": "Great or brutal? The app counts it as great (question 14)",
+     "es": "¿Grande o brutal? La app la cuenta como grande (pregunta 14)"
+    }
+   },
+   "Two-handed Axe": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": true,
+    "sistema": "hachas de batalla",
+    "note": {
+     "en": "Great or brutal? The app counts it as great (question 14)",
+     "es": "¿Grande o brutal? La app la cuenta como grande (pregunta 14)"
+    }
+   },
+   "Two-handed Mace": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": false,
+    "sistema": "armas a dos manos"
+   },
+   "Two-handed Hammer": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "bludgeoning",
+     "es": "contundente"
+    },
+    "approx": false,
+    "sistema": "armas a dos manos"
+   },
+   "Polearm": {
+    "size": {
+     "en": "Two hands",
+     "es": "Dos manos"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": false,
+    "sistema": "alabardas"
+   },
+   "Spiked Chain": {
+    "size": {
+     "en": "Two hands · exotic",
+     "es": "Dos manos · exótica"
+    },
+    "craft": {
+     "en": "4 metal or mineral units",
+     "es": "4 de metal o mineral"
+    },
+    "damage": "1d10",
+    "type": {
+     "en": "slashing",
+     "es": "cortante"
+    },
+    "approx": true,
+    "note": {
+     "en": "The Sistema does not name it: category by analogy (question 13)",
+     "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
+    }
+   }
+  },
+  "weapon_materials": {
+   "steel": {
+    "page": 198,
+    "note": {
+     "en": "The base metal: the weapon's own damage",
+     "es": "El metal base: el daño propio del arma"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": false
+   },
+   "iron": {
+    "page": 194,
+    "note": {
+     "en": "A minor penalty on damage: −1 (Table 1.2, p. 23)",
+     "es": "Una penalización menor al daño: −1 (Tabla 1.2, p. 23)"
+    },
+    "penalty": -1,
+    "approx": false,
+    "fragile": false
+   },
+   "bone": {
+    "page": 189,
+    "note": {
+     "en": "A small penalty on damage: −2 (Table 1.2, p. 23); and fragile",
+     "es": "Una penalización pequeña al daño: −2 (Tabla 1.2, p. 23); y frágil"
+    },
+    "penalty": -2,
+    "approx": false,
+    "fragile": true
+   },
+   "wood": {
+    "page": 196,
+    "note": {
+     "en": "Counts as bone for weapons: −2 on damage, and fragile",
+     "es": "Cuenta como hueso en armas: −2 al daño, y frágil"
+    },
+    "penalty": -2,
+    "approx": false,
+    "fragile": true
+   },
+   "chitin": {
+    "page": 191,
+    "note": {
+     "en": "The book gives chitin no effect on weapons",
+     "es": "El libro no le da efecto a la quitina en armas"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": false
+   },
+   "flint": {
+    "page": 193,
+    "note": {
+     "en": "Fragile, weighs 75% more, half the hardness",
+     "es": "Frágil, pesa un 75 % más y tiene la mitad de dureza"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": true
+   },
+   "common metal": {
+    "page": 177,
+    "note": {
+     "en": "Roll on Table 4.3 for the metal; if it is absurd (a tin axe), iron",
+     "es": "Tira en la Tabla 4.3 qué metal es; si es absurdo (un hacha de estaño), hierro"
+    },
+    "penalty": 0,
+    "approx": true,
+    "fragile": false
+   },
+   "special metal": {
+    "page": 177,
+    "note": {
+     "en": "Roll on Table 4.4 for the special metal",
+     "es": "Tira en la Tabla 4.4 qué metal especial es"
+    },
+    "penalty": 0,
+    "approx": true,
+    "fragile": false
+   },
+   "inertial granite": {
+    "page": 201,
+    "note": {
+     "en": "One more die of the same type; weighs double and needs a high strength",
+     "es": "Un dado más del mismo tipo; pesa el doble y pide mucha fuerza"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": false,
+    "extra": "die"
+   },
+   "darkwood": {
+    "page": 201,
+    "note": {
+     "en": "The damage of steel, at half the weight",
+     "es": "El daño del acero, con la mitad de peso"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": false
+   },
+   "sapient wood": {
+    "page": 204,
+    "note": {
+     "en": "The damage of steel plus 1d6 raw magical damage, at half the weight",
+     "es": "El daño del acero más 1d6 de daño mágico puro, con la mitad de peso"
+    },
+    "penalty": 0,
+    "approx": false,
+    "fragile": false,
+    "extra": "1d6"
+   },
+   "steel+bone": {
+    "page": 189,
+    "note": {
+     "en": "Steel head on a bone shaft: the app uses the steel's damage",
+     "es": "Cabeza de acero en asta de hueso: la app usa el daño del acero"
+    },
+    "penalty": 0,
+    "approx": true,
+    "fragile": false
+   },
+   "iron+bone": {
+    "page": 194,
+    "note": {
+     "en": "Iron head on a bone shaft: the app uses the iron's damage",
+     "es": "Cabeza de hierro en asta de hueso: la app usa el daño del hierro"
+    },
+    "penalty": -1,
+    "approx": true,
+    "fragile": false
+   },
+   "wood+special metal": {
+    "page": 177,
+    "note": {
+     "en": "Special metal head on a wooden shaft: roll on Table 4.4 for the metal",
+     "es": "Cabeza de metal especial en asta de madera: tira en la Tabla 4.4 qué metal es"
+    },
+    "penalty": 0,
+    "approx": true,
+    "fragile": false
+   }
+  }
+ },
+ {
+  "id": "table:4-9",
+  "type": "table",
+  "code": "4.9",
+  "name": "4.9",
+  "roll": null,
+  "die": null,
+  "page": 186,
+  "source_file": "data/table-4-9.json",
+  "note": null,
+  "footnotes": null,
+  "rows": [
+   {
+    "range": [
+     1,
+     1
+    ],
+    "label": "Flint stone",
+    "page": 186
+   },
+   {
+    "range": [
+     2,
+     2
+    ],
+    "label": "Chalk",
+    "page": 186
+   },
+   {
+    "range": [
+     3,
+     3
+    ],
+    "label": "1d6 Candles (animal fat)",
+    "page": 186,
+    "qty": "1d6"
+   },
+   {
+    "range": [
+     4,
+     4
+    ],
+    "label": "Bell (common metal)",
+    "page": 186
+   },
+   {
+    "range": [
+     5,
+     5
+    ],
+    "label": "1d4 Torch (bone)",
+    "page": 186,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     6,
+     6
+    ],
+    "label": "Ladder (bone)",
+    "page": 186
+   },
+   {
+    "range": [
+     7,
+     7
+    ],
+    "label": "Pot (pewter)",
+    "page": 186
+   },
+   {
+    "range": [
+     8,
+     8
+    ],
+    "label": "Pot (lead)",
+    "page": 186
+   },
+   {
+    "range": [
+     9,
+     9
+    ],
+    "label": "Jug (clay)",
+    "page": 186
+   },
+   {
+    "range": [
+     10,
+     10
+    ],
+    "label": "Jug (pewter)",
+    "page": 186
+   },
+   {
+    "range": [
+     11,
+     11
+    ],
+    "label": "Tankard (clay)",
+    "page": 186
+   },
+   {
+    "range": [
+     12,
+     12
+    ],
+    "label": "Bucket (pewter)",
+    "page": 186
+   },
+   {
+    "range": [
+     13,
+     13
+    ],
+    "label": "Bucket (lead)",
+    "page": 186
+   },
+   {
+    "range": [
+     14,
+     14
+    ],
+    "label": "Bucket (pewter)",
+    "page": 186
+   },
+   {
+    "range": [
+     15,
+     15
+    ],
+    "label": "Bottle (clay)",
+    "page": 186
+   },
+   {
+    "range": [
+     16,
+     16
+    ],
+    "label": "Mess kit (tin)",
+    "page": 186
+   },
+   {
+    "range": [
+     17,
+     17
+    ],
+    "label": "Antitoxin (1d4 vials)",
+    "page": 186,
+    "qty": "1d4 vials"
+   },
+   {
+    "range": [
+     18,
+     18
+    ],
+    "label": "Alchemist's Fire (1d6 flasks)",
+    "page": 186,
+    "qty": "1d6 flasks"
+   },
+   {
+    "range": [
+     19,
+     19
+    ],
+    "label": "Acid (1d4 vials)",
+    "page": 186,
+    "qty": "1d4 vials"
+   },
+   {
+    "range": [
+     20,
+     20
+    ],
+    "label": "Basic poison (1d6 vials)",
+    "page": 186,
+    "qty": "1d6 vials"
+   },
+   {
+    "range": [
+     21,
+     21
+    ],
+    "label": "Oil (1d4 flasks)",
+    "page": 186,
+    "qty": "1d4 flasks"
+   },
+   {
+    "range": [
+     22,
+     22
+    ],
+    "label": "Oil (Jug)",
+    "page": 186
+   },
+   {
+    "range": [
+     23,
+     23
+    ],
+    "label": "Crowbar (iron)",
+    "page": 186
+   },
+   {
+    "range": [
+     24,
+     24
+    ],
+    "label": "Chest (Iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     25,
+     25
+    ],
+    "label": "Hunting trap",
+    "page": 187
+   },
+   {
+    "range": [
+     26,
+     26
+    ],
+    "label": "Lumber's axe (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     27,
+     27
+    ],
+    "label": "Miner's pick (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     28,
+     28
+    ],
+    "label": "Hammer (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     29,
+     29
+    ],
+    "label": "Butcher's Knife (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     30,
+     30
+    ],
+    "label": "Saw (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     31,
+     31
+    ],
+    "label": "Shovel (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     32,
+     32
+    ],
+    "label": "Mirror (steel)",
+    "page": 187
+   },
+   {
+    "range": [
+     33,
+     33
+    ],
+    "label": "Chain (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     34,
+     34
+    ],
+    "label": "Pot (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     35,
+     35
+    ],
+    "label": "Abacus",
+    "page": 187
+   },
+   {
+    "range": [
+     36,
+     36
+    ],
+    "label": "Ink (1d4 vials)",
+    "page": 187,
+    "qty": "1d4 vials"
+   },
+   {
+    "range": [
+     37,
+     37
+    ],
+    "label": "Merchant's scale",
+    "page": 187
+   },
+   {
+    "range": [
+     38,
+     38
+    ],
+    "label": "Thieves' tools",
+    "page": 187
+   },
+   {
+    "range": [
+     39,
+     39
+    ],
+    "label": "Manacles (iron)",
+    "page": 187
+   },
+   {
+    "range": [
+     40,
+     40
+    ],
+    "label": "Poisoner's kit",
+    "page": 187
+   },
+   {
+    "range": [
+     41,
+     41
+    ],
+    "label": "String musical instrument",
+    "page": 187
+   },
+   {
+    "range": [
+     42,
+     42
+    ],
+    "label": "Percussion musical instrument",
+    "page": 187
+   },
+   {
+    "range": [
+     43,
+     43
+    ],
+    "label": "Wind musical instrument",
+    "page": 187
+   },
+   {
+    "range": [
+     44,
+     44
+    ],
+    "label": "Soap (1d4 pieces)",
+    "page": 187,
+    "qty": "1d4 pieces"
+   },
+   {
+    "range": [
+     45,
+     45
+    ],
+    "label": "*Parlarama set",
+    "page": 187,
+    "marks": "*",
+    "note": {
+     "en": "Paralarama is the Red Queen’s favorite game.",
+     "es": "Paralarama es el juego favorito de la Reina Roja."
+    }
+   },
+   {
+    "range": [
+     46,
+     46
+    ],
+    "label": "Dice set",
+    "page": 187
+   },
+   {
+    "range": [
+     47,
+     47
+    ],
+    "label": "Playing cards set",
+    "page": 188
+   },
+   {
+    "range": [
+     48,
+     48
+    ],
+    "label": "Lantern",
+    "page": 188
+   },
+   {
+    "range": [
+     49,
+     49
+    ],
+    "label": "Lamp",
+    "page": 188
+   },
+   {
+    "range": [
+     50,
+     50
+    ],
+    "label": "Herbalism kit",
+    "page": 188
+   },
+   {
+    "range": [
+     51,
+     51
+    ],
+    "label": "Forgery kit",
+    "page": 186
+   },
+   {
+    "range": [
+     52,
+     52
+    ],
+    "label": "Disguise kit",
+    "page": 186
+   },
+   {
+    "range": [
+     53,
+     53
+    ],
+    "label": "Woodcarver's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     54,
+     54
+    ],
+    "label": "Weaver's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     55,
+     55
+    ],
+    "label": "Climber's kit (iron)",
+    "page": 186
+   },
+   {
+    "range": [
+     56,
+     56
+    ],
+    "label": "Tinker's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     57,
+     57
+    ],
+    "label": "Smith's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     58,
+     58
+    ],
+    "label": "Potter's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     59,
+     59
+    ],
+    "label": "Painter's supplies",
+    "page": 186
+   },
+   {
+    "range": [
+     60,
+     60
+    ],
+    "label": "Mason's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     61,
+     61
+    ],
+    "label": "Leatherworker's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     62,
+     62
+    ],
+    "label": "Jeweler's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     63,
+     63
+    ],
+    "label": "Cook's utensils",
+    "page": 186
+   },
+   {
+    "range": [
+     64,
+     64
+    ],
+    "label": "Glassblower's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     65,
+     65
+    ],
+    "label": "Cobbler's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     66,
+     66
+    ],
+    "label": "Cartographer's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     67,
+     67
+    ],
+    "label": "Carpenter's tools",
+    "page": 186
+   },
+   {
+    "range": [
+     68,
+     68
+    ],
+    "label": "Calligrapher's supplies",
+    "page": 186
+   },
+   {
+    "range": [
+     69,
+     69
+    ],
+    "label": "Brewer's supplies",
+    "page": 186
+   },
+   {
+    "range": [
+     70,
+     70
+    ],
+    "label": "Alchemist's supplies",
+    "page": 186
+   },
+   {
+    "range": [
+     71,
+     71
+    ],
+    "label": "Liquor (1d6 bottles)",
+    "page": 186,
+    "qty": "1d6 bottles"
+   },
+   {
+    "range": [
+     72,
+     72
+    ],
+    "label": "Beer (1d2 barrels)",
+    "page": 186,
+    "qty": "1d2 barrels"
+   },
+   {
+    "range": [
+     73,
+     73
+    ],
+    "label": "Pure alcohol (1d4 vials)",
+    "page": 186,
+    "qty": "1d4 vials"
+   },
+   {
+    "range": [
+     74,
+     74
+    ],
+    "label": "Perfume (1d4 vials)",
+    "page": 187,
+    "qty": "1d4 vials"
+   },
+   {
+    "range": [
+     75,
+     75
+    ],
+    "label": "Magnifying glass",
+    "page": 187
+   },
+   {
+    "range": [
+     76,
+     76
+    ],
+    "label": "Lumber's axe (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     77,
+     77
+    ],
+    "label": "Miner's pick (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     78,
+     78
+    ],
+    "label": "Hammer (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     79,
+     79
+    ],
+    "label": "Butcher's Knife (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     80,
+     80
+    ],
+    "label": "Saw (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     81,
+     81
+    ],
+    "label": "Shovel (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     82,
+     82
+    ],
+    "label": "Mirror (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     83,
+     83
+    ],
+    "label": "Chain (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     84,
+     84
+    ],
+    "label": "Pot (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     85,
+     85
+    ],
+    "label": "Crowbar (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     86,
+     86
+    ],
+    "label": "Block and Tackle",
+    "page": 187
+   },
+   {
+    "range": [
+     87,
+     87
+    ],
+    "label": "1d4 Torch (wood)",
+    "page": 187,
+    "qty": "1d4"
+   },
+   {
+    "range": [
+     88,
+     88
+    ],
+    "label": "Chest (wood)",
+    "page": 187
+   },
+   {
+    "range": [
+     89,
+     89
+    ],
+    "label": "Manacles (special metal)",
+    "page": 187
+   },
+   {
+    "range": [
+     90,
+     90
+    ],
+    "label": "Parchment (2d10 sheets)",
+    "page": 187,
+    "qty": "2d10 sheets"
+   },
+   {
+    "range": [
+     91,
+     91
+    ],
+    "label": "Paper (2d10 sheets)",
+    "page": 187,
+    "qty": "2d10 sheets"
+   },
+   {
+    "range": [
+     92,
+     92
+    ],
+    "label": "Book in blank (paper)",
+    "page": 187
+   },
+   {
+    "range": [
+     93,
+     93
+    ],
+    "label": "Holy symbol",
+    "page": 187
+   },
+   {
+    "range": [
+     94,
+     94
+    ],
+    "label": "Arcane focus",
+    "page": 187
+   },
+   {
+    "range": [
+     95,
+     95
+    ],
+    "label": "Druidic focus",
+    "page": 187
+   },
+   {
+    "range": [
+     96,
+     96
+    ],
+    "label": "Spellbook",
+    "page": 187
+   },
+   {
+    "range": [
+     97,
+     98
+    ],
+    "label": "Masterwork Tool",
+    "page": 188
+   },
+   {
+    "range": [
+     99,
+     100
+    ],
+    "label": "**Magical Tool",
+    "page": 188,
+    "marks": "**",
+    "note": {
+     "en": "The Maze Master chooses the item, or roll again on table 4.9. This table does not assign magical properties.",
+     "es": "El Amo del Laberinto elige el objeto, o se vuelve a tirar en la tabla 4.9. Esta tabla no asigna propiedades mágicas."
+    }
+   }
+  ]
+ }
+]

@@ -1,0 +1,127 @@
+[
+ {
+  "id": "rule:roll-chamber",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 1,
+  "name": "Chamber roll",
+  "die": "d%",
+  "page": 448,
+  "table": "table:a"
+ },
+ {
+  "id": "rule:roll-condition",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 2,
+  "name": "Condition roll",
+  "die": "d%",
+  "page": 451,
+  "table": "table:b"
+ },
+ {
+  "id": "rule:roll-entries",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 3,
+  "name": "Entries roll",
+  "die": "d6",
+  "page": null
+ },
+ {
+  "id": "rule:roll-timer",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 4,
+  "name": "Timer roll",
+  "die": "Nd10",
+  "page": null,
+  "note": {
+   "en": "N from table A; 1 entry => x10"
+  }
+ },
+ {
+  "id": "rule:roll-loot",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 5,
+  "name": "Loot roll",
+  "die": "d%",
+  "page": 452,
+  "table": "table:c"
+ },
+ {
+  "id": "rule:roll-inhabitant",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 6,
+  "name": "Inhabitant roll",
+  "die": "d%",
+  "page": 453,
+  "table": "table:d"
+ },
+ {
+  "id": "rule:roll-mimic",
+  "type": "rule",
+  "group": "seven-rolls",
+  "order": 7,
+  "name": "Mimic roll",
+  "die": "d%",
+  "page": null,
+  "note": {
+   "en": "optional and secret; under 50 a Common Mimic guards the loot; under 10 the Chamber is also infested with 1d10 Maze Mimics (p. 85, notation p. 22)",
+   "es": "opcional y secreta; con menos de 50 un Common Mimic guarda el botín; con menos de 10, además, 1d10 Maze Mimics (p. 85, notación p. 22)"
+  }
+ },
+ {
+  "id": "rule:timer-one-entry",
+  "type": "rule",
+  "group": "timer",
+  "name": "Timer · one entry",
+  "page": 85,
+  "note": {
+   "en": "With only one entry, the Timer is multiplied by ten",
+   "es": "Si sólo hay una entrada, el Temporizador se multiplica por diez"
+  },
+  "multiplier": 10
+ },
+ {
+  "id": "rule:timer-open-window",
+  "type": "rule",
+  "group": "timer",
+  "name": "Timer · open window",
+  "page": 84,
+  "note": {
+   "en": "Rounds the entry stays open before it closes",
+   "es": "Rondas que la entrada permanece abierta antes de cerrarse"
+  },
+  "dice": "1+1d6"
+ },
+ {
+  "id": "rule:timer-wait-own-entry",
+  "type": "rule",
+  "group": "timer",
+  "name": "Timer · wait own entry",
+  "page": 84,
+  "note": {
+   "en": "Alternative: wait at the entry you came in through",
+   "es": "Alternativa: esperar en la entrada por la que se llegó"
+  },
+  "formula": {
+   "en": "Timer × entries",
+   "es": "Temporizador × entradas"
+  }
+ },
+ {
+  "id": "rule:timer-default",
+  "type": "rule",
+  "group": "timer",
+  "name": "Timer · default",
+  "page": 84,
+  "note": {
+   "en": "4d10 unless the table says otherwise",
+   "es": "4d10 si la tabla no indica otra cosa"
+  },
+  "dice": 4
+ }
+]
