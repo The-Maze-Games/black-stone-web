@@ -26,7 +26,7 @@ test("Percentiles estrictos: 50%< acepta 1–49; >75% acepta 76–100 (p. 22)", 
   eq([under.passes(49), under.passes(50), over.passes(75), over.passes(76)], [true, false, false, true]);
 });
 
-test("Mímicos: <10 infestada, <50 común, resto nada (p. 85)", () => {
+test("Mímicos: <10 Common Mimic y además Maze Mimics, <50 Common Mimic, resto nada (p. 85)", () => {
   eq([9, 10, 49, 50].map(E.mimicKind), ["infested", "common", "common", "none"]);
 });
 
@@ -48,6 +48,11 @@ test("Tablas B, C y D completas de 1 a 100", () => {
 test("Una sola entrada multiplica el Temporizador ×10 (p. 85)", () => {
   const d = E.derive({ chamber: 20, condition: 60, entries: 1, timer: 20 }, t);
   eq(d.timer, 200);
+});
+
+test("Una entrada y Reduced Time: primero ×10, luego la mitad (pp. 85, 95)", () => {
+  const d = E.derive({ chamber: 20, condition: 90, entries: 1, timer: 7 }, t);
+  eq(d.timer, 35);
 });
 
 test("Sealed Chamber: sin cuenta atrás (p. 87)", () => {

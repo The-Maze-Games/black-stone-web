@@ -203,9 +203,10 @@ export function derive(r, t) {
     if (fx?.timer === "sealed") steps.push({ kind: "sealed" });
     else if (fx?.timer === "free") steps.push({ kind: "open" });
     else {
+      // El ×10 de una sola entrada va sobre el dado (p. 85), antes de doblar o dividir: así nunca se redondea (decisión del 2026-11-26).
+      if (entries === 1) { v *= ONE_ENTRY_MULTIPLIER; steps.push({ kind: "one-entry", value: v }); }
       if (fx?.timer === "x2") { v *= 2; steps.push({ kind: "extended", value: v }); }
       if (fx?.timer === "half") { v = Math.floor(v / 2); steps.push({ kind: "reduced", value: v }); }
-      if (entries === 1) { v *= ONE_ENTRY_MULTIPLIER; steps.push({ kind: "one-entry", value: v }); }
       if (fx?.timer === "jammed") steps.push({ kind: "jammed" });
       timer = v;
     }
@@ -243,7 +244,7 @@ export function keep(typed, before, after) {
   return Object.fromEntries(Object.entries(typed).filter(([k]) => !changed.some((id) => k.startsWith(id + "."))));
 }
 
-/** Severidad de la tirada secreta. Con menos de 10, Maze Mimics en lugar del Common Mimic (pp. 22, 85). */
+/** Severidad de la tirada secreta. Con menos de 50, un Common Mimic; con menos de 10, «Also» 1d10 Maze Mimics además (pp. 22, 85). */
 export const mimicKind = (n) => (n < 10 ? "infested" : n < 50 ? "common" : "none");
 
 /** La entrada en una ronda: si está abierta y cuántas rondas faltan para el próximo cambio. */

@@ -4811,7 +4811,7 @@
       },
       "note": {
         "en": "The key comes from a Major Black Piece; without it reroll the chamber. Entry also requires the Black King’s permission. Check each surviving piece separately: Pawn <75; Bishop or Knight <50; Rook <25. p. 124.",
-        "es": "La llave se obtiene de una Pieza Negra Mayor; sin ella se repite la cámara. Entrar también requiere permiso del Rey Negro. Comprueba cada pieza superviviente por separado: Peón <75; Alfil o Caballo <50; Torre <25. p. 124."
+        "es": "La llave se obtiene de una Pieza Negra Mayor; sin ella se repite la cámara. Entrar también requiere permiso del Rey Negro. Comprueba cada pieza superviviente por separado: Pawn <75; Bishop o Horse <50; Rook <25. p. 124."
       },
       "extras": [
         {
@@ -4828,7 +4828,7 @@
           "per": "remaining-black-pawn",
           "of": {
             "en": "Each remaining Black Pawn visiting; roll separately for every Pawn",
-            "es": "Cada Peón Negro restante de visita; tira por separado para cada Peón"
+            "es": "Cada Black Pawn restante de visita; tira por separado para cada Pawn"
           },
           "id": "audit20260921-1",
           "repeat": "surviving-piece-check"
@@ -4935,7 +4935,7 @@
       "special": 124,
       "note": {
         "en": "One of the three entries leads directly to Oktarion. Check each remaining Black Pawn separately (<50), not once for the whole group. pp. 124–125.",
-        "es": "Una de las tres entradas conduce directamente a Oktarion. Comprueba por separado a cada Peón Negro restante (<50), no una vez por todo el grupo. pp. 124–125."
+        "es": "Una de las tres entradas conduce directamente a Oktarion. Comprueba por separado a cada Black Pawn restante (<50), no una vez por todo el grupo. pp. 124–125."
       }
     },
     "34": {
@@ -5322,7 +5322,7 @@
           "kind": "inhabitant",
           "of": {
             "en": "Visit by each remaining Red Pawn (roll separately for every Pawn)",
-            "es": "Visita de cada Peón Rojo que quede (tira por separado por cada Peón)"
+            "es": "Visita de cada Red Pawn que quede (tira por separado por cada Pawn)"
           },
           "chance": ">25%",
           "id": "audit20260921-2",
@@ -5452,7 +5452,7 @@
       "special": 134,
       "note": {
         "en": "Death Square has three entries; one leads directly to Blood Chrysanthemum. Necromantic Mist is always present. A lost Heavy Key opens rooms in the Red Queen's manor. Roll 50+1d% Mazeknights, 100+5d% zombies or skeletons, and a separate 50%< check for each remaining Red Pawn. Only Mazeknights are admitted; rookie Mazeknights and former Bonfire members turned Red are restricted to outposts. Loot is decided by the Maze Master, usually supplies and weapons; one or two Ultimate Weapon components may be chosen by the Master (pp. 134-135).",
-        "es": "Death Square tiene tres entradas; una lleva directamente a Blood Chrysanthemum. Siempre hay Niebla Necromántica. Una Llave Pesada perdida abre habitaciones de la mansión de la Reina Roja. Tira 50+1d% Mazeknights, 100+5d% zombis o esqueletos y una prueba independiente de 50%< por cada Peón Rojo que quede. Solo se admiten Mazeknights; los novatos y antiguos miembros de Hogueras convertidos en Rojos se limitan a los puestos avanzados. El Amo decide el botín, normalmente provisiones y armas, y uno o dos componentes del Arma Definitiva (pp. 134-135)."
+        "es": "Death Square tiene tres entradas; una lleva directamente a Blood Chrysanthemum. Siempre hay Niebla Necromántica. Una Llave Pesada perdida abre habitaciones de la mansión de la Reina Roja. Tira 50+1d% Mazeknights, 100+5d% zombis o esqueletos y una prueba independiente de 50%< por cada Red Pawn que quede. Solo se admiten Mazeknights; los novatos y antiguos miembros de Hogueras convertidos en Rojos se limitan a los puestos avanzados. El Amo decide el botín, normalmente provisiones y armas, y uno o dos componentes del Arma Definitiva (pp. 134-135)."
       },
       "fixedCondition": 22
     },
@@ -6056,7 +6056,7 @@
       "timerDefaulted": false,
       "note": {
         "en": "The outpost has 2d10 Hitmen, 1d10+2 Rookie Hitmen and a <20 chance of a Master Hitman. Loot: roll 1d6 times on Table C; also find 3d10+5 supplies. p. 99.",
-        "es": "El puesto tiene 2d10 Sicarios, 1d10+2 Sicarios novatos y probabilidad <20 de un Sicario Maestro. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
+        "es": "El puesto tiene 2d10 Hitmen, 1d10+2 Rookie Hitmen y probabilidad <20 de un Master Hitman. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
       },
       "extras": [
         {
@@ -6064,7 +6064,7 @@
           "die": "2d10",
           "of": {
             "en": "Hitmen",
-            "es": "Sicarios"
+            "es": "Hitmen"
           },
           "id": "audit20260921-0"
         },
@@ -6073,7 +6073,7 @@
           "die": "1d10+2",
           "of": {
             "en": "Rookie Hitmen",
-            "es": "Sicarios novatos"
+            "es": "Rookie Hitmen"
           },
           "id": "audit20260921-1"
         },
@@ -6082,7 +6082,7 @@
           "chance": "20%<",
           "of": {
             "en": "Master Hitman (Black Pawn)",
-            "es": "Sicario Maestro (Peón Negro)"
+            "es": "Master Hitman (Black Pawn)"
           },
           "id": "audit20260921-2"
         },
@@ -6129,7 +6129,7 @@
       "timerDefaulted": false,
       "note": {
         "en": "The outpost has 2d10 Hitmen, 1d10+2 Rookie Hitmen and a <20 chance of a Master Hitman. Loot: roll 1d6 times on Table C; also find 3d10+5 supplies. p. 99.",
-        "es": "El puesto tiene 2d10 Sicarios, 1d10+2 Sicarios novatos y probabilidad <20 de un Sicario Maestro. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
+        "es": "El puesto tiene 2d10 Hitmen, 1d10+2 Rookie Hitmen y probabilidad <20 de un Master Hitman. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
       },
       "extras": [
         {
@@ -6137,7 +6137,7 @@
           "die": "2d10",
           "of": {
             "en": "Hitmen",
-            "es": "Sicarios"
+            "es": "Hitmen"
           },
           "id": "audit20260921-0"
         },
@@ -6146,7 +6146,7 @@
           "die": "1d10+2",
           "of": {
             "en": "Rookie Hitmen",
-            "es": "Sicarios novatos"
+            "es": "Rookie Hitmen"
           },
           "id": "audit20260921-1"
         },
@@ -6155,7 +6155,7 @@
           "chance": "20%<",
           "of": {
             "en": "Master Hitman (Black Pawn)",
-            "es": "Sicario Maestro (Peón Negro)"
+            "es": "Master Hitman (Black Pawn)"
           },
           "id": "audit20260921-2"
         },
@@ -6202,7 +6202,7 @@
       "timerDefaulted": false,
       "note": {
         "en": "The outpost has 2d10 Hitmen, 1d10+2 Rookie Hitmen and a <20 chance of a Master Hitman. Loot: roll 1d6 times on Table C; also find 3d10+5 supplies. p. 99.",
-        "es": "El puesto tiene 2d10 Sicarios, 1d10+2 Sicarios novatos y probabilidad <20 de un Sicario Maestro. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
+        "es": "El puesto tiene 2d10 Hitmen, 1d10+2 Rookie Hitmen y probabilidad <20 de un Master Hitman. Botín: tira 1d6 veces en la Tabla C; además, encuentra 3d10+5 provisiones. p. 99."
       },
       "extras": [
         {
@@ -6210,7 +6210,7 @@
           "die": "2d10",
           "of": {
             "en": "Hitmen",
-            "es": "Sicarios"
+            "es": "Hitmen"
           },
           "id": "audit20260921-0"
         },
@@ -6219,7 +6219,7 @@
           "die": "1d10+2",
           "of": {
             "en": "Rookie Hitmen",
-            "es": "Sicarios novatos"
+            "es": "Rookie Hitmen"
           },
           "id": "audit20260921-1"
         },
@@ -6228,7 +6228,7 @@
           "chance": "20%<",
           "of": {
             "en": "Master Hitman (Black Pawn)",
-            "es": "Sicario Maestro (Peón Negro)"
+            "es": "Master Hitman (Black Pawn)"
           },
           "id": "audit20260921-2"
         },

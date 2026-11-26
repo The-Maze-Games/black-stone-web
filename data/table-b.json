@@ -1462,7 +1462,7 @@
     "65": {
       "note": {
         "en": "A Legendary Raider appears, who may help, threaten or join the party",
-        "es": "Aparece un Incursor Legendario, que puede ayudar, amenazar o unirse al grupo"
+        "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
       },
       "affects": [
         "inhabitants"
@@ -1473,7 +1473,8 @@
           "die": "1d12",
           "table": "3.3",
           "of": {
-            "es": "Raider legendario · tabla 3.3"
+            "en": "Legendary Raider · Table 3.3",
+            "es": "Legendary Raider · tabla 3.3"
           }
         }
       ]
@@ -1481,7 +1482,7 @@
     "66": {
       "note": {
         "en": "A Legendary Raider appears, who may help, threaten or join the party",
-        "es": "Aparece un Incursor Legendario, que puede ayudar, amenazar o unirse al grupo"
+        "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
       },
       "affects": [
         "inhabitants"
@@ -1492,7 +1493,8 @@
           "die": "1d12",
           "table": "3.3",
           "of": {
-            "es": "Raider legendario · tabla 3.3"
+            "en": "Legendary Raider · Table 3.3",
+            "es": "Legendary Raider · tabla 3.3"
           }
         }
       ]
@@ -1500,7 +1502,7 @@
     "67": {
       "note": {
         "en": "A Legendary Raider appears, who may help, threaten or join the party",
-        "es": "Aparece un Incursor Legendario, que puede ayudar, amenazar o unirse al grupo"
+        "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
       },
       "affects": [
         "inhabitants"
@@ -1511,7 +1513,8 @@
           "die": "1d12",
           "table": "3.3",
           "of": {
-            "es": "Raider legendario · tabla 3.3"
+            "en": "Legendary Raider · Table 3.3",
+            "es": "Legendary Raider · tabla 3.3"
           }
         }
       ]
@@ -1519,7 +1522,7 @@
     "68": {
       "note": {
         "en": "A Legendary Raider appears, who may help, threaten or join the party",
-        "es": "Aparece un Incursor Legendario, que puede ayudar, amenazar o unirse al grupo"
+        "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
       },
       "affects": [
         "inhabitants"
@@ -1530,7 +1533,8 @@
           "die": "1d12",
           "table": "3.3",
           "of": {
-            "es": "Raider legendario · tabla 3.3"
+            "en": "Legendary Raider · Table 3.3",
+            "es": "Legendary Raider · tabla 3.3"
           }
         }
       ]
@@ -1538,7 +1542,7 @@
     "69": {
       "note": {
         "en": "A Legendary Raider appears, who may help, threaten or join the party",
-        "es": "Aparece un Incursor Legendario, que puede ayudar, amenazar o unirse al grupo"
+        "es": "Aparece un Legendary Raider, que puede ayudar, amenazar o unirse al grupo"
       },
       "affects": [
         "inhabitants"
@@ -1549,7 +1553,8 @@
           "die": "1d12",
           "table": "3.3",
           "of": {
-            "es": "Raider legendario · tabla 3.3"
+            "en": "Legendary Raider · Table 3.3",
+            "es": "Legendary Raider · tabla 3.3"
           }
         }
       ]
