@@ -14,6 +14,7 @@ const READING_NOTES = { C: ["*", "plain", "ore"], D: ["†"] };
 const groupTitle = (of) => of.replace(/\s·\s[\w.]+$/, "").replace(/(\s·\s|\s)\d+$/, "");
 const REPEATED = /^(.*)\.(item|w)(\d+)$/;
 const NOT_AMOUNTS = /^(Magical Infection|none|ninguno)$/i;
+const DM_BOX = () => `<span class="dm-box" title="${h(T("dmCall"))}" aria-label="${h(T("dmCall"))}">DM</span>`;
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -218,9 +219,7 @@ export class ChamberView {
     // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece es cosa suya (p. 85).
     if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
     // Botín sin dado (Water, Forest, Dry Wood…): la cantidad es a criterio del Máster.
-    if (id === "loot" && r.loot != null && !skip && !own.some((c) => c.from === "loot") && !NOT_AMOUNTS.test(t.name("C", r.loot))) {
-      fixedLines.unshift({ kind: "dm", of: T("howMuch") });
-    }
+    const lootDm = id === "loot" && r.loot != null && !skip && !own.some((c) => c.from === "loot") && !NOT_AMOUNTS.test(t.name("C", r.loot));
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
@@ -230,7 +229,7 @@ export class ChamberView {
     const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
     return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
-      ${body ? `<div class="roll-result">${body}</div>` : ""}
+      ${body ? `<div class="roll-result${lootDm ? " has-dm" : ""}">${body}${lootDm ? DM_BOX() : ""}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
       ${derived}
     </section>`;
@@ -369,8 +368,7 @@ export class ChamberView {
   dmRow(e, page) {
     const label = typeof e.of === "string" ? e.of : E.loc(e.of);
     return `<div class="derived-row dm-row${this.isNew("dm:" + label)}">
-      <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p><span class="derived-die">${h(T("dmCall"))}</span><span class="derived-result"></span>
-      <span class="dm-box" title="${h(T("dmCall"))}">DM</span></div>`;
+      <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p>${DM_BOX()}</div>`;
   }
 
   /** Unas hermanas del árbol, en el orden del motor. */
