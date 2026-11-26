@@ -13,6 +13,7 @@ const READING_NOTES = { C: ["*", "plain", "ore"], D: ["†"] };
 /** «Arma 2 · 4.8» → «Arma»; «diez tiradas extra · 3 · C» → «diez tiradas extra». */
 const groupTitle = (of) => of.replace(/\s·\s[\w.]+$/, "").replace(/(\s·\s|\s)\d+$/, "");
 const REPEATED = /^(.*)\.(item|w)(\d+)$/;
+const NOT_AMOUNTS = /^(Magical Infection|none|ninguno)$/i;
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -190,7 +191,8 @@ export class ChamberView {
     const t = this.t, r = this.d.rolls;
     if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-name">${h(T("posterEmpty"))}</p><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
     const facts = [];
-    if (!E.skipped("condition", r, t) && !der.conditionExcluded && r.condition != null) facts.push(["condition", t.name("B", der.rule?.fixedCondition ?? r.condition)]);
+    const cond = r.condition != null ? t.name("B", der.rule?.fixedCondition ?? r.condition) : null;
+    if (!E.skipped("condition", r, t) && !der.conditionExcluded && cond && !/^no condition$/i.test(cond)) facts.push(["condition", cond]);
     if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) facts.push(["entries", der.entries]);
     if (der.sealed) facts.push(["timer", T("sealed")]);
     else if (der.open) facts.push(["timer", T("noCountdown")]);
@@ -212,14 +214,21 @@ export class ChamberView {
     const page = { last: this.mainPage(id, der) };
     const own = kids.filter((c) => this.sectionOf(c) === id && !c.extraction);
     const fixedLines = r.chamber != null ? E.fixedExtras(der.rule).filter((e) => e.section === id) : [];
-    // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece lo decide el Máster (p. 85).
+    // Lo que no trae dado lleva la ficha «DM»: la cantidad la decide el Máster.
+    // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece es cosa suya (p. 85).
     if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
+    // Botín sin dado (Water, Forest, Dry Wood…): la cantidad es a criterio del Máster.
+    if (id === "loot" && r.loot != null && !skip && !own.some((c) => c.from === "loot") && !NOT_AMOUNTS.test(t.name("C", r.loot))) {
+      fixedLines.unshift({ kind: "dm", of: T("howMuch") });
+    }
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
     const waiting = r[id] == null && !fixed && !skip;
+    // Sin condición no hay nada que leer abajo: la lista de arriba ya dice el número y la carta lo nombra.
+    const quiet = id === "condition" && r.condition != null && !der.conditionExcluded && /^no condition$/i.test(t.name("B", der.rule?.fixedCondition ?? r.condition)) && !own.length;
     const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${unfold}" data-section="${id}">
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result">${body}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
@@ -348,13 +357,20 @@ export class ChamberView {
     }
     const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
-    const rows = fixedLines.filter((e) => e.kind === "dm").map((e) => `<div class="derived-row dm-row${this.isNew("dm:" + e.of)}">
-        <p class="derived-label">${h(e.of)}${this.page(e.page, page)}</p><span class="derived-die">${h(T("dmCall"))}</span><span class="derived-result"></span>
-        <span class="dm-box" title="${h(T("dmCall"))}">DM</span></div>`);
+    const isDm = (e) => e.kind === "dm" || (["loot", "exclusiveLoot"].includes(e.kind) && !NOT_AMOUNTS.test(E.loc(e.of)));
+    const rows = fixedLines.filter(isDm).map((e) => this.dmRow(e, page));
     rows.push(...this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page));
     if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "dm").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    fixedLines.filter((e) => e.kind !== "ultimate" && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
     return `<div class="derived">${rows.join("")}</div>`;
+  }
+
+  /** Una fila sin dado: el nombre y la ficha «DM», porque la cantidad la decide el Máster. */
+  dmRow(e, page) {
+    const label = typeof e.of === "string" ? e.of : E.loc(e.of);
+    return `<div class="derived-row dm-row${this.isNew("dm:" + label)}">
+      <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p><span class="derived-die">${h(T("dmCall"))}</span><span class="derived-result"></span>
+      <span class="dm-box" title="${h(T("dmCall"))}">DM</span></div>`;
   }
 
   /** Unas hermanas del árbol, en el orden del motor. */
@@ -477,7 +493,7 @@ export class ChamberView {
       const amount = c.key.endsWith(".chance") ? items.find((x) => `${x.key}.chance` === c.key) : null;
       return amount ? `<div class="node" data-node="${h(c.key)}">${row(c)}<div class="derived">${row(amount)}</div></div>` : row(c);
     }).join("");
-    const fixed = fixedLines.map((e) => `<p class="fixed-line">${h(E.loc(e.of))}</p>`).join("");
+    const fixed = fixedLines.map((e) => this.dmRow(e, {})).join("");
     return `<div class="ultimate-group"><p class="group-title">${h(T("ultimate"))}${shared ? ` <span class="group-hint">· ${h(shared)}</span>` : ""}</p>${rows}${fixed}</div>`;
   }
 

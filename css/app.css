@@ -272,6 +272,7 @@ button:disabled { opacity: .35; cursor: default; }
   .is-unfolding .roll-n::before, .is-unfolding .derived::before, .is-unfolding .derived > * { animation: none; }
 }
 /* Limpio: con la cámara ya elegida, las tiradas que aún no tienen nada que mostrar no ocupan sitio abajo. */
+.roll-section.is-quiet { display: none; }
 .chamber:has(.poster:not(.is-empty)) .roll-section.is-waiting:not(:has(.derived, .roll-result, .choice)) { display: none; }
 
 /* Decisiones de la mesa */
