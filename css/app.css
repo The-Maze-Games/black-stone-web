@@ -214,6 +214,9 @@ button:disabled { opacity: .35; cursor: default; }
 .derived-value { font-weight: 700; }
 .derived-result { grid-area: result; font-size: 16px; align-self: start; min-height: 1.4em; }
 .derived-row .roll-note { grid-area: note; }
+/* Lo que decide el Máster: una ficha sin número, con «DM» grabado en oro. */
+.dm-box { grid-area: input; display: grid; place-items: center; width: 4.6em; min-height: 36px; font: 700 17px var(--title); letter-spacing: .1em; color: var(--gold);
+  background: #080605; box-shadow: inset 0 0 0 3px #080605, inset 0 0 0 4px var(--gold), 0 0 0 1px var(--gold); border-radius: 2px; }
 .derived-total { font: 700 16px var(--title); color: var(--fg); }
 .derived-yes { color: var(--accent); font: 700 13px var(--title); letter-spacing: .1em; }
 .derived-yes::after { content: " Found"; font: italic 600 16px var(--text); letter-spacing: 0; }
@@ -280,7 +283,7 @@ button:disabled { opacity: .35; cursor: default; }
 .choice-option, .gate-check, .mimic-switch { display: flex; gap: 10px; align-items: center; min-height: 40px; font-size: 17px; }
 .choice-option input, .gate-check input, .mimic-switch input { width: 19px; height: 19px; accent-color: var(--accent); }
 .mimic-switch { margin-top: 14px; color: var(--dim); font-style: italic; }
-.chamber-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--gold-dim); }
+.chamber-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .play-panel .chamber-actions, .close-form .chamber-actions { border-top: 0; padding-top: 0; }
 
 /* En la cámara */

@@ -212,6 +212,8 @@ export class ChamberView {
     const page = { last: this.mainPage(id, der) };
     const own = kids.filter((c) => this.sectionOf(c) === id && !c.extraction);
     const fixedLines = r.chamber != null ? E.fixedExtras(der.rule).filter((e) => e.section === id) : [];
+    // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece lo decide el Máster (p. 85).
+    if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
@@ -309,7 +311,7 @@ export class ChamberView {
         return line(t.name(tb, n), t.page(tb, n)) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
       }
       case "mimic":
-        return line(T("mimic")[E.mimicKind(n)], null, E.mimicKind(n) !== "none" ? " is-danger" : "");
+        return E.mimicKind(n) === "none" ? `<p class="result-hint">${h(T("mimic").none)}</p>` : "";
     }
     return "";
   }
@@ -346,9 +348,12 @@ export class ChamberView {
     }
     const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
-    const rows = this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page);
+    const rows = fixedLines.filter((e) => e.kind === "dm").map((e) => `<div class="derived-row dm-row${this.isNew("dm:" + e.of)}">
+        <p class="derived-label">${h(e.of)}${this.page(e.page, page)}</p><span class="derived-die">${h(T("dmCall"))}</span><span class="derived-result"></span>
+        <span class="dm-box" title="${h(T("dmCall"))}">DM</span></div>`);
+    rows.push(...this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page));
     if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "dm").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
     return `<div class="derived">${rows.join("")}</div>`;
   }
 
