@@ -8,13 +8,23 @@ Ayudante gratuito para el Amo del Laberinto de *The Maze*. Funciona en el navega
 
 - **Cámara:** las Siete Tiradas (Cámara, Condición, Entradas, Temporizador, Botín, Habitantes y la de Mímicos, opcional y secreta), con las reglas de cada una de las 100 cámaras: tiradas que se saltan, condiciones excluidas, entradas fijas, Temporizador ×10 con una sola entrada, etc. Las tiradas derivadas (cuántos hay, cuántas veces se tira una tabla, armas, menas, cadáveres) se piden una a una. Dentro de la cámara: contador de rondas con la entrada abierta o cerrada, magia salvaje y demás sucesos.
 - **Registro:** las cámaras cerradas, con cómo terminaron y las muertes. Se guarda en el propio navegador.
-- **Referencia:** las tablas del libro (A–D, 3.1–3.10, 4.1–4.9), criaturas, ítems y materiales, cada dato con su página.
+- **Referencia:** un buscador sobre todo el libro (nombre, texto, «p. 96» o «A 57» para el resultado de una tirada) con una ficha por cámara, condición, criatura, ítem, material y regla, enlazadas entre sí; y las tablas del libro (A–D, 3.1–3.10, 4.1–4.9), criaturas, ítems y materiales, cada dato con su página.
 
 Fuera por ahora: las reglas extendidas (Vida en la Hoguera, Guerra y Comercio, Tablero de Ajedrez, Críticos y Desmembramiento). La Tabla 3.10 de Trampas sí está.
 
 ## Datos
 
 Los datos son de *The Maze*, de M. A. Bastarrachea Magnani (Axo stories). La app muestra nombres, cifras y efectos de juego abreviados con su página; las descripciones completas están en el libro.
+
+`data/` es la fuente de verdad: la usa la Cámara y ahí se corrige lo que diga el libro.
+
+`db/` es la base de datos que lee la Referencia: una colección por tipo (`tables`, `chambers`, `conditions`, `creatures`, `items`, `materials`, `rules`), ids `tipo:slug`, cada ficha con su página y sus enlaces, y `search.json` para el buscador. No se edita a mano: después de cambiar `data/`, se regenera con
+
+```bash
+python tools/build_db.py
+```
+
+La prueba «La base de datos (db/) dice lo mismo que data/» de `tests.html` avisa si se olvidó.
 
 `tools/build_reference.py` genera `data/bestiary.json`, `data/materials.json` y `data/magic.json` a partir de una transcripción local del libro, que no se publica.
 
