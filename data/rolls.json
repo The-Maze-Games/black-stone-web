@@ -32,8 +32,8 @@
   "mimic": {
    "die": "d%",
    "note": {
-    "en": "optional and secret; under 50 there are mimics: a Common Mimic, or 1d10 Maze Mimics instead if it rolls under 10 (p. 85, notation p. 22)",
-    "es": "opcional y secreta; con menos de 50 hay mímicos: un Common Mimic, o 1d10 Maze Mimics en su lugar si sale menos de 10 (p. 85, notación p. 22)"
+    "en": "optional and secret; under 50 a Common Mimic guards the loot; under 10 the Chamber is also infested with 1d10 Maze Mimics (p. 85, notation p. 22)",
+    "es": "opcional y secreta; con menos de 50 un Common Mimic guarda el botín; con menos de 10, además, 1d10 Maze Mimics (p. 85, notación p. 22)"
    }
   }
  },
