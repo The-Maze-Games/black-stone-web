@@ -48,6 +48,7 @@ export class ReferenceView {
 
   render(sub, rest = []) {
     const tabs = [["search", T("refSearch")], ["tables", T("refTables")], ["creatures", T("refCreatures")], ["items", T("refItems")], ["materials", T("refMaterials")]];
+    if (sub === "roll") { rest = ["roll", ...rest]; sub = "search"; }
     if (!tabs.some(([k]) => k === sub)) sub = "search";
     this.ensure();
     const body = this.failed ? `<p class="is-invalid">${h(T("loadError"))}</p>`
@@ -75,7 +76,14 @@ export class ReferenceView {
 
   // ---------------------------------------------------------------- buscador
 
-  searchView([id, face]) {
+  searchView([id, face, n]) {
+    // «#/ref/roll/A/57», desde la Cámara: la ficha a la que lleva esa tirada, o la fila si lleva a varias o a ninguna.
+    if (id === "roll") {
+      const j = this.db.jump(`${face} ${n}`);
+      if (!j) return this.detail("", null);
+      const refs = (j.row.refs ?? []).filter((r) => this.db.get(r));
+      return refs.length === 1 ? this.detail(refs[0], null) : this.detail(j.table.id, j.face);
+    }
     if (id) return this.detail(decodeURIComponent(id), face != null && face !== "" ? +face : null);
     const db = this.db;
     const jump = db.jump(this.find);
