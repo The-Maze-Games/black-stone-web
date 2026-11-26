@@ -128,15 +128,20 @@ export class ChamberView {
   render() {
     const d = this.d, der = E.derive(d.rolls, this.t);
     const kids = this.children();
+    this.fresh = new Set();
     const ids = E.ROLLS.map((x) => x.id).filter((id) => id !== "mimic" || this.mimics);
+    const poster = this.poster(der);
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
+    this.seen = this.fresh;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
-        <details class="chamber-summary"><summary>${this.summaryLine(der)}</summary>${sections}</details>
+        ${poster}
+        <details class="chamber-summary"><summary>${h(T("theRolls"))}</summary>${sections}</details>
         ${this.playing(der)}
       </div>`;
     }
     return `<div class="chamber" data-state="setup">
+      ${poster}
       ${sections}
       <label class="mimic-switch"><input type="checkbox" data-action="mimics" ${this.mimics ? "checked" : ""}> ${h(T("useMimics"))} <span class="page">${h(T("page")(85))}</span></label>
       <div class="chamber-actions">
@@ -146,13 +151,31 @@ export class ChamberView {
     </div>`;
   }
 
-  summaryLine(der) {
+  /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
+  isNew(key) {
+    this.fresh?.add(key);
+    return this.seen && !this.seen.has(key) ? " is-new" : "";
+  }
+
+  /** La cabecera tipo cartel: número y nombre de la cámara, y en una línea lo que ya se sabe de ella. */
+  poster(der) {
     const t = this.t, r = this.d.rolls;
-    const parts = [t.chamberName(r.chamber)];
-    if (!E.skipped("condition", r, t) && !der.conditionExcluded) parts.push(t.name("B", der.rule?.fixedCondition ?? r.condition));
+    if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
+    const parts = [];
+    if (!E.skipped("condition", r, t) && !der.conditionExcluded && r.condition != null) parts.push(t.name("B", der.rule?.fixedCondition ?? r.condition));
+    if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) parts.push(T("entriesN")(der.entries));
+    if (der.sealed) parts.push(T("sealed"));
+    else if (der.open) parts.push(T("noCountdown"));
+    else if (der.timer != null) parts.push(T("rounds")(der.timer));
     if (!E.skipped("loot", r, t) && r.loot != null) parts.push(t.name("C", r.loot));
     if (!E.skipped("inhabitant", r, t) && r.inhabitant != null) parts.push(t.name("D", r.inhabitant));
-    return `<span class="summary-name">${h(parts[0])}</span> ${parts.slice(1).map((p) => `<span class="summary-part">${h(p)}</span>`).join(" · ")}`;
+    return `<header class="poster${this.isNew("poster:" + r.chamber)}">
+      <p class="poster-n">${h(String(r.chamber).padStart(2, "0"))}</p>
+      <div class="poster-text">
+        <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
+        ${parts.length ? `<p class="poster-sum">${parts.map((p) => `<span>${h(p)}</span>`).join("")}</p>` : ""}
+      </div>
+    </header>`;
   }
 
   /** Una de las siete, con su resultado y lo que cuelga de ella. */
@@ -165,7 +188,7 @@ export class ChamberView {
     const fixedLines = r.chamber != null ? E.fixedExtras(der.rule).filter((e) => e.section === id) : [];
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}" data-section="${id}">
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}" data-section="${id}" style="--n:${n}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result">${body}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
@@ -219,20 +242,20 @@ export class ChamberView {
     if (n == null) return "";
     if (id === "mimic" && this.d.mimicHidden) return `<p class="result is-hidden">${h(T("hidden"))}</p>`;
     // Con `ref` (tabla, número) el nombre lleva a su ficha en la Referencia.
-    const line = (name, page, cls = "", ref = null) => `<p class="result${cls}">${ref ? `<a class="result-name" href="#/ref/roll/${ref[0]}/${ref[1]}">${h(name)}</a>` : `<span class="result-name">${h(name)}</span>`}${page ? ` <span class="page">${h(T("page")(page))}</span>` : ""}</p>`;
+    const line = (name, page, cls = "") => `<p class="result${cls}${this.isNew(`r:${id}:${n}:${name}`)}"><span class="result-name">${h(name)}</span>${page ? ` <span class="page">${h(T("page")(page))}</span>` : ""}</p>`;
     const note = (title, ...texts) => {
       const body = texts.filter(Boolean).map((x) => `<p>${h(x)}</p>`).join("");
       return body ? `<details class="roll-note"><summary>${h(title)}</summary>${body}</details>` : "";
     };
     switch (id) {
       case "chamber":
-        return line(t.chamberName(n), t.page("A", n), "", ["A", n]) + note(T("chamberRules"), E.loc(der.rule?.note));
+        return line(t.chamberName(n), t.page("A", n)) + note(T("chamberRules"), E.loc(der.rule?.note));
       case "condition": {
         if (der.conditionExcluded) {
           return line(t.name("B", n), null, " is-invalid") + `<p class="result-hint">${h(der.rule?.reroll ? E.loc(der.rule.reroll) : T("excluded"))}</p>`;
         }
         const c = der.rule?.fixedCondition ?? n;
-        return line(t.name("B", c), t.page("B", c), "", ["B", c]) + note(T("effect"), E.loc(der.fx?.note));
+        return line(t.name("B", c), t.page("B", c)) + note(T("effect"), E.loc(der.fx?.note));
       }
       case "entries":
         return der.entryChange === "raised" ? `<p class="result"><span class="result-name">${h(der.entries)}</span> <span class="result-hint">${h(T("raised"))}</span></p>` : "";
@@ -249,7 +272,7 @@ export class ChamberView {
         const raw = t.entry(tb, n).result;
         const mark = /^\*+|[†ª]+$/.exec(raw)?.[0] ?? (raw.includes("(") ? "plain" : null);
         const foot = mark && !(READING_NOTES[tb] ?? []).includes(mark) && !(tb === "C" && mark === "*") ? t.footnote(tb, n) : null;
-        return line(t.name(tb, n), t.page(tb, n), "", tb === "D" ? ["D", n] : null) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
+        return line(t.name(tb, n), t.page(tb, n)) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
       }
       case "mimic":
         return line(T("mimic")[E.mimicKind(n)], null, E.mimicKind(n) !== "none" ? " is-danger" : "");
@@ -273,40 +296,57 @@ export class ChamberView {
     return "";
   }
 
-  /** Lo que cuelga de una tirada: filas, filas de casillas para las repetidas y el grupo del Arma Definitiva. */
+  /** Lo que cuelga de una tirada, como árbol: cada derivada va debajo de la tirada que la pidió
+   *  (la clave de la hija empieza por la de la madre). Las repetidas van en una fila de casillas,
+   *  y lo que cuelga de cada casilla, debajo con su número. El Arma Definitiva, junta al final. */
   derivedList(own, fixedLines, page) {
-    const groups = new Map();
+    const keys = new Set(own.map((c) => c.key));
+    const parentOf = new Map();
     for (const c of own) {
-      const m = REPEATED.exec(c.key);
-      if (m && c.table && !c.chance) {
-        const base = `${m[1]}.${m[2]}`;
-        if (!groups.has(base)) groups.set(base, []);
-        groups.get(base).push(c);
-      }
+      // «X.chance» es la puerta de «X»: «X» cuelga de ella, no al revés.
+      if (keys.has(`${c.key}.chance`)) { parentOf.set(c.key, `${c.key}.chance`); continue; }
+      const self = c.key.replace(/\.chance$/, "");
+      let p = null;
+      for (const k of keys) if (k !== self && self.startsWith(k + ".") && (!p || k.length > p.length)) p = k;
+      parentOf.set(c.key, p);
     }
+    const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
+    const rows = this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page);
+    if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
+    fixedLines.filter((e) => e.kind !== "ultimate").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    return `<div class="derived">${rows.join("")}</div>`;
+  }
+
+  /** Unas hermanas del árbol, en el orden del motor. */
+  nodes(list, kidsOf, page) {
+    const base = (c) => { const m = REPEATED.exec(c.key); return m && c.table && !c.chance ? `${m[1]}.${m[2]}` : null; };
     const done = new Set();
     const rows = [];
-    for (const c of own) {
+    for (const c of list) {
       if (done.has(c.key)) continue;
-      if (c.group === "ultimate") {
-        ultimate.forEach((x) => done.add(x.key));
-        rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-        continue;
-      }
-      const m = REPEATED.exec(c.key);
-      const base = m ? `${m[1]}.${m[2]}` : null;
-      if (base && groups.get(base)?.length > 1) {
-        groups.get(base).forEach((x) => done.add(x.key));
-        rows.push(this.diceRow(groups.get(base), page));
+      const b = base(c);
+      const group = b ? list.filter((x) => base(x) === b) : [];
+      if (group.length > 1) {
+        group.forEach((x) => done.add(x.key));
+        const branches = group.map((x, i) => {
+          const sub = kidsOf(x.key);
+          const v = this.d.typed[x.key];
+          if (!sub.length) return "";
+          return `<div class="node branch" data-node="${h(x.key)}">
+            <p class="branch-title"><span class="dice-n">${i + 1}</span> ${v != null ? `<span class="result-name">${h(this.t.name(x.table, v))}</span>` : ""}</p>
+            <div class="derived">${this.nodes(sub, kidsOf, page).join("")}</div></div>`;
+        }).join("");
+        rows.push(this.diceRow(group, page, new Set(group.filter((x) => kidsOf(x.key).length).map((x) => x.key))) + branches);
         continue;
       }
       done.add(c.key);
-      rows.push(this.derivedRow(c, page));
+      const sub = kidsOf(c.key);
+      rows.push(sub.length
+        ? `<div class="node" data-node="${h(c.key)}">${this.derivedRow(c, page)}<div class="derived">${this.nodes(sub, kidsOf, page).join("")}</div></div>`
+        : this.derivedRow(c, page));
     }
-    if (!ultimate.length && fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup([], fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
-    return `<div class="derived">${rows.join("")}</div>`;
+    return rows;
   }
 
   /** La página sólo si cambia respecto a la línea de arriba. */
@@ -353,7 +393,7 @@ export class ChamberView {
     const note = c.table && v != null ? t.noteOf(c.table, v) : null;
     const resultPage = c.table && v != null ? t.page(c.table, v) : null;
     const needed = c.required && v == null;
-    return `<div class="derived-row${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}" data-key="${h(c.key)}">
+    return `<div class="derived-row${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
       <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.page(c.page, page)}</label>
       <span class="derived-die">${h(bad ? `${c.formula.min}–${c.formula.max}` : die)}</span>
       ${this.input(c)}
@@ -363,15 +403,15 @@ export class ChamberView {
   }
 
   /** Las repetidas: «+10 tiradas de la Tabla C» en una fila de casillas, con lo que salió debajo. */
-  diceRow(items, page) {
+  diceRow(items, page, branched = new Set()) {
     const t = this.t, d = this.d;
     const first = items[0];
     const title = `${groupTitle(first.of)} · ${T("table")} ${t.source(first.table).table}`;
     const results = items.map((c, i) => {
       const v = d.typed[c.key];
-      return v == null ? "" : `<li><span class="dice-n">${i + 1}</span> <span class="result-name">${h(t.name(c.table, v))}</span>${this.page(t.page(c.table, v), page)}</li>`;
+      return v == null || branched.has(c.key) ? "" : `<li><span class="dice-n">${i + 1}</span> <span class="result-name">${h(t.name(c.table, v))}</span>${this.page(t.page(c.table, v), page)}</li>`;
     }).join("");
-    return `<div class="dice-row" data-group="${h(first.key.replace(REPEATED, "$1"))}">
+    return `<div class="dice-row${this.isNew(first.key)}" data-group="${h(first.key.replace(REPEATED, "$1"))}">
       <p class="derived-label">${h(title)}${this.page(first.page, page)}</p>
       <div class="dice-cells">${items.map((c, i) => this.input(c, "dice-cell", `aria-label="${h(title)} ${i + 1}"`)).join("")}</div>
       ${results ? `<ol class="dice-results">${results}</ol>` : ""}
@@ -382,15 +422,21 @@ export class ChamberView {
   ultimateGroup(items, fixedLines) {
     const reasons = items.filter((c) => c.chance).map((c) => c.of.split(/;\s*/)[1] ?? "");
     const shared = reasons.length > 1 && reasons.every((x) => x && x === reasons[0]) ? reasons[0] : "";
-    const rows = items.map((c) => {
+    const row = (c) => {
       const name = shared ? c.of.split(/;\s*/)[0] : c.of;
       const v = this.d.typed[c.key];
-      return `<div class="derived-row is-inline ultimate-row${c.chance && v != null && c.chance.passes(v) ? " is-found" : ""}">
+      return `<div class="derived-row is-inline ultimate-row${this.isNew(c.key)}${c.chance && v != null && c.chance.passes(v) ? " is-found" : ""}">
         <label class="derived-label" for="${idOf(c.key)}">${h(name)}</label>
         <span class="derived-die">${h(c.chance ? c.chance.label : c.formula.label)}</span>
         ${this.input(c)}
         <span class="derived-result">${this.answer(c)}</span>
       </div>`;
+    };
+    // «X.chance» es la tirada de si sale; «X», cuánto sale: va debajo de la suya.
+    const gated = new Set(items.filter((c) => items.some((g) => g.key === `${c.key}.chance`)).map((c) => c.key));
+    const rows = items.filter((c) => !gated.has(c.key)).map((c) => {
+      const amount = c.key.endsWith(".chance") ? items.find((x) => `${x.key}.chance` === c.key) : null;
+      return amount ? `<div class="node" data-node="${h(c.key)}">${row(c)}<div class="derived">${row(amount)}</div></div>` : row(c);
     }).join("");
     const fixed = fixedLines.map((e) => `<p class="fixed-line">${h(E.loc(e.of))}</p>`).join("");
     return `<div class="ultimate-group"><p class="group-title">${h(T("ultimate"))}${shared ? ` <span class="group-hint">· ${h(shared)}</span>` : ""}</p>${rows}${fixed}</div>`;

@@ -38,8 +38,9 @@ function renderLog() {
 function render() {
   const { view, sub, rest } = route();
   document.title = view === "ref" ? `${T("navRef")} · Black Stone` : view === "log" ? `${T("navLog")} · Black Stone` : T("app");
-  const links = [["chamber", T("navChamber")], ["log", T("navLog")], ["ref", T("navRef")]];
-  nav.innerHTML = links.map(([k, v]) => `<a href="#/${k}" ${k === view ? 'aria-current="page"' : ""}>${h(v)}</a>`).join("");
+  // Por ahora la web sólo genera cámaras (decisión del 2026-11-26): el Registro y la Referencia siguen
+  // en #/log y #/ref, pero no salen en el menú. Desde ellas, un enlace de vuelta a la Cámara.
+  nav.innerHTML = view === "chamber" ? "" : `<a href="#/chamber">${h(T("backChamber"))}</a>`;
   langs.innerHTML = ["es", "en"].map((l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang()}">${l.toUpperCase()}</button>`).join("");
   keepFocus(() => {
     main.innerHTML = view === "ref" ? reference.render(sub, rest) : view === "log" ? renderLog() : chamber.render();

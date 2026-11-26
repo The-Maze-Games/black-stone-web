@@ -1,9 +1,10 @@
 // Sin conexión: guarda la app entera la primera vez. Con red, siempre sirve lo nuevo;
 // lo guardado sólo sale si no hay red, así nunca se mezclan archivos de dos versiones.
-const VERSION = "bs-5";
+const VERSION = "bs-6";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/main.js", "js/engine.js", "js/i18n.js", "js/chamber.js", "js/reference.js", "js/db.js", "js/util.js",
+  "fonts/Cinzel-Variable.woff2", "fonts/Alegreya-Variable.woff2", "fonts/Alegreya-Italic.woff2",
   "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png",
   "db/index.json", "db/search.json", "db/tables.json", "db/chambers.json", "db/conditions.json",
   "db/creatures.json", "db/items.json", "db/materials.json", "db/rules.json",

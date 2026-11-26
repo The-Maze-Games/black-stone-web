@@ -1,6 +1,7 @@
 // Pruebas del motor contra las tablas reales. Abrir tests.html: todas deben salir en verde.
 import * as E from "./engine.js";
 import { Db, tableId } from "./db.js";
+import { ChamberView } from "./chamber.js";
 
 const results = [];
 const test = (name, fn) => {
@@ -142,6 +143,61 @@ test("Buscador: «A 57», «d 00», «p. 96» y por nombre", () => {
   ok(db.search("p. 96").length && db.search("p. 96").every((x) => x.page === 96), "p. 96");
   eq(db.search("darkest cave")[0].id, "chamber:the-darkest-cave");
   ok(db.search("hydra", "creature").every((x) => x.type === "creature"), "filtro");
+});
+
+// La pantalla de la Cámara: en las 100 cámaras, con varias tiradas, sale todo lo que pide el motor,
+// cada derivada debajo de la tirada que la pidió y las siete en el orden del libro.
+test("Cámara: en las 100 salas cada derivada sale una vez, bajo su madre y en su tirada; las siete en orden", () => {
+  const view = new ChamberView(t);
+  view.mimics = true;
+  let checked = 0;
+  const cross = new Set();
+  const order = E.ROLLS.map((x) => x.id);
+  for (let n = 1; n <= 100; n++) {
+    for (const v of [1, 23, 55, 77, 99]) {
+      let r = E.typeRoll({}, "chamber", n);
+      for (const id of ["condition", "entries", "timer", "loot", "inhabitant", "mimic"]) {
+        if (E.skipped(id, r, t)) continue;
+        const [a, b] = E.rangeOf(id, E.derive(r, t));
+        r = E.typeRoll(r, id, Math.min(b, Math.max(a, id === "entries" ? 3 : id === "timer" ? 20 : v)));
+      }
+      const typed = {};
+      if (r.condition >= 37 && r.condition <= 41) typed[E.DOUBLE_MODE] = 1;
+      for (let pass = 0; pass < 8; pass++) {
+        let more = false;
+        for (const c of E.children(r, E.derive(r, t), t, typed)) {
+          if (typed[c.key] != null || c.extraction) continue;
+          for (const x of [c.chance ? 3 : null, c.formula.min, c.formula.max, Math.ceil((c.formula.min + c.formula.max) / 2)]) {
+            if (x != null && E.answerValid(c, x, t)) { typed[c.key] = x; more = true; break; }
+          }
+        }
+        if (!more) break;
+      }
+      view.d = { rolls: r, typed, buffers: {}, round: 0, locked: false, mimicHidden: false, live: [], liveBuffers: {}, deaths: 0 };
+      const doc = new DOMParser().parseFromString(view.render(), "text/html");
+      const where = `sala ${n}, tiradas ${v}:`;
+      eq([...doc.querySelectorAll("[data-section]")].map((x) => x.dataset.section), order, `${where} orden`);
+      const kids = E.children(r, E.derive(r, t), t, typed).filter((c) => !c.extraction && c.kind !== "inside");
+      const keys = new Set(kids.map((c) => c.key));
+      for (const c of kids) {
+        const els = [...doc.querySelectorAll("[data-child]")].filter((x) => x.dataset.child === c.key);
+        eq(els.length, 1, `${where} ${c.key} veces`);
+        // La madre: la clave más larga que empieza la suya; «X.chance» es la puerta de «X», así que «X» cuelga de ella.
+        let p = keys.has(`${c.key}.chance`) ? `${c.key}.chance` : null;
+        const self = c.key.replace(/\.chance$/, "");
+        if (!p) for (const k of keys) if (k !== self && self.startsWith(k + ".") && (!p || k.length > p.length)) p = k;
+        // Si la madre está en otra de las siete (los niveles del Deep Tomb y sus esqueletos, que son Habitantes),
+        // la hija va en su tirada, como raíz: el motor decide la sección.
+        const pc = p && kids.find((x) => x.key === p);
+        if (pc && view.sectionOf(pc) !== view.sectionOf(c)) { cross.add(`${n}:${c.key}`); p = null; }
+        if (p) ok([...doc.querySelectorAll("[data-node]")].some((x) => x.dataset.node === p && x.contains(els[0])), `${where} ${c.key} no está bajo ${p}`);
+        eq(els[0].closest("[data-section]").dataset.section, view.sectionOf(c), `${where} ${c.key} sección`);
+        checked++;
+      }
+    }
+  }
+  ok(checked > 2000, `sólo ${checked} derivadas`);
+  console.log("Cámara: derivadas revisadas", checked, "· hijas en otra tirada que su madre:", [...new Set([...cross].map((x) => x.split(":")[0]))].join(", "));
 });
 
 const ul = document.getElementById("results");
