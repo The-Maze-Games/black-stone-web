@@ -55,6 +55,35 @@ input:disabled::placeholder { color: var(--line); }
 textarea { color: var(--fg); background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); }
 .is-invalid { color: var(--danger) !important; }
 input.is-invalid { box-shadow: inset 0 0 0 2px var(--danger) !important; background: var(--box); color: var(--danger) !important; }
+/* Las casillas de dado: ficha de hueso con filete de oro por dentro, el mismo marco doble de la carta.
+   Vacías son una ranura oscura con el filete apagado; la que toca brilla en carmesí. */
+:is(input.roll-input, input.derived-input, input.dice-cell) {
+  --gap: #ece2d0; font-family: var(--title); font-weight: 700; color: #1a0f08; border-radius: 2px;
+  background: linear-gradient(#f6efe2, #e2d5bd);
+  box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px rgba(168, 134, 79, .9), inset 0 -4px 0 rgba(80, 55, 25, .22),
+    0 0 0 1px #6b5532, 0 3px 10px rgba(0, 0, 0, .7);
+  transition: box-shadow .2s, background .2s;
+}
+:is(input.roll-input, input.derived-input, input.dice-cell)::placeholder { font-family: var(--text); font-weight: 400; font-style: italic; color: #7a6544; }
+:is(input.roll-input, input.derived-input, input.dice-cell):placeholder-shown {
+  --gap: #080605; background: #080605; color: var(--fg);
+  box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px var(--gold-dim), 0 0 0 1px var(--gold-dim);
+}
+:is(input.roll-input, input.derived-input, input.dice-cell):hover:not(:disabled) { box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px var(--gold), 0 0 0 1px var(--gold), 0 3px 10px rgba(0, 0, 0, .7); }
+.is-current input.roll-input:placeholder-shown { box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px var(--accent), 0 0 0 1px var(--accent), 0 0 18px var(--ember); }
+:is(input.roll-input, input.derived-input, input.dice-cell):focus {
+  box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px var(--accent), 0 0 0 1px var(--accent), 0 0 0 4px rgba(179, 18, 30, .25), 0 0 24px rgba(179, 18, 30, .45);
+}
+:is(input.roll-input, input.derived-input, input.dice-cell):disabled { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+:is(input.roll-input, input.derived-input, input.dice-cell):disabled::placeholder { color: #3a332b; }
+:is(input.roll-input, input.derived-input, input.dice-cell).is-invalid {
+  --gap: #ece2d0; background: linear-gradient(#f6efe2, #e2d5bd); color: var(--danger) !important;
+  box-shadow: inset 0 0 0 3px var(--gap), inset 0 0 0 4px var(--danger), 0 0 0 1px var(--danger), 0 0 16px rgba(224, 67, 77, .35) !important;
+}
+.roll-value, .derived-value { font-family: var(--title); font-weight: 700; background: linear-gradient(#f6efe2, #e2d5bd); color: #1a0f08;
+  box-shadow: inset 0 0 0 3px #ece2d0, inset 0 0 0 4px rgba(168, 134, 79, .9), 0 0 0 1px #6b5532 !important; padding: 6px 12px; border-radius: 2px; }
+.derived-value { display: inline-grid; place-items: center; }
+
 button {
   font: 700 15px/1 var(--title); letter-spacing: .1em; min-height: 48px; padding: 12px 22px; border-radius: 0;
   border: 1px solid var(--fg); background: transparent; color: var(--fg); cursor: pointer;
