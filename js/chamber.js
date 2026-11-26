@@ -13,6 +13,8 @@ const READING_NOTES = { C: ["*", "plain", "ore"], D: ["†"] };
 /** «Arma 2 · 4.8» → «Arma»; «diez tiradas extra · 3 · C» → «diez tiradas extra». */
 const groupTitle = (of) => of.replace(/\s·\s[\w.]+$/, "").replace(/(\s·\s|\s)\d+$/, "");
 const REPEATED = /^(.*)\.(item|w)(\d+)$/;
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
+const r0 = (d) => d.rolls.chamber != null;
 
 export class ChamberView {
   constructor(tables, onLogChange) {
@@ -133,22 +135,54 @@ export class ChamberView {
     const poster = this.poster(der);
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
     this.seen = this.fresh;
+    const side = (extra = "") => `<aside class="chamber-side">${poster}${this.ladder(ids, der)}${this.progress(sections)}${extra}</aside>`;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
-        ${poster}
-        <details class="chamber-summary"><summary>${h(T("theRolls"))}</summary>${sections}</details>
-        ${this.playing(der)}
+        ${side()}
+        <div class="chamber-body">
+          <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("theRolls"))}</summary>${sections}</details>
+          ${this.playing(der)}
+        </div>
       </div>`;
     }
+    const enter = `<button type="button" class="primary" data-action="enter">${h(T("enter"))}</button>`;
     return `<div class="chamber" data-state="setup">
-      ${poster}
-      ${sections}
-      <label class="mimic-switch"><input type="checkbox" data-action="mimics" ${this.mimics ? "checked" : ""}> ${h(T("useMimics"))} <span class="page">${h(T("page")(85))}</span></label>
-      <div class="chamber-actions">
-        <button type="button" class="primary" data-action="enter">${h(T("enter"))}</button>
-        ${Object.keys(d.rolls).length ? askButton(this.asking, "new", T("newChamber"), T("confirmNew"), T("yes"), T("cancel")) : ""}
+      ${side(r0(d) ? `<div class="side-actions">${enter}</div>` : "")}
+      <div class="chamber-body">
+        ${sections}
+        <label class="mimic-switch"><input type="checkbox" data-action="mimics" ${this.mimics ? "checked" : ""}> ${h(T("useMimics"))} <span class="page">${h(T("page")(85))}</span></label>
+        <div class="chamber-actions">
+          ${enter}
+          ${Object.keys(d.rolls).length ? askButton(this.asking, "new", T("newChamber"), T("confirmNew"), T("yes"), T("cancel")) : ""}
+        </div>
       </div>
     </div>`;
+  }
+
+  /** Las siete en una escalera: dónde vas, qué salió, y un salto a cada una. */
+  ladder(ids, der) {
+    const d = this.d, r = d.rolls, t = this.t;
+    const next = d.locked ? null : r.chamber == null ? "chamber" : E.pending(r, t)[0];
+    const items = ids.map((id, i) => {
+      const skip = r.chamber != null && E.skipped(id, r, t);
+      const fixed = skip && id === "entries" && der.entryChange === "fixed";
+      const v = fixed ? der.entries : skip ? "—" : id === "mimic" && d.mimicHidden && r[id] != null ? "•" : r[id];
+      const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : v != null ? "is-done" : "";
+      return `<li class="ladder-item ${state}"><button type="button" data-action="jump" data-to="${id}">
+        <span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span><span class="ladder-v">${v != null ? h(v) : ""}</span>
+      </button></li>`;
+    }).join("");
+    return `<nav class="ladder" aria-label="${h(T("theRolls"))}"><ol>${items}</ol></nav>`;
+  }
+
+  /** Cuántas casillas de la pantalla ya tienen su dado. */
+  progress(html) {
+    const boxes = html.match(/<input\b[^>]*\bdata-(?:roll|child)="[^>]*>/g) ?? [];
+    const open = boxes.filter((b) => !/\bdisabled\b/.test(b));
+    const full = open.filter((b) => /\bvalue="[^"]/.test(b)).length;
+    if (!open.length || this.d.locked || this.d.rolls.chamber == null) return "";
+    return `<div class="progress"><p class="progress-text">${h(T("boxes")(full, open.length))}</p>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${open.length}" aria-valuenow="${full}"><span style="width:${(100 * full / open.length).toFixed(1)}%"></span></div></div>`;
   }
 
   /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
@@ -215,7 +249,7 @@ export class ChamberView {
   head(id, n, der, skip, fixed) {
     const d = this.d, r = d.rolls;
     const input = idOf(`roll.${id}`);
-    const label = `<label class="roll-label" for="${input}"><span class="roll-n">${n}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></label>`;
+    const label = `<label class="roll-label" for="${input}"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></label>`;
     if (fixed) return `<div class="roll-head">${label}<span class="roll-value">${h(der.entries)}</span></div>`;
     if (skip) return `<div class="roll-head">${label}<span class="roll-value">—</span></div>`;
     const die = id === "entries" ? der.entryDie : id === "timer" ? `${der.timerDice}d10` : E.rollDef(id).die;
@@ -560,6 +594,15 @@ export class ChamberView {
       const el = ev.target.closest("button[data-action]");
       if (!el) return;
       const a = el.dataset.action;
+      if (a === "jump") {
+        if (this.d.locked && !this.openRolls) { this.openRolls = true; rerender(); }
+        const s = root.querySelector(`[data-section="${el.dataset.to}"]`);
+        if (!s) return;
+        const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        s.scrollIntoView({ block: "start", behavior: still ? "auto" : "smooth" });
+        s.querySelector("input:not(:disabled)")?.focus({ preventScroll: true });
+        return;
+      }
       if (a === "mimic-toggle") this.d.mimicHidden = !this.d.mimicHidden;
       else if (a === "enter") { if (!this.enter(root)) return; window.scrollTo({ top: 0 }); }
       else if (a === "new" || a === "discard") { this.asking = a; rerender(); return; }
@@ -577,6 +620,9 @@ export class ChamberView {
       this.save();
       rerender();
     });
+    root.addEventListener("toggle", (ev) => {
+      if (ev.target.classList?.contains("chamber-summary")) this.openRolls = ev.target.open;
+    }, true);
     root.addEventListener("submit", (ev) => {
       if (ev.target.dataset.form !== "close") return;
       ev.preventDefault();
