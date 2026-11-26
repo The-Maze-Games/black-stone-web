@@ -136,8 +136,7 @@ export class ChamberView {
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
     const ladder = this.ladder(ids, der);
     this.seen = this.fresh;
-    const progress = this.progress(ladder + sections);
-    const side = (extra = "") => `<aside class="chamber-side">${poster}${ladder}${progress}${extra}</aside>`;
+    const side = (extra = "") => `<aside class="chamber-side">${poster}${ladder}${extra}</aside>`;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
         ${side()}
@@ -152,7 +151,6 @@ export class ChamberView {
       ${side(r0(d) ? `<div class="side-actions">${enter}</div>` : "")}
       <div class="chamber-body">
         ${sections}
-        <label class="mimic-switch"><input type="checkbox" data-action="mimics" ${this.mimics ? "checked" : ""}> ${h(T("useMimics"))} <span class="page">${h(T("page")(85))}</span></label>
         <div class="chamber-actions">
           ${enter}
           ${Object.keys(d.rolls).length ? askButton(this.asking, "new", T("newChamber"), T("confirmNew"), T("yes"), T("cancel")) : ""}
@@ -175,16 +173,10 @@ export class ChamberView {
         ${this.rollBox(id, der, skip, fixed)}
       </li>`;
     }).join("");
-    return `<section class="ladder" aria-label="${h(T("theRolls"))}"><h2 class="ladder-title">${h(T("theRolls"))}</h2><ol>${items}</ol></section>`;
-  }
-
-  /** Cuántas casillas de la pantalla ya tienen su dado. */
-  progress(html) {
-    const boxes = html.match(/<input\b[^>]*\bdata-(?:roll|child)="[^>]*>/g) ?? [];
-    const open = boxes.filter((b) => !/\bdisabled\b/.test(b));
-    const full = open.filter((b) => /\bvalue="[^"]/.test(b)).length;
-    if (!open.length || this.d.locked || this.d.rolls.chamber == null) return "";
-    return `<div class="progress"><p class="progress-text">${h(T("boxes")(full, open.length))}</p></div>`;
+    // Mímicos (p. 85) es opcional: arriba, un botón que se vuelve la tirada VII al pulsarlo.
+    const add = !d.locked && !this.mimics ? `<li class="ladder-item ladder-add"><button type="button" data-action="mimics-on">
+        <span class="ladder-n">VII</span><span class="ladder-name">${h(T("useMimics"))}</span><span class="page">${h(T("page")(85))}</span></button></li>` : "";
+    return `<section class="ladder" aria-label="${h(T("theRolls"))}"><h2 class="ladder-title">${h(T("theRolls"))}</h2><ol>${items}${add}</ol></section>`;
   }
 
   /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
@@ -275,7 +267,7 @@ export class ChamberView {
         inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(die)}"
         ${waiting ? "disabled" : ""} ${bad ? 'aria-invalid="true"' : ""} aria-describedby="${input}-die">
       <span id="${input}-die" class="roll-die${bad ? " is-invalid" : ""}">${h(bad ? `${a}–${b}` : die)}</span>
-      ${id === "mimic" ? `<button type="button" class="quiet ladder-toggle" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button>` : ""}`;
+      ${id === "mimic" ? `<span class="ladder-tools"><button type="button" class="quiet ladder-toggle" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button><button type="button" class="quiet ladder-toggle" data-action="mimics-off">${h(T("dropMimics"))}</button></span>` : ""}`;
   }
 
   /** El nombre del resultado con su página, y la nota plegada. */
@@ -603,6 +595,13 @@ export class ChamberView {
       const el = ev.target.closest("button[data-action]");
       if (!el) return;
       const a = el.dataset.action;
+      if (a === "mimics-on" || a === "mimics-off") {
+        this.mimics = a === "mimics-on";
+        store.set("bs.mimics", this.mimics);
+        rerender();
+        root.querySelector(this.mimics ? "[data-roll=mimic]" : "[data-roll=inhabitant]")?.focus();
+        return;
+      }
       if (a === "mimic-toggle") this.d.mimicHidden = !this.d.mimicHidden;
       else if (a === "enter") { if (!this.enter(root)) return; window.scrollTo({ top: 0 }); }
       else if (a === "new" || a === "discard") { this.asking = a; rerender(); return; }
