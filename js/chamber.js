@@ -160,21 +160,19 @@ export class ChamberView {
   /** La cabecera tipo cartel: número y nombre de la cámara, y en una línea lo que ya se sabe de ella. */
   poster(der) {
     const t = this.t, r = this.d.rolls;
-    if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
-    const parts = [];
-    if (!E.skipped("condition", r, t) && !der.conditionExcluded && r.condition != null) parts.push(t.name("B", der.rule?.fixedCondition ?? r.condition));
-    if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) parts.push(T("entriesN")(der.entries));
-    if (der.sealed) parts.push(T("sealed"));
-    else if (der.open) parts.push(T("noCountdown"));
-    else if (der.timer != null) parts.push(T("rounds")(der.timer));
-    if (!E.skipped("loot", r, t) && r.loot != null) parts.push(t.name("C", r.loot));
-    if (!E.skipped("inhabitant", r, t) && r.inhabitant != null) parts.push(t.name("D", r.inhabitant));
+    if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-name">${h(T("posterEmpty"))}</p><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
+    const facts = [];
+    if (!E.skipped("condition", r, t) && !der.conditionExcluded && r.condition != null) facts.push(["condition", t.name("B", der.rule?.fixedCondition ?? r.condition)]);
+    if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) facts.push(["entries", der.entries]);
+    if (der.sealed) facts.push(["timer", T("sealed")]);
+    else if (der.open) facts.push(["timer", T("noCountdown")]);
+    else if (der.timer != null) facts.push(["timer", T("rounds")(der.timer)]);
+    if (!E.skipped("loot", r, t) && r.loot != null) facts.push(["loot", t.name("C", r.loot)]);
+    if (!E.skipped("inhabitant", r, t) && r.inhabitant != null) facts.push(["inhabitant", t.name("D", r.inhabitant)]);
     return `<header class="poster${this.isNew("poster:" + r.chamber)}">
       <p class="poster-n">${h(String(r.chamber).padStart(2, "0"))}</p>
-      <div class="poster-text">
-        <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
-        ${parts.length ? `<p class="poster-sum">${parts.map((p) => `<span>${h(p)}</span>`).join("")}</p>` : ""}
-      </div>
+      <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
+      ${facts.length ? `<dl class="poster-facts">${facts.map(([k, v]) => `<div><dt>${h(T(`roll_${k}`))}</dt><dd>${h(v)}</dd></div>`).join("")}</dl>` : ""}
     </header>`;
   }
 
@@ -188,7 +186,8 @@ export class ChamberView {
     const fixedLines = r.chamber != null ? E.fixedExtras(der.rule).filter((e) => e.section === id) : [];
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}" data-section="${id}" style="--n:${n}">
+    const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result">${body}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
