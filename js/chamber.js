@@ -184,11 +184,7 @@ export class ChamberView {
     const open = boxes.filter((b) => !/\bdisabled\b/.test(b));
     const full = open.filter((b) => /\bvalue="[^"]/.test(b)).length;
     if (!open.length || this.d.locked || this.d.rolls.chamber == null) return "";
-    const pct = (100 * full / open.length).toFixed(1);
-    const from = this.lastPct;
-    this.lastPct = pct;
-    return `<div class="progress"><p class="progress-text">${h(T("boxes")(full, open.length))}</p>
-      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${open.length}" aria-valuenow="${full}"><span style="--from:${from ?? pct}%;width:${pct}%"></span></div></div>`;
+    return `<div class="progress"><p class="progress-text">${h(T("boxes")(full, open.length))}</p></div>`;
   }
 
   /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
@@ -414,7 +410,7 @@ export class ChamberView {
     if (v == null) return "";
     if (c.chance) return c.chance.passes(v) ? `<span class="derived-yes">✓</span>` : `<span class="derived-no">✗</span>`;
     if (c.table) return `<span class="result-name">${h(t.name(c.table, v))}</span>`;
-    return `<span class="derived-total">→ ${h(c.formula.total(v))}</span>`;
+    return `<span class="derived-total">= ${h(c.formula.total(v))}</span>`;
   }
 
   input(c, cls = "derived-input", aria = "") {

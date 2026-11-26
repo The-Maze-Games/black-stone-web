@@ -141,9 +141,6 @@ button:disabled { opacity: .35; cursor: default; }
 
 .progress { margin-top: 18px; }
 .progress-text { font: italic 400 15px var(--text); color: var(--dim); }
-.progress-bar { height: 3px; background: var(--line); margin-top: 6px; }
-.progress-bar span { display: block; height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: fill .7s cubic-bezier(.2, .8, .2, 1) both; }
-@keyframes fill { from { width: var(--from); } }
 .side-actions { margin-top: 18px; }
 .side-actions button { width: 100%; }
 
@@ -191,7 +188,11 @@ button:disabled { opacity: .35; cursor: default; }
 .roll-note { margin: 2px 0; }
 .roll-note summary { color: var(--dim); font-size: 15px; font-style: italic; cursor: pointer; padding: 4px 0; }
 .roll-note summary::marker { color: var(--gold); }
-.roll-note p { font-size: 16px; margin: 2px 0 6px; max-width: 70ch; }
+.roll-note p { font-size: 16px; line-height: 1.55; max-width: 68ch; }
+.roll-note[open] { margin: 4px 0 10px; }
+.roll-note[open] > summary { color: var(--gold); }
+.roll-note[open] > :not(summary) { margin: 4px 0 0; padding: 10px 14px; border-left: 2px solid var(--gold-dim); background: linear-gradient(90deg, rgba(168, 134, 79, .07), transparent 70%); animation: grow .25s cubic-bezier(.2, .7, .2, 1); }
+.roll-note[open] > p + p { margin-top: 0; padding-top: 0; }
 
 /* El árbol de lo que cuelga de cada tirada */
 .derived { position: relative; margin: 8px 0 0 60px; padding-left: 22px; }
@@ -200,15 +201,15 @@ button:disabled { opacity: .35; cursor: default; }
 .derived > *::before { content: ""; position: absolute; left: -22px; top: 22px; width: 14px; height: 1px; background: var(--gold-dim); }
 .derived > * { position: relative; }
 .derived > .node::before, .derived > .branch::before { top: 22px; }
-.derived-row { display: grid; grid-template-columns: minmax(0, 1fr) auto 4.4em; grid-template-areas: "label die input" "result result result" "note note note"; align-items: center; gap: 2px 10px; padding: 5px 0; }
+/* Cada derivada: el nombre arriba, debajo su dado y lo que salió, y la casilla a la derecha a lo alto de las dos líneas. */
+.derived-row, .derived-row.is-inline { display: grid; grid-template-columns: auto minmax(0, 1fr) 4.6em; grid-template-areas: "label label input" "die result input" "note note note"; align-items: center; gap: 0 10px; padding: 7px 0; }
 .derived-label { grid-area: label; font-size: 17px; }
-.derived-die { grid-area: die; color: var(--dim); font-size: 15px; font-style: italic; text-align: right; white-space: nowrap; }
-.derived-input, .derived-value { grid-area: input; width: 4.4em; min-height: 36px !important; font-size: 17px !important; text-align: center; }
+.derived-die { grid-area: die; color: var(--dim); font-size: 15px; font-style: italic; white-space: nowrap; align-self: start; }
+.derived-input, .derived-value { grid-area: input; width: 4.6em; min-height: 36px !important; font-size: 17px !important; text-align: center; }
 .derived-value { font-weight: 700; }
-.derived-result { grid-area: result; font-size: 17px; }
-.derived-result:empty { display: none; }
+.derived-result { grid-area: result; font-size: 16px; align-self: start; min-height: 1.4em; }
 .derived-row .roll-note { grid-area: note; }
-.derived-total { font-weight: 700; }
+.derived-total { font: 700 16px var(--title); color: var(--fg); }
 .derived-yes { color: var(--accent); font: 700 13px var(--title); letter-spacing: .1em; }
 .derived-yes::after { content: " Found"; font: italic 600 16px var(--text); letter-spacing: 0; }
 :lang(es) .derived-yes::after { content: " Sale"; }
@@ -224,8 +225,6 @@ button:disabled { opacity: .35; cursor: default; }
 .branch-title { font-size: 16px; }
 .ultimate-group { padding: 8px 0 4px; }
 .group-title { font: 700 16px var(--title); letter-spacing: .04em; color: var(--gold); }
-.derived-row.is-inline { grid-template-columns: minmax(0, 1fr) auto 4.4em 5.5em; grid-template-areas: "label die input result" "note note note note"; }
-.derived-row.is-inline .derived-result:empty { display: block; }
 .ultimate-row.is-found .derived-label { font-weight: 700; color: var(--accent); }
 .derived-label, .group-title, .derived-die { overflow-wrap: anywhere; }
 
@@ -262,7 +261,7 @@ button:disabled { opacity: .35; cursor: default; }
 .is-unfolding .derived > :nth-child(10) { animation-delay: 0.68s; }
 @media (prefers-reduced-motion: reduce) {
   .is-new, .poster.is-new, .poster.is-new .poster-n, .ladder-item.is-stamped, .ladder-item.is-stamped .roll-input, .roll-section.is-unfolding,
-  .is-unfolding .roll-n::before, .is-unfolding .derived::before, .is-unfolding .derived > *, .progress-bar span { animation: none; }
+  .is-unfolding .roll-n::before, .is-unfolding .derived::before, .is-unfolding .derived > * { animation: none; }
 }
 /* Limpio: con la cámara ya elegida, las tiradas que aún no tienen nada que mostrar no ocupan sitio abajo. */
 .chamber:has(.poster:not(.is-empty)) .roll-section.is-waiting:not(:has(.derived, .roll-result, .choice)) { display: none; }
@@ -307,9 +306,6 @@ button:disabled { opacity: .35; cursor: default; }
   .derived .derived { margin-left: 0; }
   .derived { padding-left: 16px; }
   .derived > *::before { left: -16px; width: 10px; }
-  .derived-row, .derived-row.is-inline { grid-template-columns: minmax(0, 1fr) auto 4em; grid-template-areas: "label label label" "die input result" "note note note"; }
-  .derived-row { grid-template-areas: "label label label" "result die input" "note note note"; }
-  .derived-input, .derived-value { width: 4em; }
   .roll-n { font-size: 14px; width: 34px; height: 34px; }
   .roll-name { font-size: 19px; }
   .roll-section.is-current::before { left: -10px; }
