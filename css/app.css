@@ -329,7 +329,7 @@ button:disabled { opacity: .35; cursor: default; }
 .bonfire-doors button { min-height: 34px; padding: 6px 14px; font-size: 13px; }
 
 .play-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gold-dim); margin-bottom: 4px; overflow-x: auto; scrollbar-width: none; }
-.play-tab { position: relative; border: 0; min-height: 46px; padding: 10px 20px; color: var(--dim); font-size: 14px; letter-spacing: .12em; white-space: nowrap; }
+.play-tab { flex: none; position: relative; border: 0; min-height: 46px; padding: 10px 20px; color: var(--dim); font-size: 14px; letter-spacing: .12em; white-space: nowrap; }
 .play-tab:hover { background: none; color: var(--fg); }
 .play-tab[aria-selected="true"] { color: var(--fg); }
 .play-tab[aria-selected="true"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: draw-x .3s cubic-bezier(.2, .8, .2, 1); }
@@ -389,9 +389,21 @@ button:disabled { opacity: .35; cursor: default; }
 .end-rounds strong { font: 900 34px var(--title); color: var(--fg); }
 .close-form textarea { width: 100%; font-size: 17px; line-height: 1.5; }
 .close-form .chamber-actions { margin-top: 16px; }
-.record-preview { margin-top: 14px; }
-.record-preview summary { color: var(--dim); cursor: pointer; font-style: italic; padding: 6px 0; }
-.record-preview pre { white-space: pre-wrap; font: 15px/1.5 var(--text); color: #cfc6b8; background: var(--soft); border-left: 2px solid var(--gold-dim); padding: 12px 14px; margin: 6px 0 0; }
+/* Ítems y Bestiario: fichas en rejilla que entran una tras otra. */
+.entity-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 10px; }
+.entity { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "mark mark" "name qty" "page qty"; align-items: center; gap: 2px 10px;
+  padding: 12px 14px; border: 1px solid var(--line); background: linear-gradient(#0b0908, #050404); animation: grow .35s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 40ms); transition: border-color .2s; }
+.entity:hover { border-color: var(--gold-dim); }
+.entity-mark { grid-area: mark; width: 10px; height: 10px; margin-bottom: 4px; background: var(--gold-dim); clip-path: var(--star); }
+.is-beasts .entity-mark { background: var(--accent); }
+.entity-name { grid-area: name; font: 700 16px/1.2 var(--title); letter-spacing: .03em; }
+.entity .page { grid-area: page; }
+.entity .m-qty, .entity .dm-box { grid-area: qty; }
+.entity .dm-box { width: auto; min-width: 2.8em; min-height: 28px; font-size: 13px; padding: 0 8px; }
+.entity.is-relic, .entity.is-found { border-color: rgba(233, 195, 122, .6); background: linear-gradient(120deg, rgba(179, 18, 30, .35), rgba(233, 195, 122, .1)); box-shadow: 0 0 18px rgba(179, 18, 30, .3); }
+.entity.is-relic .entity-name, .entity.is-found .entity-name { color: #f6e2b0; text-shadow: 0 0 12px rgba(230, 170, 70, .5); }
+.entity.is-relic .entity-mark, .entity.is-found .entity-mark { background: #e9c37a; }
+@media (prefers-reduced-motion: reduce) { .entity { animation: none; } }
 
 /* Lo que está en la cámara sin tirar (agua abundante, Forest…): banda de oro, va primero. */
 .derived-row.dm-row.is-sure { margin: 2px 0; padding: 7px 10px; background: linear-gradient(90deg, rgba(168, 134, 79, .14), transparent 80%); border-left: 2px solid var(--gold); }
@@ -463,7 +475,9 @@ button:disabled { opacity: .35; cursor: default; }
   .round-value { font-size: 38px; }
   .round-btn { width: 40px; min-height: 40px; }
   .door-status { font-size: 16px; }
-  .play-tab { padding: 10px 14px; letter-spacing: .08em; }
+  .play-tabs { margin-left: -6px; margin-right: -6px; flex-wrap: wrap; overflow: visible; }
+  .play-tab { padding: 10px 9px; font-size: 12px; letter-spacing: .05em; }
+  .tab-badge { min-width: 18px; height: 18px; margin-left: 4px; padding: 0 4px; font-size: 11px; }
   .live-row { grid-template-columns: minmax(0, 1fr); }
   .live-inputs { justify-content: flex-start; }
   .outcomes { grid-template-columns: minmax(0, 1fr); }

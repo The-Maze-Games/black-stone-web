@@ -635,9 +635,15 @@ export class ChamberView {
   playing(der, sections, ids) {
     const d = this.d;
     const pending = this.extractable().length + E.live(d.rolls, der).length;
-    const tabs = [["room", T("tabRoom"), ""], ["extract", T("tabExtract"), pending ? String(pending) : ""], ["end", T("tabEnd"), ""]];
+    const groups = this.manifest(der, ids);
+    // Ítems y Bestiario sólo si hay botín o criaturas. Las fichas con stats llegan después.
+    const items = groups.filter((g) => g.id === "loot").flatMap((g) => g.items).filter((it) => it.kind !== "head" || !groups.find((g) => g.id === "loot").items.some((x) => x.kind !== "head"));
+    const beasts = groups.filter((g) => g.id === "inhabitant" || g.id === "mimic").flatMap((g) => g.items).filter((it) => it.kind !== "head");
+    const tabs = [["room", T("tabRoom"), ""], items.length && ["items", T("tabItems"), String(items.length)], beasts.length && ["beasts", T("tabBeasts"), String(beasts.length)],
+      ["extract", T("tabExtract"), pending ? String(pending) : ""], ["end", T("tabEnd"), ""]].filter(Boolean);
     const tab = tabs.some(([k]) => k === d.tab) ? d.tab : "room";
-    const body = tab === "extract" ? this.extractTab(der) : tab === "end" ? this.endTab(der, ids) : this.roomTab(der, sections, ids);
+    const body = tab === "extract" ? this.extractTab(der) : tab === "end" ? this.endTab()
+      : tab === "items" ? this.listTab(items, "items") : tab === "beasts" ? this.listTab(beasts, "beasts") : this.roomTab(der, sections, ids, groups);
     return `${this.roundBar(der)}
       <nav class="play-tabs" role="tablist" aria-label="${h(T("inChamber"))}">
         ${tabs.map(([k, label, badge]) => `<button type="button" role="tab" class="play-tab" data-action="tab" data-tab="${k}" aria-selected="${k === tab}" id="tab-${k}">${h(label)}${badge ? ` <span class="tab-badge">${h(badge)}</span>` : ""}</button>`).join("")}
@@ -683,9 +689,8 @@ export class ChamberView {
   }
 
   /** «La sala»: lo que hay, en fichas por tirada. Las tiradas completas quedan plegadas debajo. */
-  roomTab(der, sections, ids) {
+  roomTab(der, sections, ids, groups) {
     const d = this.d, r = d.rolls, t = this.t;
-    const groups = this.manifest(der, ids);
     const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
     const cards = groups.map((g) => `<div class="m-card m-${g.id}">
       <h3 class="m-title"><span class="roll-n">${ROMAN[ids.indexOf(g.id)] ?? ""}</span>${h(g.title)}</h3>
@@ -697,6 +702,17 @@ export class ChamberView {
         <label class="choice-option"><input type="radio" name="torcher" data-choice="${E.TORCHER_TRIGGER}" value="0" ${d.typed[E.TORCHER_TRIGGER] === 0 ? "checked" : ""}> ${h(T("torcherNo"))}</label></fieldset>` : ""}
       <div class="manifest">${cards || `<p class="empty">${h(T("nothingHere"))}</p>`}</div>
       <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("rollsDetail"))}</summary>${sections}</details>`;
+  }
+
+  /** «Ítems» o «Bestiario»: una ficha por cosa, con su página y cuántas hay. Aquí irán sus stats. */
+  listTab(list, kind) {
+    const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
+    return `<ul class="entity-grid is-${kind}">${list.map((it, i) => `<li class="entity${it.kind ? ` is-${it.kind}` : ""}" style="--i:${i}">
+      <span class="entity-mark" aria-hidden="true"></span>
+      <p class="entity-name">${h(it.name)}</p>
+      ${it.page ? `<p class="page">${h(T("page")(it.page))}</p>` : ""}
+      ${qty(it)}
+    </li>`).join("")}</ul>`;
   }
 
   /** Lo que hay en la cámara, por tirada: el resultado y, debajo, cada cosa que salió con su cantidad.
@@ -810,8 +826,8 @@ export class ChamberView {
     </div>`;
   }
 
-  /** «Terminar»: cómo acabó, las muertes y las notas; guardar en el registro y compartirlo. */
-  endTab(der, ids) {
+  /** «Terminar»: cómo acabó, las muertes y las notas, y guardarlo en el registro. */
+  endTab() {
     const d = this.d;
     const outcome = d.outcome ?? Object.keys(T("outcomes"))[0];
     return `<form class="close-form" data-form="close">
@@ -831,32 +847,9 @@ export class ChamberView {
       <textarea id="close-notes" name="notes" data-field="notes" rows="4" placeholder="${h(T("notesHint"))}">${h(d.notes ?? "")}</textarea>
       <div class="chamber-actions">
         <button type="submit" class="primary">${h(T("save"))}</button>
-        <button type="button" data-action="share">${h(this.flash === "copied" ? T("copied") : T("share"))}</button>
-        <button type="button" class="quiet" data-action="download">${h(T("download"))}</button>
         ${askButton(this.asking, "discard", T("discard"), T("confirmDiscard"), T("yes"), T("cancel"))}
       </div>
-      <details class="record-preview"><summary>${h(T("preview"))}</summary><pre>${h(this.recordText(der, ids))}</pre></details>
     </form>`;
-  }
-
-  /** El registro en texto llano, para copiarlo, compartirlo o bajarlo. */
-  recordText(der, ids) {
-    const d = this.d, t = this.t, r = d.rolls;
-    const lines = [`Black Stone · ${T("roll_chamber")} ${String(r.chamber).padStart(2, "0")} · ${t.chamberName(r.chamber)} (${T("page")(t.page("A", r.chamber))})`];
-    const meta = [der.entries != null ? T("entriesN")(der.entries) : null, der.timer != null && !der.sealed && !der.open ? T("rounds")(der.timer) : null,
-      `${T("roundsPlayed")}: ${d.round}`].filter(Boolean);
-    lines.push(meta.join(" · "), "");
-    for (const g of this.manifest(der, ids)) {
-      lines.push(`${g.title}:`);
-      g.items.forEach((it) => lines.push(`  - ${it.name}${it.qty != null ? (typeof it.qty === "number" ? ` ×${it.qty}` : ` · ${it.qty}`) : ""}${it.page ? ` (${T("page")(it.page)})` : ""}`));
-    }
-    if (d.live.length) {
-      lines.push("", `${T("recorded")}:`);
-      d.live.forEach((e) => lines.push(`  - ${T("roundShort")}${e.round} · ${e.text}`));
-    }
-    lines.push("", `${T("outcome")}: ${T("outcomes")[d.outcome ?? Object.keys(T("outcomes"))[0]]} · ${T("deaths")}: ${d.deaths}`);
-    if ((d.notes ?? "").trim()) lines.push("", `${T("notes")}:`, d.notes.trim());
-    return lines.join("\n");
   }
 
   recordExtract(key) {
@@ -869,40 +862,12 @@ export class ChamberView {
     delete this.d.liveBuffers[key];
   }
 
-  async share(der, ids) {
-    const text = this.recordText(der, ids);
-    try {
-      if (navigator.share) { await navigator.share({ title: "Black Stone", text }); return false; }
-    } catch (err) { if (err?.name === "AbortError") return false; }
-    try { await navigator.clipboard.writeText(text); this.flash = "copied"; return true; } catch { return false; }
-  }
-
-  download(der, ids) {
-    const r = this.d.rolls;
-    const blob = new Blob([this.recordText(der, ids)], { type: "text/plain;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `black-stone-${String(r.chamber).padStart(2, "0")}-${new Date().toISOString().slice(0, 10)}.txt`;
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  }
-
   // ---------------------------------------------------------------- eventos
-
-  /** El texto del registro al día mientras se escriben las notas, sin repintar (se perdería el foco). */
-  refreshPreview(root) {
-    const pre = root.querySelector(".record-preview pre");
-    if (!pre) return;
-    const ids = E.ROLLS.map((x) => x.id).filter((id) => id !== "mimic" || this.mimics);
-    pre.textContent = this.recordText(E.derive(this.d.rolls, this.t), ids);
-  }
 
   bind(root, rerender) {
     root.addEventListener("input", (ev) => {
       const el = ev.target;
-      if (el.dataset.field && el.type !== "radio") { this.d[el.dataset.field] = el.value; this.save(); this.refreshPreview(root); return; }
+      if (el.dataset.field && el.type !== "radio") { this.d[el.dataset.field] = el.value; this.save(); return; }
       if (el.dataset.roll) { this.setRoll(el.dataset.roll, el.value); rerender(); }
       else if (el.dataset.child) { this.setChild(el.dataset.child, el.value); rerender(); }
       else if (el.dataset.live) {
@@ -912,7 +877,7 @@ export class ChamberView {
     });
     root.addEventListener("change", (ev) => {
       const el = ev.target;
-      if (el.dataset.field && el.type === "radio") { this.d[el.dataset.field] = el.value; this.save(); this.refreshPreview(root); }
+      if (el.dataset.field && el.type === "radio") { this.d[el.dataset.field] = el.value; this.save(); }
       else if (el.dataset.choice) { this.setChoice(el.dataset.choice, +el.value); rerender(); }
       else if (el.dataset.flag) {
         if (el.checked) this.d.typed[el.dataset.flag] = 1; else delete this.d.typed[el.dataset.flag];
@@ -947,14 +912,7 @@ export class ChamberView {
       else if (a === "doors-close") this.d.typed[E.DOORS] = 0;
       else if (a === "live") this.recordLive(el.dataset.key);
       else if (a === "extract") el.dataset.keys.split(",").forEach((k) => this.recordExtract(k));
-      else if (a === "tab") { this.d.tab = el.dataset.tab; this.flash = null; }
-      else if (a === "share" || a === "download") {
-        const der = E.derive(this.d.rolls, this.t);
-        const ids = E.ROLLS.map((x) => x.id).filter((id) => id !== "mimic" || this.mimics);
-        if (a === "download") this.download(der, ids);
-        else this.share(der, ids).then((changed) => { if (changed) { rerender(); setTimeout(() => { this.flash = null; rerender(); }, 2200); } });
-        return;
-      }
+      else if (a === "tab") this.d.tab = el.dataset.tab;
       else return;
       this.save();
       rerender();
@@ -967,7 +925,6 @@ export class ChamberView {
       ev.preventDefault();
       const f = new FormData(ev.target);
       this.close({ outcome: f.get("outcome"), notes: f.get("notes") });
-      this.flash = null;
       rerender();
       window.scrollTo({ top: 0 });
     });
