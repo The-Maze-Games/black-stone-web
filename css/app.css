@@ -592,3 +592,29 @@ table.rows tbody th { font-weight: 600; }
 .entry-more { margin: 0 0 12px; }
 .rows-p { color: var(--dim); font-size: .8rem; text-align: right; }
 tr.is-hit td { background: var(--soft); font-weight: 600; }
+
+/* Ficha del manual: botón ⓘ junto al nombre y una ventana con el texto del libro. */
+.info-btn { display: inline-grid; width: 26px; height: 26px; margin-left: 6px; vertical-align: -6px; color: var(--gold-dim); }
+.info-btn svg { width: 16px; height: 16px; }
+.info-btn:hover { color: var(--gold); }
+.pop-layer { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; }
+.pop-backdrop { all: unset; position: absolute; inset: 0; background: rgba(0, 0, 0, .78); backdrop-filter: blur(2px); cursor: pointer; animation: fade .2s ease both; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+.pop { position: relative; width: min(620px, 100%); max-height: min(80vh, 760px); overflow: auto; padding: 22px 24px 18px;
+  background: linear-gradient(#0d0a08, #050403); border: 1px solid var(--gold-dim); outline: 1px solid var(--gold-dim); outline-offset: -6px;
+  box-shadow: 0 30px 80px #000, 0 0 40px rgba(179, 18, 30, .18); animation: rise .28s cubic-bezier(.2, .8, .2, 1) both; }
+.pop::before { content: ""; position: absolute; top: -7px; left: calc(50% - 7px); width: 14px; height: 14px; background: var(--gold); clip-path: var(--star); }
+.pop-head { position: relative; padding-right: 40px; margin-bottom: 12px; border-bottom: 1px solid var(--gold-dim); padding-bottom: 10px; }
+.pop-kind { font: italic 400 15px var(--text); color: var(--gold); }
+.pop-name { margin: 4px 0 0; font: 700 26px/1.1 var(--title); letter-spacing: .02em; }
+.pop-close { position: absolute; top: -4px; right: -6px; width: 36px; height: 36px; }
+.pop-stats { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; margin: 0; font-size: 16px; }
+.pop-stats dt { color: var(--gold); font: italic 400 15px var(--text); }
+.pop-stats dd { margin: 0; line-height: 1.45; }
+.pop-stats ul { margin: 0; padding-left: 18px; }
+.pop-sub { margin: 16px 0 8px; font: 700 16px var(--title); }
+.pop-foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 15px; }
+.pop-foot a { color: var(--gold); }
+@media (max-width: 600px) { .pop-stats { grid-template-columns: minmax(0, 1fr); } .pop-stats dt { margin-top: 6px; } .pop { padding: 18px 16px 14px; } }
+@media (prefers-reduced-motion: reduce) { .pop, .pop-backdrop { animation: none; } }
