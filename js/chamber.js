@@ -219,6 +219,11 @@ export class ChamberView {
     // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece es cosa suya (p. 85).
     if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
     // Botín sin dado (Water, Forest, Dry Wood…): la cantidad es a criterio del Máster.
+    // Habitantes sin dado («Evil Whisperer plus 1d4+2 Ghouls», «Vampire»): una fila con su página y «1».
+    if (id === "inhabitant" && r.inhabitant != null && !skip) {
+      t.name("D", r.inhabitant).split(/\s+(?:plus|and|&)\s+|\s*\+\s*/i).map((x) => x.trim()).map((x) => x.replace(/^1\s+/, "")).filter((x) => x && !/\d/.test(x))
+        .forEach((x) => fixedLines.unshift({ kind: "one", of: x.replace(/\)$/, "").replace(/\s*\([^)]*$/, (m) => m + ")") }));
+    }
     const lootDm = id === "loot" && r.loot != null && !skip && !own.some((c) => c.from === "loot") && !NOT_AMOUNTS.test(t.name("C", r.loot));
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
@@ -316,6 +321,8 @@ export class ChamberView {
         const raw = t.entry(tb, n).result;
         const mark = /^\*+|[†ª]+$/.exec(raw)?.[0] ?? (raw.includes("(") ? "plain" : null);
         const foot = mark && !(READING_NOTES[tb] ?? []).includes(mark) && !(tb === "C" && mark === "*") ? t.footnote(tb, n) : null;
+        // En Habitantes no van descripciones: cada criatura lleva su página del bestiario (petición de Giovani).
+        if (tb === "D") return line(t.name(tb, n), t.page(tb, n));
         return line(t.name(tb, n), t.page(tb, n)) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
       }
       case "mimic":
@@ -357,10 +364,11 @@ export class ChamberView {
     const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
     const isDm = (e) => e.kind === "dm" || (["loot", "exclusiveLoot"].includes(e.kind) && !NOT_AMOUNTS.test(E.loc(e.of)));
-    const rows = fixedLines.filter(isDm).map((e) => this.dmRow(e, page));
+    const rows = fixedLines.filter((e) => e.kind === "one").reverse().map((e) => this.oneRow(e));
+    rows.push(...fixedLines.filter(isDm).map((e) => this.dmRow(e, page)));
     rows.push(...this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page));
     if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate" && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "one" && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
     return `<div class="derived">${rows.join("")}</div>`;
   }
 
@@ -369,6 +377,37 @@ export class ChamberView {
     const label = typeof e.of === "string" ? e.of : E.loc(e.of);
     return `<div class="derived-row dm-row${this.isNew("dm:" + label)}">
       <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p>${DM_BOX()}</div>`;
+  }
+
+  /** Un habitante que viene solo: su nombre, su página del bestiario y una ficha fija «1». */
+  oneRow(e) {
+    const p = this.creaturePage(e.of);
+    return `<div class="derived-row dm-row${this.isNew("one:" + e.of)}">
+      <p class="derived-label">${h(e.of)}${p ? ` <span class="page">${h(T("page")(p))}</span>` : ""}</p><span class="derived-value">1</span></div>`;
+  }
+
+  /** La página del bestiario de una criatura: «Ghouls» → Ghouls, «Rookie Hitmen» → Rookie Hitman, «Stone Golem)» → Stone Golem. */
+  creaturePage(name, twinned = false) {
+    const items = this.t.bestiary ?? [];
+    const norm = (x) => x.toLowerCase().replace(/\([^)]*\)?/g, " ").replace(/[^a-z ]/g, " ").replace(/\bmen\b|men\b/g, "man").replace(/s\b/g, "").replace(/\s+/g, " ").trim();
+    const key = norm(name);
+    if (!key) return null;
+    const exact = items.find((x) => norm(x.name) === key);
+    if (exact) return exact.page;
+    let best = null;
+    for (const x of items) {
+      const k = norm(x.name);
+      if (k && (key.includes(k) || k.includes(key)) && (!best || k.length > norm(best.name).length)) best = x;
+    }
+    if (best) return best.page;
+    // «Black Pawn», «Dark Stalker (Black Horse)»: la ficha se llama por su pieza de ajedrez, entre paréntesis.
+    const paren = (x) => norm((/\(([^)]*)\)?/.exec(x) ?? [])[1] ?? "");
+    const piece = paren(name) || key;
+    const byPiece = items.find((x) => paren(x.name) && paren(x.name) === piece);
+    if (byPiece) return byPiece.page;
+    // «The Red Queen» comparte ficha con «The Red King».
+    const twin = key.replace(/queen/, "king").replace(/\bking\b(?!.*queen)/, (m) => (key.includes("queen") ? m : "queen"));
+    return twin !== key && !twinned ? this.creaturePage(twin, true) : null;
   }
 
   /** Unas hermanas del árbol, en el orden del motor. */
@@ -447,7 +486,7 @@ export class ChamberView {
     const resultPage = c.table && v != null ? t.page(c.table, v) : null;
     const needed = c.required && v == null;
     return `<div class="derived-row${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
-      <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.page(c.page, page)}</label>
+      <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.sectionOf(c) === "inhabitant" ? this.page(this.creaturePage(c.of) ?? c.page, {}) : this.page(c.page, page)}</label>
       <span class="derived-die">${h(bad ? `${c.formula.min}–${c.formula.max}` : die)}</span>
       ${this.input(c)}
       <span class="derived-result">${this.answer(c)}${this.page(resultPage, page)}</span>

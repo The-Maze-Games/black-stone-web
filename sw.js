@@ -1,6 +1,6 @@
 // Sin conexión: guarda la app entera la primera vez. Con red, siempre sirve lo nuevo;
 // lo guardado sólo sale si no hay red, así nunca se mezclan archivos de dos versiones.
-const VERSION = "bs-16";
+const VERSION = "bs-17";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/main.js", "js/engine.js", "js/i18n.js", "js/chamber.js", "js/reference.js", "js/db.js", "js/util.js",
