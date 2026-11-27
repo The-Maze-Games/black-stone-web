@@ -3,6 +3,7 @@
 import * as E from "./engine.js";
 import { T } from "./i18n.js";
 import { askButton, h, idOf, store } from "./util.js";
+import { Db, clean } from "./db.js";
 
 const EMPTY = () => ({ rolls: {}, typed: {}, buffers: {}, round: 0, locked: false, mimicHidden: true,
   live: [], liveBuffers: {}, deaths: 0, kills: {}, tab: "room", notes: "", outcome: null });
@@ -31,6 +32,8 @@ const short = (x) => String(x ?? "")
   .replace(/;\s*(?:requires exploring the nest|requiere explorar el nido)$/i, "")
   .replace(/^(?:rolls on|tiradas en la)\s+(?:Table|Tabla)\s+/i, (m) => (/^rolls/i.test(m) ? "Table " : "Tabla "))
   .trim();
+const ICON_INFO = svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.5"/>');
+const fold = (x) => String(x ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -160,6 +163,7 @@ export class ChamberView {
       return `<div class="chamber" data-state="playing">
         ${side()}
         <div class="chamber-body">${this.playing(der, sections, ids)}</div>
+        ${this.pop()}
       </div>`;
     }
     const enter = `<button type="button" class="primary" data-action="enter">${h(T("enter"))}</button>`;
@@ -431,6 +435,93 @@ export class ChamberView {
       <p class="derived-label">${h(e.of)}${p ? ` <span class="page">${h(T("page")(p))}</span>` : ""}</p><span class="derived-value">1</span></div>`;
   }
 
+  // ---------------------------------------------------------------- fichas del manual
+
+  /** La base del libro (db/) se carga al entrar a la cámara; al llegar se repinta para mostrar los botones de ficha. */
+  ensureDb(rerender) {
+    if (this.db || this.dbLoading) return;
+    this.dbLoading = Db.load("db/").then((db) => { this.db = db; rerender?.(); }, (err) => console.error(err));
+  }
+
+  /** La ficha del manual de un nombre de la cámara: criatura, ítem, material, arma o fila de tabla. */
+  lookup(name, beastId = null) {
+    const db = this.db;
+    if (!db || !name) return null;
+    if (beastId) { const c = db.creatures.find((x) => x.name === beastId); if (c) return { entry: c }; }
+    const tries = [name];
+    let x = name;
+    while (/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/.test(x)) { x = x.replace(/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/, ""); tries.push(x); }
+    const mat = /\(([^()]+)\)\s*$/.exec(name)?.[1];
+    // Armas: «One-handed Axe (Iron)» → la ficha del arma y la de su material.
+    const weapons = db.table("4.8")?.weapons ?? {};
+    for (const t of tries) {
+      const w = Object.keys(weapons).find((k) => fold(k) === fold(t));
+      if (w) {
+        const m = mat ? db.materials.find((y) => fold(y.name) === fold(mat)) : null;
+        return { weapon: { name: w, ...weapons[w] }, material: m, page: db.table("4.8").rows.find((r) => fold(r.label).startsWith(fold(w)))?.page ?? db.table("4.8").page };
+      }
+    }
+    const pools = [db.creatures, db.items, db.materials, db.conditions, db.chambers];
+    for (const t of tries) {
+      for (const pool of pools) { const e = pool.find((y) => fold(y.name) === fold(t)); if (e) return { entry: e }; }
+    }
+    // Criaturas en plural o con otra forma: «Ghouls», «Rookie Hitmen».
+    const page = this.creaturePage(name);
+    const best = (this.t.bestiary ?? []).find((b) => b.page === page && this.creaturePage(b.name) === page);
+    if (page && best) { const c = db.creatures.find((y) => y.name === best.name); if (c) return { entry: c }; }
+    for (const t of tries) {
+      const row = db.index.find((y) => y.type === "row" && fold(y.label) === fold(t));
+      if (row) return { row, table: db.get(row.parent) };
+    }
+    return null;
+  }
+
+  infoBtn(name, beastId = null) {
+    if (!this.lookup(name, beastId)) return "";
+    return `<button type="button" class="icon-btn info-btn" data-action="info" data-name="${h(name)}"${beastId ? ` data-beast="${h(beastId)}"` : ""} aria-label="${h(T("infoAbout")(name))}" title="${h(T("infoAbout")(name))}">${ICON_INFO}</button>`;
+  }
+
+  /** La ventana con la ficha: lo que dice el manual, y un enlace a la Referencia. */
+  pop() {
+    if (!this.popFor) return "";
+    const f = this.lookup(this.popFor.name, this.popFor.beast);
+    if (!f) return "";
+    const txt = (v) => (v == null ? "" : typeof v === "string" ? v : E.loc(v));
+    const dl = (pairs) => {
+      const ok = pairs.filter(([, v]) => v != null && v !== "" && !(Array.isArray(v) && !v.length));
+      return ok.length ? `<dl class="pop-stats">${ok.map(([k, v]) => `<dt>${h(k)}</dt><dd>${Array.isArray(v) ? `<ul>${v.map((y) => `<li>${h(y)}</li>`).join("")}</ul>` : h(String(v).replace(/^:\s*/, ""))}</dd>`).join("")}</dl>` : "";
+    };
+    let kind, name, page, body = "", link = null;
+    if (f.weapon) {
+      const w = f.weapon;
+      kind = T("weapon"); name = this.popFor.name; page = f.page;
+      body = dl([[T("damage"), w.damage], [T("dmgType"), txt(w.type)], [T("size"), txt(w.size)], [T("craft"), txt(w.craft)]]);
+      if (f.material) body += `<h3 class="pop-sub">${h(f.material.name)} <span class="page">${h(T("page")(f.material.page))}</span></h3>` + dl(Object.entries(f.material.stats ?? {}));
+      link = f.material?.id;
+    } else if (f.entry) {
+      const e = f.entry;
+      kind = T("kind")[e.type] ?? ""; name = e.name; page = e.page; link = e.id;
+      const st = { ...(e.stats ?? {}) };
+      if (e.type === "condition") body = dl([[T("effect"), txt(e.effect?.note)]]);
+      else body = dl([...(e.family ? [[T("family"), e.family]] : []), ...(e.kind ? [[T("kindOf"), e.kind]] : []), ...Object.entries(st)]);
+    } else {
+      kind = `${T("table")} ${f.table?.code ?? ""}`; name = clean(f.row.label ?? f.row.name); page = f.row.page; link = f.row.id;
+      body = dl([[T("inTable"), f.table?.name ?? ""], [T("note"), txt(f.table?.note)]]);
+    }
+    return `<div class="pop-layer">
+      <button type="button" class="pop-backdrop" data-action="pop-close" tabindex="-1" aria-label="${h(T("closeWord"))}"></button>
+      <section class="pop" role="dialog" aria-modal="true" aria-labelledby="pop-title">
+        <header class="pop-head">
+          <p class="pop-kind">${h(kind)}${page ? ` · <span class="page">${h(T("page")(page))}</span>` : ""}</p>
+          <h2 id="pop-title" class="pop-name">${h(name)}</h2>
+          <button type="button" class="icon-btn pop-close" data-action="pop-close" aria-label="${h(T("closeWord"))}">${ICON.close}</button>
+        </header>
+        <div class="pop-body">${body || `<p class="empty">${h(T("noText"))}</p>`}</div>
+        ${link ? `<p class="pop-foot"><a href="#/ref/search/${encodeURIComponent(link)}">${h(T("openRef"))} →</a></p>` : ""}
+      </section>
+    </div>`;
+  }
+
   /** La criatura del bestiario que nombra un texto de la cámara, por palabras enteras: «Hydras en la cámara» → Hydra. */
   beastIn(text) {
     const norm = (x) => ` ${String(x).toLowerCase().replace(/\([^)]*\)?/g, " ").replace(/[^a-z ]/g, " ").replace(/s\b/g, "").replace(/\s+/g, " ").trim()} `;
@@ -684,7 +775,7 @@ export class ChamberView {
       const head = words.slice(0, it.beast.words).join(" ");
       const rest = words.slice(it.beast.words).join(" ");
       const b = byBeast.get(it.beast.id);
-      if (!b) byBeast.set(it.beast.id, { name: head, page: it.page, qty: it.qty, notes: [] });
+      if (!b) byBeast.set(it.beast.id, { name: head, page: it.page, qty: it.qty, notes: [], beastId: it.beast.id });
       else b.notes.push(`${it.qty} ${rest}`);
     }
     const beasts = [...byBeast.values(),
@@ -744,7 +835,7 @@ export class ChamberView {
     const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
     const cards = groups.map((g) => `<div class="m-card m-${g.id}">
       <h3 class="m-title"><span class="roll-n">${ROMAN[ids.indexOf(g.id)] ?? ""}</span>${h(g.title)}</h3>
-      <ul class="m-list">${g.items.map((it) => `<li class="m-item${it.kind ? ` is-${it.kind}` : ""}"><span class="m-name">${it.kind === "relic" ? `<span class="yes-star" aria-hidden="true"></span>` : ""}${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</span>${qty(it)}</li>`).join("")}</ul>
+      <ul class="m-list">${g.items.map((it) => `<li class="m-item${it.kind ? ` is-${it.kind}` : ""}"><span class="m-name">${it.kind === "relic" ? `<span class="yes-star" aria-hidden="true"></span>` : ""}${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}${this.infoBtn(it.name, it.beastId)}</span>${qty(it)}</li>`).join("")}</ul>
     </div>`).join("");
     return `${E.circle(r, t) ? `<p class="circle-note">${h(T("circle"))}</p>` : ""}
       ${r.condition >= 60 && r.condition <= 64 && !der.conditionExcluded ? `<fieldset class="choice"><legend>${h(T("torcherTitle"))}</legend>
@@ -763,7 +854,7 @@ export class ChamberView {
       const cleared = n != null && k >= n;
       return `<li class="beast${cleared ? " is-cleared" : ""}" style="--i:${i}">
         <div class="beast-id">
-          <p class="beast-name">${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</p>
+          <p class="beast-name">${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}${this.infoBtn(it.name, it.beastId)}</p>
           ${it.notes?.length ? `<p class="beast-note">${it.notes.map(h).join(" · ")}</p>` : ""}
         </div>
         <p class="beast-count">${n != null ? `<span class="beast-left${this.isNew(`left:${it.name}:${n - k}`)}">${Math.max(0, n - k)}</span><span class="beast-of">/ ${n}</span>` : DM_BOX()}</p>
@@ -781,7 +872,7 @@ export class ChamberView {
     const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
     return `<ul class="entity-grid is-${kind}">${list.map((it, i) => `<li class="entity${it.kind ? ` is-${it.kind}` : ""}" style="--i:${i}">
       <span class="entity-mark" aria-hidden="true"></span>
-      <p class="entity-name">${h(it.name)}</p>
+      <p class="entity-name">${h(it.name)}${this.infoBtn(it.name)}</p>
       ${it.page ? `<p class="page">${h(T("page")(it.page))}</p>` : ""}
       ${qty(it)}
     </li>`).join("")}</ul>`;
@@ -972,6 +1063,8 @@ export class ChamberView {
   // ---------------------------------------------------------------- eventos
 
   bind(root, rerender) {
+    this.ensureDb(rerender);
+    root.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && this.popFor) { this.popFor = null; rerender(); } });
     root.addEventListener("input", (ev) => {
       const el = ev.target;
       if (el.dataset.field && el.type !== "radio") { this.d[el.dataset.field] = el.value; this.save(); return; }
@@ -1020,6 +1113,8 @@ export class ChamberView {
       else if (a === "live") this.recordLive(el.dataset.key);
       else if (a === "extract") el.dataset.keys.split(",").forEach((k) => this.recordExtract(k));
       else if (a === "tab") this.d.tab = el.dataset.tab;
+      else if (a === "info") { this.popFor = { name: el.dataset.name, beast: el.dataset.beast ?? null }; this.popReturn = el.id || null; rerender(); root.querySelector(".pop-close")?.focus(); return; }
+      else if (a === "pop-close") { this.popFor = null; rerender(); return; }
       else if (a === "undo-live") {
         // Deshacer una línea anotada: si era una veta, vuelve a quedar por extraer.
         const [e] = this.d.live.splice(+el.dataset.i, 1);
