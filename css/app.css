@@ -370,8 +370,10 @@ button:disabled { opacity: .35; cursor: default; }
 .record-btn:hover { border-color: var(--accent); color: #fff; background: var(--accent); }
 .events { list-style: none; padding: 0; margin: 0; }
 .events li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 6px 0; border-bottom: 1px solid #1a1714; font-size: 16px; }
+.event-undo { width: 28px; height: 28px; order: 9; margin-left: auto; color: var(--dim); }
+.event-undo:hover { color: var(--danger) !important; }
 .event-round { display: inline-grid; place-items: center; min-width: 2.6em; padding: 1px 6px; color: var(--accent); border: 1px solid rgba(179, 18, 30, .5); font: 700 12px var(--title); letter-spacing: .06em; }
-.events li:first-child { animation: grow .3s cubic-bezier(.2, .7, .2, 1) both; }
+.events li.is-new { animation: grow .3s cubic-bezier(.2, .7, .2, 1) both; }
 
 /* Terminar */
 .outcomes { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -392,7 +394,7 @@ button:disabled { opacity: .35; cursor: default; }
 /* Ítems y Bestiario: fichas en rejilla que entran una tras otra. */
 .entity-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 10px; }
 .entity { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "mark mark" "name qty" "page qty"; align-items: center; gap: 2px 10px;
-  padding: 12px 14px; border: 1px solid var(--line); background: linear-gradient(#0b0908, #050404); animation: grow .35s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 40ms); transition: border-color .2s; }
+  padding: 12px 14px; border: 1px solid var(--line); background: linear-gradient(#0b0908, #050404); transition: border-color .2s; }
 .entity:hover { border-color: var(--gold-dim); }
 .entity-mark { grid-area: mark; width: 10px; height: 10px; margin-bottom: 4px; background: var(--gold-dim); clip-path: var(--star); }
 .is-beasts .entity-mark { background: var(--accent); }
@@ -403,30 +405,35 @@ button:disabled { opacity: .35; cursor: default; }
 .entity.is-relic, .entity.is-found { border-color: rgba(233, 195, 122, .6); background: linear-gradient(120deg, rgba(179, 18, 30, .35), rgba(233, 195, 122, .1)); box-shadow: 0 0 18px rgba(179, 18, 30, .3); }
 .entity.is-relic .entity-name, .entity.is-found .entity-name { color: #f6e2b0; text-shadow: 0 0 12px rgba(230, 170, 70, .5); }
 .entity.is-relic .entity-mark, .entity.is-found .entity-mark { background: #e9c37a; }
-@media (prefers-reduced-motion: reduce) { .entity { animation: none; } }
-/* Bestiario: cuántos quedan en grande, una fila de marcas que se apagan al caer y el contador de eliminados. */
-.beast-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
-.beast { padding: 14px 16px 12px; border: 1px solid var(--line); border-top: 2px solid var(--accent); background: radial-gradient(120% 90% at 100% 0, rgba(179, 18, 30, .14), transparent 60%), #070505;
-  animation: grow .35s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 50ms); transition: opacity .3s, border-color .3s; }
-.beast-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.beast-name { font: 700 18px/1.2 var(--title); letter-spacing: .03em; }
-.beast-name .page { display: block; margin-top: 4px; font-family: var(--text); letter-spacing: 0; }
-.beast-count { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
-.beast-left { font: 900 44px/1 var(--title); color: var(--accent); text-shadow: 0 0 20px rgba(179, 18, 30, .5); font-variant-numeric: lining-nums tabular-nums; }
+/* Las fichas entran una tras otra sólo al abrir la pestaña; al tocar un botón no se mueven. */
+.play-panel.is-new :is(.entity, .beast) { animation: grow .35s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 40ms); }
+@media (prefers-reduced-motion: reduce) { .play-panel.is-new :is(.entity, .beast) { animation: none; } }
+/* Bestiario: compacto. Nombre y cuántos quedan arriba; abajo las marcas que se apagan al caer y el contador de eliminados. */
+.beast-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 10px; }
+.beast { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "id count" "pips kill"; align-items: center; gap: 6px 12px;
+  padding: 10px 12px; border: 1px solid var(--line); border-left: 2px solid var(--accent); background: radial-gradient(120% 90% at 100% 0, rgba(179, 18, 30, .12), transparent 60%), #070505;
+  transition: opacity .3s, border-color .3s; }
+.beast-id { grid-area: id; }
+.beast-name { font: 700 16px/1.2 var(--title); letter-spacing: .03em; }
+.beast-name .page { font-family: var(--text); letter-spacing: 0; margin-left: 2px; }
+.beast-note { margin-top: 2px; font: italic 400 15px var(--text); color: #c9bfae; }
+.beast-count { grid-area: count; display: flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.beast-left { font: 900 32px/1 var(--title); color: var(--accent); text-shadow: 0 0 16px rgba(179, 18, 30, .5); font-variant-numeric: lining-nums tabular-nums; }
 .beast-left.is-new { animation: tick .35s cubic-bezier(.2, .8, .2, 1) both; }
-.beast-of { font: 700 18px var(--title); color: var(--dim); }
-.beast .dm-box { width: auto; padding: 0 10px; }
-.beast-pips { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 2px; }
-.pip { width: 11px; height: 11px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 6px rgba(179, 18, 30, .6); transition: background .25s, box-shadow .25s; }
+.beast-of { font: 700 15px var(--title); color: var(--dim); }
+.beast .dm-box { width: auto; min-height: 30px; padding: 0 10px; font-size: 13px; }
+.beast-pips { grid-area: pips; display: flex; flex-wrap: wrap; gap: 4px; }
+.pip { width: 9px; height: 9px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 5px rgba(179, 18, 30, .6); transition: background .25s, box-shadow .25s; }
 .pip.is-dead { background: transparent; box-shadow: inset 0 0 0 1px #4a2a2c; }
-.kill-counter { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1714; }
-.kill-read { flex: 1; text-align: center; color: var(--dim); font-style: italic; }
-.kill-n { font: 900 24px var(--title); font-style: normal; color: var(--fg); margin-right: 4px; }
-.beast.is-cleared { border-top-color: var(--dim); opacity: .6; }
+.kill-counter { grid-area: kill; display: flex; align-items: center; gap: 6px; }
+.kill-counter .round-btn { width: 32px; min-height: 32px; font-size: 18px; }
+.kill-read { min-width: 2.2em; text-align: center; color: var(--dim); font-style: italic; font-size: 13px; line-height: 1; }
+.kill-n { display: block; font: 900 18px var(--title); font-style: normal; color: var(--fg); }
+.beast.is-cleared { border-left-color: var(--dim); opacity: .55; }
 .beast.is-cleared .beast-left { color: var(--dim); text-shadow: none; }
 .beast.is-cleared .beast-name { text-decoration: line-through; text-decoration-color: var(--accent); }
 .end-kills strong { color: var(--accent); }
-@media (prefers-reduced-motion: reduce) { .beast, .beast-left.is-new { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .beast-left.is-new { animation: none; } }
 
 /* Lo que está en la cámara sin tirar (agua abundante, Forest…): banda de oro, va primero. */
 .derived-row.dm-row.is-sure { margin: 2px 0; padding: 7px 10px; background: linear-gradient(90deg, rgba(168, 134, 79, .14), transparent 80%); border-left: 2px solid var(--gold); }
@@ -453,13 +460,28 @@ button:disabled { opacity: .35; cursor: default; }
 .stack-head { margin: 4px 0 2px; font-size: 15px; }
 .stack-head.is-optional .derived-label { color: #b8ae9f; }
 .stack-lines { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 2px 18px; }
-.stack-line { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; padding: 3px 0; border-bottom: 1px dashed #1a1714; }
+.stack-line { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 8px; padding: 4px 0; border-bottom: 1px dashed #1a1714; }
+.stack-line > .chain-cell { flex: 1 1 100%; padding-left: 1.9em; }
+.stack-line > .dice-n + .chain-cell { flex: 1 1 0; padding-left: 0; }
+.chain-cell.is-sub { padding-left: 3.2em !important; }
+.chain-n { display: inline-block; min-width: 1.2em; font: 700 13px var(--title); color: var(--gold-dim); }
+.chain-label.is-sub { font-size: 13px; color: var(--dim); }
+.chain-answer { flex: 1; line-height: 1.2; }
 .chain-cell { display: inline-flex; align-items: center; gap: 6px; }
 .chain-label { font-size: 14px; color: #b8ae9f; }
 .chain-cell .derived-die { font-size: 13px; align-self: center; }
 .chain-input, .chain-cell .derived-value { width: 3.4em !important; min-height: 32px !important; font-size: 15px !important; padding: 2px !important; }
 .chain-answer { font-size: 15px; }
-.chain-arrow { color: var(--gold-dim); }
+.stack.is-folded > summary { cursor: pointer; list-style: none; display: block; }
+.stack.is-folded > summary > .branch-title { display: flex; align-items: center; gap: 8px; }
+.stack.is-folded > summary::-webkit-details-marker { display: none; }
+.stack.is-folded > summary > .branch-title::before { content: ""; width: 0; height: 0; border-left: 6px solid var(--gold); border-top: 4px solid transparent; border-bottom: 4px solid transparent; transition: transform .2s; }
+.stack.is-folded[open] > summary > .branch-title::before { transform: rotate(90deg); }
+.stack-edit { margin-left: auto; font: italic 400 14px var(--text); color: var(--dim); }
+.stack.is-folded > summary:hover .stack-edit { color: var(--gold); }
+.stack.is-folded > summary > .stack-tally { margin: 6px 0 4px; }
+.record-btn.is-minus { border-color: var(--line); color: var(--dim); }
+.record-btn.is-minus:hover:not(:disabled) { border-color: var(--dim); color: var(--fg); background: #ffffff10; }
 .stack-tally { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0 0; padding: 6px 10px; background: rgba(168, 134, 79, .06); border-left: 2px solid var(--gold-dim); font-size: 16px; }
 
 /* El Arma Definitiva: un relicario. Cada componente lleva su sello de probabilidad; el que sale arde en oro y carmesí. */
@@ -483,7 +505,7 @@ button:disabled { opacity: .35; cursor: default; }
 @keyframes starburst { from { transform: rotate(-180deg) scale(0); } 70% { transform: rotate(10deg) scale(1.5); } to { transform: none; } }
 .ultimate-row.is-revealed .yes-star { animation: starburst .8s cubic-bezier(.2, .8, .2, 1) both; }
 @media (prefers-reduced-motion: reduce) {
-  .ultimate-row.is-revealed, .ultimate-row.is-found::after, .relic-mark, .door-dot, .round-value.is-new, .play-panel.is-new, .events li:first-child, .play-tab::after, .yes-star { animation: none !important; }
+  .ultimate-row.is-revealed, .ultimate-row.is-found::after, .relic-mark, .door-dot, .round-value.is-new, .play-panel.is-new, .events li.is-new, .play-tab::after, .yes-star { animation: none !important; }
 }
 
 @media (max-width: 600px) {

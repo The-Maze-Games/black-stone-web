@@ -347,7 +347,9 @@ export function lootChildren(raw, typed, t, { prefix = "loot", directTable = nul
     else if (item.table === "4.3" && n >= 99) next = "4.4";
     else if (item.table === "4.4" && n <= 2) next = "4.3";
     else if ((item.table === "4.6" || item.table === "4.9" || item.table === "4.8") && n >= 99) next = item.table;
-    else if (item.table === "4.8" && result.includes("(common metal)")) next = "4.3";
+    // Armas, armaduras y ropa de metal: el paréntesis dice de qué tabla sale el metal (común 4.3, especial 4.4).
+    else if (["4.7", "4.8", "4.9"].includes(item.table) && result.includes("(common metal)")) next = "4.3";
+    else if (["4.7", "4.8", "4.9"].includes(item.table) && result.includes("(special metal)")) next = "4.4";
     if (next) enqueue(`${item.key}.detail`, next, `${item.title} · ${lootLabel(next)}`, item.mine);
     else {
       let amounts = [];

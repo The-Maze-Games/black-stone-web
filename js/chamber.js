@@ -257,7 +257,7 @@ export class ChamberView {
     if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
     // Habitantes sin dado («Evil Whisperer plus 1d4+2 Ghouls», «Vampire»): una fila con su página y «1».
     if (id === "inhabitant" && r.inhabitant != null && !skip) {
-      t.name("D", r.inhabitant).split(/\s+(?:plus|and|&)\s+|\s*\+\s*/i).map((x) => x.trim()).map((x) => x.replace(/^1\s+/, "")).filter((x) => x && !/\d/.test(x))
+      t.name("D", r.inhabitant).split(/\s+(?:plus|and|&)\s+|\s+\+\s*/i).map((x) => x.trim()).map((x) => x.replace(/^1\s+/, "")).filter((x) => x && !/\d/.test(x))
         .forEach((x) => fixedLines.unshift({ kind: "one", of: x.replace(/\)$/, "").replace(/\s*\([^)]*$/, (m) => m + ")") }));
     }
     return fixedLines;
@@ -506,41 +506,65 @@ export class ChamberView {
   }
 
   /** Una pila de ramas iguales: el título con «×N», la tirada que comparten una vez, y cada dado en una línea
-   *  con sus casillas encadenadas («[1] Mineral → Mineral [50] Flint»). Debajo, el recuento de lo que salió. */
+   *  con sus casillas una bajo otra. Debajo, el recuento de lo que salió. Llena del todo, se pliega al recuento. */
   stack(name, xs, kidsOf, page) {
     const first = kidsOf(xs[0][0].key)[0];
     const base = this.label(first);
     const tally = new Map();
+    const state = { empty: 0 };
     const lines = xs.map(([x, n]) => {
       const leaves = [];
-      const cells = this.chain(kidsOf(x.key), kidsOf, base, leaves);
+      const cells = this.chain(kidsOf(x.key), kidsOf, base, leaves, state);
       leaves.forEach((l) => { const k = l.name; tally.set(k, { ...l, n: (tally.get(k)?.n ?? 0) + 1 }); });
       return `<div class="stack-line" data-node="${h(x.key)}"><span class="dice-n">${n}</span>${cells}</div>`;
     }).join("");
     const sum = [...tally.values()].map((l) => `<li><span class="result-name">${h(l.name)}</span>${l.page ? ` <span class="page">${h(T("page")(l.page))}</span>` : ""}${l.n > 1 ? ` <span class="stack-count">×${l.n}</span>` : ""}</li>`).join("");
-    return `<div class="node branch stack${this.isNew("stack:" + xs[0][0].key)}" data-node="${h(xs[0][0].key)}">
-      <p class="branch-title"><span class="result-name">${h(name)}</span> <span class="stack-count">×${xs.length}</span></p>
-      <p class="stack-head${first.required ? " is-required" : " is-optional"}"><span class="derived-label">${h(base)}</span>${first.page ? ` <span class="page">${h(T("page")(first.page))}</span>` : ""}</p>
+    const key = xs[0][0].key;
+    const title = `<span class="result-name">${h(name)}</span> <span class="stack-count">×${xs.length}</span>`;
+    const head = `<p class="stack-head${first.required ? " is-required" : " is-optional"}"><span class="derived-label">${h(base)}</span>${first.page ? ` <span class="page">${h(T("page")(first.page))}</span>` : ""}</p>`;
+    if (!state.empty && sum) {
+      return `<details class="node branch stack is-folded${this.isNew("fold:" + key)}" data-node="${h(key)}"${this.openStacks?.has(key) ? " open" : ""}>
+        <summary><span class="branch-title">${title} <span class="stack-edit">${h(T("seeRolls"))}</span></span>
+          <span class="stack-tally">${sum.replace(/<li>/g, "<span>").replace(/<\/li>/g, "</span>")}</span></summary>
+        ${head}<div class="stack-lines">${lines}</div>
+      </details>`;
+    }
+    return `<div class="node branch stack${this.isNew("stack:" + key)}" data-node="${h(key)}">
+      <p class="branch-title">${title}</p>
+      ${head}
       <div class="stack-lines">${lines}</div>
       ${sum ? `<ul class="stack-tally">${sum}</ul>` : ""}
     </div>`;
   }
 
-  /** Las casillas de una rama en fila, de madre a hija. Las hojas con resultado van a `leaves` para el recuento. */
-  chain(list, kidsOf, base, leaves) {
+  /** Las casillas de una rama, de madre a hija. Las hojas con resultado van a `leaves` para el recuento:
+   *  «One-handed Axe (common metal)» y su «Copper» cuentan como «One-handed Axe (Copper)». */
+  chain(list, kidsOf, base, leaves, state = { empty: 0 }, parent = null, parentPage = null) {
     const t = this.t, d = this.d;
     return list.map((c) => {
       const v = d.typed[c.key];
+      if (v == null && !(d.locked && c.required)) state.empty++;
       const full = this.label(c);
       const own = full === base ? "" : full.startsWith(base + " · ") ? full.slice(base.length + 3) : full;
+      // «Arma 3» → sólo «3»; «Arma 3 · Metal común» → «↳ Metal común»: el resto ya lo dice la línea.
+      let tag = "";
+      let m;
+      if ((m = /^.*\S\s(\d+)$/.exec(own))) tag = `<span class="chain-n" title="${h(own)}">${m[1]}</span>`;
+      else if ((m = /^.*\s\d+\s·\s(.+)$/.exec(own))) tag = `<span class="chain-label is-sub">↳ ${h(m[1])}</span>`;
+      else if (own) tag = `<span class="chain-label">${h(own)}</span>`;
       const sub = kidsOf(c.key);
       const needed = c.required && v == null;
-      if (!sub.length && v != null && c.table) leaves.push({ name: t.name(c.table, v), page: t.page(c.table, v) });
-      const cell = `<span class="chain-cell${c.required ? " is-required" : ""}${needed ? " is-needed" : ""}">
-        ${own ? `<span class="chain-label">${h(own)}</span>` : ""}<span class="derived-die">${h(c.chance ? c.chance.label : c.formula.label)}</span>
+      const name = c.table && v != null ? t.name(c.table, v) : null;
+      const metal = parent && /\((?:common|special) metal\)/.test(parent);
+      const joined = name && parent ? (metal ? parent.replace(/\((?:common|special) metal\)/, `(${name.replace(/\s*\(.*\)$/, "")})`) : `${parent} · ${name}`) : name;
+      const page = name ? (metal ? parentPage : t.page(c.table, v)) : parentPage;
+      if (!sub.length && name) leaves.push({ name: joined, page });
+      const cell = `<span class="chain-cell${m && tag.includes("is-sub") ? " is-sub" : ""}${c.required ? " is-required" : ""}${needed ? " is-needed" : ""}">
+        ${tag}<span class="derived-die">${h(c.chance ? c.chance.label : c.formula.label)}</span>
         ${this.input(c, "derived-input chain-input", `aria-label="${h(full)}"`)}
         ${v != null ? `<span class="chain-answer">${this.answer(c)}</span>` : ""}</span>`;
-      return cell + (sub.length ? `<span class="chain-arrow" aria-hidden="true">→</span>${this.chain(sub, kidsOf, base, leaves)}` : "");
+      const nextParent = c.table ? joined : parent;
+      return cell + (sub.length ? this.chain(sub, kidsOf, base, leaves, state, nextParent, c.table ? page : parentPage) : "");
     }).join("");
   }
 
@@ -653,7 +677,17 @@ export class ChamberView {
     const groups = this.manifest(der, ids);
     // Ítems y Bestiario sólo si hay botín o criaturas. Las fichas con stats llegan después.
     const items = groups.filter((g) => g.id === "loot").flatMap((g) => g.items).filter((it) => it.kind !== "head" || !groups.find((g) => g.id === "loot").items.some((x) => x.kind !== "head"));
-    const beasts = [...groups.filter((g) => g.id === "chamber").flatMap((g) => g.items).filter((it) => it.beast),
+    // Los enemigos de la cámara van juntos por criatura: «Hydras» con «3 cerca de la entrada» debajo.
+    const byBeast = new Map();
+    for (const it of groups.filter((g) => g.id === "chamber").flatMap((g) => g.items).filter((x) => x.beast)) {
+      const words = it.name.split(/\s+/);
+      const head = words.slice(0, it.beast.words).join(" ");
+      const rest = words.slice(it.beast.words).join(" ");
+      const b = byBeast.get(it.beast.id);
+      if (!b) byBeast.set(it.beast.id, { name: head, page: it.page, qty: it.qty, notes: [] });
+      else b.notes.push(`${it.qty} ${rest}`);
+    }
+    const beasts = [...byBeast.values(),
       ...groups.filter((g) => g.id === "inhabitant" || g.id === "mimic").flatMap((g) => g.items).filter((it) => it.kind !== "head")];
     const tabs = [["room", T("tabRoom"), ""], items.length && ["items", T("tabItems"), String(items.length)], beasts.length && ["beasts", T("tabBeasts"), String(beasts.length)],
       ["extract", T("tabExtract"), pending ? String(pending) : ""], ["end", T("tabEnd"), ""]].filter(Boolean);
@@ -729,14 +763,15 @@ export class ChamberView {
       const k = kills[it.name] ?? 0;
       const cleared = n != null && k >= n;
       return `<li class="beast${cleared ? " is-cleared" : ""}" style="--i:${i}">
-        <div class="beast-head">
+        <div class="beast-id">
           <p class="beast-name">${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</p>
-          <p class="beast-count">${n != null ? `<span class="beast-left${this.isNew(`left:${it.name}:${n - k}`)}">${Math.max(0, n - k)}</span><span class="beast-of">/ ${n}</span>` : DM_BOX()}</p>
+          ${it.notes?.length ? `<p class="beast-note">${it.notes.map(h).join(" · ")}</p>` : ""}
         </div>
-        ${n != null && n <= 30 ? `<p class="beast-pips" aria-hidden="true">${Array.from({ length: n }, (_, j) => `<span class="pip${j < k ? " is-dead" : ""}"></span>`).join("")}</p>` : ""}
+        <p class="beast-count">${n != null ? `<span class="beast-left${this.isNew(`left:${it.name}:${n - k}`)}">${Math.max(0, n - k)}</span><span class="beast-of">/ ${n}</span>` : DM_BOX()}</p>
+        <p class="beast-pips" aria-hidden="true">${n != null && n <= 30 ? Array.from({ length: n }, (_, j) => `<span class="pip${j < k ? " is-dead" : ""}"></span>`).join("") : ""}</p>
         <div class="kill-counter">
           <button type="button" class="round-btn" data-action="kill-" data-name="${h(it.name)}" aria-label="−1" ${k <= 0 ? "disabled" : ""}>−</button>
-          <p class="kill-read"><strong class="kill-n">${k}</strong> <span>${h(T("killed"))}</span></p>
+          <p class="kill-read" title="${h(T("killed"))}"><strong class="kill-n">${k}</strong> <span class="kill-word">${h(T("killed"))}</span></p>
           <button type="button" class="round-btn is-next" data-action="kill+" data-name="${h(it.name)}" aria-label="+1" ${cleared ? "disabled" : ""}>+</button>
         </div>
       </li>`;
@@ -807,7 +842,8 @@ export class ChamberView {
         const label = relic ? c.of.split(/;\s*/)[0] : this.label(c);
         // Enemigos que trae la propia cámara («Hydras en la cámara»): van también al Bestiario con su ficha.
         const beast = id === "chamber" ? this.beastIn(c.of) : null;
-        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null, beast: !!beast });
+        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null,
+          beast: beast ? { id: beast.name, words: beast.name.trim().split(/\s+/).length } : null });
       }
       if (!items.length && (id === "loot" || id === "inhabitant")) {
         const tb = id === "loot" ? "C" : "D";
@@ -833,7 +869,7 @@ export class ChamberView {
       const sum = d.live.filter((e) => e.key === key).reduce((a, e) => a + (e.units ?? 0), 0);
       return `<div class="live-row extract-row is-dm">
         <p class="live-label"><span class="live-name">${h(T("extract")(it.name))}</span>${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}${sum ? ` <span class="stack-count">${h(T("unitsSoFar")(sum))}</span>` : ""}</p>
-        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn" data-action="extract-dm" data-key="${h(key)}" data-name="${h(it.name)}">${h(T("record"))}</button></div>
+        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn is-minus" data-action="extract-dm" data-sign="-1" data-key="${h(key)}" data-name="${h(it.name)}" aria-label="${h(T("removeWhat")(it.name))}" ${sum <= 0 ? "disabled" : ""}>− ${h(T("remove"))}</button><button type="button" class="record-btn" data-action="extract-dm" data-sign="1" data-key="${h(key)}" data-name="${h(it.name)}">+ ${h(T("record"))}</button></div>
       </div>`;
     }).join("");
     const groups = new Map();
@@ -856,7 +892,7 @@ export class ChamberView {
       </div>`;
     }).join("");
     const live = E.live(d.rolls, der).map((x) => this.liveRow(x)).join("");
-    const events = d.live.length ? `<h3 class="tab-sub">${h(T("recorded"))}</h3><ol class="events">${d.live.map((e) => `<li><span class="event-round">${h(T("roundShort"))}${e.round}</span> <span class="event-text">${h(e.text)}</span>${e.page ? ` <span class="page">${h(T("page")(e.page))}</span>` : ""}${e.note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(e.note))}</p></details>` : ""}</li>`).reverse().join("")}</ol>` : "";
+    const events = d.live.length ? `<h3 class="tab-sub">${h(T("recorded"))}</h3><ol class="events">${d.live.map((e, i) => `<li class="${this.isNew(`ev:${i}:${e.text}`).trim()}"><button type="button" class="icon-btn event-undo" data-action="undo-live" data-i="${i}" aria-label="${h(T("undo"))}" title="${h(T("undo"))}">${ICON.close}</button><span class="event-round">${h(T("roundShort"))}${e.round}</span> <span class="event-text">${h(e.text)}</span>${e.page ? ` <span class="page">${h(T("page")(e.page))}</span>` : ""}${e.note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(e.note))}</p></details>` : ""}</li>`).reverse().join("")}</ol>` : "";
     return `${dmRows || rows || live ? `<div class="live-list">${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${events}`;
   }
 
@@ -968,6 +1004,11 @@ export class ChamberView {
       else if (a === "live") this.recordLive(el.dataset.key);
       else if (a === "extract") el.dataset.keys.split(",").forEach((k) => this.recordExtract(k));
       else if (a === "tab") this.d.tab = el.dataset.tab;
+      else if (a === "undo-live") {
+        // Deshacer una línea anotada: si era una veta, vuelve a quedar por extraer.
+        const [e] = this.d.live.splice(+el.dataset.i, 1);
+        if (e && this.children().some((c) => c.key === e.key && c.extraction)) delete this.d.typed[e.key];
+      }
       else if (a === "kill+" || a === "kill-") {
         const k = (this.d.kills ??= {}), n = el.dataset.name;
         k[n] = Math.max(0, (k[n] ?? 0) + (a === "kill+" ? 1 : -1));
@@ -975,7 +1016,11 @@ export class ChamberView {
       else if (a === "extract-dm") {
         const k = el.dataset.key, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();
         if (!/^\d+$/.test(raw) || +raw <= 0) return;
-        this.d.live.push({ key: k, round: this.d.round, units: +raw, text: `${T("extract")(el.dataset.name)} → ${raw}` });
+        // Quitar: perdieron parte de lo sacado (equipo perdido, se lo robaron…). Nunca baja de cero.
+        const have = this.d.live.filter((e) => e.key === k).reduce((a, e) => a + (e.units ?? 0), 0);
+        const units = el.dataset.sign === "-1" ? -Math.min(+raw, have) : +raw;
+        if (!units) return;
+        this.d.live.push({ key: k, round: this.d.round, units, text: units > 0 ? `${T("extract")(el.dataset.name)} → ${units}` : `${T("removeWhat")(el.dataset.name)} → ${-units}` });
         delete this.d.liveBuffers[k];
       }
       else return;
@@ -984,6 +1029,10 @@ export class ChamberView {
     });
     root.addEventListener("toggle", (ev) => {
       if (ev.target.classList?.contains("chamber-summary")) this.openRolls = ev.target.open;
+      if (ev.target.classList?.contains("is-folded")) {
+        this.openStacks ??= new Set();
+        if (ev.target.open) this.openStacks.add(ev.target.dataset.node); else this.openStacks.delete(ev.target.dataset.node);
+      }
     }, true);
     root.addEventListener("submit", (ev) => {
       if (ev.target.dataset.form !== "close") return;
