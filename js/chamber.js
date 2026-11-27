@@ -15,6 +15,12 @@ const groupTitle = (of) => of.replace(/\s·\s[\w.]+$/, "").replace(/(\s·\s|\s)\
 const REPEATED = /^(.*)\.(item|w)(\d+)$/;
 const NOT_AMOUNTS = /^(Magical Infection|none|ninguno)$/i;
 const DM_BOX = () => `<span class="dm-box" title="${h(T("dmCall"))}" aria-label="${h(T("dmCall"))}">DM</span>`;
+const svg = (d) => `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const ICON = {
+  eye: svg('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+  eyeOff: svg('<path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.7M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.7"/><path d="M3 3l18 18"/>'),
+  close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
+};
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -170,7 +176,7 @@ export class ChamberView {
       const fixed = skip && id === "entries" && der.entryChange === "fixed";
       const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : r[id] != null || fixed ? "is-done" : "";
       const stamp = r[id] != null ? this.isNew(`fill:${id}:${r[id]}`).replace("is-new", "is-stamped") : "";
-      return `<li class="ladder-item ${state}${stamp}">
+      return `<li class="ladder-item ${state}${stamp}${id === "mimic" ? " is-mimic" : ""}">
         <label class="ladder-label" for="${idOf(`roll.${id}`)}"><span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span></label>
         ${this.rollBox(id, der, skip, fixed)}
       </li>`;
@@ -230,7 +236,7 @@ export class ChamberView {
     const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
     const waiting = r[id] == null && !fixed && !skip;
     // Sin condición no hay nada que leer abajo: la lista de arriba ya dice el número y la carta lo nombra.
-    const quiet = id === "condition" && r.condition != null && !der.conditionExcluded && /^no condition$/i.test(t.name("B", der.rule?.fixedCondition ?? r.condition)) && !own.length;
+    const quiet = (id === "mimic" && d.mimicHidden) || id === "condition" && r.condition != null && !der.conditionExcluded && /^no condition$/i.test(t.name("B", der.rule?.fixedCondition ?? r.condition)) && !own.length;
     const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
     return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
@@ -281,8 +287,8 @@ export class ChamberView {
     return `<input id="${input}" class="roll-input${bad ? " is-invalid" : ""}" data-roll="${id}" type="${hidden ? "password" : "text"}"
         inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(die)}"
         ${waiting ? "disabled" : ""} ${bad ? 'aria-invalid="true"' : ""} aria-describedby="${input}-die">
-      <span id="${input}-die" class="roll-die${bad ? " is-invalid" : ""}">${h(bad ? `${a}–${b}` : die)}</span>
-      ${id === "mimic" ? `<span class="ladder-tools"><button type="button" class="quiet ladder-toggle" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button><button type="button" class="quiet ladder-toggle" data-action="mimics-off">${h(T("dropMimics"))}</button></span>` : ""}`;
+      ${id === "mimic" ? `<button type="button" class="icon-btn" data-action="mimic-toggle" aria-pressed="${!hidden}" aria-label="${h(hidden ? T("show") : T("hide"))}" title="${h(hidden ? T("show") : T("hide"))}">${hidden ? ICON.eyeOff : ICON.eye}</button><button type="button" class="icon-btn" data-action="mimics-off" aria-label="${h(T("dropMimics"))}" title="${h(T("dropMimics"))}">${ICON.close}</button>`
+        : `<span id="${input}-die" class="roll-die${bad ? " is-invalid" : ""}">${h(bad ? `${a}–${b}` : die)}</span>`}`;
   }
 
   /** El nombre del resultado con su página, y la nota plegada. */

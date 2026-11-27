@@ -132,8 +132,12 @@ button:disabled { opacity: .35; cursor: default; }
 .ladder .roll-input { width: 100%; min-height: 40px; font-size: 19px; text-align: center; }
 .ladder .roll-die { min-width: 0; font-size: 14px; }
 .ladder .roll-value { grid-column: 2; text-align: center; }
-.ladder-tools { grid-column: 1 / -1; display: flex; gap: 8px; }
-.ladder-toggle { min-height: 32px; padding: 4px 12px; font-size: 12px; }
+.ladder-item.is-mimic { grid-template-columns: minmax(0, 1fr) 4.6em 1.5em 1.5em; }
+.icon-btn { all: unset; box-sizing: border-box; display: grid; place-items: center; width: 100%; height: 34px; cursor: pointer; color: var(--gold); border-radius: 2px; transition: color .2s, background .2s; }
+.icon-btn:hover { color: var(--fg); background: rgba(168, 134, 79, .1); }
+.icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.icon-btn[aria-pressed="true"] { color: var(--fg); }
+.icon-btn[data-action="mimics-off"]:hover { color: var(--danger); }
 .ladder-add button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: flex; align-items: baseline; gap: 10px; padding: 9px 10px; margin-top: 4px;
   border: 1px dashed var(--gold-dim); color: var(--dim); transition: color .2s, border-color .2s, background .2s; }
 .ladder-item.ladder-add { display: block; padding: 0; }
@@ -158,6 +162,7 @@ button:disabled { opacity: .35; cursor: default; }
   .poster-n { margin: 0; font-size: clamp(76px, 22vw, 120px); }
   .poster-facts { grid-column: 1 / -1; }
   .ladder-item { padding: 5px 6px; grid-template-columns: minmax(0, 1fr) 5.2em 3em; }
+  .ladder-item.is-mimic { grid-template-columns: minmax(0, 1fr) 5.2em 1.2em 1.2em; }
 }
 
 /* Las siete tiradas */
@@ -278,7 +283,7 @@ button:disabled { opacity: .35; cursor: default; }
 }
 /* Limpio: con la cámara ya elegida, las tiradas que aún no tienen nada que mostrar no ocupan sitio abajo. */
 .roll-section.is-quiet { display: none; }
-.chamber:has(.poster:not(.is-empty)) .roll-section:not(:has(.derived, .roll-result, .choice)) { display: none; }
+.roll-section:not(:has(.derived, .roll-result, .choice)), .roll-section.is-waiting { display: none; }
 
 /* Decisiones de la mesa */
 .choice { border: 0; border-left: 1px solid var(--gold-dim); margin: 8px 0 0 60px; padding: 2px 0 4px 22px; }
