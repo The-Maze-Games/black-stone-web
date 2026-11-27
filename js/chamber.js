@@ -750,8 +750,7 @@ export class ChamberView {
       ${r.condition >= 60 && r.condition <= 64 && !der.conditionExcluded ? `<fieldset class="choice"><legend>${h(T("torcherTitle"))}</legend>
         <label class="choice-option"><input type="radio" name="torcher" data-choice="${E.TORCHER_TRIGGER}" value="1" ${d.typed[E.TORCHER_TRIGGER] === 1 ? "checked" : ""}> ${h(T("torcherYes"))}</label>
         <label class="choice-option"><input type="radio" name="torcher" data-choice="${E.TORCHER_TRIGGER}" value="0" ${d.typed[E.TORCHER_TRIGGER] === 0 ? "checked" : ""}> ${h(T("torcherNo"))}</label></fieldset>` : ""}
-      <div class="manifest">${cards || `<p class="empty">${h(T("nothingHere"))}</p>`}</div>
-      <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("rollsDetail"))}</summary>${sections}</details>`;
+      <div class="manifest">${cards || `<p class="empty">${h(T("nothingHere"))}</p>`}</div>`;
   }
 
   /** «Ítems» o «Bestiario»: una ficha por cosa, con su página y cuántas hay. Aquí irán sus stats. */
@@ -866,10 +865,9 @@ export class ChamberView {
       const key = `dm.${it.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       const raw = d.liveBuffers[key]?.total ?? "";
       const bad = String(raw).trim() !== "" && !(/^\d+$/.test(String(raw).trim()) && +raw > 0);
-      const sum = d.live.filter((e) => e.key === key).reduce((a, e) => a + (e.units ?? 0), 0);
       return `<div class="live-row extract-row is-dm">
-        <p class="live-label"><span class="live-name">${h(T("extract")(it.name))}</span>${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}${sum ? ` <span class="stack-count">${h(T("unitsSoFar")(sum))}</span>` : ""}</p>
-        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn is-minus" data-action="extract-dm" data-sign="-1" data-key="${h(key)}" data-name="${h(it.name)}" aria-label="${h(T("removeWhat")(it.name))}" ${sum <= 0 ? "disabled" : ""}>− ${h(T("remove"))}</button><button type="button" class="record-btn" data-action="extract-dm" data-sign="1" data-key="${h(key)}" data-name="${h(it.name)}">+ ${h(T("record"))}</button></div>
+        <p class="live-label"><span class="live-name">${h(T("extract")(it.name))}</span>${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</p>
+        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn" data-action="extract-dm" data-sign="1" data-key="${h(key)}" data-name="${h(it.name)}">+ ${h(T("record"))}</button></div>
       </div>`;
     }).join("");
     const groups = new Map();
@@ -892,8 +890,19 @@ export class ChamberView {
       </div>`;
     }).join("");
     const live = E.live(d.rolls, der).map((x) => this.liveRow(x)).join("");
+    // Lo que llevan: el total de cada cosa sacada, y «Quitar» por si la pierden (equipo perdido, robo…).
+    const have = this.inventory();
+    const bag = [...have].filter(([, n]) => n > 0).map(([name, n]) => {
+      const key = `lose.${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      const raw = d.liveBuffers[key]?.total ?? "";
+      return `<div class="live-row bag-row">
+        <p class="live-label"><span class="live-name">${h(name)}</span> <span class="m-qty">${n}</span></p>
+        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell" data-live="${h(key)}" data-part="total" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("removeWhat")(name))}"><button type="button" class="record-btn is-minus" data-action="lose" data-key="${h(key)}" data-name="${h(name)}">− ${h(T("remove"))}</button></div>
+      </div>`;
+    }).join("");
+    const carried = bag ? `<h3 class="tab-sub">${h(T("carried"))}</h3><div class="live-list">${bag}</div>` : "";
     const events = d.live.length ? `<h3 class="tab-sub">${h(T("recorded"))}</h3><ol class="events">${d.live.map((e, i) => `<li class="${this.isNew(`ev:${i}:${e.text}`).trim()}"><button type="button" class="icon-btn event-undo" data-action="undo-live" data-i="${i}" aria-label="${h(T("undo"))}" title="${h(T("undo"))}">${ICON.close}</button><span class="event-round">${h(T("roundShort"))}${e.round}</span> <span class="event-text">${h(e.text)}</span>${e.page ? ` <span class="page">${h(T("page")(e.page))}</span>` : ""}${e.note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(e.note))}</p></details>` : ""}</li>`).reverse().join("")}</ol>` : "";
-    return `${dmRows || rows || live ? `<div class="live-list">${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${events}`;
+    return `${dmRows || rows || live ? `<div class="live-list">${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${carried}${events}`;
   }
 
   liveRow(item) {
@@ -943,13 +952,20 @@ export class ChamberView {
     </form>`;
   }
 
+  /** Cuánto llevan de cada cosa extraída: lo anotado menos lo quitado. */
+  inventory() {
+    const have = new Map();
+    for (const e of this.d.live) if (e.material && e.units) have.set(e.material, (have.get(e.material) ?? 0) + e.units);
+    return have;
+  }
+
   recordExtract(key) {
     const c = this.children().find((x) => x.key === key);
     if (!c) return;
     const n = E.typedValue(this.d.liveBuffers[key]?.total, c.formula.die);
     if (n == null || n < c.formula.min || n > c.formula.max) return;
     this.d.typed[key] = n;
-    this.d.live.push({ key, round: this.d.round, label: T("extract")(c.of), text: `${T("extract")(c.of)} → ${c.formula.total(n)}` });
+    this.d.live.push({ key, round: this.d.round, label: T("extract")(c.of), material: c.of, units: c.formula.total(n), text: `${T("extract")(c.of)} → ${c.formula.total(n)}` });
     delete this.d.liveBuffers[key];
   }
 
@@ -1016,11 +1032,16 @@ export class ChamberView {
       else if (a === "extract-dm") {
         const k = el.dataset.key, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();
         if (!/^\d+$/.test(raw) || +raw <= 0) return;
-        // Quitar: perdieron parte de lo sacado (equipo perdido, se lo robaron…). Nunca baja de cero.
-        const have = this.d.live.filter((e) => e.key === k).reduce((a, e) => a + (e.units ?? 0), 0);
-        const units = el.dataset.sign === "-1" ? -Math.min(+raw, have) : +raw;
+        this.d.live.push({ key: k, round: this.d.round, material: el.dataset.name, units: +raw, text: `${T("extract")(el.dataset.name)} → ${raw}` });
+        delete this.d.liveBuffers[k];
+      }
+      else if (a === "lose") {
+        // Quitar: perdieron parte de lo sacado. Nunca baja de cero.
+        const k = el.dataset.key, name = el.dataset.name, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();
+        if (!/^\d+$/.test(raw) || +raw <= 0) return;
+        const units = Math.min(+raw, this.inventory().get(name) ?? 0);
         if (!units) return;
-        this.d.live.push({ key: k, round: this.d.round, units, text: units > 0 ? `${T("extract")(el.dataset.name)} → ${units}` : `${T("removeWhat")(el.dataset.name)} → ${-units}` });
+        this.d.live.push({ key: k, round: this.d.round, material: name, units: -units, text: `${T("removeWhat")(name)} → ${units}` });
         delete this.d.liveBuffers[k];
       }
       else return;
