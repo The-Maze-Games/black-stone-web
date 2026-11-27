@@ -480,6 +480,7 @@ button:disabled { opacity: .35; cursor: default; }
 .stack-edit { margin-left: auto; font: italic 400 14px var(--text); color: var(--dim); }
 .stack.is-folded > summary:hover .stack-edit { color: var(--gold); }
 .stack.is-folded > summary > .stack-tally { margin: 6px 0 4px; }
+.bag-row .m-qty { font-size: 14px; margin-left: 6px; }
 .record-btn.is-minus { border-color: var(--line); color: var(--dim); }
 .record-btn.is-minus:hover:not(:disabled) { border-color: var(--dim); color: var(--fg); background: #ffffff10; }
 .stack-tally { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0 0; padding: 6px 10px; background: rgba(168, 134, 79, .06); border-left: 2px solid var(--gold-dim); font-size: 16px; }
