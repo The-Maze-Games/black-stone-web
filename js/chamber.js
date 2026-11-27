@@ -13,6 +13,16 @@ const READING_NOTES = { C: ["*", "plain", "ore"], D: ["†"] };
 /** «Arma 2 · 4.8» → «Arma»; «diez tiradas extra · 3 · C» → «diez tiradas extra». */
 const groupTitle = (of) => of.replace(/\s·\s[\w.]+$/, "").replace(/(\s·\s|\s)\d+$/, "");
 const REPEATED = /^(.*)\.(item|w)(\d+)$/;
+const NOT_AMOUNTS = /^(Magical Infection|none|ninguno)$/i;
+const DM_BOX = () => `<span class="dm-box" title="${h(T("dmCall"))}" aria-label="${h(T("dmCall"))}">DM</span>`;
+const svg = (d) => `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const ICON = {
+  eye: svg('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+  eyeOff: svg('<path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.7M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.7"/><path d="M3 3l18 18"/>'),
+  close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
+};
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
+const r0 = (d) => d.rolls.chamber != null;
 
 export class ChamberView {
   constructor(tables, onLogChange) {
@@ -132,23 +142,49 @@ export class ChamberView {
     const ids = E.ROLLS.map((x) => x.id).filter((id) => id !== "mimic" || this.mimics);
     const poster = this.poster(der);
     const sections = ids.map((id, i) => this.section(id, i + 1, der, kids)).join("");
+    const ladder = this.ladder(ids, der);
     this.seen = this.fresh;
+    const side = (extra = "") => `<aside class="chamber-side">${poster}${ladder}${extra}</aside>`;
     if (d.locked) {
       return `<div class="chamber" data-state="playing">
-        ${poster}
-        <details class="chamber-summary"><summary>${h(T("theRolls"))}</summary>${sections}</details>
-        ${this.playing(der)}
+        ${side()}
+        <div class="chamber-body">
+          <details class="chamber-summary"${this.openRolls ? " open" : ""}><summary>${h(T("rollsDetail"))}</summary>${sections}</details>
+          ${this.playing(der)}
+        </div>
       </div>`;
     }
+    const enter = `<button type="button" class="primary" data-action="enter">${h(T("enter"))}</button>`;
     return `<div class="chamber" data-state="setup">
-      ${poster}
-      ${sections}
-      <label class="mimic-switch"><input type="checkbox" data-action="mimics" ${this.mimics ? "checked" : ""}> ${h(T("useMimics"))} <span class="page">${h(T("page")(85))}</span></label>
-      <div class="chamber-actions">
-        <button type="button" class="primary" data-action="enter">${h(T("enter"))}</button>
-        ${Object.keys(d.rolls).length ? askButton(this.asking, "new", T("newChamber"), T("confirmNew"), T("yes"), T("cancel")) : ""}
+      ${side(r0(d) ? `<div class="side-actions">${enter}</div>` : "")}
+      <div class="chamber-body">
+        ${sections}
+        <div class="chamber-actions">
+          ${enter}
+          ${Object.keys(d.rolls).length ? askButton(this.asking, "new", T("newChamber"), T("confirmNew"), T("yes"), T("cancel")) : ""}
+        </div>
       </div>
     </div>`;
+  }
+
+  /** Las siete en una escalera: dónde vas, qué salió, y un salto a cada una. */
+  ladder(ids, der) {
+    const d = this.d, r = d.rolls, t = this.t;
+    const next = d.locked ? null : r.chamber == null ? "chamber" : E.pending(r, t)[0];
+    const items = ids.map((id, i) => {
+      const skip = r.chamber != null && E.skipped(id, r, t);
+      const fixed = skip && id === "entries" && der.entryChange === "fixed";
+      const state = id === next ? "is-current" : skip && !fixed ? "is-skipped" : r[id] != null || fixed ? "is-done" : "";
+      const stamp = r[id] != null ? this.isNew(`fill:${id}:${r[id]}`).replace("is-new", "is-stamped") : "";
+      return `<li class="ladder-item ${state}${stamp}${id === "mimic" ? " is-mimic" : ""}">
+        <label class="ladder-label" for="${idOf(`roll.${id}`)}"><span class="ladder-n">${ROMAN[i]}</span><span class="ladder-name">${h(T(`roll_${id}`))}</span></label>
+        ${this.rollBox(id, der, skip, fixed)}
+      </li>`;
+    }).join("");
+    // Mímicos (p. 85) es opcional: arriba, un botón que se vuelve la tirada VII al pulsarlo.
+    const add = !d.locked && !this.mimics ? `<li class="ladder-item ladder-add"><button type="button" data-action="mimics-on">
+        <span class="ladder-n">VII</span><span class="ladder-name">${h(T("useMimics"))}</span><span class="page">${h(T("page")(85))}</span></button></li>` : "";
+    return `<section class="ladder" aria-label="${h(T("theRolls"))}"><h2 class="ladder-title">${h(T("theRolls"))}</h2><ol>${items}${add}</ol></section>`;
   }
 
   /** « is-new» la primera vez que se pinta algo: así entra con animación y lo de antes se queda quieto. */
@@ -160,21 +196,20 @@ export class ChamberView {
   /** La cabecera tipo cartel: número y nombre de la cámara, y en una línea lo que ya se sabe de ella. */
   poster(der) {
     const t = this.t, r = this.d.rolls;
-    if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
-    const parts = [];
-    if (!E.skipped("condition", r, t) && !der.conditionExcluded && r.condition != null) parts.push(t.name("B", der.rule?.fixedCondition ?? r.condition));
-    if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) parts.push(T("entriesN")(der.entries));
-    if (der.sealed) parts.push(T("sealed"));
-    else if (der.open) parts.push(T("noCountdown"));
-    else if (der.timer != null) parts.push(T("rounds")(der.timer));
-    if (!E.skipped("loot", r, t) && r.loot != null) parts.push(t.name("C", r.loot));
-    if (!E.skipped("inhabitant", r, t) && r.inhabitant != null) parts.push(t.name("D", r.inhabitant));
+    if (r.chamber == null) return `<header class="poster is-empty"><p class="poster-name">${h(T("posterEmpty"))}</p><p class="poster-hint">${h(T("posterHint"))}</p></header>`;
+    const facts = [];
+    const cond = r.condition != null ? t.name("B", der.rule?.fixedCondition ?? r.condition) : null;
+    if (!E.skipped("condition", r, t) && !der.conditionExcluded && cond && !/^no condition$/i.test(cond)) facts.push(["condition", cond]);
+    if (der.entries != null && (r.entries != null || der.entryChange === "fixed")) facts.push(["entries", der.entries]);
+    if (der.sealed) facts.push(["timer", T("sealed")]);
+    else if (der.open) facts.push(["timer", T("noCountdown")]);
+    else if (der.timer != null) facts.push(["timer", T("rounds")(der.timer)]);
+    if (!E.skipped("loot", r, t) && r.loot != null) facts.push(["loot", t.name("C", r.loot)]);
+    if (!E.skipped("inhabitant", r, t) && r.inhabitant != null) facts.push(["inhabitant", t.name("D", r.inhabitant)]);
     return `<header class="poster${this.isNew("poster:" + r.chamber)}">
       <p class="poster-n">${h(String(r.chamber).padStart(2, "0"))}</p>
-      <div class="poster-text">
-        <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
-        ${parts.length ? `<p class="poster-sum">${parts.map((p) => `<span>${h(p)}</span>`).join("")}</p>` : ""}
-      </div>
+      <h1 class="poster-name">${h(t.chamberName(r.chamber))} <span class="page">${h(T("page")(t.page("A", r.chamber)))}</span></h1>
+      ${facts.length ? `<dl class="poster-facts">${facts.map(([k, v]) => `<div class="fact${this.isNew(`fact:${k}:${v}`)}"><dt>${h(T(`roll_${k}`))}</dt><dd>${h(v)}</dd></div>`).join("")}</dl>` : ""}
     </header>`;
   }
 
@@ -186,11 +221,26 @@ export class ChamberView {
     const page = { last: this.mainPage(id, der) };
     const own = kids.filter((c) => this.sectionOf(c) === id && !c.extraction);
     const fixedLines = r.chamber != null ? E.fixedExtras(der.rule).filter((e) => e.section === id) : [];
+    // Lo que no trae dado lleva la ficha «DM»: la cantidad la decide el Máster.
+    // Mímicos: con menos de 50 hay un Common Mimic; dónde y cómo aparece es cosa suya (p. 85).
+    if (id === "mimic" && r.mimic != null && !d.mimicHidden && E.mimicKind(r.mimic) !== "none") fixedLines.unshift({ kind: "dm", of: "Common Mimic", page: 296 });
+    // Botín sin dado (Water, Forest, Dry Wood…): la cantidad es a criterio del Máster.
+    // Habitantes sin dado («Evil Whisperer plus 1d4+2 Ghouls», «Vampire»): una fila con su página y «1».
+    if (id === "inhabitant" && r.inhabitant != null && !skip) {
+      t.name("D", r.inhabitant).split(/\s+(?:plus|and|&)\s+|\s*\+\s*/i).map((x) => x.trim()).map((x) => x.replace(/^1\s+/, "")).filter((x) => x && !/\d/.test(x))
+        .forEach((x) => fixedLines.unshift({ kind: "one", of: x.replace(/\)$/, "").replace(/\s*\([^)]*$/, (m) => m + ")") }));
+    }
+    const lootDm = id === "loot" && r.loot != null && !skip && !own.some((c) => c.from === "loot") && !NOT_AMOUNTS.test(t.name("C", r.loot));
     const body = skip && !fixed ? "" : this.result(id, der);
     const derived = own.length || fixedLines.length ? this.derivedList(own, fixedLines, page) : "";
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}" data-section="${id}" style="--n:${n}">
+    const current = !d.locked && (r.chamber == null ? id === "chamber" : E.pending(r, t)[0] === id);
+    const waiting = r[id] == null && !fixed && !skip;
+    // Sin condición no hay nada que leer abajo: la lista de arriba ya dice el número y la carta lo nombra.
+    const quiet = (id === "mimic" && d.mimicHidden) || id === "condition" && r.condition != null && !der.conditionExcluded && /^no condition$/i.test(t.name("B", der.rule?.fixedCondition ?? r.condition)) && !own.length;
+    const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
+    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
-      ${body ? `<div class="roll-result">${body}</div>` : ""}
+      ${body ? `<div class="roll-result${lootDm ? " has-dm" : ""}">${body}${lootDm ? DM_BOX() : ""}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
       ${derived}
     </section>`;
@@ -213,27 +263,32 @@ export class ChamberView {
     return null;
   }
 
+  /** La cabeza de cada tirada abajo: sello con su numeral, nombre y lo que salió. Las casillas viven arriba. */
   head(id, n, der, skip, fixed) {
     const d = this.d, r = d.rolls;
+    const v = fixed ? der.entries : skip ? "—" : id === "mimic" && this.d.mimicHidden && r[id] != null ? "•" : r[id];
+    return `<div class="roll-head"><h2 class="roll-label"><span class="roll-n">${ROMAN[n - 1]}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></h2>${d.locked && v != null ? `<span class="roll-value">${h(v)}</span>` : ""}</div>`;
+  }
+
+  /** La casilla de una de las siete, para la lista de arriba. */
+  rollBox(id, der, skip, fixed) {
+    const d = this.d, r = d.rolls;
     const input = idOf(`roll.${id}`);
-    const label = `<label class="roll-label" for="${input}"><span class="roll-n">${n}</span> <span class="roll-name">${h(T(`roll_${id}`))}</span></label>`;
-    if (fixed) return `<div class="roll-head">${label}<span class="roll-value">${h(der.entries)}</span></div>`;
-    if (skip) return `<div class="roll-head">${label}<span class="roll-value">—</span></div>`;
+    if (fixed) return `<span class="roll-value">${h(der.entries)}</span>`;
+    if (skip) return `<span class="roll-value">—</span>`;
     const die = id === "entries" ? der.entryDie : id === "timer" ? `${der.timerDice}d10` : E.rollDef(id).die;
     const raw = d.buffers[id] ?? (r[id] != null ? String(r[id]) : "");
-    if (d.locked) return `<div class="roll-head">${label}<span class="roll-value">${h(r[id] ?? "—")}</span></div>`;
+    const hidden = id === "mimic" && d.mimicHidden;
+    if (d.locked) return `<span class="roll-value">${hidden && r[id] != null ? "•" : h(r[id] ?? "—")}</span>`;
     const [a, b] = E.rangeOf(id, der);
     const v = E.typedValue(raw, die);
     const bad = String(raw).trim() !== "" && (v == null || v < a || v > b);
-    const hidden = id === "mimic" && d.mimicHidden;
     const waiting = id !== "chamber" && r.chamber == null;
-    return `<div class="roll-head">${label}
-      <input id="${input}" class="roll-input${bad ? " is-invalid" : ""}" data-roll="${id}" type="${hidden ? "password" : "text"}"
+    return `<input id="${input}" class="roll-input${bad ? " is-invalid" : ""}" data-roll="${id}" type="${hidden ? "password" : "text"}"
         inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(die)}"
         ${waiting ? "disabled" : ""} ${bad ? 'aria-invalid="true"' : ""} aria-describedby="${input}-die">
-      <span id="${input}-die" class="roll-die">${h(bad ? `${a}–${b}` : die)}</span>
-      ${id === "mimic" ? `<button type="button" class="quiet" data-action="mimic-toggle" aria-pressed="${!hidden}">${h(hidden ? T("show") : T("hide"))}</button>` : ""}
-    </div>`;
+      ${id === "mimic" ? `<button type="button" class="icon-btn" data-action="mimic-toggle" aria-pressed="${!hidden}" aria-label="${h(hidden ? T("show") : T("hide"))}" title="${h(hidden ? T("show") : T("hide"))}">${hidden ? ICON.eyeOff : ICON.eye}</button><button type="button" class="icon-btn" data-action="mimics-off" aria-label="${h(T("dropMimics"))}" title="${h(T("dropMimics"))}">${ICON.close}</button>`
+        : `<span id="${input}-die" class="roll-die${bad ? " is-invalid" : ""}">${h(bad ? `${a}–${b}` : die)}</span>`}`;
   }
 
   /** El nombre del resultado con su página, y la nota plegada. */
@@ -272,10 +327,12 @@ export class ChamberView {
         const raw = t.entry(tb, n).result;
         const mark = /^\*+|[†ª]+$/.exec(raw)?.[0] ?? (raw.includes("(") ? "plain" : null);
         const foot = mark && !(READING_NOTES[tb] ?? []).includes(mark) && !(tb === "C" && mark === "*") ? t.footnote(tb, n) : null;
+        // En Habitantes no van descripciones: cada criatura lleva su página del bestiario (petición de Giovani).
+        if (tb === "D") return line(t.name(tb, n), t.page(tb, n));
         return line(t.name(tb, n), t.page(tb, n)) + note(T("note"), E.loc(t.noteOf(tb, n)), E.loc(foot));
       }
       case "mimic":
-        return line(T("mimic")[E.mimicKind(n)], null, E.mimicKind(n) !== "none" ? " is-danger" : "");
+        return E.mimicKind(n) === "none" ? `<p class="result-hint">${h(T("mimic").none)}</p>` : "";
     }
     return "";
   }
@@ -312,10 +369,51 @@ export class ChamberView {
     }
     const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
-    const rows = this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page);
+    const isDm = (e) => e.kind === "dm" || (["loot", "exclusiveLoot"].includes(e.kind) && !NOT_AMOUNTS.test(E.loc(e.of)));
+    const rows = fixedLines.filter((e) => e.kind === "one").reverse().map((e) => this.oneRow(e));
+    rows.push(...fixedLines.filter(isDm).map((e) => this.dmRow(e, page)));
+    rows.push(...this.nodes(kidsOf(null).filter((c) => c.group !== "ultimate"), kidsOf, page));
     if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate").forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "one" && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
     return `<div class="derived">${rows.join("")}</div>`;
+  }
+
+  /** Una fila sin dado: el nombre y la ficha «DM», porque la cantidad la decide el Máster. */
+  dmRow(e, page) {
+    const label = typeof e.of === "string" ? e.of : E.loc(e.of);
+    return `<div class="derived-row dm-row${this.isNew("dm:" + label)}">
+      <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p>${DM_BOX()}</div>`;
+  }
+
+  /** Un habitante que viene solo: su nombre, su página del bestiario y una ficha fija «1». */
+  oneRow(e) {
+    const p = this.creaturePage(e.of);
+    return `<div class="derived-row dm-row${this.isNew("one:" + e.of)}">
+      <p class="derived-label">${h(e.of)}${p ? ` <span class="page">${h(T("page")(p))}</span>` : ""}</p><span class="derived-value">1</span></div>`;
+  }
+
+  /** La página del bestiario de una criatura: «Ghouls» → Ghouls, «Rookie Hitmen» → Rookie Hitman, «Stone Golem)» → Stone Golem. */
+  creaturePage(name, twinned = false) {
+    const items = this.t.bestiary ?? [];
+    const norm = (x) => x.toLowerCase().replace(/\([^)]*\)?/g, " ").replace(/[^a-z ]/g, " ").replace(/\bmen\b|men\b/g, "man").replace(/s\b/g, "").replace(/\s+/g, " ").trim();
+    const key = norm(name);
+    if (!key) return null;
+    const exact = items.find((x) => norm(x.name) === key);
+    if (exact) return exact.page;
+    let best = null;
+    for (const x of items) {
+      const k = norm(x.name);
+      if (k && (key.includes(k) || k.includes(key)) && (!best || k.length > norm(best.name).length)) best = x;
+    }
+    if (best) return best.page;
+    // «Black Pawn», «Dark Stalker (Black Horse)»: la ficha se llama por su pieza de ajedrez, entre paréntesis.
+    const paren = (x) => norm((/\(([^)]*)\)?/.exec(x) ?? [])[1] ?? "");
+    const piece = paren(name) || key;
+    const byPiece = items.find((x) => paren(x.name) && paren(x.name) === piece);
+    if (byPiece) return byPiece.page;
+    // «The Red Queen» comparte ficha con «The Red King».
+    const twin = key.replace(/queen/, "king").replace(/\bking\b(?!.*queen)/, (m) => (key.includes("queen") ? m : "queen"));
+    return twin !== key && !twinned ? this.creaturePage(twin, true) : null;
   }
 
   /** Unas hermanas del árbol, en el orden del motor. */
@@ -368,7 +466,7 @@ export class ChamberView {
     if (v == null) return "";
     if (c.chance) return c.chance.passes(v) ? `<span class="derived-yes">✓</span>` : `<span class="derived-no">✗</span>`;
     if (c.table) return `<span class="result-name">${h(t.name(c.table, v))}</span>`;
-    return `<span class="derived-total">→ ${h(c.formula.total(v))}</span>`;
+    return `<span class="derived-total">= ${h(c.formula.total(v))}</span>`;
   }
 
   input(c, cls = "derived-input", aria = "") {
@@ -394,7 +492,7 @@ export class ChamberView {
     const resultPage = c.table && v != null ? t.page(c.table, v) : null;
     const needed = c.required && v == null;
     return `<div class="derived-row${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
-      <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.page(c.page, page)}</label>
+      <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.sectionOf(c) === "inhabitant" ? this.page(this.creaturePage(c.of) ?? c.page, {}) : this.page(c.page, page)}</label>
       <span class="derived-die">${h(bad ? `${c.formula.min}–${c.formula.max}` : die)}</span>
       ${this.input(c)}
       <span class="derived-result">${this.answer(c)}${this.page(resultPage, page)}</span>
@@ -438,7 +536,7 @@ export class ChamberView {
       const amount = c.key.endsWith(".chance") ? items.find((x) => `${x.key}.chance` === c.key) : null;
       return amount ? `<div class="node" data-node="${h(c.key)}">${row(c)}<div class="derived">${row(amount)}</div></div>` : row(c);
     }).join("");
-    const fixed = fixedLines.map((e) => `<p class="fixed-line">${h(E.loc(e.of))}</p>`).join("");
+    const fixed = fixedLines.map((e) => this.dmRow(e, {})).join("");
     return `<div class="ultimate-group"><p class="group-title">${h(T("ultimate"))}${shared ? ` <span class="group-hint">· ${h(shared)}</span>` : ""}</p>${rows}${fixed}</div>`;
   }
 
@@ -561,6 +659,13 @@ export class ChamberView {
       const el = ev.target.closest("button[data-action]");
       if (!el) return;
       const a = el.dataset.action;
+      if (a === "mimics-on" || a === "mimics-off") {
+        this.mimics = a === "mimics-on";
+        store.set("bs.mimics", this.mimics);
+        rerender();
+        root.querySelector(this.mimics ? "[data-roll=mimic]" : "[data-roll=inhabitant]")?.focus();
+        return;
+      }
       if (a === "mimic-toggle") this.d.mimicHidden = !this.d.mimicHidden;
       else if (a === "enter") { if (!this.enter(root)) return; window.scrollTo({ top: 0 }); }
       else if (a === "new" || a === "discard") { this.asking = a; rerender(); return; }
@@ -578,6 +683,9 @@ export class ChamberView {
       this.save();
       rerender();
     });
+    root.addEventListener("toggle", (ev) => {
+      if (ev.target.classList?.contains("chamber-summary")) this.openRolls = ev.target.open;
+    }, true);
     root.addEventListener("submit", (ev) => {
       if (ev.target.dataset.form !== "close") return;
       ev.preventDefault();

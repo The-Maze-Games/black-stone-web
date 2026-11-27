@@ -4,7 +4,7 @@ import { setDataLang } from "./engine.js";
 const S = {
   es: {
     app: "Black Stone · The Maze",
-    theRolls: "Las Siete Tiradas", posterHint: "Tira el d% de la Cámara y teclea lo que salió.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
+    theRolls: "Las Siete Tiradas", rollsDetail: "Resultados y derivadas", posterEmpty: "Una cámara nueva", posterHint: "Tira el d% de la Cámara y escribe el resultado en la casilla 1.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
     navChamber: "Cámara", navLog: "Registro", navRef: "Referencia",
     roll_chamber: "Cámara", roll_condition: "Condición", roll_entries: "Entradas", roll_timer: "Temporizador",
     roll_loot: "Botín", roll_inhabitant: "Habitantes", roll_mimic: "Mímicos",
@@ -15,7 +15,7 @@ const S = {
     rounds: (v) => `${v} rondas`, oneEntry: "×10 una entrada",
     sealed: "Sellada", noCountdown: "Sin cuenta atrás", jammed: "Atascada · prueba Difícil para abrir",
     window: "Rondas abierta", times: "tiradas", table: "Tabla", ultimate: "Arma Definitiva",
-    useMimics: "Usar Mímicos", show: "Ver", hide: "Tapar", hidden: "Oculto",
+    useMimics: "Usar Mímicos", dmCall: "a criterio del Máster", howMuch: "Cantidad", dropMimics: "Quitar", show: "Ver", hide: "Tapar", hidden: "Oculto",
     mimic: { infested: "Infestada · Common Mimic y 1d10 Maze Mimics", common: "Common Mimic", none: "Sin mímicos" },
     doubleTitle: "Double Monster", doubleTwo: "Dos encuentros", doubleTimes: "Duplicar las cantidades",
     legendaryTitle: "Legendary Raider", legendaryTable: "Tabla 3.3", legendaryMM: "Lo elige el Amo",
@@ -56,7 +56,7 @@ const S = {
   },
   en: {
     app: "Black Stone · The Maze",
-    theRolls: "The Seven Rolls", posterHint: "Roll the Chamber d% and type what you got.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
+    theRolls: "The Seven Rolls", rollsDetail: "Results and derived rolls", posterEmpty: "A new chamber", posterHint: "Roll the Chamber d% and type the result in box 1.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
     navChamber: "Chamber", navLog: "Log", navRef: "Reference",
     roll_chamber: "Chamber", roll_condition: "Condition", roll_entries: "Entries", roll_timer: "Timer",
     roll_loot: "Loot", roll_inhabitant: "Inhabitants", roll_mimic: "Mimics",
@@ -67,7 +67,7 @@ const S = {
     rounds: (v) => `${v} rounds`, oneEntry: "×10 one entry",
     sealed: "Sealed", noCountdown: "No countdown", jammed: "Jammed · Hard check to open",
     window: "Rounds open", times: "rolls", table: "Table", ultimate: "Ultimate Weapon",
-    useMimics: "Use Mimics", show: "Show", hide: "Hide", hidden: "Hidden",
+    useMimics: "Use Mimics", dmCall: "at the GM's call", howMuch: "Amount", dropMimics: "Remove", show: "Show", hide: "Hide", hidden: "Hidden",
     mimic: { infested: "Infested · Common Mimic and 1d10 Maze Mimics", common: "Common Mimic", none: "No mimics" },
     doubleTitle: "Double Monster", doubleTwo: "Two encounters", doubleTimes: "Double the quantities",
     legendaryTitle: "Legendary Raider", legendaryTable: "Table 3.3", legendaryMM: "Maze Master picks",

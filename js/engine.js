@@ -126,7 +126,10 @@ export class Tables {
       if (!res.ok) throw new Error(`No se pudo leer ${f}.json`);
       return [id, await res.json()];
     }));
-    return new Tables(Object.fromEntries(entries));
+    const tables = new Tables(Object.fromEntries(entries));
+    // El bestiario sólo da la página de cada criatura en Habitantes; si no carga, la cámara sigue igual.
+    try { tables.bestiary = (await (await fetch(`${base}bestiary.json`)).json()).items ?? []; } catch { tables.bestiary = []; }
+    return tables;
   }
 
   source(t) { return this.files[t] ?? null; }
