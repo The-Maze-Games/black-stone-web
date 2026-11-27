@@ -1,6 +1,6 @@
 // Sin conexión: guarda la app entera la primera vez. Con red, siempre sirve lo nuevo;
 // lo guardado sólo sale si no hay red, así nunca se mezclan archivos de dos versiones.
-const VERSION = "bs-28";
+const VERSION = "bs-29";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/main.js", "js/engine.js", "js/i18n.js", "js/chamber.js", "js/reference.js", "js/db.js", "js/util.js",
@@ -14,6 +14,7 @@ const FILES = [
   "data/table-3-8.json", "data/table-3-9.json", "data/table-3-10.json",
   "data/table-4-1.json", "data/table-4-2.json", "data/table-4-3.json", "data/table-4-4.json", "data/table-4-5.json",
   "data/table-4-6.json", "data/table-4-7.json", "data/table-4-8.json", "data/table-4-9.json",
+  "data/bestiary.json", "data/agnostic.json",
 ];
 
 self.addEventListener("install", (ev) => {

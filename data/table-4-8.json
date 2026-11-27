@@ -663,11 +663,8 @@
         "en": "bludgeoning",
         "es": "contundente"
       },
-      "approx": true,
-      "note": {
-        "en": "The Sistema does not name it: category by analogy (question 13)",
-        "es": "El Sistema no la nombra: categoría por analogía (pregunta 13)"
-      }
+      "approx": false,
+      "sistema": "flagelos"
     },
     "Spear": {
       "size": {
