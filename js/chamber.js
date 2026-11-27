@@ -5,7 +5,7 @@ import { T } from "./i18n.js";
 import { askButton, h, idOf, store } from "./util.js";
 
 const EMPTY = () => ({ rolls: {}, typed: {}, buffers: {}, round: 0, locked: false, mimicHidden: true,
-  live: [], liveBuffers: {}, deaths: 0, tab: "room", notes: "", outcome: null });
+  live: [], liveBuffers: {}, deaths: 0, kills: {}, tab: "room", notes: "", outcome: null });
 
 /** Las notas de las tablas C y D que sólo explican cómo leer la tabla: la app ya lo hace. */
 const READING_NOTES = { C: ["*", "plain", "ore"], D: ["†"] };
@@ -136,7 +136,7 @@ export class ChamberView {
       condition: der.conditionExcluded ? "—" : name("condition", "B"),
       loot: name("loot", "C"), inhabitant: name("inhabitant", "D"),
       entries: der.entries, timer: der.timer, sealed: der.sealed, open: der.open,
-      rounds: d.round, outcome: form.outcome, deaths: d.deaths,
+      rounds: d.round, outcome: form.outcome, deaths: d.deaths, kills: Object.values(d.kills ?? {}).reduce((a, n) => a + n, 0),
       notes: (form.notes || "").trim(), rolls: r, typed: d.typed, live: d.live,
     });
     store.set("bs.log", this.log);
@@ -431,6 +431,21 @@ export class ChamberView {
       <p class="derived-label">${h(e.of)}${p ? ` <span class="page">${h(T("page")(p))}</span>` : ""}</p><span class="derived-value">1</span></div>`;
   }
 
+  /** La criatura del bestiario que nombra un texto de la cámara, por palabras enteras: «Hydras en la cámara» → Hydra. */
+  beastIn(text) {
+    const norm = (x) => ` ${String(x).toLowerCase().replace(/\([^)]*\)?/g, " ").replace(/[^a-z ]/g, " ").replace(/s\b/g, "").replace(/\s+/g, " ").trim()} `;
+    const raw = typeof text === "string" ? text : E.loc(text);
+    // Sólo cuando la criatura abre el texto y es una cuenta de ellas («Raiders it can hold» es un aforo, no enemigos).
+    if (/\b(?:hold|capacity|caben|aforo|encounter|encuentro)\b/i.test(raw)) return null;
+    const words = norm(raw);
+    let best = null;
+    for (const x of this.t.bestiary ?? []) {
+      const k = norm(x.name);
+      if (k.trim().length > 2 && words.startsWith(k) && (!best || k.length > norm(best.name).length)) best = x;
+    }
+    return best;
+  }
+
   /** La página del bestiario de una criatura: «Ghouls» → Ghouls, «Rookie Hitmen» → Rookie Hitman, «Stone Golem)» → Stone Golem. */
   creaturePage(name, twinned = false) {
     const items = this.t.bestiary ?? [];
@@ -638,12 +653,13 @@ export class ChamberView {
     const groups = this.manifest(der, ids);
     // Ítems y Bestiario sólo si hay botín o criaturas. Las fichas con stats llegan después.
     const items = groups.filter((g) => g.id === "loot").flatMap((g) => g.items).filter((it) => it.kind !== "head" || !groups.find((g) => g.id === "loot").items.some((x) => x.kind !== "head"));
-    const beasts = groups.filter((g) => g.id === "inhabitant" || g.id === "mimic").flatMap((g) => g.items).filter((it) => it.kind !== "head");
+    const beasts = [...groups.filter((g) => g.id === "chamber").flatMap((g) => g.items).filter((it) => it.beast),
+      ...groups.filter((g) => g.id === "inhabitant" || g.id === "mimic").flatMap((g) => g.items).filter((it) => it.kind !== "head")];
     const tabs = [["room", T("tabRoom"), ""], items.length && ["items", T("tabItems"), String(items.length)], beasts.length && ["beasts", T("tabBeasts"), String(beasts.length)],
       ["extract", T("tabExtract"), pending ? String(pending) : ""], ["end", T("tabEnd"), ""]].filter(Boolean);
     const tab = tabs.some(([k]) => k === d.tab) ? d.tab : "room";
-    const body = tab === "extract" ? this.extractTab(der, items.filter((it) => it.qty === "DM")) : tab === "end" ? this.endTab()
-      : tab === "items" ? this.listTab(items, "items") : tab === "beasts" ? this.listTab(beasts, "beasts") : this.roomTab(der, sections, ids, groups);
+    const body = tab === "extract" ? this.extractTab(der, items.filter((it) => it.qty === "DM")) : tab === "end" ? this.endTab(beasts)
+      : tab === "items" ? this.listTab(items, "items") : tab === "beasts" ? this.beastTab(beasts) : this.roomTab(der, sections, ids, groups);
     return `${this.roundBar(der)}
       <nav class="play-tabs" role="tablist" aria-label="${h(T("inChamber"))}">
         ${tabs.map(([k, label, badge]) => `<button type="button" role="tab" class="play-tab" data-action="tab" data-tab="${k}" aria-selected="${k === tab}" id="tab-${k}">${h(label)}${badge ? ` <span class="tab-badge">${h(badge)}</span>` : ""}</button>`).join("")}
@@ -705,6 +721,28 @@ export class ChamberView {
   }
 
   /** «Ítems» o «Bestiario»: una ficha por cosa, con su página y cuántas hay. Aquí irán sus stats. */
+  /** «Bestiario»: cada enemigo con su cantidad en grande y su cuenta de eliminados. Aquí irán sus stats. */
+  beastTab(list) {
+    const kills = this.d.kills ?? {};
+    return `<ul class="beast-grid">${list.map((it, i) => {
+      const n = typeof it.qty === "number" ? it.qty : null;
+      const k = kills[it.name] ?? 0;
+      const cleared = n != null && k >= n;
+      return `<li class="beast${cleared ? " is-cleared" : ""}" style="--i:${i}">
+        <div class="beast-head">
+          <p class="beast-name">${h(it.name)}${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</p>
+          <p class="beast-count">${n != null ? `<span class="beast-left${this.isNew(`left:${it.name}:${n - k}`)}">${Math.max(0, n - k)}</span><span class="beast-of">/ ${n}</span>` : DM_BOX()}</p>
+        </div>
+        ${n != null && n <= 30 ? `<p class="beast-pips" aria-hidden="true">${Array.from({ length: n }, (_, j) => `<span class="pip${j < k ? " is-dead" : ""}"></span>`).join("")}</p>` : ""}
+        <div class="kill-counter">
+          <button type="button" class="round-btn" data-action="kill-" data-name="${h(it.name)}" aria-label="−1" ${k <= 0 ? "disabled" : ""}>−</button>
+          <p class="kill-read"><strong class="kill-n">${k}</strong> <span>${h(T("killed"))}</span></p>
+          <button type="button" class="round-btn is-next" data-action="kill+" data-name="${h(it.name)}" aria-label="+1" ${cleared ? "disabled" : ""}>+</button>
+        </div>
+      </li>`;
+    }).join("")}</ul>`;
+  }
+
   listTab(list, kind) {
     const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
     return `<ul class="entity-grid is-${kind}">${list.map((it, i) => `<li class="entity${it.kind ? ` is-${it.kind}` : ""}" style="--i:${i}">
@@ -767,7 +805,9 @@ export class ChamberView {
         }
         const relic = c.group === "ultimate";
         const label = relic ? c.of.split(/;\s*/)[0] : this.label(c);
-        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : null, qty: c.formula.total(v), kind: relic ? "relic" : null });
+        // Enemigos que trae la propia cámara («Hydras en la cámara»): van también al Bestiario con su ficha.
+        const beast = id === "chamber" ? this.beastIn(c.of) : null;
+        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null, beast: !!beast });
       }
       if (!items.length && (id === "loot" || id === "inhabitant")) {
         const tb = id === "loot" ? "C" : "D";
@@ -838,8 +878,11 @@ export class ChamberView {
   }
 
   /** «Terminar»: cómo acabó, las muertes y las notas, y guardarlo en el registro. */
-  endTab() {
+  endTab(beasts = []) {
     const d = this.d;
+    const kills = d.kills ?? {};
+    const killed = Object.values(kills).reduce((a, n) => a + n, 0);
+    const total = beasts.every((b) => typeof b.qty === "number") ? beasts.reduce((a, b) => a + b.qty, 0) : null;
     const outcome = d.outcome ?? Object.keys(T("outcomes"))[0];
     return `<form class="close-form" data-form="close">
       <fieldset class="outcomes"><legend class="tab-sub">${h(T("outcome"))}</legend>
@@ -853,6 +896,7 @@ export class ChamberView {
           <button type="button" class="round-btn" data-action="deaths+" aria-label="+1">+</button>
         </div>
         <p class="end-rounds"><span class="round-label">${h(T("roundsPlayed"))}</span><strong>${d.round}</strong></p>
+        ${beasts.length ? `<p class="end-rounds end-kills"><span class="round-label">${h(T("enemiesKilled"))}</span><strong>${killed}</strong>${total != null ? `<span class="beast-of">/ ${total}</span>` : ""}</p>` : ""}
       </div>
       <label class="tab-sub" for="close-notes">${h(T("notes"))}</label>
       <textarea id="close-notes" name="notes" data-field="notes" rows="4" placeholder="${h(T("notesHint"))}">${h(d.notes ?? "")}</textarea>
@@ -924,6 +968,10 @@ export class ChamberView {
       else if (a === "live") this.recordLive(el.dataset.key);
       else if (a === "extract") el.dataset.keys.split(",").forEach((k) => this.recordExtract(k));
       else if (a === "tab") this.d.tab = el.dataset.tab;
+      else if (a === "kill+" || a === "kill-") {
+        const k = (this.d.kills ??= {}), n = el.dataset.name;
+        k[n] = Math.max(0, (k[n] ?? 0) + (a === "kill+" ? 1 : -1));
+      }
       else if (a === "extract-dm") {
         const k = el.dataset.key, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();
         if (!/^\d+$/.test(raw) || +raw <= 0) return;
