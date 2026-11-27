@@ -21,6 +21,15 @@ const ICON = {
   eyeOff: svg('<path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.7M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.7"/><path d="M3 3l18 18"/>'),
   close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
 };
+/** Etiquetas del libro en corto: sin «(p. 101 dice…)», «— Tabla 4.5» → «· 4.5», «; requiere explorar el nido» fuera
+    (ya lo dice el título del grupo), y «diez tiradas extra de botín de cámara» → «+10 de botín». */
+const short = (x) => String(x ?? "")
+  .replace(/^(ten extra Chamber loot rolls|diez tiradas extra de botín de cámara)$/i, (m) => (/^ten/i.test(m) ? "+10 loot rolls" : "+10 de botín"))
+  .replace(/\s*\((?:p\.|pp\.)[^)]*\)/g, "").replace(/\s*\([^)]*p\. \d+[^)]*\)/g, "")
+  .replace(/\s*[—–]\s*(?:Table|Tabla)\s+([\d.]+)(?:,\s*p\.\s*\d+)?/g, " · $1")
+  .replace(/;\s*(?:requires exploring the nest|requiere explorar el nido)$/i, "")
+  .replace(/^(?:rolls on|tiradas en la)\s+(?:Table|Tabla)\s+/i, (m) => (/^rolls/i.test(m) ? "Table " : "Tabla "))
+  .trim();
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -158,6 +167,7 @@ export class ChamberView {
     return `<div class="chamber" data-state="setup">
       ${side(r0(d) ? `<div class="side-actions">${enter}</div>` : "")}
       <div class="chamber-body">
+        ${r0(d) ? `<p class="req-legend"><span class="req-mark" aria-hidden="true"></span>${h(T("requiredLegend"))}</p>` : ""}
         ${sections}
         <div class="chamber-actions">
           ${enter}
@@ -456,8 +466,8 @@ export class ChamberView {
 
   label(c) {
     if (c.kind === "window") return T("window");
-    if (c.kind === "times") return `${c.of} · ${T("times")}`;
-    return c.of;
+    if (c.kind === "times") return `${short(c.of)} · ${T("times")}`;
+    return short(c.of);
   }
 
   /** Lo que salió en una derivada, en corto. */
@@ -491,7 +501,7 @@ export class ChamberView {
     const note = c.table && v != null ? t.noteOf(c.table, v) : null;
     const resultPage = c.table && v != null ? t.page(c.table, v) : null;
     const needed = c.required && v == null;
-    return `<div class="derived-row${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
+    return `<div class="derived-row${c.required ? " is-required" : " is-optional"}${needed ? " is-needed" : ""}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
       <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.sectionOf(c) === "inhabitant" ? this.page(this.creaturePage(c.of) ?? c.page, {}) : this.page(c.page, page)}</label>
       <span class="derived-die">${h(bad ? `${c.formula.min}–${c.formula.max}` : die)}</span>
       ${this.input(c)}
@@ -504,12 +514,12 @@ export class ChamberView {
   diceRow(items, page, branched = new Set()) {
     const t = this.t, d = this.d;
     const first = items[0];
-    const title = `${groupTitle(first.of)} · ${T("table")} ${t.source(first.table).table}`;
+    const title = `${short(groupTitle(first.of))} · ${T("table")} ${t.source(first.table).table}`;
     const results = items.map((c, i) => {
       const v = d.typed[c.key];
       return v == null || branched.has(c.key) ? "" : `<li><span class="dice-n">${i + 1}</span> <span class="result-name">${h(t.name(c.table, v))}</span>${this.page(t.page(c.table, v), page)}</li>`;
     }).join("");
-    return `<div class="dice-row${this.isNew(first.key)}" data-group="${h(first.key.replace(REPEATED, "$1"))}">
+    return `<div class="dice-row${items.some((c) => c.required) ? " is-required" : " is-optional"}${this.isNew(first.key)}" data-group="${h(first.key.replace(REPEATED, "$1"))}">
       <p class="derived-label">${h(title)}${this.page(first.page, page)}</p>
       <div class="dice-cells">${items.map((c, i) => this.input(c, "dice-cell", `aria-label="${h(title)} ${i + 1}"`)).join("")}</div>
       ${results ? `<ol class="dice-results">${results}</ol>` : ""}
