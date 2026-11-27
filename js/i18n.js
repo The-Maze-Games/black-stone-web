@@ -4,7 +4,7 @@ import { setDataLang } from "./engine.js";
 const S = {
   es: {
     app: "Black Stone · The Maze",
-    theRolls: "Las Siete Tiradas", rollsDetail: "Todas las tiradas", tabRoom: "La sala", tabExtract: "Extraer", tabEnd: "Terminar", nothingHere: "La cámara está vacía.", recorded: "Anotado", roundShort: "R", nothingToExtract: "Nada que extraer por ahora.", roundsPlayed: "Rondas jugadas", notesHint: "Qué pasó, quién cayó, qué se llevaron…", tabItems: "Ítems", tabBeasts: "Bestiario", posterEmpty: "Una cámara nueva", posterHint: "Tira el d% de la Cámara y escribe el resultado en la casilla 1.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
+    theRolls: "Las Siete Tiradas", rollsDetail: "Todas las tiradas", tabRoom: "La sala", tabExtract: "Extraer", tabEnd: "Terminar", nothingHere: "La cámara está vacía.", recorded: "Anotado", roundShort: "R", nothingToExtract: "Nada que extraer por ahora.", roundsPlayed: "Rondas jugadas", notesHint: "Qué pasó, quién cayó, qué se llevaron…", tabItems: "Ítems", units: "uds.", unitsSoFar: (n) => `${n} en total`, tabBeasts: "Bestiario", posterEmpty: "Una cámara nueva", posterHint: "Tira el d% de la Cámara y escribe el resultado en la casilla 1.", entriesN: (n) => `${n} ${n === 1 ? "entrada" : "entradas"}`, backChamber: "← Cámara",
     navChamber: "Cámara", navLog: "Registro", navRef: "Referencia",
     roll_chamber: "Cámara", roll_condition: "Condición", roll_entries: "Entradas", roll_timer: "Temporizador",
     roll_loot: "Botín", roll_inhabitant: "Habitantes", roll_mimic: "Mímicos",
@@ -56,7 +56,7 @@ const S = {
   },
   en: {
     app: "Black Stone · The Maze",
-    theRolls: "The Seven Rolls", rollsDetail: "All the rolls", tabRoom: "The room", tabExtract: "Extract", tabEnd: "Finish", nothingHere: "The chamber is empty.", recorded: "Recorded", roundShort: "R", nothingToExtract: "Nothing to extract for now.", roundsPlayed: "Rounds played", notesHint: "What happened, who fell, what they took…", tabItems: "Items", tabBeasts: "Bestiary", posterEmpty: "A new chamber", posterHint: "Roll the Chamber d% and type the result in box 1.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
+    theRolls: "The Seven Rolls", rollsDetail: "All the rolls", tabRoom: "The room", tabExtract: "Extract", tabEnd: "Finish", nothingHere: "The chamber is empty.", recorded: "Recorded", roundShort: "R", nothingToExtract: "Nothing to extract for now.", roundsPlayed: "Rounds played", notesHint: "What happened, who fell, what they took…", tabItems: "Items", units: "units", unitsSoFar: (n) => `${n} total`, tabBeasts: "Bestiary", posterEmpty: "A new chamber", posterHint: "Roll the Chamber d% and type the result in box 1.", entriesN: (n) => `${n} ${n === 1 ? "entry" : "entries"}`, backChamber: "← Chamber",
     navChamber: "Chamber", navLog: "Log", navRef: "Reference",
     roll_chamber: "Chamber", roll_condition: "Condition", roll_entries: "Entries", roll_timer: "Timer",
     roll_loot: "Loot", roll_inhabitant: "Inhabitants", roll_mimic: "Mimics",

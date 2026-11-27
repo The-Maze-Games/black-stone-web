@@ -361,7 +361,7 @@ button:disabled { opacity: .35; cursor: default; }
 
 /* Extraer: cada veta en una fila, el nombre a la izquierda y las casillas en hilera a la derecha. */
 .live-list { border-top: 1px solid var(--line); }
-.live-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.live-row { display: grid; grid-template-columns: minmax(11em, 1fr) minmax(0, auto); align-items: center; gap: 6px 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .live-label { font-size: 17px; }
 .live-name { font-weight: 500; }
 .live-inputs { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; }

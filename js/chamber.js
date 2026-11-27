@@ -642,7 +642,7 @@ export class ChamberView {
     const tabs = [["room", T("tabRoom"), ""], items.length && ["items", T("tabItems"), String(items.length)], beasts.length && ["beasts", T("tabBeasts"), String(beasts.length)],
       ["extract", T("tabExtract"), pending ? String(pending) : ""], ["end", T("tabEnd"), ""]].filter(Boolean);
     const tab = tabs.some(([k]) => k === d.tab) ? d.tab : "room";
-    const body = tab === "extract" ? this.extractTab(der) : tab === "end" ? this.endTab()
+    const body = tab === "extract" ? this.extractTab(der, items.filter((it) => it.qty === "DM")) : tab === "end" ? this.endTab()
       : tab === "items" ? this.listTab(items, "items") : tab === "beasts" ? this.listTab(beasts, "beasts") : this.roomTab(der, sections, ids, groups);
     return `${this.roundBar(der)}
       <nav class="play-tabs" role="tablist" aria-label="${h(T("inChamber"))}">
@@ -783,8 +783,19 @@ export class ChamberView {
 
   /** «Extraer»: las vetas iguales juntas en una fila («Extraer Flint ×3» con sus casillas), lo que puede pasar jugando,
    *  y debajo lo ya anotado, ronda a ronda. */
-  extractTab(der) {
+  extractTab(der, dm = []) {
     const d = this.d;
+    // Lo que va a criterio del Máster (agua abundante, Forest…): se anotan las unidades que se sacan, tantas veces como haga falta.
+    const dmRows = dm.map((it) => {
+      const key = `dm.${it.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      const raw = d.liveBuffers[key]?.total ?? "";
+      const bad = String(raw).trim() !== "" && !(/^\d+$/.test(String(raw).trim()) && +raw > 0);
+      const sum = d.live.filter((e) => e.key === key).reduce((a, e) => a + (e.units ?? 0), 0);
+      return `<div class="live-row extract-row is-dm">
+        <p class="live-label"><span class="live-name">${h(T("extract")(it.name))}</span>${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}${sum ? ` <span class="stack-count">${h(T("unitsSoFar")(sum))}</span>` : ""}</p>
+        <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn" data-action="extract-dm" data-key="${h(key)}" data-name="${h(it.name)}">${h(T("record"))}</button></div>
+      </div>`;
+    }).join("");
     const groups = new Map();
     for (const c of this.extractable()) {
       const k = `${c.of}|${c.page}|${c.formula.label}`;
@@ -806,7 +817,7 @@ export class ChamberView {
     }).join("");
     const live = E.live(d.rolls, der).map((x) => this.liveRow(x)).join("");
     const events = d.live.length ? `<h3 class="tab-sub">${h(T("recorded"))}</h3><ol class="events">${d.live.map((e) => `<li><span class="event-round">${h(T("roundShort"))}${e.round}</span> <span class="event-text">${h(e.text)}</span>${e.page ? ` <span class="page">${h(T("page")(e.page))}</span>` : ""}${e.note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(e.note))}</p></details>` : ""}</li>`).reverse().join("")}</ol>` : "";
-    return `${rows || live ? `<div class="live-list">${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${events}`;
+    return `${dmRows || rows || live ? `<div class="live-list">${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${events}`;
   }
 
   liveRow(item) {
@@ -913,6 +924,12 @@ export class ChamberView {
       else if (a === "live") this.recordLive(el.dataset.key);
       else if (a === "extract") el.dataset.keys.split(",").forEach((k) => this.recordExtract(k));
       else if (a === "tab") this.d.tab = el.dataset.tab;
+      else if (a === "extract-dm") {
+        const k = el.dataset.key, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();
+        if (!/^\d+$/.test(raw) || +raw <= 0) return;
+        this.d.live.push({ key: k, round: this.d.round, units: +raw, text: `${T("extract")(el.dataset.name)} → ${raw}` });
+        delete this.d.liveBuffers[k];
+      }
       else return;
       this.save();
       rerender();
