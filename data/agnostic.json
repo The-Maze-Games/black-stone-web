@@ -1,0 +1,48 @@
+{
+  "source": "The Maze Agnostic V4 (M. A. Bastarrachea), cap. IV · Equipo",
+  "note": {
+    "en": "Optional rules system. Melee weapons use Brawl and add Physique to damage; ranged weapons use Aim. The Armor bonus is a penalty on Agility, Athletics and Shaping tests.",
+    "es": "Sistema de reglas opcional. Las armas cuerpo a cuerpo usan Reyerta y suman Físico al daño; las de distancia usan Puntería. El bonificador de Armadura es un penalizador en pruebas de Agilidad, Atletismo y Moldeo."
+  },
+  "weaponClasses": {
+    "1d4": { "en": "Subtle", "es": "Sutil", "examples": { "en": "daggers, staves", "es": "dagas, bastones, reporteras" } },
+    "1d6": { "en": "Common", "es": "Común", "examples": { "en": "bows, swords, light maces", "es": "arcos, espadas, mazas ligeras" } },
+    "1d8": { "en": "Martial", "es": "Marcial", "examples": { "en": "longswords, flails, war hammers, longbows, pikes", "es": "espadas largas, flagelos, martillos de guerra, arcos largos, picas" } },
+    "1d10": { "en": "Great", "es": "Grande", "examples": { "en": "two-handed weapons, bastard swords, battle axes, halberds", "es": "armas a dos manos, espadas bastardas, hachas de batalla, alabardas" } },
+    "1d12": { "en": "Brutal", "es": "Brutal", "examples": { "en": "two-handed weapons, greatswords, giant axes", "es": "armas a dos manos, espadones, hachas gigantes" } }
+  },
+  "armorClasses": {
+    "light": { "en": "Light armor", "es": "Armadura ligera", "bonus": "+1" },
+    "medium": { "en": "Medium armor", "es": "Armadura mediana", "bonus": "+2 a +3" },
+    "heavy": { "en": "Heavy armor", "es": "Armadura pesada", "bonus": "+4 a +6" },
+    "shield": { "en": "Shield", "es": "Escudo", "bonus": "+2", "note": { "en": "Takes one hand", "es": "Ocupa una mano" } },
+    "helmet": { "en": "Helmet", "es": "Casco", "bonus": "+1", "note": { "en": "Additional; Helmet Rule, p. 424", "es": "Adicional; Regla del Casco, p. 424" } }
+  },
+  "armors": {
+    "Padded Armor": "light",
+    "Leather Armor": "light",
+    "Studded leather": "light",
+    "Wooden armor": { "class": "light", "approx": true },
+    "Hide Armor": "medium",
+    "Chain shirt": "medium",
+    "Scale mail": "medium",
+    "Breastplate": "medium",
+    "Half plate": "medium",
+    "Ring mail": "heavy",
+    "Ringmail": "heavy",
+    "Chain mail": "heavy",
+    "Splint": "heavy",
+    "Plate": "heavy",
+    "Shield": "shield",
+    "Helmet": "helmet",
+    "Magical light armor": "light",
+    "Magical medium armor": "medium",
+    "Magical heavy armor": "heavy",
+    "Magical shield": "shield",
+    "Magical helmet": "helmet"
+  },
+  "armorNote": {
+    "en": "The Agnostic system classifies armor by the area it covers; which armor of Table 4.7 falls in each class is our reading, to confirm.",
+    "es": "El Agnostic clasifica la armadura por el área que cubre; qué armadura de la Tabla 4.7 va en cada clase es lectura nuestra, por confirmar."
+  }
+}

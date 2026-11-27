@@ -33,7 +33,8 @@ const short = (x) => String(x ?? "")
   .replace(/^(?:rolls on|tiradas en la)\s+(?:Table|Tabla)\s+/i, (m) => (/^rolls/i.test(m) ? "Table " : "Tabla "))
   .trim();
 const ICON_INFO = svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.5"/>');
-const fold = (x) => String(x ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+const fold = (x) => String(x ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
+  .replace(/\badamantium\b/g, "adamantine"); // las tablas dicen Adamantium; el capítulo de materiales, Adamantine
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -440,7 +441,8 @@ export class ChamberView {
   /** La base del libro (db/) se carga al entrar a la cámara; al llegar se repinta para mostrar los botones de ficha. */
   ensureDb(rerender) {
     if (this.db || this.dbLoading) return;
-    this.dbLoading = Db.load("db/").then((db) => { this.db = db; rerender?.(); }, (err) => console.error(err));
+    this.dbLoading = Promise.all([Db.load("db/"), fetch("data/agnostic.json").then((r) => r.json()).catch(() => null)])
+      .then(([db, agn]) => { this.db = db; this.agn = agn; rerender?.(); }, (err) => console.error(err));
   }
 
   /** La ficha del manual de un nombre de la cámara: criatura, ítem, material, arma o fila de tabla. */
@@ -452,12 +454,23 @@ export class ChamberView {
     let x = name;
     while (/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/.test(x)) { x = x.replace(/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/, ""); tries.push(x); }
     const mat = /\(([^()]+)\)\s*$/.exec(name)?.[1];
+    const matOf = (m) => (m ? db.materials.find((y) => fold(y.name) === fold(m)) : null);
+    // Armaduras, escudos y cascos: «Chain mail (iron)» → su clase Agnostic y su material.
+    const armors = this.agn?.armors ?? {};
+    for (const t of tries.map((y) => y.replace(/^\*/, ""))) {
+      const k = Object.keys(armors).find((y) => fold(y) === fold(t));
+      if (k) {
+        const v = armors[k], cls = typeof v === "string" ? v : v.class;
+        const row = db.table("4.7")?.rows.find((r) => fold(clean(r.label)).startsWith(fold(k)));
+        return { armor: { name: k, cls, approx: typeof v === "object" && v.approx }, material: matOf(mat), page: row?.page ?? db.table("4.7")?.page };
+      }
+    }
     // Armas: «One-handed Axe (Iron)» → la ficha del arma y la de su material.
     const weapons = db.table("4.8")?.weapons ?? {};
     for (const t of tries) {
       const w = Object.keys(weapons).find((k) => fold(k) === fold(t));
       if (w) {
-        const m = mat ? db.materials.find((y) => fold(y.name) === fold(mat)) : null;
+        const m = matOf(mat);
         return { weapon: { name: w, ...weapons[w] }, material: m, page: db.table("4.8").rows.find((r) => fold(r.label).startsWith(fold(w)))?.page ?? db.table("4.8").page };
       }
     }
@@ -481,45 +494,108 @@ export class ChamberView {
     return `<button type="button" class="icon-btn info-btn" data-action="info" data-name="${h(name)}"${beastId ? ` data-beast="${h(beastId)}"` : ""} aria-label="${h(T("infoAbout")(name))}" title="${h(T("infoAbout")(name))}">${ICON_INFO}</button>`;
   }
 
-  /** La ventana con la ficha: lo que dice el manual, y un enlace a la Referencia. */
+  /** La ventana con la ficha: arriba lo que sirve en la partida, el resto plegado en «Ficha completa». */
   pop() {
     if (!this.popFor) return "";
     const f = this.lookup(this.popFor.name, this.popFor.beast);
     if (!f) return "";
+    const L = T("statLabels");
     const txt = (v) => (v == null ? "" : typeof v === "string" ? v : E.loc(v));
-    const dl = (pairs) => {
+    const val = (v) => h(String(v).replace(/^:\s*/, ""));
+    const dl = (pairs, cls = "pop-stats") => {
       const ok = pairs.filter(([, v]) => v != null && v !== "" && !(Array.isArray(v) && !v.length));
-      return ok.length ? `<dl class="pop-stats">${ok.map(([k, v]) => `<dt>${h(k)}</dt><dd>${Array.isArray(v) ? `<ul>${v.map((y) => `<li>${h(y)}</li>`).join("")}</ul>` : h(String(v).replace(/^:\s*/, ""))}</dd>`).join("")}</dl>` : "";
+      return ok.length ? `<dl class="${cls}">${ok.map(([k, v]) => `<dt>${h(L[k] ?? k)}</dt><dd>${Array.isArray(v) ? `<ul>${v.map((y) => `<li>${val(y)}</li>`).join("")}</ul>` : val(v)}</dd>`).join("")}</dl>` : "";
     };
-    let kind, name, page, body = "", link = null;
-    if (f.weapon) {
-      const w = f.weapon;
-      kind = T("weapon"); name = this.popFor.name; page = f.page;
-      body = dl([[T("damage"), w.damage], [T("dmgType"), txt(w.type)], [T("size"), txt(w.size)], [T("craft"), txt(w.craft)]]);
-      if (f.material) body += `<h3 class="pop-sub">${h(f.material.name)} <span class="page">${h(T("page")(f.material.page))}</span></h3>` + dl(Object.entries(f.material.stats ?? {}));
-      link = f.material?.id;
+    const chips = (pairs) => {
+      const ok = pairs.filter(([, v]) => v);
+      return ok.length ? `<div class="pop-chips">${ok.map(([k, v]) => `<div class="pop-chip"><span>${h(L[k] ?? k)}</span><strong>${val(v)}</strong></div>`).join("")}</div>` : "";
+    };
+    const more = (body) => (body ? `<details class="pop-more"><summary>${h(T("fullSheet"))}</summary>${body}</details>` : "");
+    const agn = store.get("bs.agnostic", false);
+    const A = this.agn;
+    const rarity = this.rarityOf(f);
+    let kind = "", name = this.popFor.name, page = null, sub = "", body = "";
+
+    if (f.weapon || f.armor) {
+      const m = f.material;
+      page = f.page;
+      if (f.weapon) {
+        const w = f.weapon;
+        kind = T("weapon"); sub = txt(w.size);
+        body = dl([[T("craft"), txt(w.craft)]]);
+        if (agn && A) {
+          const c = A.weaponClasses[w.damage];
+          const pen = m ? this.db.table("4.8")?.weapon_materials?.[m.name.toLowerCase()] : null;
+          body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
+            ${chips([[T("damage"), w.damage], [T("dmgType"), txt(w.type)], [T("wClass"), c ? E.loc(c) : ""]])}
+            ${pen ? `<p class="pop-agn-note">${h(m.name)}: ${h(txt(pen.note))}</p>` : ""}
+            ${w.approx ? `<p class="pop-agn-note is-approx">${h(T("byAnalogy"))}</p>` : ""}</section>`;
+        }
+      } else {
+        const a = f.armor;
+        const c = A?.armorClasses[a.cls];
+        kind = c ? E.loc(c) : T("armor");
+        if (agn && c) {
+          body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
+            ${chips([[T("armorBonus"), c.bonus], [T("aClass"), E.loc(c)]])}
+            ${c.note ? `<p class="pop-agn-note">${h(E.loc(c.note))}</p>` : ""}
+            <p class="pop-agn-note is-approx">${h(a.approx ? T("byAnalogy") : E.loc(A.armorNote))}</p></section>`;
+        }
+      }
+      if (!agn) body += `<p class="pop-hint">${h(T("agnosticOff"))}</p>`;
+      if (m) body += `<h3 class="pop-sub">${h(m.name)} <span class="page">${h(T("page")(m.page))}</span></h3>${dl(Object.entries(m.stats ?? {}))}`;
     } else if (f.entry) {
-      const e = f.entry;
-      kind = T("kind")[e.type] ?? ""; name = e.name; page = e.page; link = e.id;
-      const st = { ...(e.stats ?? {}) };
-      if (e.type === "condition") body = dl([[T("effect"), txt(e.effect?.note)]]);
-      else body = dl([...(e.family ? [[T("family"), e.family]] : []), ...(e.kind ? [[T("kindOf"), e.kind]] : []), ...Object.entries(st)]);
+      const e = f.entry, st = e.stats ?? {};
+      name = e.name; page = e.page;
+      kind = T("kind")[e.type] ?? "";
+      if (e.type === "creature") {
+        sub = [st["S&T"], st.Role, e.family].filter(Boolean).join(" · ");
+        body = chips([["AL", st.AL], ["Armor", st.Armor], ["Speed", st.Speed], ["Perception", st.Perception]])
+          + (st.Attacks?.length ? `<h3 class="pop-sub">${h(L.Attacks)}</h3><ul class="pop-attacks">${st.Attacks.map((x) => `<li>${val(x)}</li>`).join("")}</ul>` : "")
+          + (st.Special?.length ? `<h3 class="pop-sub">${h(L.Special)}</h3><p class="pop-tags">${st.Special.map((x) => `<span>${val(x)}</span>`).join("")}</p>` : "")
+          + dl([["Savings", st.Savings], ["Immunities", st.Immunities], ["Resistances", st.Resistances], ["Weaknesses", st.Weaknesses], ["L&Y", st["L&Y"]]]);
+        body += more(dl([["ST", st.ST], ["Chamber", st.Chamber], [T("family"), e.shared ? `${e.family} · ${e.shared}` : null]]));
+      } else if (e.type === "condition") {
+        body = dl([[T("effect"), txt(e.effect?.note)]]);
+      } else if (e.type === "material") {
+        sub = T("materialKind")[e.kind] ?? e.kind ?? "";
+        body = dl(Object.entries(st));
+      } else {
+        sub = [st.Category, e.kind === "component" ? T("component") : null].filter(Boolean).map((x) => String(x).replace(/^:\s*/, "")).join(" · ");
+        body = dl(Object.entries(st).filter(([k]) => k !== "Category" && k !== "Rarity"));
+      }
     } else {
-      kind = `${T("table")} ${f.table?.code ?? ""}`; name = clean(f.row.label ?? f.row.name); page = f.row.page; link = f.row.id;
-      body = dl([[T("inTable"), f.table?.name ?? ""], [T("note"), txt(f.table?.note)]]);
+      kind = `${T("table")} ${f.table?.code ?? ""}`; name = clean(f.row.label ?? f.row.name); page = f.row.page;
+      body = dl([[T("inTable"), f.table?.name ?? ""]]);
     }
     return `<div class="pop-layer">
       <button type="button" class="pop-backdrop" data-action="pop-close" tabindex="-1" aria-label="${h(T("closeWord"))}"></button>
-      <section class="pop" role="dialog" aria-modal="true" aria-labelledby="pop-title">
+      <section class="pop${rarity ? ` rarity-${rarity.slug}` : ""}" role="dialog" aria-modal="true" aria-labelledby="pop-title">
         <header class="pop-head">
-          <p class="pop-kind">${h(kind)}${page ? ` · <span class="page">${h(T("page")(page))}</span>` : ""}</p>
+          <p class="pop-kind">${h(kind)}${rarity ? ` · <span class="rarity-label">${h(rarity.label)}</span>` : ""}${page ? ` · <span class="page">${h(T("page")(page))}</span>` : ""}</p>
           <h2 id="pop-title" class="pop-name">${h(name)}</h2>
+          ${sub ? `<p class="pop-subtitle">${h(sub)}</p>` : ""}
           <button type="button" class="icon-btn pop-close" data-action="pop-close" aria-label="${h(T("closeWord"))}">${ICON.close}</button>
         </header>
         <div class="pop-body">${body || `<p class="empty">${h(T("noText"))}</p>`}</div>
-        ${link ? `<p class="pop-foot"><a href="#/ref/search/${encodeURIComponent(link)}">${h(T("openRef"))} →</a></p>` : ""}
       </section>
     </div>`;
+  }
+
+  /** La rareza que pinta la ficha: la del objeto mágico; los componentes son legendarios; lo de metal especial, raro. */
+  rarityOf(f) {
+    if (!f) return null;
+    const R = T("rarities");
+    const mk = (slug) => ({ slug, label: R[slug] ?? slug });
+    const e = f.entry;
+    if (e?.stats?.Rarity) {
+      const r = e.stats.Rarity.toLowerCase();
+      return mk(r.includes("artifact") ? "artifact" : r.includes("legendary") ? "legendary" : r.includes("very") ? "very-rare" : r.includes("uncommon") ? "uncommon" : r.includes("rare") ? "rare" : "common");
+    }
+    if (e?.kind === "component") return mk("legendary");
+    if (e?.type === "material" && e.kind === "special") return mk("rare");
+    if ((f.weapon || f.armor) && f.material?.kind === "special") return mk("rare");
+    return null;
   }
 
   /** La criatura del bestiario que nombra un texto de la cámara, por palabras enteras: «Hydras en la cámara» → Hydra. */
@@ -870,12 +946,15 @@ export class ChamberView {
 
   listTab(list, kind) {
     const qty = (it) => (it.qty === "DM" ? DM_BOX() : it.qty != null ? `<span class="m-qty">${h(it.qty)}</span>` : "");
-    return `<ul class="entity-grid is-${kind}">${list.map((it, i) => `<li class="entity${it.kind ? ` is-${it.kind}` : ""}" style="--i:${i}">
-      <span class="entity-mark" aria-hidden="true"></span>
+    return `<ul class="entity-grid is-${kind}">${list.map((it, i) => {
+      const r = this.rarityOf(this.lookup(it.name));
+      return `<li class="entity${it.kind ? ` is-${it.kind}` : ""}${r ? ` rarity-${r.slug}` : ""}" style="--i:${i}">
+      <span class="entity-mark" aria-hidden="true"></span>${r ? `<span class="rarity-label">${h(r.label)}</span>` : ""}
       <p class="entity-name">${h(it.name)}${this.infoBtn(it.name)}</p>
       ${it.page ? `<p class="page">${h(T("page")(it.page))}</p>` : ""}
       ${qty(it)}
-    </li>`).join("")}</ul>`;
+    </li>`;
+    }).join("")}</ul>`;
   }
 
   /** Lo que hay en la cámara, por tirada: el resultado y, debajo, cada cosa que salió con su cantidad.

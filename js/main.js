@@ -41,7 +41,10 @@ function render() {
   // Por ahora la web sólo genera cámaras (decisión del 2026-11-26): el Registro y la Referencia siguen
   // en #/log y #/ref, pero no salen en el menú. Desde ellas, un enlace de vuelta a la Cámara.
   nav.innerHTML = view === "chamber" ? "" : `<a href="#/chamber">${h(T("backChamber"))}</a>`;
-  langs.innerHTML = ["es", "en"].map((l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang()}">${l.toUpperCase()}</button>`).join("");
+  // Modo Agnostic: el sistema de reglas opcional del autor. Muestra el daño de las armas y la clase de las armaduras.
+  const agn = store.get("bs.agnostic", false);
+  langs.innerHTML = `<button type="button" class="agnostic-toggle" data-agnostic aria-pressed="${agn}" title="${h(T("agnosticHint"))}">${h(T("agnostic"))}</button>`
+    + ["es", "en"].map((l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang()}">${l.toUpperCase()}</button>`).join("");
   keepFocus(() => {
     main.innerHTML = view === "ref" ? reference.render(sub, rest) : view === "log" ? renderLog() : chamber.render();
   });
@@ -76,6 +79,7 @@ async function start() {
     }
   });
   langs.addEventListener("click", (ev) => {
+    if (ev.target.closest("[data-agnostic]")) { store.set("bs.agnostic", !store.get("bs.agnostic", false)); render(); return; }
     const l = ev.target.closest("[data-lang]")?.dataset.lang;
     if (l && l !== lang()) { setLang(l); render(); }
   });
