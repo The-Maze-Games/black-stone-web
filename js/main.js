@@ -26,7 +26,7 @@ function renderLog() {
     <ol class="log-list">${log.map((x) => `<li class="log-entry">
       <p class="log-title"><span class="result-name">${h(x.chamber)}</span>${x.page ? ` <span class="page">${h(T("page")(x.page))}</span>` : ""}</p>
       <p class="log-rolls">${[x.condition, x.loot, x.inhabitant].filter((v) => v && v !== "—").map(h).join(" · ")}</p>
-      <p class="log-outcome">${h(T("outcomes")[x.outcome] ?? x.outcome)} · ${h(T("round"))} ${x.rounds}${x.deaths ? ` · ${h(T("deaths"))} ${x.deaths}` : ""}</p>
+      <p class="log-outcome">${h(T("outcomes")[x.outcome] ?? x.outcome)} · ${h(T("round"))} ${x.rounds}${x.deaths ? ` · ${h(T("deaths"))} ${x.deaths}` : ""}${x.kills ? ` · ${h(T("enemiesKilled"))} ${x.kills}` : ""}</p>
       ${x.live?.length ? `<p class="log-events">${x.live.map((e) => h(e.text)).join(" · ")}</p>` : ""}
       ${x.notes ? `<p class="log-notes">${h(x.notes)}</p>` : ""}
       <p class="log-date">${h(new Date(x.at).toLocaleString(lang()))}</p>

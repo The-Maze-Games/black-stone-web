@@ -361,7 +361,7 @@ button:disabled { opacity: .35; cursor: default; }
 
 /* Extraer: cada veta en una fila, el nombre a la izquierda y las casillas en hilera a la derecha. */
 .live-list { border-top: 1px solid var(--line); }
-.live-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.live-row { display: grid; grid-template-columns: minmax(11em, 1fr) minmax(0, auto); align-items: center; gap: 6px 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .live-label { font-size: 17px; }
 .live-name { font-weight: 500; }
 .live-inputs { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; }
@@ -404,6 +404,29 @@ button:disabled { opacity: .35; cursor: default; }
 .entity.is-relic .entity-name, .entity.is-found .entity-name { color: #f6e2b0; text-shadow: 0 0 12px rgba(230, 170, 70, .5); }
 .entity.is-relic .entity-mark, .entity.is-found .entity-mark { background: #e9c37a; }
 @media (prefers-reduced-motion: reduce) { .entity { animation: none; } }
+/* Bestiario: cuántos quedan en grande, una fila de marcas que se apagan al caer y el contador de eliminados. */
+.beast-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.beast { padding: 14px 16px 12px; border: 1px solid var(--line); border-top: 2px solid var(--accent); background: radial-gradient(120% 90% at 100% 0, rgba(179, 18, 30, .14), transparent 60%), #070505;
+  animation: grow .35s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * 50ms); transition: opacity .3s, border-color .3s; }
+.beast-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.beast-name { font: 700 18px/1.2 var(--title); letter-spacing: .03em; }
+.beast-name .page { display: block; margin-top: 4px; font-family: var(--text); letter-spacing: 0; }
+.beast-count { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.beast-left { font: 900 44px/1 var(--title); color: var(--accent); text-shadow: 0 0 20px rgba(179, 18, 30, .5); font-variant-numeric: lining-nums tabular-nums; }
+.beast-left.is-new { animation: tick .35s cubic-bezier(.2, .8, .2, 1) both; }
+.beast-of { font: 700 18px var(--title); color: var(--dim); }
+.beast .dm-box { width: auto; padding: 0 10px; }
+.beast-pips { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 2px; }
+.pip { width: 11px; height: 11px; transform: rotate(45deg); background: var(--accent); box-shadow: 0 0 6px rgba(179, 18, 30, .6); transition: background .25s, box-shadow .25s; }
+.pip.is-dead { background: transparent; box-shadow: inset 0 0 0 1px #4a2a2c; }
+.kill-counter { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #1a1714; }
+.kill-read { flex: 1; text-align: center; color: var(--dim); font-style: italic; }
+.kill-n { font: 900 24px var(--title); font-style: normal; color: var(--fg); margin-right: 4px; }
+.beast.is-cleared { border-top-color: var(--dim); opacity: .6; }
+.beast.is-cleared .beast-left { color: var(--dim); text-shadow: none; }
+.beast.is-cleared .beast-name { text-decoration: line-through; text-decoration-color: var(--accent); }
+.end-kills strong { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .beast, .beast-left.is-new { animation: none; } }
 
 /* Lo que está en la cámara sin tirar (agua abundante, Forest…): banda de oro, va primero. */
 .derived-row.dm-row.is-sure { margin: 2px 0; padding: 7px 10px; background: linear-gradient(90deg, rgba(168, 134, 79, .14), transparent 80%); border-left: 2px solid var(--gold); }
