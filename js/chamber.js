@@ -255,7 +255,8 @@ export class ChamberView {
     // Sin condición no hay nada que leer abajo: la lista de arriba ya dice el número y la carta lo nombra.
     const quiet = (id === "mimic" && d.mimicHidden) || id === "condition" && r.condition != null && !der.conditionExcluded && /^no condition$/i.test(t.name("B", der.rule?.fixedCondition ?? r.condition)) && !own.length;
     const unfold = r[id] != null ? this.isNew(`sec:${id}:${r[id]}`).replace("is-new", "is-unfolding") : "";
-    return `<section class="roll-section${skip && !fixed ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
+    // Una tirada que la cámara anula pero a la que la cámara añade algo (el Castigo de la Decan House) se ve normal.
+    return `<section class="roll-section${skip && !fixed && !derived ? " is-skipped" : ""}${current ? " is-current" : ""}${waiting ? " is-waiting" : ""}${quiet ? " is-quiet" : ""}${unfold}" data-section="${id}">
       ${this.head(id, n, der, skip, fixed)}
       ${body ? `<div class="roll-result${lootDm ? " has-dm" : ""}">${body}${lootDm ? DM_BOX() : ""}</div>` : ""}
       ${id === "condition" ? this.choices(der) : ""}
@@ -273,6 +274,16 @@ export class ChamberView {
     if (id === "inhabitant" && r.inhabitant != null && !skip) {
       t.name("D", r.inhabitant).split(/\s+(?:plus|and|&)\s+|\s+\+\s*/i).map((x) => x.trim()).map((x) => x.replace(/^1\s+/, "")).filter((x) => x && !/\d/.test(x))
         .forEach((x) => fixedLines.unshift({ kind: "one", of: x.replace(/\)$/, "").replace(/\s*\([^)]*$/, (m) => m + ")") }));
+    }
+    // El Castigo de la Decan House trae su componente del Arma Definitiva (Tabla 3.7): va con el Arma Definitiva del Botín.
+    if (id === "loot" && r.chamber != null) {
+      for (const c of this.children().filter((x) => x.table === "3.7" && d.typed[x.key] != null)) {
+        const v = d.typed[c.key];
+        const comp = (/component:\s*([^.]+)\./i.exec(t.noteOf("3.7", v)?.en ?? "") ?? [])[1];
+        if (comp && !fixedLines.some((e) => e.kind === "ultimate" && E.loc(e.of) === comp)) {
+          fixedLines.push({ kind: "ultimate", of: `${comp} (${t.name("3.7", v).replace(/\s*\(.*\)$/, "")})`, section: "loot" });
+        }
+      }
     }
     return fixedLines;
   }
@@ -459,6 +470,13 @@ export class ChamberView {
     const db = this.db;
     if (!db || !name) return null;
     if (beastId) { const c = db.creatures.find((x) => x.name === beastId); if (c) return { entry: c }; }
+    // Los Castigos de la Decan House: «The Fishman (Fickleness)» es «The Fish: Thet, Archfiend of Fickleness».
+    const sin = /^The\s+\w+\s+\((\w+)\)$/.exec(String(name).trim())?.[1];
+    if (sin) {
+      const want = fold({ Lust: "Luxury" }[sin] ?? sin);
+      const c = db.creatures.find((y) => fold(y.name).endsWith(`archfiend of ${want}`));
+      if (c) return { entry: c };
+    }
     const tries = [name];
     let x = name;
     while (/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/.test(x)) { x = x.replace(/\s*\([^()]*(?:\([^()]*\))?[^()]*\)\s*$/, ""); tries.push(x); }
@@ -581,8 +599,12 @@ export class ChamberView {
         const attack = (x) => {
           const mm = /^(.*?)(?:\s*\(([^)]*)\))?\s*(?:\[(.*)\])?$/.exec(String(x).trim()) ?? [];
           const parts = (mm[3] ?? "").split(/,\s*/).filter(Boolean);
-          const die = parts.find((y) => /\d+d\d+/.test(y));
-          const rest = parts.filter((y) => y !== die);
+          // Sólo la tirada va en grande («3d10+8»); lo que sigue («plus 3d6 plus sicken. Ma: 3») va en pequeño.
+          const at = parts.findIndex((y) => /\d+d\d+/.test(y));
+          const dm = at >= 0 ? /\d+d\d+(?:\s*[+−-]\s*\d+(?!d))?/.exec(parts[at]) : null;
+          const die = dm?.[0];
+          const tail = dm ? parts[at].replace(dm[0], "").replace(/^[\s.,;]+/, "").trim() : "";
+          const rest = parts.filter((_, i) => i !== at).concat(tail ? [tail] : []);
           return `<li class="pop-attack"><span class="pop-attack-name">${val(mm[1] || x)}${mm[2] ? ` <em>${val(mm[2])}</em>` : ""}</span>
             ${rest.length ? `<span class="pop-attack-meta">${val(rest.join(" · "))}</span>` : ""}
             ${die ? `<strong class="pop-attack-die">${val(die)}</strong>` : ""}</li>`;
@@ -1046,7 +1068,9 @@ export class ChamberView {
     for (const id of ids) {
       if (id === "timer" || id === "entries") continue;
       const skip = r.chamber != null && E.skipped(id, r, t);
-      if (skip || r[id] == null) continue;
+      // Una tirada anulada o sin tirar sigue contando si la cámara le añade algo (el Castigo de la Decan House).
+      const added = kids.some((c) => this.sectionOf(c) === id && c.kind !== "inside" && typed[c.key] != null);
+      if ((skip || r[id] == null) && !added) continue;
       const items = [];
       const add = (it) => {
         const same = items.find((x) => x.name === it.name && x.page === it.page && x.kind === it.kind && (x.qty == null || typeof x.qty === "number") && (it.qty == null || typeof it.qty === "number"));
@@ -1090,7 +1114,8 @@ export class ChamberView {
             if (g && typed[k] != null) { add({ name: withMetal(t.name(g.table, typed[k]), t.name(c.table, v)), page: t.page(g.table, typed[k]), stack: true }); continue; }
           }
           const name = t.name(c.table, v);
-          if (!NOT_AMOUNTS.test(name)) add({ name, page: t.page(c.table, v), stack: true });
+          // Un Castigo (Tabla 3.7) es una criatura: cuenta como 1, no «DM».
+          if (!NOT_AMOUNTS.test(name)) add({ name, page: t.page(c.table, v), stack: true, ...(c.table === "3.7" ? { qty: 1 } : {}) });
           continue;
         }
         const relic = c.group === "ultimate";
@@ -1100,7 +1125,7 @@ export class ChamberView {
         add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null,
           beast: beast ? { id: beast.name, words: beast.name.trim().split(/\s+/).length } : null });
       }
-      if (!items.length && (id === "loot" || id === "inhabitant")) {
+      if (!items.length && (id === "loot" || id === "inhabitant") && r[id] != null) {
         const tb = id === "loot" ? "C" : "D";
         items.push({ name: t.name(tb, r[id]), page: t.page(tb, r[id]), kind: "head" });
       }
