@@ -91,7 +91,9 @@ export function countsOf(text) {
     const after = clean.substring(end, found[i + 1] ? found[i + 1].index : clean.length);
     const prev = found[i - 1];
     const before = clean.substring(prev ? prev.index + prev[0].length : 0, m.index);
-    return { formula, what: tidy(after) || tidy(before) };
+    // «Mithral (1d6 units)»: lo que se cuenta es el Mithral, no «units».
+    const a = tidy(after);
+    return { formula, what: (a && !/^(?:units?|unidad(?:es)?)$/i.test(a) ? a : tidy(before)) || a };
   });
 }
 export const formulaOf = (text) => countsOf(text)[0]?.formula ?? null;
@@ -365,10 +367,10 @@ export function lootChildren(raw, typed, t, { prefix = "loot", directTable = nul
       amounts.forEach(({ formula, what }, i) =>
         // La cantidad de una veta sólo se tira si la extracción sale bien, ya jugando.
         list.push(child(`${item.key}.count.${i}`, "extra", formula, what,
-          t.page(item.table, n), { required: false, from: "loot", extraction: item.mine })));
+          t.page(item.table, n), { required: false, from: "loot", extraction: item.mine || item.table === "4.2" })));
       if (item.table === "4.2" && ((n >= 19 && n <= 36) || (n >= 46 && n <= 63))) {
         list.push(child(`${item.key}.seeds.0`, "extra", new Formula(1, 4, 0), loc({ en: "Seeds", es: "Semillas" }),
-          n <= 54 ? 173 : 174, { required: false, from: "loot" }));
+          n <= 54 ? 173 : 174, { required: false, from: "loot", extraction: true }));
       }
     }
   }
