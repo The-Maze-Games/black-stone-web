@@ -1,6 +1,6 @@
 // Sin conexión: guarda la app entera la primera vez. Con red, siempre sirve lo nuevo;
-// lo guardado sólo sale si no hay red, así nunca se mezclan archivos de dos versiones.
-const VERSION = "bs-34";
+// lo guardado sale si no hay red o si la red tarda demasiado (ver más abajo).
+const VERSION = "bs-35";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "css/app.css",
   "js/main.js", "js/engine.js", "js/i18n.js", "js/chamber.js", "js/reference.js", "js/db.js", "js/util.js",
@@ -29,18 +29,27 @@ self.addEventListener("activate", (ev) => {
     .then(() => self.clients.claim()));
 });
 
-// Primero la red (sin la caché del navegador); si falla, lo guardado.
+// Primero la red (sin la caché del navegador); si falla, lo guardado. Con señal débil la red
+// puede colgarse: si tarda más de WAIT ms y hay copia guardada, sale la copia y la respuesta
+// de la red, cuando llegue, sólo actualiza lo guardado para la próxima vez. Tras una espera así,
+// durante un rato se sirve lo guardado sin esperar, para no sumar una espera por cada archivo.
+const WAIT = 3500, SLOW_FOR = 60000;
+let slowUntil = 0;
 self.addEventListener("fetch", (ev) => {
   if (ev.request.method !== "GET" || new URL(ev.request.url).origin !== location.origin) return;
   ev.respondWith(caches.open(VERSION).then(async (cache) => {
-    try {
-      const res = await fetch(ev.request, { cache: "no-cache" });
+    const net = fetch(ev.request, { cache: "no-cache" }).then((res) => {
       if (res.ok) cache.put(ev.request, res.clone());
       return res;
-    } catch (err) {
-      const hit = await cache.match(ev.request, { ignoreSearch: true });
-      if (hit) return hit;
-      throw err;
-    }
+    });
+    ev.waitUntil(net.catch(() => {}));
+    const hit = await cache.match(ev.request, { ignoreSearch: true });
+    if (!hit) return net;
+    if (Date.now() < slowUntil) return hit;
+    let timer;
+    const late = new Promise((ok) => { timer = setTimeout(() => { slowUntil = Date.now() + SLOW_FOR; ok(hit); }, WAIT); });
+    try { const res = await Promise.race([net, late]); return res.ok ? res : hit; }
+    catch { return hit; }
+    finally { clearTimeout(timer); }
   }));
 });
