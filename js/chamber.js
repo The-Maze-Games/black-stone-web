@@ -21,6 +21,9 @@ const ICON = {
   eye: svg('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
   eyeOff: svg('<path d="M2 12s3.6-7 10-7c2 0 3.8.7 5.2 1.7M22 12s-3.6 7-10 7c-2 0-3.8-.7-5.2-1.7"/><path d="M3 3l18 18"/>'),
   close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
+  heart: svg('<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'),
+  anvil: svg('<path d="M4 7h13a3 3 0 0 1-3 3h-1v3l3 4H7l3-4v-3H8a4 4 0 0 1-4-3z"/>'),
+  warn: svg('<path d="M12 3l10 18H2z"/><path d="M12 10v5"/><path d="M12 18v.5"/>'),
 };
 /** Etiquetas del libro en corto: sin «(p. 101 dice…)», sin la tabla («— Tabla 4.5», «· 4.3»: basta la página), «; requiere explorar el nido» fuera
     (ya lo dice el título del grupo), y «diez tiradas extra de botín de cámara» → «+10 de botín». */
@@ -466,9 +469,9 @@ export class ChamberView {
     for (const t of tries.map((y) => y.replace(/^\*/, ""))) {
       const k = Object.keys(armors).find((y) => fold(y) === fold(t));
       if (k) {
-        const v = armors[k], cls = typeof v === "string" ? v : v.class;
+        const v = armors[k], cls = typeof v === "string" ? v : v.class, bonus = typeof v === "object" ? v.bonus : null;
         const row = db.table("4.7")?.rows.find((r) => fold(clean(r.label)).startsWith(fold(k)));
-        return { armor: { name: k, cls, approx: typeof v === "object" && v.approx }, material: matOf(mat), page: row?.page ?? db.table("4.7")?.page };
+        return { armor: { name: k, cls, bonus }, material: matOf(mat), page: row?.page ?? db.table("4.7")?.page };
       }
     }
     // Armas: «One-handed Axe (Iron)» → la ficha del arma y la de su material.
@@ -519,7 +522,7 @@ export class ChamberView {
     const agn = store.get("bs.agnostic", false);
     const A = this.agn;
     const rarity = this.rarityOf(f);
-    let kind = "", name = this.popFor.name, page = null, sub = "", body = "";
+    let kind = "", name = this.popFor.name, page = null, sub = "", subHtml = "", body = "";
 
     // Una ficha de oficio: casillas cortas en fila (coste, material, PV, dureza) y el uso del material debajo.
     const inch = (v) => (v ? String(v).replace(/\/inch$/, ` / ${T("inch")}`) : "");
@@ -531,39 +534,43 @@ export class ChamberView {
     const uses = (e) => (usesOf(e) ? `<p class="pop-uses"><span>${h(T("usesWord"))}</span> ${h(usesOf(e))}</p>` : "");
 
     if (f.weapon || f.armor) {
+      // Título: la pieza sola («Knife»). Subtítulo: el material con su página, el tamaño y las manos.
       const m = f.material;
       page = f.page;
-      const slot = (/\((common|special) metal\)/i.exec(name) ?? [])[1];
-      const matCell = m ? [T("materialWord"), m.name, ` <em class="page">${h(T("page")(m.page))}</em>`]
-        : slot ? [T("materialWord"), T("metalPending")[slot.toLowerCase()]] : null;
+      const paren = (/\(([^()]*)\)\s*$/.exec(name) ?? [])[1];
+      const slot = (/^(common|special) metal$/i.exec(paren ?? "") ?? [])[1];
+      name = f.weapon ? f.weapon.name : f.armor.name;
+      const matSub = m ? `<span class="pop-mat">${h(m.name)} <span class="page">${h(T("page")(m.page))}</span></span>`
+        : slot ? `<span class="pop-mat is-pending">${h(T("metalPending")[slot.toLowerCase()])}</span>`
+        : paren ? `<span class="pop-mat">${h(paren)}</span>` : "";
+      const vitals = m?.stats ? `<p class="pop-vitals">
+          <span title="HP">${ICON.heart}<b>HP</b> ${h(inch(m.stats.HP))}</span>
+          <span title="${h(L.Hardness)}">${ICON.anvil}<b>${h(L.Hardness)}</b> ${h(m.stats.Hardness)}</span></p>` : "";
       if (f.weapon) {
         const w = f.weapon;
-        kind = T("weapon"); sub = txt(w.size);
-        body = specs([[T("craft"), txt(w.craft)], matCell ?? [], [L.HP, inch(m?.stats?.HP)], [L.Hardness, m?.stats?.Hardness]]) + (m ? uses(m) : "");
+        kind = T("weapon");
+        subHtml = [matSub, h(txt(w.size))].filter(Boolean).join(" · ");
+        // El material cambia el arma según el manual (Tabla 4.8): es un aviso, no parte del Agnostic.
+        const pen = m ? this.db.table("4.8")?.weapon_materials?.[m.name.toLowerCase()] : null;
+        body = vitals + (pen ? `<p class="pop-warn">${ICON.warn}<span>${h(txt(pen.note))}</span></p>` : "") + (m ? uses(m) : "");
         if (agn && A) {
           const c = A.weaponClasses[w.damage];
-          const pen = m ? this.db.table("4.8")?.weapon_materials?.[m.name.toLowerCase()] : null;
           body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
             <div class="pop-agn-grid"><div class="pop-agn-die"><span>${h(T("damage"))}</span><strong>${h(w.damage)}</strong></div>
-              ${chips([[T("dmgType"), txt(w.type)], [T("wClass"), c ? E.loc(c) : ""]])}</div>
-            ${pen ? `<p class="pop-agn-note"><span>${h(T("matPenalty"))}</span> ${h(txt(pen.note))}</p>` : ""}
-            ${w.approx ? `<p class="pop-agn-note is-approx">${h(T("byAnalogy"))}</p>` : ""}</section>`;
+              ${chips([[T("dmgType"), txt(w.type)], [T("wClass"), c ? E.loc(c) : ""]])}</div></section>`;
         }
       } else {
         const a = f.armor;
         const c = A?.armorClasses[a.cls];
-        kind = T("armor"); sub = c ? E.loc(c) : "";
-        body = specs([matCell ?? [], [L.HP, inch(m?.stats?.HP)], [L.Hardness, m?.stats?.Hardness]]) + (m ? uses(m) : "");
+        kind = T("armor");
+        subHtml = [matSub, c ? h(E.loc(c)) : ""].filter(Boolean).join(" · ");
+        body = vitals + (m ? uses(m) : "");
         if (agn && c) {
           body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
-            <div class="pop-agn-grid"><div class="pop-agn-die"><span>${h(T("armorBonus"))}</span><strong>${h(c.bonus)}</strong></div>
-              ${chips([[T("aClass"), E.loc(c)], [T("note"), c.note ? E.loc(c.note) : ""]])}</div>
-            <p class="pop-agn-note is-approx">${h(a.approx ? T("byAnalogy") : E.loc(A.armorNote))}</p></section>`;
+            <div class="pop-agn-grid"><div class="pop-agn-die"><span>${h(T("armorBonus"))}</span><strong>${h(a.bonus ?? c.bonus)}</strong></div>
+              ${chips([[T("aClass"), E.loc(c)], [T("note"), c.note ? E.loc(c.note) : ""]])}</div></section>`;
         }
       }
-      // El interruptor también aquí: se ve el estado y se cambia sin cerrar la ficha.
-      body += `<button type="button" class="agnostic-toggle pop-switch" data-action="agnostic" role="switch" aria-checked="${agn}">
-        <span class="switch" aria-hidden="true"><span></span></span>${h(T("agnosticMode"))}<small>${h(T("agnosticHint"))}</small></button>`;
     } else if (f.entry) {
       const e = f.entry, st = e.stats ?? {};
       name = e.name; page = e.page;
@@ -605,7 +612,7 @@ export class ChamberView {
         <header class="pop-head">
           <p class="pop-kind">${h(kind)}${rarity ? ` · <span class="rarity-label">${h(rarity.label)}</span>` : ""}${page ? ` · <span class="page">${h(T("page")(page))}</span>` : ""}</p>
           <h2 id="pop-title" class="pop-name">${h(name)}</h2>
-          ${sub ? `<p class="pop-subtitle">${h(sub)}</p>` : ""}
+          ${subHtml || sub ? `<p class="pop-subtitle">${subHtml || h(sub)}</p>` : ""}
           <button type="button" class="icon-btn pop-close" data-action="pop-close" aria-label="${h(T("closeWord"))}">${ICON.close}</button>
         </header>
         <div class="pop-body">${body || `<p class="empty">${h(T("noText"))}</p>`}</div>
@@ -1285,7 +1292,6 @@ export class ChamberView {
       else if (a === "tab") this.d.tab = el.dataset.tab;
       else if (a === "info") { this.popFor = { name: el.dataset.name, beast: el.dataset.beast ?? null }; this.popReturn = el.id || null; rerender(); root.querySelector(".pop-close")?.focus(); return; }
       else if (a === "pop-close") { this.popFor = null; rerender(); return; }
-      else if (a === "agnostic") { store.set("bs.agnostic", !store.get("bs.agnostic", false)); rerender(); root.querySelector(".pop-switch")?.focus(); return; }
       else if (a === "undo-live") {
         // Deshacer una línea anotada: si era una veta, vuelve a quedar por extraer.
         const [e] = this.d.live.splice(+el.dataset.i, 1);

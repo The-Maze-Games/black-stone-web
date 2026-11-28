@@ -5,44 +5,170 @@
     "es": "Sistema de reglas opcional. Las armas cuerpo a cuerpo usan Reyerta y suman Físico al daño; las de distancia usan Puntería. El bonificador de Armadura es un penalizador en pruebas de Agilidad, Atletismo y Moldeo."
   },
   "weaponClasses": {
-    "1d4": { "en": "Subtle", "es": "Sutil", "examples": { "en": "daggers, staves", "es": "dagas, bastones, reporteras" } },
-    "1d6": { "en": "Common", "es": "Común", "examples": { "en": "bows, swords, light maces", "es": "arcos, espadas, mazas ligeras" } },
-    "1d8": { "en": "Martial", "es": "Marcial", "examples": { "en": "longswords, flails, war hammers, longbows, pikes", "es": "espadas largas, flagelos, martillos de guerra, arcos largos, picas" } },
-    "1d10": { "en": "Great", "es": "Grande", "examples": { "en": "two-handed weapons, bastard swords, battle axes, halberds", "es": "armas a dos manos, espadas bastardas, hachas de batalla, alabardas" } },
-    "1d12": { "en": "Brutal", "es": "Brutal", "examples": { "en": "two-handed weapons, greatswords, giant axes", "es": "armas a dos manos, espadones, hachas gigantes" } }
+    "1d4": {
+      "en": "Subtle",
+      "es": "Sutil",
+      "examples": {
+        "en": "daggers, staves",
+        "es": "dagas, bastones, reporteras"
+      }
+    },
+    "1d6": {
+      "en": "Common",
+      "es": "Común",
+      "examples": {
+        "en": "bows, swords, light maces",
+        "es": "arcos, espadas, mazas ligeras"
+      }
+    },
+    "1d8": {
+      "en": "Martial",
+      "es": "Marcial",
+      "examples": {
+        "en": "longswords, flails, war hammers, longbows, pikes",
+        "es": "espadas largas, flagelos, martillos de guerra, arcos largos, picas"
+      }
+    },
+    "1d10": {
+      "en": "Great",
+      "es": "Grande",
+      "examples": {
+        "en": "two-handed weapons, bastard swords, battle axes, halberds",
+        "es": "armas a dos manos, espadas bastardas, hachas de batalla, alabardas"
+      }
+    },
+    "1d12": {
+      "en": "Brutal",
+      "es": "Brutal",
+      "examples": {
+        "en": "two-handed weapons, greatswords, giant axes",
+        "es": "armas a dos manos, espadones, hachas gigantes"
+      }
+    }
   },
   "armorClasses": {
-    "light": { "en": "Light armor", "es": "Armadura ligera", "bonus": "+1" },
-    "medium": { "en": "Medium armor", "es": "Armadura mediana", "bonus": "+2 a +3" },
-    "heavy": { "en": "Heavy armor", "es": "Armadura pesada", "bonus": "+4 a +6" },
-    "shield": { "en": "Shield", "es": "Escudo", "bonus": "+2", "note": { "en": "Takes one hand", "es": "Ocupa una mano" } },
-    "helmet": { "en": "Helmet", "es": "Casco", "bonus": "+1", "note": { "en": "Additional; Helmet Rule, p. 424", "es": "Adicional; Regla del Casco, p. 424" } }
+    "light": {
+      "en": "Light armor",
+      "es": "Armadura ligera",
+      "bonus": "+1"
+    },
+    "medium": {
+      "en": "Medium armor",
+      "es": "Armadura mediana",
+      "bonus": "+2 a +3"
+    },
+    "heavy": {
+      "en": "Heavy armor",
+      "es": "Armadura pesada",
+      "bonus": "+4 a +6"
+    },
+    "shield": {
+      "en": "Shield",
+      "es": "Escudo",
+      "bonus": "+2",
+      "note": {
+        "en": "Takes one hand",
+        "es": "Ocupa una mano"
+      }
+    },
+    "helmet": {
+      "en": "Helmet",
+      "es": "Casco",
+      "bonus": "+1",
+      "note": {
+        "en": "Additional; Helmet Rule, p. 424",
+        "es": "Adicional; Regla del Casco, p. 424"
+      }
+    }
   },
   "armors": {
-    "Padded Armor": "light",
-    "Leather Armor": "light",
-    "Studded leather": "light",
-    "Wooden armor": { "class": "light", "approx": true },
-    "Hide Armor": "medium",
-    "Chain shirt": "medium",
-    "Scale mail": "medium",
-    "Breastplate": "medium",
-    "Half plate": "medium",
-    "Ring mail": "heavy",
-    "Ringmail": "heavy",
-    "Chain mail": "heavy",
-    "Splint": "heavy",
-    "Plate": "heavy",
-    "Shield": "shield",
-    "Helmet": "helmet",
-    "Magical light armor": "light",
-    "Magical medium armor": "medium",
-    "Magical heavy armor": "heavy",
-    "Magical shield": "shield",
-    "Magical helmet": "helmet"
+    "Padded Armor": {
+      "class": "light",
+      "bonus": "+1"
+    },
+    "Leather Armor": {
+      "class": "light",
+      "bonus": "+1"
+    },
+    "Studded leather": {
+      "class": "light",
+      "bonus": "+1"
+    },
+    "Wooden armor": {
+      "class": "light",
+      "bonus": "+1"
+    },
+    "Hide Armor": {
+      "class": "medium",
+      "bonus": "+2"
+    },
+    "Chain shirt": {
+      "class": "medium",
+      "bonus": "+2"
+    },
+    "Scale mail": {
+      "class": "medium",
+      "bonus": "+3"
+    },
+    "Breastplate": {
+      "class": "medium",
+      "bonus": "+3"
+    },
+    "Half plate": {
+      "class": "medium",
+      "bonus": "+3"
+    },
+    "Ring mail": {
+      "class": "heavy",
+      "bonus": "+4"
+    },
+    "Ringmail": {
+      "class": "heavy",
+      "bonus": "+4"
+    },
+    "Chain mail": {
+      "class": "heavy",
+      "bonus": "+5"
+    },
+    "Splint": {
+      "class": "heavy",
+      "bonus": "+5"
+    },
+    "Plate": {
+      "class": "heavy",
+      "bonus": "+6"
+    },
+    "Shield": {
+      "class": "shield",
+      "bonus": "+2"
+    },
+    "Helmet": {
+      "class": "helmet",
+      "bonus": "+1"
+    },
+    "Magical light armor": {
+      "class": "light",
+      "bonus": "+1"
+    },
+    "Magical medium armor": {
+      "class": "medium",
+      "bonus": "+2 a +3"
+    },
+    "Magical heavy armor": {
+      "class": "heavy",
+      "bonus": "+4 a +6"
+    },
+    "Magical shield": {
+      "class": "shield",
+      "bonus": "+2"
+    },
+    "Magical helmet": {
+      "class": "helmet",
+      "bonus": "+1"
+    }
   },
-  "armorNote": {
-    "en": "The Agnostic system classifies armor by the area it covers; which armor of Table 4.7 falls in each class is our reading, to confirm.",
-    "es": "El Agnostic clasifica la armadura por el área que cubre; qué armadura de la Tabla 4.7 va en cada clase es lectura nuestra, por confirmar."
+  "armorBasis": {
+    "en": "Which class each armor of Table 4.7 falls in, and its exact bonus, follows D&D 5e armor class.",
+    "es": "La clase de cada armadura de la Tabla 4.7 y su bonificador exacto siguen la CA de D&D 5e."
   }
 }
