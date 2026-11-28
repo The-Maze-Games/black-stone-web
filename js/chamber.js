@@ -429,14 +429,15 @@ export class ChamberView {
     }
     const kidsOf = (key) => own.filter((c) => parentOf.get(c.key) === key);
     const ultimate = own.filter((c) => c.group === "ultimate");
-    const isDm = (e) => e.kind === "dm" || (["loot", "exclusiveLoot"].includes(e.kind) && !NOT_AMOUNTS.test(E.loc(e.of)));
+    const isDm = (e) => !e.perKill && (e.kind === "dm" || (["loot", "exclusiveLoot"].includes(e.kind) && !NOT_AMOUNTS.test(E.loc(e.of))));
     const rows = fixedLines.filter((e) => e.kind === "one").reverse().map((e) => this.oneRow(e));
     rows.push(...fixedLines.filter(isDm).map((e) => this.dmRow(e, page)));
+    rows.push(...fixedLines.filter((e) => e.perKill && this.countOf(e.perKill, e.part) !== 0).map((e) => this.perKillRow(e)));
     // Primero lo seguro (lo que está sin tirar), luego lo que hace falta para entrar y al final lo opcional.
     const top = kidsOf(null).filter((c) => c.group !== "ultimate");
     rows.push(...this.nodes([...top.filter((c) => c.required), ...top.filter((c) => !c.required)], kidsOf, page));
     if (ultimate.length || fixedLines.some((e) => e.kind === "ultimate")) rows.push(this.ultimateGroup(ultimate, fixedLines.filter((e) => e.kind === "ultimate")));
-    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "one" && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
+    fixedLines.filter((e) => e.kind !== "ultimate" && e.kind !== "one" && !e.perKill && !isDm(e)).forEach((e) => rows.push(`<p class="fixed-line">${h(E.loc(e.of))}</p>`));
     return `<div class="derived">${rows.join("")}</div>`;
   }
 
@@ -454,6 +455,82 @@ export class ChamberView {
     const p = this.creaturePage(e.of);
     return `<div class="derived-row dm-row${this.isNew("one:" + e.of)}">
       <p class="derived-label">${h(e.of)}${p ? ` <span class="page">${h(T("page")(p))}</span>` : ""}</p><span class="derived-value">1</span></div>`;
+  }
+
+  /** Cuántos salieron de una tirada por nivel («1d% Dwarven Skeletons por nivel»), o null si falta algún nivel. */
+  levelTotal(id) {
+    const cs = this.children().filter((c) => c.levels === id);
+    if (!cs.length || cs.some((c) => c.kind === "inside" || this.d.typed[c.key] == null)) return null;
+    return cs.reduce((a, c) => a + c.formula.total(this.d.typed[c.key]), 0);
+  }
+
+  /** Un 1d% de no muertos repartido (Tombs): 1 Vampire por cada 10; de los Skeletons, los gigantes que ponga el Máster. */
+  splitOf(c) {
+    const v = this.d.typed[c.key];
+    if (v == null) return null;
+    const n = c.formula.total(v), extra = Math.floor(n / c.split.every);
+    const main = n - extra, giant = Math.min(this.d.typed[`${c.key}.giants`] ?? 0, main);
+    return { n, main, extra, giant };
+  }
+
+  /** Cuántos enemigos cuentan para un botín por enemigo: la suma por nivel, o una parte del reparto. */
+  countOf(id, part) {
+    const lv = this.levelTotal(id);
+    if (lv != null || !part) return lv;
+    const c = this.children().find((x) => x.key === `chamber.extra.${id}` && x.split);
+    const sp = c ? this.splitOf(c) : null;
+    return sp ? sp[part] : null;
+  }
+
+  /** Lo que deja cada enemigo derrotado (Deep Tombs, Tombs): una línea con las piezas y, a la derecha, cuántos enemigos hay. */
+  perKillRow(e) {
+    const n = this.countOf(e.perKill, e.part);
+    return `<div class="derived-row perkill-row${this.isNew("perkill:" + E.loc(e.of))}" title="${h(T("perKillHint"))}">
+      <p class="derived-label">${h(E.loc(e.of))}</p>
+      <ul class="perkill-items">${e.items.map((x) => `<li>${h(x)}${this.infoBtn(x)}</li>`).join("")}</ul>
+      <span class="perkill-n">${n != null ? `<span class="perkill-x">×</span>${h(n)}` : `<span class="perkill-wait">${h(T(e.part ? "perKillWaitRoll" : "perKillWait"))}</span>`}</span>
+    </div>`;
+  }
+
+  /** Las tiradas por nivel en una sola fila: una casilla por nivel con su número encima, y la suma. */
+  levelRow(cs, page) {
+    const first = cs[0], d = this.d;
+    const name = first.beast ?? first.base;
+    const head = `<p class="derived-label">${h(name)}${this.infoBtn(name)} <span class="page">${h(T("page")(first.page))}</span>
+      <span class="level-die">${h(T("perLevel")(first.formula.label))}</span></p>`;
+    if (first.kind === "inside") return `<div class="derived-row level-row is-waiting${this.isNew("lv:" + first.key)}">${head}<p class="level-wait">${h(T("levelsFirst"))}</p></div>`;
+    const total = this.levelTotal(first.levels);
+    const filled = cs.filter((c) => d.typed[c.key] != null).length;
+    return `<div class="derived-row level-row${this.isNew("lv:" + first.levels + cs.length)}">${head}
+      <ol class="level-cells">${cs.map((c) => `<li><span class="level-n">${c.level}</span>${this.input(c, "dice-cell", `aria-label="${h(T("levelN")(c.level))}"`)}</li>`).join("")}</ol>
+      <p class="level-sum">${total != null ? `<span class="derived-total">= ${h(total)}</span>` : `<span class="level-count">${h(T("levelsFilled")(filled, cs.length))}</span>`}</p>
+    </div>`;
+  }
+
+  /** El Máster elige: botones en fila («Gigantes | Ángeles», «Pico | Martillo | Hacha»). */
+  pickRow(key, options, labels, aria) {
+    const v = this.d.typed[key];
+    return `<span class="pick" role="radiogroup" aria-label="${h(aria)}">${options.map((o, i) => `<label class="pick-opt${v === i + 1 ? " is-on" : ""}"><input type="radio" name="${h(key)}" data-choice="${h(key)}" value="${i + 1}" ${v === i + 1 ? "checked" : ""}><span>${h(labels[i] ?? o)}</span></label>`).join("")}</span>`;
+  }
+
+  /** El reparto de los no muertos: cada criatura con su ficha y cuántos; los gigantes con − y +. */
+  splitRow(c) {
+    const sp = this.splitOf(c), S = c.split, key = `${c.key}.giants`;
+    const beast = (name, q) => `<li class="split-beast${q ? "" : " is-zero"}"><span class="split-q">${q}</span> <span>${h(name)}</span>${this.infoBtn(name)}</li>`;
+    return `<ul class="split">
+      ${beast(S.main, sp.main - sp.giant)}${beast(S.extra, sp.extra)}
+      <li class="split-beast split-step${sp.giant ? "" : " is-zero"}">
+        <button type="button" class="round-btn" data-action="step" data-key="${h(key)}" data-d="-1" data-max="${sp.main}" aria-label="−1 ${h(S.giant)}" ${sp.giant ? "" : "disabled"}>−</button>
+        <span class="split-q">${sp.giant}</span>
+        <button type="button" class="round-btn is-next" data-action="step" data-key="${h(key)}" data-d="1" data-max="${sp.main}" aria-label="+1 ${h(S.giant)}" ${sp.giant < sp.main ? "" : "disabled"}>+</button>
+        <span>${h(S.giant)}</span>${this.infoBtn(S.giant)} <span class="row-hint">${h(T("giantHint"))}</span></li>
+    </ul>`;
+  }
+
+  /** El nombre con lo que eligió el Máster: «Angel Skeletons», «Builder's Tool (Pick)». */
+  chosenName(c) {
+    if (c.options) { const v = this.d.typed[c.choiceKey]; return v ? c.options[v - 1] : this.label(c); }
+    return this.label(c);
   }
 
   // ---------------------------------------------------------------- fichas del manual
@@ -704,6 +781,12 @@ export class ChamberView {
     const rows = [];
     for (const c of list) {
       if (done.has(c.key)) continue;
+      if (c.levels) {
+        const cs = list.filter((x) => x.levels === c.levels);
+        cs.forEach((x) => done.add(x.key));
+        rows.push(this.levelRow(cs, page));
+        continue;
+      }
       if (c.metal) { done.add(c.key); rows.push(this.metalRow(c, kidsOf)); continue; }
       const b = base(c);
       const group = b ? list.filter((x) => base(x) === b) : [];
@@ -881,12 +964,21 @@ export class ChamberView {
     const resultPage = c.table && v != null ? t.page(c.table, v) : null;
     const needed = c.required && v == null;
     const luck = c.chance && v != null ? (c.chance.passes(v) ? " is-found" : " is-missed") : "";
-    return `<div class="derived-row${c.required ? " is-required" : " is-optional"}${needed ? " is-needed" : ""}${luck}${c.table ? "" : " is-inline"}${this.isNew(c.key)}" data-key="${h(c.key)}">
-      <label class="derived-label" for="${idOf(c.key)}">${h(this.label(c))}${this.sectionOf(c) === "inhabitant" ? this.page(this.creaturePage(c.of) ?? c.page, {}) : this.page(c.page, page)}</label>
+    const beast = this.sectionOf(c) === "inhabitant";
+    const name = this.chosenName(c);
+    const info = (beast || c.pick) && !c.split ? this.infoBtn(name) : "";
+    const pickFor = c.options ? this.pickRow(c.choiceKey, c.options, c.options.map((o) => T("optionLabel")(o)), T("mmChooses")) : "";
+    const tools = c.pick && v != null ? `<ol class="tool-picks">${Array.from({ length: c.formula.total(v) }, (_, i) =>
+      `<li><span class="level-n">${i + 1}</span>${this.pickRow(`${c.key}.kind${i + 1}`, c.pick, c.pick.map((o) => T("toolKinds")[o] ?? o), `${name} ${i + 1}`)}</li>`).join("")}</ol>` : "";
+    const split = c.split && v != null ? this.splitRow(c) : "";
+    const extra = pickFor || tools || c.hint || split ? `<div class="row-extra">${pickFor}${c.hint ? `<p class="row-hint">${h(c.hint)}</p>` : ""}${tools}${split}</div>` : "";
+    return `<div class="derived-row${c.required ? " is-required" : " is-optional"}${needed ? " is-needed" : ""}${luck}${c.table ? "" : " is-inline"}${extra ? " has-extra" : ""}${this.isNew(c.key)}" data-key="${h(c.key)}">
+      <span class="derived-label"><label for="${idOf(c.key)}">${h(name)}</label>${info}${beast ? this.page(this.creaturePage(c.of) ?? c.page, {}) : c.pick ? this.page(c.page, {}) : this.page(c.page, page)}</span>
       <span class="derived-die">${h(bad ? `${c.formula.min}–${c.formula.max}` : die)}</span>
       ${this.input(c)}
       <span class="derived-result">${this.answer(c)}${this.page(resultPage, page)}</span>
       ${note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(note))}</p></details>` : ""}
+      ${extra}
     </div>`;
   }
 
@@ -1088,6 +1180,7 @@ export class ChamberView {
       }
       for (const e of this.fixedLinesOf(id, der, skip)) {
         const name = (typeof e.of === "string" ? e.of : E.loc(e.of)).replace(/^./, (m) => m.toUpperCase());
+        if (e.perKill) { const n = this.countOf(e.perKill, e.part); if (n === 0) continue; e.items.forEach((x) => items.push({ name: x, qty: n, kind: "perkill" })); continue; }
         if (e.kind === "one") items.push({ name, page: this.creaturePage(e.of), qty: 1, stack: true });
         else if (e.kind === "dm" || ["loot", "exclusiveLoot", "ultimate"].includes(e.kind) && !NOT_AMOUNTS.test(name)) items.push({ name, page: e.page, qty: "DM", kind: "sure" });
         else items.push({ name });
@@ -1119,10 +1212,25 @@ export class ChamberView {
           continue;
         }
         const relic = c.group === "ultimate";
-        const label = relic ? c.of.split(/;\s*/)[0] : this.label(c);
+        const label = relic ? c.of.split(/;\s*/)[0] : c.levels ? c.beast ?? c.base : this.chosenName(c);
+        // Undead: Skeletons, Giant Skeletons y Vampires, cada uno con su ficha en el Bestiario.
+        if (c.split) {
+          const sp = this.splitOf(c), S = c.split;
+          [[S.main, sp.main - sp.giant], [S.giant, sp.giant], [S.extra, sp.extra]].filter(([, q]) => q > 0)
+            .forEach(([name, q]) => add({ name, page: this.creaturePage(name), qty: q, stack: true }));
+          continue;
+        }
+        // Builder's Tools: una por pieza, con el tipo que eligió el Máster («Builder's Tool (Pick)»).
+        if (c.pick) {
+          for (let i = 1; i <= c.formula.total(v); i++) {
+            const k = typed[`${c.key}.kind${i}`];
+            add({ name: k ? `${label} (${c.pick[k - 1]})` : label, page: c.page, qty: 1, stack: true });
+          }
+          continue;
+        }
         // Enemigos que trae la propia cámara («Hydras en la cámara»): van también al Bestiario con su ficha.
         const beast = id === "chamber" ? this.beastIn(c.of) : null;
-        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null,
+        add({ name: label, page: id === "inhabitant" ? this.creaturePage(c.of) ?? c.page : beast?.page ?? null, qty: c.formula.total(v), kind: relic ? "relic" : null, stack: !!c.levels,
           beast: beast ? { id: beast.name, words: beast.name.trim().split(/\s+/).length } : null });
       }
       if (!items.length && (id === "loot" || id === "inhabitant") && r[id] != null) {
@@ -1149,6 +1257,17 @@ export class ChamberView {
       return `<div class="live-row extract-row is-dm">
         <p class="live-label"><span class="live-name">${h(T("extract")(it.name))}</span>${it.page ? ` <span class="page">${h(T("page")(it.page))}</span>` : ""}</p>
         <div class="live-inputs"><input id="${idOf(key)}-x" class="dice-cell${bad ? " is-invalid" : ""}" data-live="${h(key)}" data-part="total" data-name="${h(it.name)}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="${h(raw)}" placeholder="${h(T("units"))}" aria-label="${h(T("units"))}"><button type="button" class="record-btn" data-action="extract-dm" data-sign="1" data-key="${h(key)}" data-name="${h(it.name)}">+ ${h(T("record"))}</button></div>
+      </div>`;
+    }).join("");
+    // Lo que deja cada enemigo derrotado: se anota de golpe por los que ya cayeron en el Bestiario.
+    const perKill = E.fixedExtras(der.rule).filter((e) => e.perKill).map((e) => {
+      const key = `perkill.${e.perKill}`;
+      const killed = [].concat(e.beast).reduce((a, b) => a + ((d.kills ?? {})[b] ?? 0), 0);
+      const done = d.live.filter((x) => x.key === key).reduce((a, x) => a + (x.n ?? 0), 0);
+      const left = Math.max(0, killed - done);
+      return `<div class="live-row extract-row perkill-extract">
+        <p class="live-label"><span class="live-name">${h(E.loc(e.of))}</span> <span class="perkill-list">${h(e.items.join(" · "))}</span></p>
+        <div class="live-inputs"><span class="perkill-state">${h(T("perKillState")(killed, left))}</span><button type="button" class="record-btn" data-action="perkill" data-key="${h(key)}" data-n="${left}" data-items="${h(e.items.join("|"))}" data-who="${h([].concat(e.beast)[0])}" ${left ? "" : "disabled"}>+ ${h(T("record"))}${left ? ` ×${left}` : ""}</button></div>
       </div>`;
     }).join("");
     const groups = new Map();
@@ -1183,7 +1302,7 @@ export class ChamberView {
     }).join("");
     const carried = bag ? `<h3 class="tab-sub">${h(T("carried"))}</h3><div class="live-list">${bag}</div>` : "";
     const events = d.live.length ? `<h3 class="tab-sub">${h(T("recorded"))}</h3><ol class="events">${d.live.map((e, i) => `<li class="${this.isNew(`ev:${i}:${e.text}`).trim()}"><button type="button" class="icon-btn event-undo" data-action="undo-live" data-i="${i}" aria-label="${h(T("undo"))}" title="${h(T("undo"))}">${ICON.close}</button><span class="event-round">${h(T("roundShort"))}${e.round}</span> <span class="event-text">${h(e.text)}</span>${e.page ? ` <span class="page">${h(T("page")(e.page))}</span>` : ""}${e.note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(e.note))}</p></details>` : ""}</li>`).reverse().join("")}</ol>` : "";
-    return `${dmRows || rows || live ? `<div class="live-list">${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${carried}${events}`;
+    return `${perKill || dmRows || rows || live ? `<div class="live-list">${perKill}${dmRows}${rows}${live}</div>` : `<p class="empty">${h(T("nothingToExtract"))}</p>`}${carried}${events}`;
   }
 
   liveRow(item) {
@@ -1236,7 +1355,10 @@ export class ChamberView {
   /** Cuánto llevan de cada cosa extraída: lo anotado menos lo quitado. */
   inventory() {
     const have = new Map();
-    for (const e of this.d.live) if (e.material && e.units) have.set(e.material, (have.get(e.material) ?? 0) + e.units);
+    for (const e of this.d.live) {
+      if (e.material && e.units) have.set(e.material, (have.get(e.material) ?? 0) + e.units);
+      for (const [m, n] of Object.entries(e.bag ?? {})) have.set(m, (have.get(m) ?? 0) + n);
+    }
     return have;
   }
 
@@ -1325,6 +1447,15 @@ export class ChamberView {
       else if (a === "kill+" || a === "kill-") {
         const k = (this.d.kills ??= {}), n = el.dataset.name;
         k[n] = Math.max(0, (k[n] ?? 0) + (a === "kill+" ? 1 : -1));
+      }
+      else if (a === "step") {
+        const k = el.dataset.key, n = (this.d.typed[k] ?? 0) + +el.dataset.d;
+        this.d.typed[k] = Math.max(0, Math.min(+el.dataset.max, n));
+      }
+      else if (a === "perkill") {
+        const n = +el.dataset.n, items = el.dataset.items.split("|");
+        if (!n) return;
+        this.d.live.push({ key: el.dataset.key, round: this.d.round, n, bag: Object.fromEntries(items.map((x) => [x, n])), text: `${el.dataset.who} ×${n} → ${items.join(", ")}` });
       }
       else if (a === "extract-dm") {
         const k = el.dataset.key, raw = String(this.d.liveBuffers[k]?.total ?? "").trim();

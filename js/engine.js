@@ -429,7 +429,7 @@ export function sectionOf(kind) {
 /** Lo que la cámara trae sin tirar nada: «agua abundante», «Tears of the Gods». Va como línea fija en su tirada. */
 export function fixedExtras(rule) {
   return (rule?.extras ?? []).filter((e) => !e.die && !e.chance && !e.repeat)
-    .map((e) => ({ of: e.of, kind: e.kind, section: sectionOf(e.kind) }));
+    .map((e) => ({ of: e.of, kind: e.kind, section: sectionOf(e.kind), ...(e.perKill ? { perKill: e.perKill, part: e.part ?? null, items: e.items, beast: e.beast } : {}) }));
 }
 
 /** Las filas hijas de la cámara, en orden: la ventana de la entrada y cada dado que traen los resultados. */
@@ -470,13 +470,24 @@ export function children(r, d, t, typed = {}) {
         for (let level = 0; level < formula.total(answer); level++) {
           addExtra(list, `chamber.extra.${parent.id}.level${level + 1}.${e.id}`,
             { ...e, of: { en: `Level ${level + 1} · ${e.of?.en ?? ""}`, es: `Nivel ${level + 1} · ${e.of?.es ?? ""}` } },
-            d.rule.page, from, typed, t);
+            e.page ?? d.rule.page, from, typed, t);
+          const c = list[list.length - 1];
+          if (c) { c.level = level + 1; c.levels = e.id; c.base = loc(e.of); }
         }
+      } else {
+        // Sin los niveles todavía: la fila se ve igual, esperando a que se tiren.
+        list.push(child(`chamber.extra.${parent.id}.levels.${e.id}`, "inside", D100, loc(e.of), e.page ?? d.rule.page,
+          { required: false, from, levels: e.id, base: loc(e.of), waitingFor: parent.id }));
       }
-    } else addExtra(list, key, e, d.rule.page, from, typed, t);
+    } else addExtra(list, key, e, e.page ?? d.rule.page, from, typed, t);
     for (let k = start; k < list.length; k++) {
       list[k].section ??= sectionOf(e.kind);
       if (e.kind === "ultimate") list[k].group = "ultimate";
+      if (e.options) { list[k].options = e.options; list[k].choiceKey = `chamber.choice.${e.id}`; }
+      if (e.pick) list[k].pick = e.pick;
+      if (e.hint) list[k].hint = loc(e.hint);
+      if (e.beast) list[k].beast = e.beast;
+      if (e.split) list[k].split = e.split;
     }
   });
   const fx = d.fx;
