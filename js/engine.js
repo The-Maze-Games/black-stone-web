@@ -429,7 +429,7 @@ export function sectionOf(kind) {
 /** Lo que la cámara trae sin tirar nada: «agua abundante», «Tears of the Gods». Va como línea fija en su tirada. */
 export function fixedExtras(rule) {
   return (rule?.extras ?? []).filter((e) => !e.die && !e.chance && !e.repeat)
-    .map((e) => ({ of: e.of, kind: e.kind, section: sectionOf(e.kind), ...(e.perKill ? { perKill: e.perKill, part: e.part ?? null, items: e.items, beast: e.beast } : {}) }));
+    .map((e) => ({ of: e.of, kind: e.kind, section: sectionOf(e.kind), ...(e.name ? { name: e.name } : {}), ...(e.perKill ? { perKill: e.perKill, part: e.part ?? null, items: e.items, beast: e.beast } : {}) }));
 }
 
 /** Las filas hijas de la cámara, en orden: la ventana de la entrada y cada dado que traen los resultados. */
