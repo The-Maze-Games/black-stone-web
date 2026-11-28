@@ -43,7 +43,7 @@ function render() {
   nav.innerHTML = view === "chamber" ? "" : `<a href="#/chamber">${h(T("backChamber"))}</a>`;
   // Modo Agnostic: el sistema de reglas opcional del autor. Muestra el daño de las armas y la clase de las armaduras.
   const agn = store.get("bs.agnostic", false);
-  langs.innerHTML = `<button type="button" class="agnostic-toggle" data-agnostic aria-pressed="${agn}" title="${h(T("agnosticHint"))}">${h(T("agnostic"))}</button>`
+  langs.innerHTML = `<button type="button" class="agnostic-toggle" data-agnostic role="switch" aria-checked="${agn}" title="${h(T("agnosticHint"))}"><span class="switch" aria-hidden="true"><span></span></span>${h(T("agnostic"))}</button>`
     + ["es", "en"].map((l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang()}">${l.toUpperCase()}</button>`).join("");
   keepFocus(() => {
     main.innerHTML = view === "ref" ? reference.render(sub, rest) : view === "log" ? renderLog() : chamber.render();

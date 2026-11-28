@@ -37,10 +37,14 @@ a { color: var(--fg); text-decoration-color: var(--accent); }
 .lang-switch button[aria-pressed="true"] { color: var(--fg); }
 .lang-switch button[data-lang="en"]::before { content: "|"; color: var(--line); margin-right: 12px; }
 .lang-switch { align-items: center; }
-.lang-switch .agnostic-toggle { display: inline-flex; align-items: center; gap: 8px; margin-right: 14px; padding: 6px 12px; border: 1px solid var(--line); letter-spacing: .1em; }
-.agnostic-toggle::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); box-shadow: inset 0 0 0 1px var(--dim); transition: background .2s, box-shadow .2s; }
-.lang-switch .agnostic-toggle[aria-pressed="true"] { color: var(--fg); border-color: var(--gold-dim); background: rgba(168, 134, 79, .08); }
-.agnostic-toggle[aria-pressed="true"]::before { background: var(--gold); box-shadow: 0 0 8px rgba(233, 195, 122, .6); }
+/* Interruptor Agnostic: una pista con su perilla, encendido en oro. */
+.agnostic-toggle { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.lang-switch .agnostic-toggle { margin-right: 14px; padding: 6px 12px 6px 8px; border: 1px solid var(--line); letter-spacing: .1em; color: var(--dim); }
+.lang-switch .agnostic-toggle[aria-checked="true"] { color: var(--fg); border-color: var(--gold-dim); background: rgba(168, 134, 79, .08); }
+.switch { position: relative; flex: none; width: 30px; height: 16px; border: 1px solid var(--dim); border-radius: 999px; background: #0a0807; transition: border-color .2s, background .2s; }
+.switch > span { position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: var(--dim); transition: transform .2s ease, background .2s, box-shadow .2s; }
+.agnostic-toggle[aria-checked="true"] .switch { border-color: var(--gold); background: rgba(168, 134, 79, .18); }
+.agnostic-toggle[aria-checked="true"] .switch > span { transform: translateX(14px); background: var(--gold); box-shadow: 0 0 8px rgba(233, 195, 122, .7); }
 .app-main { max-width: 1320px; margin: 0 auto; padding: 0 max(4vw, 16px) 56px; outline: none; }
 
 /* Campos y botones */
@@ -465,10 +469,15 @@ button:disabled { opacity: .35; cursor: default; }
 .stack-head { margin: 4px 0 2px; font-size: 15px; }
 .stack-head.is-optional .derived-label { color: #b8ae9f; }
 .stack-lines { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 2px 18px; }
-.stack-line { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 8px; padding: 4px 0; border-bottom: 1px dashed #1a1714; }
-.stack-line > .chain-cell { flex: 1 1 100%; padding-left: 1.9em; }
-.stack-line > .dice-n + .chain-cell { flex: 1 1 0; padding-left: 0; }
-.chain-cell.is-sub { padding-left: 3.2em !important; }
+.stack-line { display: flex; align-items: flex-start; gap: 3px 8px; padding: 6px 0; border-bottom: 1px dashed #1a1714; }
+.stack-line > .dice-n { padding-top: 7px; min-width: 1.4em; }
+/* Una línea con varias piezas ocupa todo el ancho; sus piezas van en rejilla fija, en orden de lectura. */
+.stack-line:has(.chain-group) { grid-column: 1 / -1; }
+.chain-group { flex: 1; min-width: 0; }
+.chain-kids { display: grid; align-items: start; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 4px 16px; margin-top: 6px; padding-left: 10px; border-left: 1px solid var(--line); }
+.chain-item { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; padding: 2px 0; }
+.stack-line > .chain-item { flex: 1; }
+.metal-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; flex-basis: 100%; padding-left: 1.6em; }
 .chain-n { display: inline-block; min-width: 1.2em; font: 700 13px var(--title); color: var(--gold-dim); }
 .chain-label.is-sub { font-size: 13px; color: var(--dim); }
 .chain-answer { flex: 1; line-height: 1.2; }
@@ -657,3 +666,45 @@ tr.is-hit td { background: var(--soft); font-weight: 600; }
 .pop-agn-note { font-size: 15px; color: #c9bfae; }
 .pop-agn-note.is-approx { font-style: italic; color: var(--dim); font-size: 14px; margin-top: 4px; }
 .pop-hint { margin-top: 10px; font: italic 400 14px var(--text); color: var(--dim); }
+
+/* El metal de una pieza: pasos en una sola línea, «Común [100] → Especial [10] Mournsteel». */
+.metal-step { display: inline-flex; align-items: center; gap: 5px; }
+.metal-tag { font: italic 400 13px var(--text); color: var(--dim); }
+.metal-step.is-done .metal-tag { color: var(--gold-dim); }
+.metal-input { width: 3em !important; min-height: 28px !important; font-size: 14px !important; padding: 1px !important; }
+.metal-arrow { color: var(--gold-dim); margin: 0 2px; }
+.metal-again { font: italic 400 13px var(--text); color: var(--danger); }
+.metal-step .result-name { font-size: 15px; }
+.metal-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 2px 0 8px 1.6em; padding: 6px 10px; border-left: 2px solid var(--gold-dim); background: rgba(168, 134, 79, .04); }
+.metal-head { font: 700 12px var(--title); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.metal-row .derived-die { font-size: 13px; }
+
+/* Fichas de oficio: casillas en fila y el uso del material. */
+.pop-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; margin: 4px 0 12px; border: 1px solid var(--line); background: var(--line); }
+.pop-spec { padding: 9px 12px; background: #0a0807; }
+.pop-spec > span { display: block; font: italic 400 13px var(--text); color: var(--gold); }
+.pop-spec strong { font: 600 16px/1.3 var(--text); }
+.pop-spec .page { font-size: 13px; color: var(--dim); }
+.pop-uses { margin: 0 0 12px; font-size: 15px; line-height: 1.5; color: #d6ccbb; }
+.pop-uses > span { font: 700 11px var(--title); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-right: 6px; }
+.pop-agn-grid { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-bottom: 8px; }
+.pop-agn-grid .pop-chips { margin: 0; }
+.pop-agn-die { display: grid; align-content: center; justify-items: center; min-width: 92px; padding: 6px 12px; border: 1px solid var(--gold-dim); background: #0a0807; }
+.pop-agn-die span { font: italic 400 13px var(--text); color: var(--gold); }
+.pop-agn-die strong { font: 700 28px/1 var(--title); color: var(--fg); }
+.pop-agn-note > span { font-style: italic; color: var(--gold); }
+.pop-switch { width: 100%; margin-top: 12px; padding: 10px 12px; border: 1px dashed var(--line); background: none; color: var(--fg); font: 600 13px var(--title); letter-spacing: .1em; text-align: left; flex-wrap: wrap; }
+.pop-switch small { flex-basis: 100%; padding-left: 40px; font: italic 400 14px var(--text); letter-spacing: 0; color: var(--dim); }
+.pop-switch[aria-checked="true"] { border-color: var(--gold-dim); }
+.pop-switch:hover { border-color: var(--gold-dim); }
+.pop-attacks { list-style: none; padding: 0; margin: 0 0 8px; border-top: 1px solid var(--line); }
+.pop-attack { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name die" "meta die"; gap: 0 12px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--line); margin: 0 !important; }
+.pop-attack-name { grid-area: name; font-weight: 600; }
+.pop-attack-name em { font-weight: 400; color: #c9bfae; }
+.pop-attack-meta { grid-area: meta; font: italic 400 14px var(--text); color: var(--dim); }
+.pop-attack-die { grid-area: die; font: 700 20px var(--title); color: var(--fg); padding: 2px 10px; border: 1px solid var(--gold-dim); background: #0a0807; }
+.pop-drops { margin: 12px 0; padding: 10px 12px; border-left: 2px solid var(--gold); background: rgba(168, 134, 79, .06); }
+.pop-drops > span { font: 700 11px var(--title); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.pop-drops p { margin: 4px 0 0; line-height: 1.45; }
+.pop-foot-stats { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; color: #c9bfae; }
+.pop-foot-stats dt { font-size: 13px; color: var(--dim); }

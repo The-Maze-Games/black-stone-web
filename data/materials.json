@@ -7,7 +7,8 @@
    "page": 189,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "One of the most important uses of dried bones in the Maze is to ignite and feed the Bonfires"
+   "Uses": "One of the most important uses of dried bones in the Maze is to ignite and feed the Bonfires",
+   "Uses_es": "Uno de los usos más importantes de los huesos secos en el Laberinto es encender y alimentar las Hogueras"
   },
   {
    "name": "Brass",
@@ -15,7 +16,8 @@
    "page": 190,
    "HP": "20/inch",
    "Hardness": "9",
-   "Uses": "It can be employed to craft pieces and parts of complex devices, like clocks, musical instruments, and magic items"
+   "Uses": "It can be employed to craft pieces and parts of complex devices, like clocks, musical instruments, and magic items",
+   "Uses_es": "Sirve para fabricar piezas y partes de mecanismos complejos, como relojes, instrumentos musicales y objetos mágicos"
   },
   {
    "name": "Bronze",
@@ -23,7 +25,8 @@
    "page": 190,
    "HP": "20/inch",
    "Hardness": "9",
-   "Uses": "It can be used to craft armor and weapons"
+   "Uses": "It can be used to craft armor and weapons",
+   "Uses_es": "Sirve para fabricar armaduras y armas"
   },
   {
    "name": "Carbon",
@@ -31,7 +34,8 @@
    "page": 191,
    "HP": "5/inch",
    "Hardness": "2",
-   "Uses": "The main use of coal is for combustion in the Bonfires"
+   "Uses": "The main use of coal is for combustion in the Bonfires",
+   "Uses_es": "El uso principal del carbón es la combustión en las Hogueras"
   },
   {
    "name": "Chitin",
@@ -39,7 +43,8 @@
    "page": 191,
    "HP": "8/inch",
    "Hardness": "4",
-   "Uses": "It can be used to craft shields, medium and heavy armor"
+   "Uses": "It can be used to craft shields, medium and heavy armor",
+   "Uses_es": "Sirve para fabricar escudos y armaduras medianas y pesadas"
   },
   {
    "name": "Copper",
@@ -47,7 +52,8 @@
    "page": 192,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "The softness of copper prevents it from being used for crafting armor and weapons, but it can be used to coat armor and weapons"
+   "Uses": "The softness of copper prevents it from being used for crafting armor and weapons, but it can be used to coat armor and weapons",
+   "Uses_es": "Por blando, el cobre no sirve para fabricar armaduras ni armas, pero sí para recubrirlas"
   },
   {
    "name": "Electrum",
@@ -55,7 +61,8 @@
    "page": 192,
    "HP": "20/inch",
    "Hardness": "9",
-   "Uses": "It can be used to craft armor and weapons"
+   "Uses": "It can be used to craft armor and weapons",
+   "Uses_es": "Sirve para fabricar armaduras y armas"
   },
   {
    "name": "Flint",
@@ -63,7 +70,8 @@
    "page": 193,
    "HP": "15/inch",
    "Hardness": "8",
-   "Uses": "Flint can be used to craft light and one-handed, bludgeoning weapons, spears, axes, daggers, and arrowheads"
+   "Uses": "Flint can be used to craft light and one-handed, bludgeoning weapons, spears, axes, daggers, and arrowheads",
+   "Uses_es": "El sílex sirve para fabricar armas ligeras y a una mano contundentes, lanzas, hachas, dagas y puntas de flecha"
   },
   {
    "name": "Gemstones",
@@ -71,7 +79,8 @@
    "page": 193,
    "HP": "10/inch",
    "Hardness": "10",
-   "Uses": "In the Maze, they are almost useless except to craft magic items and complex devices"
+   "Uses": "In the Maze, they are almost useless except to craft magic items and complex devices",
+   "Uses_es": "En el Laberinto casi no sirven, salvo para fabricar objetos mágicos y mecanismos complejos"
   },
   {
    "name": "Gold",
@@ -79,7 +88,8 @@
    "page": 193,
    "HP": "20/inch",
    "Hardness": "5",
-   "Uses": "Because of its softness, it is not usually employed to craft armor or weapons"
+   "Uses": "Because of its softness, it is not usually employed to craft armor or weapons",
+   "Uses_es": "Por su blandura, no se suele usar para fabricar armaduras ni armas"
   },
   {
    "name": "Granite",
@@ -87,7 +97,8 @@
    "page": 194,
    "HP": "15/inch",
    "Hardness": "10",
-   "Uses": "Granite can be employed for building, mainly doors and barricades to defend the Bonfires"
+   "Uses": "Granite can be employed for building, mainly doors and barricades to defend the Bonfires",
+   "Uses_es": "El granito sirve para construir, sobre todo puertas y barricadas para defender las Hogueras"
   },
   {
    "name": "Halite",
@@ -95,7 +106,8 @@
    "page": 194,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "Salt can be used to cure and dry food, as a flavor enhancer, and to preserve ice"
+   "Uses": "Salt can be used to cure and dry food, as a flavor enhancer, and to preserve ice",
+   "Uses_es": "La sal sirve para curar y secar comida, para dar sabor y para conservar el hielo"
   },
   {
    "name": "Iron",
@@ -103,7 +115,8 @@
    "page": 194,
    "HP": "25/inch",
    "Hardness": "9",
-   "Uses": "It can be employed to craft weapons, armor, and any kind of tools or equipment"
+   "Uses": "It can be employed to craft weapons, armor, and any kind of tools or equipment",
+   "Uses_es": "Sirve para fabricar armas, armaduras y cualquier tipo de herramienta o equipo"
   },
   {
    "name": "Lead",
@@ -111,7 +124,8 @@
    "page": 195,
    "HP": "20/inch",
    "Hardness": "9",
-   "Uses": "It can be used to craft pieces and parts of simple devices like bullets and pipes"
+   "Uses": "It can be used to craft pieces and parts of simple devices like bullets and pipes",
+   "Uses_es": "Sirve para fabricar piezas y partes de mecanismos sencillos, como balas y tuberías"
   },
   {
    "name": "Leather",
@@ -119,7 +133,8 @@
    "page": 195,
    "HP": "5/inch",
    "Hardness": "2",
-   "Uses": "It can be used to make light and medium armor"
+   "Uses": "It can be used to make light and medium armor",
+   "Uses_es": "Sirve para hacer armaduras ligeras y medianas"
   },
   {
    "name": "Marble",
@@ -127,7 +142,8 @@
    "page": 196,
    "HP": "15/inch",
    "Hardness": "8",
-   "Uses": "Marble can be employed for sculpture, building, and even pottery"
+   "Uses": "Marble can be employed for sculpture, building, and even pottery",
+   "Uses_es": "El mármol sirve para escultura, construcción e incluso alfarería"
   },
   {
    "name": "Wood",
@@ -135,7 +151,8 @@
    "page": 196,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "Although the primary use of wood is to feed the Bonfires, it can be used to make weapons and armor"
+   "Uses": "Although the primary use of wood is to feed the Bonfires, it can be used to make weapons and armor",
+   "Uses_es": "Aunque su uso principal es alimentar las Hogueras, la madera sirve para hacer armas y armaduras"
   },
   {
    "name": "Pewter",
@@ -143,7 +160,8 @@
    "page": 196,
    "HP": "20/inch",
    "Hardness": "5",
-   "Uses": "Although it is possible to make weapons and armor made of Pewter, it is better suited to craft pots, pans, tableware, and tools"
+   "Uses": "Although it is possible to make weapons and armor made of Pewter, it is better suited to craft pots, pans, tableware, and tools",
+   "Uses_es": "Se pueden hacer armas y armaduras de peltre, pero va mejor para ollas, sartenes, vajilla y herramientas"
   },
   {
    "name": "Silver",
@@ -151,7 +169,8 @@
    "page": 197,
    "HP": "20/inch",
    "Hardness": "5",
-   "Uses": "Just like Gold, Silver is usually not suitable to craft armor or weapons, but it can be used to make light weapons that do piercing or slashing damage"
+   "Uses": "Just like Gold, Silver is usually not suitable to craft armor or weapons, but it can be used to make light weapons that do piercing or slashing damage",
+   "Uses_es": "Igual que el oro, la plata no suele servir para armaduras ni armas, pero sí para armas ligeras que hacen daño perforante o cortante"
   },
   {
    "name": "Steel",
@@ -159,7 +178,8 @@
    "page": 197,
    "HP": "30/inch",
    "Hardness": "10",
-   "Uses": "It is the base metal for armor, weapons, and tools"
+   "Uses": "It is the base metal for armor, weapons, and tools",
+   "Uses_es": "Es el metal base de armaduras, armas y herramientas"
   },
   {
    "name": "Tin",
@@ -167,7 +187,8 @@
    "page": 198,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "The main use of Tin is to combine it to obtain Bronze and Pewter"
+   "Uses": "The main use of Tin is to combine it to obtain Bronze and Pewter",
+   "Uses_es": "El uso principal del estaño es combinarlo para obtener bronce y peltre"
   },
   {
    "name": "Zinc",
@@ -175,7 +196,8 @@
    "page": 198,
    "HP": "10/inch",
    "Hardness": "5",
-   "Uses": "The main use of Zinc is to combine it to obtain Brass"
+   "Uses": "The main use of Zinc is to combine it to obtain Brass",
+   "Uses_es": "El uso principal del zinc es combinarlo para obtener latón"
   },
   {
    "name": "Adamantine",
@@ -183,7 +205,8 @@
    "page": 198,
    "HP": "40/inch",
    "Hardness": "20",
-   "Uses": "Adamantine can be used to craft armor, shields, and weapons"
+   "Uses": "Adamantine can be used to craft armor, shields, and weapons",
+   "Uses_es": "El adamantino sirve para fabricar armaduras, escudos y armas"
   },
   {
    "name": "Aurorum",
@@ -191,7 +214,8 @@
    "page": 199,
    "HP": "30/inch",
    "Hardness": "10",
-   "Uses": "Aurorum is employed to craft weapons, armor, and tools"
+   "Uses": "Aurorum is employed to craft weapons, armor, and tools",
+   "Uses_es": "El aurorum se usa para fabricar armas, armaduras y herramientas"
   },
   {
    "name": "Blacksteel",
@@ -199,7 +223,8 @@
    "page": 200,
    "HP": "50/inch",
    "Hardness": "30",
-   "Uses": "Blacksteel can be used to craft armor, shields, and weapons"
+   "Uses": "Blacksteel can be used to craft armor, shields, and weapons",
+   "Uses_es": "El acero negro sirve para fabricar armaduras, escudos y armas"
   },
   {
    "name": "(The) Black Stone",
@@ -207,7 +232,8 @@
    "page": 200,
    "HP": "80/inch",
    "Hardness": "40",
-   "Uses": "If it has any use, the Black Stone would be employed only for construction"
+   "Uses": "If it has any use, the Black Stone would be employed only for construction",
+   "Uses_es": "Si tiene algún uso, la Piedra Negra sólo serviría para construir"
   },
   {
    "name": "Darkwood",
@@ -215,7 +241,8 @@
    "page": 201,
    "HP": "5/inch",
    "Hardness": "10",
-   "Uses": "Darkwood can be used to craft any wooden item, making it more durable"
+   "Uses": "Darkwood can be used to craft any wooden item, making it more durable",
+   "Uses_es": "La madera oscura sirve para fabricar cualquier objeto de madera y lo hace más duradero"
   },
   {
    "name": "Impervious Quartz",
@@ -223,7 +250,8 @@
    "page": 201,
    "HP": "15/inch",
    "Hardness": "10",
-   "Uses": "Impervious Quartz can be used to make weapons and tools"
+   "Uses": "Impervious Quartz can be used to make weapons and tools",
+   "Uses_es": "El cuarzo impenetrable sirve para hacer armas y herramientas"
   },
   {
    "name": "Inertial Granite",
@@ -231,7 +259,8 @@
    "page": 201,
    "HP": "15/inch",
    "Hardness": "8",
-   "Uses": "Inertial Granite is mainly employed to craft bludgeoning weapons"
+   "Uses": "Inertial Granite is mainly employed to craft bludgeoning weapons",
+   "Uses_es": "El granito inercial se usa sobre todo para fabricar armas contundentes"
   },
   {
    "name": "Mithral",
@@ -239,7 +268,8 @@
    "page": 202,
    "HP": "30/inch",
    "Hardness": "15",
-   "Uses": "Due to its flexibility, it is optimal to craft lighter armors, but it is possible to find weapons made of it"
+   "Uses": "Due to its flexibility, it is optimal to craft lighter armors, but it is possible to find weapons made of it",
+   "Uses_es": "Por su flexibilidad, es ideal para armaduras más ligeras, aunque también hay armas de mithral"
   },
   {
    "name": "Mournsteel",
@@ -247,7 +277,8 @@
    "page": 202,
    "HP": "30/inch",
    "Hardness": "10",
-   "Uses": "While it is favored for weapons, it can be used to make armor too"
+   "Uses": "While it is favored for weapons, it can be used to make armor too",
+   "Uses_es": "Se prefiere para armas, pero también sirve para armaduras"
   },
   {
    "name": "Occasium",
@@ -255,7 +286,8 @@
    "page": 203,
    "HP": "30/inch",
    "Hardness": "10",
-   "Uses": "Occasium has broad uses, from weapons and armor to components of complex devices and wondrous items"
+   "Uses": "Occasium has broad uses, from weapons and armor to components of complex devices and wondrous items",
+   "Uses_es": "El occasium tiene muchos usos: armas, armaduras, piezas de mecanismos complejos y objetos maravillosos"
   },
   {
    "name": "Orichalcum",
@@ -263,7 +295,8 @@
    "page": 203,
    "HP": "30/inch",
    "Hardness": "15",
-   "Uses": "Orichalcum is employed to craft armors and weapons"
+   "Uses": "Orichalcum is employed to craft armors and weapons",
+   "Uses_es": "El oricalco se usa para fabricar armaduras y armas"
   },
   {
    "name": "Sapient Wood",
@@ -271,7 +304,8 @@
    "page": 204,
    "HP": "50/inch",
    "Hardness": "30",
-   "Uses": "Sapient Wood is mostly employed to make wondrous items"
+   "Uses": "Sapient Wood is mostly employed to make wondrous items",
+   "Uses_es": "La madera sapiente se usa sobre todo para hacer objetos maravillosos"
   },
   {
    "name": "Sapient Metal",
@@ -279,7 +313,8 @@
    "page": 205,
    "HP": "100/inch",
    "Hardness": "50",
-   "Uses": "Finding Sapient Metal is a once-in-a-lifetime event, just like forging it"
+   "Uses": "Finding Sapient Metal is a once-in-a-lifetime event, just like forging it",
+   "Uses_es": "Encontrar metal sapiente pasa una vez en la vida, igual que forjarlo"
   },
   {
    "name": "Seide",
@@ -287,7 +322,8 @@
    "page": 206,
    "HP": "2/inch",
    "Hardness": "10",
-   "Uses": "Clothes, light armor, and chain shirts can be made of Seide"
+   "Uses": "Clothes, light armor, and chain shirts can be made of Seide",
+   "Uses_es": "Con seide se pueden hacer ropa, armaduras ligeras y camisotes de malla"
   },
   {
    "name": "Umbrium",
@@ -295,7 +331,8 @@
    "page": 206,
    "HP": "30/inch",
    "Hardness": "10",
-   "Uses": "Umbrium is employed to craft light weapons and armor"
+   "Uses": "Umbrium is employed to craft light weapons and armor",
+   "Uses_es": "El umbrium se usa para fabricar armas ligeras y armaduras"
   }
  ]
 }

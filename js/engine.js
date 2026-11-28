@@ -296,7 +296,7 @@ export function lootChildren(raw, typed, t, { prefix = "loot", directTable = nul
   title = null, mine = false } = {}) {
   const list = [];
   const queue = [];
-  const enqueue = (key, table, label, isMine = false) => queue.push({ key, table, title: label, mine: isMine });
+  const enqueue = (key, table, label, isMine = false, gear = false) => queue.push({ key, table, title: label, mine: isMine, gear });
   const amount = (key, formula, what) =>
     list.push(child(key, "extra", formula, what, 188, { required: false, from: "loot" }));
 
@@ -331,7 +331,7 @@ export function lootChildren(raw, typed, t, { prefix = "loot", directTable = nul
     const file = t.source(item.table);
     if (!file) continue;
     list.push(child(item.key, item.table === "4.8" ? "weapon" : "extra", D100, `${item.title} · ${file.table}`, file.page,
-      { required: false, table: item.table, from: "loot" }));
+      { required: false, table: item.table, from: "loot", metal: item.gear }));
     const n = typed[item.key];
     if (n == null) continue;
     const result = t.entry(item.table, n).result;
@@ -343,17 +343,23 @@ export function lootChildren(raw, typed, t, { prefix = "loot", directTable = nul
       continue;
     }
     let next = null;
-    if (item.table === "4.3" && n <= 2) next = "4.5";
+    let gear = item.gear;
+    // El metal de un arma o armadura no puede ser mineral: un 1–2 en metal común se vuelve a tirar.
+    if (item.gear && item.table === "4.3" && n <= 2) next = "4.3";
+    else if (item.table === "4.3" && n <= 2) next = "4.5";
     else if (item.table === "4.3" && n >= 99) next = "4.4";
     else if (item.table === "4.4" && n <= 2) next = "4.3";
     else if ((item.table === "4.6" || item.table === "4.9" || item.table === "4.8") && n >= 99) next = item.table;
     // Armas, armaduras y ropa de metal: el paréntesis dice de qué tabla sale el metal (común 4.3, especial 4.4).
-    else if (["4.7", "4.8", "4.9"].includes(item.table) && result.includes("(common metal)")) next = "4.3";
-    else if (["4.7", "4.8", "4.9"].includes(item.table) && result.includes("(special metal)")) next = "4.4";
-    if (next) enqueue(`${item.key}.detail`, next, `${item.title} · ${lootLabel(next)}`, item.mine);
+    else if (["4.7", "4.8", "4.9"].includes(item.table) && /\((?:common|special) metal\)/.test(result)) {
+      next = result.includes("(common metal)") ? "4.3" : "4.4";
+      gear = true;
+    }
+    if (next) enqueue(`${item.key}.detail`, next, `${item.title} · ${lootLabel(next)}`, item.mine, gear);
     else {
       let amounts = [];
-      if (item.mine && item.table === "4.3") amounts = [{ formula: new Formula(1, 10, 0), what: result }];
+      if (item.gear) amounts = [];
+      else if (item.mine && item.table === "4.3") amounts = [{ formula: new Formula(1, 10, 0), what: result }];
       else if (item.table === "4.2") amounts = countsOf(result).length ? countsOf(result) : [{ formula: new Formula(1, 4, 0), what: result }];
       else if (item.mine || item.table === "4.9") amounts = countsOf(result);
       amounts.forEach(({ formula, what }, i) =>
