@@ -298,7 +298,9 @@ button:disabled { opacity: .35; cursor: default; }
 }
 /* Limpio: con la cámara ya elegida, las tiradas que aún no tienen nada que mostrar no ocupan sitio abajo. */
 .roll-section.is-quiet { display: none; }
-.roll-section:not(:has(.derived, .roll-result, .choice)), .roll-section.is-waiting { display: none; }
+/* Una tirada aún sin tirar se ve si otra (la cámara) ya le añade algo: los esqueletos de los Deep Tombs salen en Habitantes desde el principio. */
+.roll-section:not(:has(.derived, .roll-result, .choice)), .roll-section.is-waiting:not(:has(.derived)) { display: none; }
+.roll-section.is-waiting:has(.derived) { padding: 18px 0; }
 
 /* Decisiones de la mesa */
 .choice { border: 0; border-left: 1px solid var(--gold-dim); margin: 8px 0 0 60px; padding: 2px 0 4px 22px; }
@@ -714,3 +716,44 @@ tr.is-hit td { background: var(--soft); font-weight: 600; }
 .pop-drops p { margin: 4px 0 0; line-height: 1.45; }
 .pop-foot-stats { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; color: #c9bfae; }
 .pop-foot-stats dt { font-size: 13px; color: var(--dim); }
+
+/* ---- Filas con elección del Máster, tiradas por nivel y botín por enemigo (Deep Tombs) ---- */
+.derived-row.has-extra { grid-template-areas: "label label input" "die result input" "note note note" "extra extra extra"; }
+.derived-label .info-btn { margin-left: 2px; vertical-align: -3px; }
+.row-extra { grid-area: extra; display: flex; flex-direction: column; gap: 6px; padding-top: 6px; }
+.row-hint { margin: 0; font: italic 400 15px var(--text); color: var(--dim); }
+.pick { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--gold-dim); border-radius: 2px; overflow: hidden; width: max-content; max-width: 100%; }
+.pick-opt { position: relative; display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; font: 600 14px var(--title); letter-spacing: .06em; color: #b8ae9f; cursor: pointer; transition: background-color .15s, color .15s; }
+.pick-opt + .pick-opt { border-left: 1px solid var(--gold-dim); }
+.pick-opt input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.pick-opt:hover { color: var(--fg); }
+.pick-opt.is-on { background: var(--gold); color: #120d08; }
+.pick-opt:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: -4px; }
+.tool-picks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.tool-picks li { display: flex; align-items: center; gap: 8px; }
+.level-n { display: inline-block; min-width: 1.4em; text-align: center; color: var(--gold); font: 700 13px var(--title); font-variant-numeric: lining-nums tabular-nums; }
+.level-row { display: block; padding: 8px 0; }
+.level-die { margin-left: 8px; color: var(--dim); font: italic 400 15px var(--text); }
+.level-cells { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.level-cells li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.level-sum { margin: 6px 0 0; }
+.level-count, .level-wait { color: var(--dim); font: italic 400 15px var(--text); margin: 4px 0 0; }
+.perkill-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "label n" "items n"; gap: 4px 12px; margin: 2px 0; padding: 8px 10px;
+  background: linear-gradient(90deg, rgba(168, 134, 79, .14), transparent 80%); border-left: 2px solid var(--gold); }
+.perkill-row .derived-label { grid-area: label; font-weight: 600; color: var(--fg); }
+.perkill-items { grid-area: items; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 16px; color: #d8cfc0; }
+.perkill-items li { display: inline-flex; align-items: center; }
+.perkill-items li + li::before { content: ""; width: 5px; height: 5px; margin: 0 10px; background: var(--gold-dim); clip-path: var(--star); }
+.perkill-n { grid-area: n; align-self: center; font: 700 22px var(--title); color: var(--fg); font-variant-numeric: lining-nums tabular-nums; }
+.perkill-x { color: var(--gold); font-size: 16px; margin-right: 2px; }
+.perkill-wait { font: italic 400 14px var(--text); color: var(--dim); }
+.perkill-list { color: var(--dim); font-size: 15px; }
+.perkill-state { color: var(--dim); font: italic 400 15px var(--text); margin-right: 6px; }
+.roll-section.is-waiting:has(.derived) .roll-label { opacity: 1; }
+.split { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.split-beast { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 17px; }
+.split-beast.is-zero { color: var(--dim); }
+.split-q { min-width: 1.8em; text-align: right; font: 700 18px var(--title); font-variant-numeric: lining-nums tabular-nums; color: var(--fg); }
+.split-step .split-q { text-align: center; min-width: 1.4em; }
+.split-step .round-btn { width: 30px; height: 30px; min-height: 30px; font-size: 18px; }
+.split-step .row-hint { flex-basis: 100%; padding-left: 2px; }

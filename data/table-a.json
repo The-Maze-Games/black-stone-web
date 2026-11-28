@@ -431,25 +431,44 @@
             "es": "Dwarven Skeletons por nivel"
           },
           "id": "audit20260921-1",
-          "perKey": "audit20260921-0"
+          "perKey": "audit20260921-0",
+          "beast": "Dwarven Skeletons",
+          "page": 327
         },
         {
           "kind": "inhabitant",
           "die": "1d4",
           "of": {
-            "en": "giant OR angel Skeletons, once at the bottom; Maze Master chooses",
-            "es": "Skeletons gigantes O ángeles, una sola vez al fondo; el Amo elige"
+            "en": "Giant or Angel Skeletons",
+            "es": "Skeletons gigantes o ángeles"
           },
-          "id": "audit20260921-2"
+          "id": "audit20260921-2",
+          "hint": {
+            "en": "Once, at the bottom; the Maze Master chooses",
+            "es": "Una sola vez, al fondo; el Máster elige"
+          },
+          "options": [
+            "Giant Skeletons",
+            "Angel Skeletons"
+          ],
+          "page": 327
         },
         {
           "kind": "loot",
           "per": "inhabitant",
           "of": {
-            "en": "coffins, light armor, steel hammers or axes, and bone: as many as Dwarven Skeletons",
-            "es": "ataúdes, armadura ligera, martillos o hachas de acero, y hueso: tantos como Dwarven Skeletons"
+            "en": "Per Dwarven Skeleton defeated",
+            "es": "Por cada Dwarven Skeleton derrotado"
           },
-          "id": "audit20260921-3"
+          "id": "audit20260921-3",
+          "perKill": "audit20260921-1",
+          "beast": "Dwarven Skeletons",
+          "items": [
+            "Coffin",
+            "Light armor",
+            "Steel hammer or axe",
+            "Bone"
+          ]
         },
         {
           "kind": "exclusiveLoot",
@@ -458,7 +477,13 @@
             "en": "Builder's Tool",
             "es": "Builder's Tool"
           },
-          "id": "audit20260921-4"
+          "id": "audit20260921-4",
+          "page": 208,
+          "pick": [
+            "Pick",
+            "Hammer",
+            "Axe"
+          ]
         },
         {
           "kind": "ultimate",
@@ -501,25 +526,44 @@
             "es": "Dwarven Skeletons por nivel"
           },
           "id": "audit20260921-1",
-          "perKey": "audit20260921-0"
+          "perKey": "audit20260921-0",
+          "beast": "Dwarven Skeletons",
+          "page": 327
         },
         {
           "kind": "inhabitant",
           "die": "1d4",
           "of": {
-            "en": "giant OR angel Skeletons, once at the bottom; Maze Master chooses",
-            "es": "Skeletons gigantes O ángeles, una sola vez al fondo; el Amo elige"
+            "en": "Giant or Angel Skeletons",
+            "es": "Skeletons gigantes o ángeles"
           },
-          "id": "audit20260921-2"
+          "id": "audit20260921-2",
+          "hint": {
+            "en": "Once, at the bottom; the Maze Master chooses",
+            "es": "Una sola vez, al fondo; el Máster elige"
+          },
+          "options": [
+            "Giant Skeletons",
+            "Angel Skeletons"
+          ],
+          "page": 327
         },
         {
           "kind": "loot",
           "per": "inhabitant",
           "of": {
-            "en": "coffins, light armor, steel hammers or axes, and bone: as many as Dwarven Skeletons",
-            "es": "ataúdes, armadura ligera, martillos o hachas de acero, y hueso: tantos como Dwarven Skeletons"
+            "en": "Per Dwarven Skeleton defeated",
+            "es": "Por cada Dwarven Skeleton derrotado"
           },
-          "id": "audit20260921-3"
+          "id": "audit20260921-3",
+          "perKill": "audit20260921-1",
+          "beast": "Dwarven Skeletons",
+          "items": [
+            "Coffin",
+            "Light armor",
+            "Steel hammer or axe",
+            "Bone"
+          ]
         },
         {
           "kind": "exclusiveLoot",
@@ -528,7 +572,13 @@
             "en": "Builder's Tool",
             "es": "Builder's Tool"
           },
-          "id": "audit20260921-4"
+          "id": "audit20260921-4",
+          "page": 208,
+          "pick": [
+            "Pick",
+            "Hammer",
+            "Axe"
+          ]
         },
         {
           "kind": "ultimate",
@@ -571,25 +621,44 @@
             "es": "Dwarven Skeletons por nivel"
           },
           "id": "audit20260921-1",
-          "perKey": "audit20260921-0"
+          "perKey": "audit20260921-0",
+          "beast": "Dwarven Skeletons",
+          "page": 327
         },
         {
           "kind": "inhabitant",
           "die": "1d4",
           "of": {
-            "en": "giant OR angel Skeletons, once at the bottom; Maze Master chooses",
-            "es": "Skeletons gigantes O ángeles, una sola vez al fondo; el Amo elige"
+            "en": "Giant or Angel Skeletons",
+            "es": "Skeletons gigantes o ángeles"
           },
-          "id": "audit20260921-2"
+          "id": "audit20260921-2",
+          "hint": {
+            "en": "Once, at the bottom; the Maze Master chooses",
+            "es": "Una sola vez, al fondo; el Máster elige"
+          },
+          "options": [
+            "Giant Skeletons",
+            "Angel Skeletons"
+          ],
+          "page": 327
         },
         {
           "kind": "loot",
           "per": "inhabitant",
           "of": {
-            "en": "coffins, light armor, steel hammers or axes, and bone: as many as Dwarven Skeletons",
-            "es": "ataúdes, armadura ligera, martillos o hachas de acero, y hueso: tantos como Dwarven Skeletons"
+            "en": "Per Dwarven Skeleton defeated",
+            "es": "Por cada Dwarven Skeleton derrotado"
           },
-          "id": "audit20260921-3"
+          "id": "audit20260921-3",
+          "perKill": "audit20260921-1",
+          "beast": "Dwarven Skeletons",
+          "items": [
+            "Coffin",
+            "Light armor",
+            "Steel hammer or axe",
+            "Bone"
+          ]
         },
         {
           "kind": "exclusiveLoot",
@@ -598,7 +667,13 @@
             "en": "Builder's Tool",
             "es": "Builder's Tool"
           },
-          "id": "audit20260921-4"
+          "id": "audit20260921-4",
+          "page": 208,
+          "pick": [
+            "Pick",
+            "Hammer",
+            "Axe"
+          ]
         },
         {
           "kind": "ultimate",
@@ -637,19 +712,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
@@ -679,19 +785,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
@@ -721,19 +858,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
@@ -763,19 +931,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
@@ -805,19 +1004,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
@@ -847,19 +1077,50 @@
           "kind": "inhabitant",
           "die": "1d%",
           "of": {
-            "en": "Undead, with 1 Vampire per 10",
-            "es": "Undead, con 1 Vampire por cada 10"
+            "en": "Undead",
+            "es": "Undead"
           },
-          "id": "audit20260921-1"
+          "id": "audit20260921-1",
+          "split": {
+            "every": 10,
+            "main": "Skeletons",
+            "extra": "Vampires",
+            "giant": "Giant Skeletons"
+          },
+          "page": 327
         },
         {
           "kind": "loot",
-          "per": "inhabitant",
+          "id": "audit20260921-2",
           "of": {
-            "en": "coffins, weapons and bone: as many as Skeletons; Vampire Blood from the Vampires",
-            "es": "ataúdes, armas y hueso: tantos como Skeletons; Vampire Blood de los Vampires"
+            "en": "Per Skeleton defeated",
+            "es": "Por cada Skeleton derrotado"
           },
-          "id": "audit20260921-2"
+          "perKill": "audit20260921-1",
+          "part": "main",
+          "beast": [
+            "Skeletons",
+            "Giant Skeletons"
+          ],
+          "items": [
+            "Coffin",
+            "Weapon",
+            "Bone"
+          ]
+        },
+        {
+          "kind": "loot",
+          "id": "audit20260921-2b",
+          "of": {
+            "en": "Per Vampire defeated",
+            "es": "Por cada Vampire derrotado"
+          },
+          "perKill": "audit20260921-1",
+          "part": "extra",
+          "beast": "Vampires",
+          "items": [
+            "Vampire Blood"
+          ]
         }
       ],
       "special": 97,
