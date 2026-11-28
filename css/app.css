@@ -757,3 +757,18 @@ tr.is-hit td { background: var(--soft); font-weight: 600; }
 .split-step .split-q { text-align: center; min-width: 1.4em; }
 .split-step .round-btn { width: 30px; height: 30px; min-height: 30px; font-size: 18px; }
 .split-step .row-hint { flex-basis: 100%; padding-left: 2px; }
+
+/* ---- Caminos entre tablas y notas para el Máster (Caves) ---- */
+.path-node { padding: 6px 0; }
+.path-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; margin-top: 4px; }
+.path-step { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px 4px 4px; border: 1px solid var(--gold-dim); border-radius: 2px; background: rgba(168, 134, 79, .05); }
+.path-step .metal-tag { padding-left: 6px; }
+.path-step.is-via { opacity: .75; }
+.path-step:last-child.is-done { border-color: var(--gold); background: rgba(168, 134, 79, .12); }
+.path-input { width: 3.2em !important; min-height: 34px !important; }
+.path-via { font: italic 400 15px var(--text); color: var(--dim); }
+.path-arrow { color: var(--gold); font-size: 18px; }
+.row-context { display: block; margin: 2px 0 0; font: italic 400 16px var(--text); color: #cfc3ad; line-height: 1.4; }
+.derived-row.dm-row.has-context { grid-template-areas: "label label input" "ctx ctx ctx" "note note note"; }
+.dm-row .row-context { grid-area: ctx; padding-left: 18px; font-weight: 400; }
+.ultimate-row .derived-label .row-context { font-size: 15px; }

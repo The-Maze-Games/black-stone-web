@@ -42,6 +42,16 @@ const fold = (x) => String(x ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g,
  *  Un «Common Metal», «Special Metal» o «Mineral» sólo manda a otra tabla, así que el arma sigue sin metal. */
 const METAL_SLOT = /\((?:common|special) metal\)/i;
 const noUnits = (x) => String(x).replace(/\s*\([^()]*\bunits?\)\s*$/i, "");
+// Los componentes del Arma Definitiva: el nombre aparte del contexto («Astral Matter» · «en el lodo»).
+const COMPONENTS = ["Angel's Feathers", "Astral Matter", "Dipolarite", "Night's Water", "Primordial Soil", "Infernal's Fire", "Infernal Fire",
+  "Blue Flowers", "Blue Flower", "Raw Magic", "Ichor", "Tears of the Gods", "Sapient Metal Splinter", "Dragon's Fire", "Aether", "Incense of Blue Flower"];
+const splitContext = (text) => {
+  const raw = String(text ?? "").trim();
+  const name = COMPONENTS.find((c) => raw.toLowerCase().startsWith(c.toLowerCase()));
+  if (!name) return [raw, ""];
+  const ctx = raw.slice(name.length).replace(/^[\s;,:·—-]+/, "").trim();
+  return [name, ctx ? ctx.charAt(0).toUpperCase() + ctx.slice(1) : ""];
+};
 const isRedirect = (x) => /^(?:common metal|special metal|mineral)$/i.test(String(x).trim());
 const withMetal = (gear, metal) => (isRedirect(metal) ? gear : gear.replace(METAL_SLOT, `(${noUnits(metal).replace(/\s*\(.*\)$/, "")})`));
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
@@ -444,10 +454,13 @@ export class ChamberView {
   /** Una fila sin dado: el nombre y la ficha «DM», porque la cantidad la decide el Máster. */
   dmRow(e, page) {
     const raw = typeof e.of === "string" ? e.of : E.loc(e.of);
-    const label = raw.charAt(0).toUpperCase() + raw.slice(1);
+    // Con nombre propio («Water»), el texto de la cámara va debajo como nota para el Máster.
+    const [title, ctx] = e.name ? [e.name, raw] : e.kind === "ultimate" && typeof e.of !== "string" ? splitContext(raw) : [raw, ""];
+    const label = title.charAt(0).toUpperCase() + title.slice(1);
     const sure = ["loot", "exclusiveLoot", "ultimate"].includes(e.kind);
-    return `<div class="derived-row dm-row${sure ? " is-sure" : ""}${this.isNew("dm:" + label)}"${sure ? ` title="${h(T("sure"))}"` : ""}>
-      <p class="derived-label">${h(label)}${e.page ? this.page(e.page, page) : ""}</p>${DM_BOX()}</div>`;
+    return `<div class="derived-row dm-row${sure ? " is-sure" : ""}${ctx ? " has-context" : ""}${this.isNew("dm:" + label)}"${sure ? ` title="${h(T("sure"))}"` : ""}>
+      <p class="derived-label">${h(label)}${this.infoBtn(label)}${e.page ? this.page(e.page, page) : ""}</p>${DM_BOX()}
+      ${ctx ? `<p class="row-context">${h(ctx.charAt(0).toUpperCase() + ctx.slice(1))}</p>` : ""}</div>`;
   }
 
   /** Un habitante que viene solo: su nombre, su página del bestiario y una ficha fija «1». */
@@ -807,6 +820,8 @@ export class ChamberView {
         rows.push(this.diceRow(group, page, new Set([...stacks.values()].flat().map(([x]) => x.key))) + branches);
         continue;
       }
+      const path = this.pathOf(c, kidsOf);
+      if (path) { path.forEach((x) => done.add(x.key)); rows.push(this.pathRow(path, kidsOf, page)); continue; }
       done.add(c.key);
       const sub = kidsOf(c.key);
       if (sub.length === 1 && sub[0].metal) { rows.push(`<div class="node" data-node="${h(c.key)}">${this.derivedRow(c, page)}${this.metalRow(sub[0], kidsOf)}</div>`); continue; }
@@ -815,6 +830,45 @@ export class ChamberView {
         : this.derivedRow(c, page));
     }
     return rows;
+  }
+
+  /** Una tirada de tabla que lleva a otra («Especial → Common Metal → Mineral → Flint»): los pasos, de madre a hija. */
+  pathOf(c, kidsOf) {
+    if (!c.table || c.metal || c.group === "ultimate") return null;
+    const steps = [c];
+    for (let s = c; ;) {
+      const next = kidsOf(s.key).find((k) => k.key === `${s.key}.detail` && k.table && !k.metal);
+      if (!next) break;
+      steps.push(next); s = next;
+    }
+    const gated = this.children().some((x) => x.key === `${c.key}.chance`);
+    return steps.length > 1 || gated ? steps : null;
+  }
+
+  /** El camino en una sola línea: cada tabla con su casilla y lo que salió, unidas por flechas.
+   *  El nombre va una vez arriba (o ninguna, si ya lo dice la probabilidad de la que cuelga). */
+  pathRow(steps, kidsOf, page) {
+    const t = this.t, d = this.d, first = steps[0], last = steps[steps.length - 1];
+    const gated = this.children().some((x) => x.key === `${first.key}.chance`);
+    const tag = (c) => T("pathTag")[c.table] ?? `${T("table")} ${c.table}`;
+    const parts = steps.map((c, i) => {
+      const v = d.typed[c.key];
+      const name = v != null ? t.name(c.table, v) : null;
+      const redirect = name && i < steps.length - 1;
+      const out = name == null ? "" : redirect ? `<span class="path-via">${h(noUnits(name))}</span>`
+        : `<span class="result-name">${h(name)}</span> <span class="page">${h(T("page")(t.page(c.table, v)))}</span>`;
+      return `${i ? `<span class="path-arrow" aria-hidden="true">→</span>` : ""}<span class="path-step${name != null ? " is-done" : ""}${redirect ? " is-via" : ""}"${i ? ` data-node="${h(steps[i - 1].key)}"` : ""}>
+        <span class="metal-tag">${h(tag(c))}</span>${this.input(c, "derived-input path-input", `aria-label="${h(tag(c))}"`)}${out}</span>`;
+    }).join("");
+    const lv = d.typed[last.key];
+    const note = lv != null ? t.noteOf(last.table, lv) : null;
+    const rest = [...steps.slice(0, -1).flatMap((c) => kidsOf(c.key).filter((k) => !steps.includes(k))), ...kidsOf(last.key)];
+    const head = gated ? "" : `<p class="derived-label">${h(groupTitle(this.label(first)).replace(/\s·\s[\d.]+$/, ""))}${this.page(first.page, page)}</p>`;
+    return `<div class="node path-node${this.isNew("path:" + first.key)}" data-node="${h(first.key)}">
+      ${head}<div class="path-row">${parts}</div>
+      ${note ? `<details class="roll-note"><summary>${h(T("note"))}</summary><p>${h(E.loc(note))}</p></details>` : ""}
+      ${rest.length ? `<div class="derived" data-node="${h(last.key)}">${this.nodes(rest, kidsOf, page).join("")}</div>` : ""}
+    </div>`;
   }
 
   /** Una pila de ramas iguales: el título con «×N», la tirada que comparten una vez, y cada dado en una línea
@@ -1006,14 +1060,14 @@ export class ChamberView {
 
   /** Los componentes del Arma Definitiva, juntos al final del Botín. */
   ultimateGroup(items, fixedLines) {
-    const reasons = items.filter((c) => c.chance).map((c) => c.of.split(/;\s*/)[1] ?? "");
+    const reasons = items.filter((c) => c.chance).map((c) => splitContext(c.of)[1]);
     const shared = reasons.length > 1 && reasons.every((x) => x && x === reasons[0]) ? reasons[0] : "";
     const row = (c) => {
-      const name = shared ? c.of.split(/;\s*/)[0] : c.of;
+      const [name, ctx] = splitContext(c.of);
       const v = this.d.typed[c.key];
       const state = c.chance && v != null ? (c.chance.passes(v) ? this.isNew(`found:${c.key}`).replace("is-new", "is-revealed") + " is-found" : " is-missed") : "";
       return `<div class="derived-row is-inline ultimate-row${this.isNew(c.key)}${state}">
-        <label class="derived-label" for="${idOf(c.key)}">${h(name)}</label>
+        <span class="derived-label"><label for="${idOf(c.key)}">${h(name)}</label>${this.infoBtn(name)}${ctx && !shared ? `<span class="row-context">${h(ctx)}</span>` : ""}</span>
         <span class="derived-die">${c.chance ? `<span class="chance-seal">${h(c.chance.label.replace(/<$/, ""))}</span>` : h(c.formula.label)}</span>
         ${this.input(c)}
         <span class="derived-result">${this.answer(c)}</span>
@@ -1179,7 +1233,7 @@ export class ChamberView {
         if (E.mimicKind(r.mimic) === "none") continue;
       }
       for (const e of this.fixedLinesOf(id, der, skip)) {
-        const name = (typeof e.of === "string" ? e.of : E.loc(e.of)).replace(/^./, (m) => m.toUpperCase());
+        const name = (e.name ?? (e.kind === "ultimate" && typeof e.of !== "string" ? splitContext(E.loc(e.of))[0] : typeof e.of === "string" ? e.of : E.loc(e.of))).replace(/^./, (m) => m.toUpperCase());
         if (e.perKill) { const n = this.countOf(e.perKill, e.part); if (n === 0) continue; e.items.forEach((x) => items.push({ name: x, qty: n, kind: "perkill" })); continue; }
         if (e.kind === "one") items.push({ name, page: this.creaturePage(e.of), qty: 1, stack: true });
         else if (e.kind === "dm" || ["loot", "exclusiveLoot", "ultimate"].includes(e.kind) && !NOT_AMOUNTS.test(name)) items.push({ name, page: e.page, qty: "DM", kind: "sure" });
@@ -1195,7 +1249,7 @@ export class ChamberView {
         if (hasKids) continue;
         if (c.chance) {
           const amount = c.key.endsWith(".chance") && kids.some((x) => x.key === c.key.replace(/\.chance$/, ""));
-          if (c.chance.passes(v) && !amount) items.push({ name: (c.group === "ultimate" ? c.of.split(/;\s*/)[0] : short(c.of)), kind: c.group === "ultimate" ? "relic" : "found" });
+          if (c.chance.passes(v) && !amount) items.push({ name: (c.group === "ultimate" ? splitContext(c.of)[0] : short(c.of)), kind: c.group === "ultimate" ? "relic" : "found" });
           continue;
         }
         if (c.table) {
@@ -1212,7 +1266,7 @@ export class ChamberView {
           continue;
         }
         const relic = c.group === "ultimate";
-        const label = relic ? c.of.split(/;\s*/)[0] : c.levels ? c.beast ?? c.base : this.chosenName(c);
+        const label = relic ? splitContext(c.of)[0] : c.levels ? c.beast ?? c.base : this.chosenName(c);
         // Undead: Skeletons, Giant Skeletons y Vampires, cada uno con su ficha en el Bestiario.
         if (c.split) {
           const sp = this.splitOf(c), S = c.split;
