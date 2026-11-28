@@ -2,7 +2,7 @@
  "name": "Black Stone · The Maze database",
  "source": "The Maze, M. A. Bastarrachea Magnani (Axo stories). Built from web/data; do not edit by hand.",
  "schema_version": 1,
- "generated": "2026-11-27T23:26Z",
+ "generated": "2026-11-28T00:00Z",
  "conventions": {
   "id": "'<type>:<slug>' — stable, lowercase, ascii. Tables use their number: table:a, table:3-1.",
   "page": "printed page of the rulebook (same as PDF page); null = no dedicated description",

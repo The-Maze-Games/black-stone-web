@@ -1,7 +1,7 @@
 // La cámara: las Siete Tiradas con lo que cuelga de cada una, el juego dentro y el cierre.
 // El marcado lleva clases con nombre (roll-section, derived-row, dice-row…) para el diseño final.
 import * as E from "./engine.js";
-import { T } from "./i18n.js";
+import { T, lang } from "./i18n.js";
 import { askButton, h, idOf, store } from "./util.js";
 import { Db, clean } from "./db.js";
 
@@ -35,6 +35,12 @@ const short = (x) => String(x ?? "")
 const ICON_INFO = svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.5"/>');
 const fold = (x) => String(x ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
   .replace(/\badamantium\b/g, "adamantine"); // las tablas dicen Adamantium; el capítulo de materiales, Adamantine
+/** El metal de un arma o armadura: «Helmet (special metal)» + «Mithral (1d6 units)» → «Helmet (Mithral)».
+ *  Un «Common Metal», «Special Metal» o «Mineral» sólo manda a otra tabla, así que el arma sigue sin metal. */
+const METAL_SLOT = /\((?:common|special) metal\)/i;
+const noUnits = (x) => String(x).replace(/\s*\([^()]*\bunits?\)\s*$/i, "");
+const isRedirect = (x) => /^(?:common metal|special metal|mineral)$/i.test(String(x).trim());
+const withMetal = (gear, metal) => (isRedirect(metal) ? gear : gear.replace(METAL_SLOT, `(${noUnits(metal).replace(/\s*\(.*\)$/, "")})`));
 const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII"];
 const r0 = (d) => d.rolls.chamber != null;
 
@@ -510,56 +516,81 @@ export class ChamberView {
       const ok = pairs.filter(([, v]) => v);
       return ok.length ? `<div class="pop-chips">${ok.map(([k, v]) => `<div class="pop-chip"><span>${h(L[k] ?? k)}</span><strong>${val(v)}</strong></div>`).join("")}</div>` : "";
     };
-    const more = (body) => (body ? `<details class="pop-more"><summary>${h(T("fullSheet"))}</summary>${body}</details>` : "");
     const agn = store.get("bs.agnostic", false);
     const A = this.agn;
     const rarity = this.rarityOf(f);
     let kind = "", name = this.popFor.name, page = null, sub = "", body = "";
 
+    // Una ficha de oficio: casillas cortas en fila (coste, material, PV, dureza) y el uso del material debajo.
+    const inch = (v) => (v ? String(v).replace(/\/inch$/, ` / ${T("inch")}`) : "");
+    const usesOf = (e) => (e ? (lang() === "es" && e.uses_es ? e.uses_es : e.stats?.Uses) : "");
+    const specs = (cells) => {
+      const ok = cells.filter(([, v]) => v);
+      return ok.length ? `<div class="pop-specs">${ok.map(([k, v, extra]) => `<div class="pop-spec"><span>${h(k)}</span><strong>${h(v)}</strong>${extra ?? ""}</div>`).join("")}</div>` : "";
+    };
+    const uses = (e) => (usesOf(e) ? `<p class="pop-uses"><span>${h(T("usesWord"))}</span> ${h(usesOf(e))}</p>` : "");
+
     if (f.weapon || f.armor) {
       const m = f.material;
       page = f.page;
+      const slot = (/\((common|special) metal\)/i.exec(name) ?? [])[1];
+      const matCell = m ? [T("materialWord"), m.name, ` <em class="page">${h(T("page")(m.page))}</em>`]
+        : slot ? [T("materialWord"), T("metalPending")[slot.toLowerCase()]] : null;
       if (f.weapon) {
         const w = f.weapon;
         kind = T("weapon"); sub = txt(w.size);
-        body = dl([[T("craft"), txt(w.craft)]]);
+        body = specs([[T("craft"), txt(w.craft)], matCell ?? [], [L.HP, inch(m?.stats?.HP)], [L.Hardness, m?.stats?.Hardness]]) + (m ? uses(m) : "");
         if (agn && A) {
           const c = A.weaponClasses[w.damage];
           const pen = m ? this.db.table("4.8")?.weapon_materials?.[m.name.toLowerCase()] : null;
           body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
-            ${chips([[T("damage"), w.damage], [T("dmgType"), txt(w.type)], [T("wClass"), c ? E.loc(c) : ""]])}
-            ${pen ? `<p class="pop-agn-note">${h(m.name)}: ${h(txt(pen.note))}</p>` : ""}
+            <div class="pop-agn-grid"><div class="pop-agn-die"><span>${h(T("damage"))}</span><strong>${h(w.damage)}</strong></div>
+              ${chips([[T("dmgType"), txt(w.type)], [T("wClass"), c ? E.loc(c) : ""]])}</div>
+            ${pen ? `<p class="pop-agn-note"><span>${h(T("matPenalty"))}</span> ${h(txt(pen.note))}</p>` : ""}
             ${w.approx ? `<p class="pop-agn-note is-approx">${h(T("byAnalogy"))}</p>` : ""}</section>`;
         }
       } else {
         const a = f.armor;
         const c = A?.armorClasses[a.cls];
-        kind = c ? E.loc(c) : T("armor");
+        kind = T("armor"); sub = c ? E.loc(c) : "";
+        body = specs([matCell ?? [], [L.HP, inch(m?.stats?.HP)], [L.Hardness, m?.stats?.Hardness]]) + (m ? uses(m) : "");
         if (agn && c) {
           body += `<section class="pop-agnostic"><p class="pop-agn-title">${h(T("agnostic"))}</p>
-            ${chips([[T("armorBonus"), c.bonus], [T("aClass"), E.loc(c)]])}
-            ${c.note ? `<p class="pop-agn-note">${h(E.loc(c.note))}</p>` : ""}
+            <div class="pop-agn-grid"><div class="pop-agn-die"><span>${h(T("armorBonus"))}</span><strong>${h(c.bonus)}</strong></div>
+              ${chips([[T("aClass"), E.loc(c)], [T("note"), c.note ? E.loc(c.note) : ""]])}</div>
             <p class="pop-agn-note is-approx">${h(a.approx ? T("byAnalogy") : E.loc(A.armorNote))}</p></section>`;
         }
       }
-      if (!agn) body += `<p class="pop-hint">${h(T("agnosticOff"))}</p>`;
-      if (m) body += `<h3 class="pop-sub">${h(m.name)} <span class="page">${h(T("page")(m.page))}</span></h3>${dl(Object.entries(m.stats ?? {}))}`;
+      // El interruptor también aquí: se ve el estado y se cambia sin cerrar la ficha.
+      body += `<button type="button" class="agnostic-toggle pop-switch" data-action="agnostic" role="switch" aria-checked="${agn}">
+        <span class="switch" aria-hidden="true"><span></span></span>${h(T("agnosticMode"))}<small>${h(T("agnosticHint"))}</small></button>`;
     } else if (f.entry) {
       const e = f.entry, st = e.stats ?? {};
       name = e.name; page = e.page;
       kind = T("kind")[e.type] ?? "";
       if (e.type === "creature") {
         sub = [st["S&T"], st.Role, e.family].filter(Boolean).join(" · ");
+        // «Bite (piercing) [High, close reach, 1d10+5]» → nombre, tipo, el dado grande y lo demás en pequeño.
+        const attack = (x) => {
+          const mm = /^(.*?)(?:\s*\(([^)]*)\))?\s*(?:\[(.*)\])?$/.exec(String(x).trim()) ?? [];
+          const parts = (mm[3] ?? "").split(/,\s*/).filter(Boolean);
+          const die = parts.find((y) => /\d+d\d+/.test(y));
+          const rest = parts.filter((y) => y !== die);
+          return `<li class="pop-attack"><span class="pop-attack-name">${val(mm[1] || x)}${mm[2] ? ` <em>${val(mm[2])}</em>` : ""}</span>
+            ${rest.length ? `<span class="pop-attack-meta">${val(rest.join(" · "))}</span>` : ""}
+            ${die ? `<strong class="pop-attack-die">${val(die)}</strong>` : ""}</li>`;
+        };
         body = chips([["AL", st.AL], ["Armor", st.Armor], ["Speed", st.Speed], ["Perception", st.Perception]])
-          + (st.Attacks?.length ? `<h3 class="pop-sub">${h(L.Attacks)}</h3><ul class="pop-attacks">${st.Attacks.map((x) => `<li>${val(x)}</li>`).join("")}</ul>` : "")
+          + (st.Attacks?.length ? `<h3 class="pop-sub">${h(L.Attacks)}</h3><ul class="pop-attacks">${st.Attacks.map(attack).join("")}</ul>` : "")
           + (st.Special?.length ? `<h3 class="pop-sub">${h(L.Special)}</h3><p class="pop-tags">${st.Special.map((x) => `<span>${val(x)}</span>`).join("")}</p>` : "")
-          + dl([["Savings", st.Savings], ["Immunities", st.Immunities], ["Resistances", st.Resistances], ["Weaknesses", st.Weaknesses], ["L&Y", st["L&Y"]]]);
-        body += more(dl([["ST", st.ST], ["Chamber", st.Chamber], [T("family"), e.shared ? `${e.family} · ${e.shared}` : null]]));
+          + dl([["Savings", st.Savings], ["Immunities", st.Immunities], ["Resistances", st.Resistances], ["Weaknesses", st.Weaknesses]])
+          + (st["L&Y"] ? `<div class="pop-drops"><span>${h(L["L&Y"])}</span><p>${val(st["L&Y"])}</p></div>` : "")
+          + dl([["ST", st.ST], ["Chamber", st.Chamber]], "pop-stats pop-foot-stats");
       } else if (e.type === "condition") {
         body = dl([[T("effect"), txt(e.effect?.note)]]);
       } else if (e.type === "material") {
         sub = T("materialKind")[e.kind] ?? e.kind ?? "";
-        body = dl(Object.entries(st));
+        body = specs([[L.HP, inch(st.HP)], [L.Hardness, st.Hardness]]) + uses(e);
       } else {
         sub = [st.Category, e.kind === "component" ? T("component") : null].filter(Boolean).map((x) => String(x).replace(/^:\s*/, "")).join(" · ");
         body = dl(Object.entries(st).filter(([k]) => k !== "Category" && k !== "Rarity"));
@@ -644,6 +675,7 @@ export class ChamberView {
     const rows = [];
     for (const c of list) {
       if (done.has(c.key)) continue;
+      if (c.metal) { done.add(c.key); rows.push(this.metalRow(c, kidsOf)); continue; }
       const b = base(c);
       const group = b ? list.filter((x) => base(x) === b) : [];
       if (group.length > 1) {
@@ -652,7 +684,7 @@ export class ChamberView {
         const stacks = new Map();
         group.forEach((x, i) => {
           if (!kidsOf(x.key).length) return;
-          const name = this.t.name(x.table, this.d.typed[x.key]);
+          const name = this.withMetalOf(x, kidsOf);
           if (!stacks.has(name)) stacks.set(name, []);
           stacks.get(name).push([x, i + 1]);
         });
@@ -665,6 +697,7 @@ export class ChamberView {
       }
       done.add(c.key);
       const sub = kidsOf(c.key);
+      if (sub.length === 1 && sub[0].metal) { rows.push(`<div class="node" data-node="${h(c.key)}">${this.derivedRow(c, page)}${this.metalRow(sub[0], kidsOf)}</div>`); continue; }
       rows.push(sub.length
         ? `<div class="node" data-node="${h(c.key)}">${this.derivedRow(c, page)}<div class="derived">${this.nodes(sub, kidsOf, page).join("")}</div></div>`
         : this.derivedRow(c, page));
@@ -689,7 +722,8 @@ export class ChamberView {
     const key = xs[0][0].key;
     const title = `<span class="result-name">${h(name)}</span> <span class="stack-count">×${xs.length}</span>`;
     const head = `<p class="stack-head${first.required ? " is-required" : " is-optional"}"><span class="derived-label">${h(base)}</span>${first.page ? ` <span class="page">${h(T("page")(first.page))}</span>` : ""}</p>`;
-    if (!state.empty && sum) {
+    // Llena se pliega, pero no mientras escribes en ella: espera a que salgas («8» de «80» no la cierra).
+    if (!state.empty && sum && this.holdStack !== key) {
       return `<details class="node branch stack is-folded${this.isNew("fold:" + key)}" data-node="${h(key)}"${this.openStacks?.has(key) ? " open" : ""}>
         <summary><span class="branch-title">${title} <span class="stack-edit">${h(T("seeRolls"))}</span></span>
           <span class="stack-tally">${sum.replace(/<li>/g, "<span>").replace(/<\/li>/g, "</span>")}</span></summary>
@@ -705,34 +739,73 @@ export class ChamberView {
   }
 
   /** Las casillas de una rama, de madre a hija. Las hojas con resultado van a `leaves` para el recuento:
-   *  «One-handed Axe (common metal)» y su «Copper» cuentan como «One-handed Axe (Copper)». */
+   *  «One-handed Axe (common metal)» y su «Copper» cuentan como «One-handed Axe (Copper)».
+   *  Cada pieza (arma, armadura) es una celda de la rejilla, con su metal en la misma línea. */
   chain(list, kidsOf, base, leaves, state = { empty: 0 }, parent = null, parentPage = null) {
     const t = this.t, d = this.d;
     return list.map((c) => {
       const v = d.typed[c.key];
       if (v == null && !(d.locked && c.required)) state.empty++;
+      const sub = kidsOf(c.key);
+      const name = c.table && v != null ? t.name(c.table, v) : null;
+      const metal = c.metal && parent && METAL_SLOT.test(parent);
+      const joined = name && parent ? (metal ? withMetal(parent, name) : `${parent} · ${name}`) : name;
+      const page = name ? (metal ? parentPage : t.page(c.table, v)) : parentPage;
+      const nextParent = c.table ? joined : parent;
+      const nextPage = c.table ? page : parentPage;
+      if (c.metal) {
+        if (!sub.length && name && !isRedirect(name)) leaves.push({ name: joined, page });
+        return this.metalStep(c) + (sub.length ? this.chain(sub, kidsOf, base, leaves, state, nextParent, nextPage) : "");
+      }
+      // Un metal sin tirar todavía: el arma cuenta tal cual, con «(special metal)».
+      if (!sub.length && name) leaves.push({ name: joined, page });
       const full = this.label(c);
       const own = full === base ? "" : full.startsWith(base + " · ") ? full.slice(base.length + 3) : full;
-      // «Arma 3» → sólo «3»; «Arma 3 · Metal común» → «↳ Metal común»: el resto ya lo dice la línea.
+      // «Arma 3» → sólo «3»: el resto ya lo dice la línea.
       let tag = "";
       let m;
       if ((m = /^.*\S\s(\d+)$/.exec(own))) tag = `<span class="chain-n" title="${h(own)}">${m[1]}</span>`;
-      else if ((m = /^.*\s\d+\s·\s(.+)$/.exec(own))) tag = `<span class="chain-label is-sub">↳ ${h(m[1])}</span>`;
       else if (own) tag = `<span class="chain-label">${h(own)}</span>`;
-      const sub = kidsOf(c.key);
       const needed = c.required && v == null;
-      const name = c.table && v != null ? t.name(c.table, v) : null;
-      const metal = parent && /\((?:common|special) metal\)/.test(parent);
-      const joined = name && parent ? (metal ? parent.replace(/\((?:common|special) metal\)/, `(${name.replace(/\s*\(.*\)$/, "")})`) : `${parent} · ${name}`) : name;
-      const page = name ? (metal ? parentPage : t.page(c.table, v)) : parentPage;
-      if (!sub.length && name) leaves.push({ name: joined, page });
-      const cell = `<span class="chain-cell${m && tag.includes("is-sub") ? " is-sub" : ""}${c.required ? " is-required" : ""}${needed ? " is-needed" : ""}">
+      const cell = `<span class="chain-cell${c.required ? " is-required" : ""}${needed ? " is-needed" : ""}">
         ${tag}<span class="derived-die">${h(c.chance ? c.chance.label : c.formula.label)}</span>
         ${this.input(c, "derived-input chain-input", `aria-label="${h(full)}"`)}
         ${v != null ? `<span class="chain-answer">${this.answer(c)}</span>` : ""}</span>`;
-      const nextParent = c.table ? joined : parent;
-      return cell + (sub.length ? this.chain(sub, kidsOf, base, leaves, state, nextParent, c.table ? page : parentPage) : "");
+      if (!sub.length) return `<div class="chain-item">${cell}</div>`;
+      const inner = this.chain(sub, kidsOf, base, leaves, state, nextParent, nextPage);
+      if (sub[0].metal) return `<div class="chain-item">${cell}<div class="metal-steps">${inner}</div></div>`;
+      return `<div class="chain-group">${cell}<div class="chain-kids">${inner}</div></div>`;
     }).join("");
+  }
+
+  /** Un paso del metal: «Común 1d% [100] → Especial 1d% [10] Mournsteel». Las unidades no cuentan en un arma. */
+  metalStep(c) {
+    const v = this.d.typed[c.key];
+    const name = c.table && v != null ? this.t.name(c.table, v) : null;
+    const again = name && c.table === "4.3" && /^mineral$/i.test(name);
+    const tag = T("metalTag")[c.table] ?? "";
+    const out = name == null ? "" : again ? `<span class="metal-again">${h(T("metalAgain"))}</span>`
+      : isRedirect(name) ? `<span class="metal-arrow" aria-hidden="true">→</span>`
+      : `<span class="result-name">${h(noUnits(name))}</span>`;
+    return `<span class="metal-step${name != null && !isRedirect(name) ? " is-done" : ""}">
+      <span class="metal-tag">${h(tag)}</span>${this.input(c, "derived-input metal-input", `aria-label="${h(this.label(c))}"`)}${out}</span>`;
+  }
+
+  /** El nombre de una pieza con su metal ya tirado: «One-handed Axe (Gold)». */
+  withMetalOf(x, kidsOf) {
+    let name = this.t.name(x.table, this.d.typed[x.key]);
+    for (let c = kidsOf(x.key).find((y) => y.metal); c; c = kidsOf(c.key).find((y) => y.metal)) {
+      const v = this.d.typed[c.key];
+      if (v != null) name = withMetal(name, this.t.name(c.table, v));
+    }
+    return name;
+  }
+
+  /** Fuera de las pilas: la pieza en su fila y debajo, en una sola línea, la cadena de su metal. */
+  metalRow(first, kidsOf) {
+    const steps = [];
+    for (let c = first; c; c = kidsOf(c.key).find((x) => x.metal)) steps.push(this.metalStep(c));
+    return `<div class="metal-row${this.isNew(first.key)}"><span class="metal-head">${h(T("metalWord"))}</span><span class="derived-die">1d%</span>${steps.join("")}</div>`;
   }
 
   /** La página sólo si cambia respecto a la línea de arriba. */
@@ -744,7 +817,6 @@ export class ChamberView {
 
   label(c) {
     if (c.kind === "window") return T("window");
-    if (c.kind === "times") return `${short(c.of)} · ${T("times")}`;
     return short(c.of);
   }
 
@@ -753,7 +825,7 @@ export class ChamberView {
     const t = this.t, v = this.d.typed[c.key];
     if (v == null) return "";
     if (c.chance) return c.chance.passes(v) ? `<span class="derived-yes"><span class="yes-star" aria-hidden="true"></span>${h(T("found"))}</span>` : `<span class="derived-no">${h(T("missed"))}</span>`;
-    if (c.table) return `<span class="result-name">${h(t.name(c.table, v))}</span>`;
+    if (c.table) return `<span class="result-name">${h(c.metal ? noUnits(t.name(c.table, v)) : t.name(c.table, v))}</span>`;
     return `<span class="derived-total">= ${h(c.formula.total(v))}</span>`;
   }
 
@@ -1003,6 +1075,13 @@ export class ChamberView {
           continue;
         }
         if (c.table) {
+          if (c.metal) {
+            // La hoja es el metal: cuenta como el arma con su metal, con la página del arma.
+            let k = c.key;
+            while (k.endsWith(".detail") && kids.find((x) => x.key === k)?.metal) k = k.slice(0, -7);
+            const g = kids.find((x) => x.key === k);
+            if (g && typed[k] != null) { add({ name: withMetal(t.name(g.table, typed[k]), t.name(c.table, v)), page: t.page(g.table, typed[k]), stack: true }); continue; }
+          }
           const name = t.name(c.table, v);
           if (!NOT_AMOUNTS.test(name)) add({ name, page: t.page(c.table, v), stack: true });
           continue;
@@ -1148,11 +1227,23 @@ export class ChamberView {
       const el = ev.target;
       if (el.dataset.field && el.type !== "radio") { this.d[el.dataset.field] = el.value; this.save(); return; }
       if (el.dataset.roll) { this.setRoll(el.dataset.roll, el.value); rerender(); }
-      else if (el.dataset.child) { this.setChild(el.dataset.child, el.value); rerender(); }
+      else if (el.dataset.child) {
+        const st = el.closest(".stack:not(.is-folded)");
+        if (st) this.holdStack = st.dataset.node;
+        this.setChild(el.dataset.child, el.value); rerender();
+      }
       else if (el.dataset.live) {
         (this.d.liveBuffers[el.dataset.live] ??= {})[el.dataset.part] = el.value;
         this.save();
       }
+    });
+    root.addEventListener("focusout", (ev) => {
+      if (!this.holdStack) return;
+      const node = root.querySelector(`[data-node="${CSS.escape(this.holdStack)}"]`);
+      if (node && ev.relatedTarget && node.contains(ev.relatedTarget)) return;
+      this.holdStack = null;
+      // A un botón no: su clic ya repinta, y repintar antes se tragaría el clic.
+      if (!ev.relatedTarget || ev.relatedTarget.matches("input, textarea")) setTimeout(rerender, 0);
     });
     root.addEventListener("change", (ev) => {
       const el = ev.target;
@@ -1194,6 +1285,7 @@ export class ChamberView {
       else if (a === "tab") this.d.tab = el.dataset.tab;
       else if (a === "info") { this.popFor = { name: el.dataset.name, beast: el.dataset.beast ?? null }; this.popReturn = el.id || null; rerender(); root.querySelector(".pop-close")?.focus(); return; }
       else if (a === "pop-close") { this.popFor = null; rerender(); return; }
+      else if (a === "agnostic") { store.set("bs.agnostic", !store.get("bs.agnostic", false)); rerender(); root.querySelector(".pop-switch")?.focus(); return; }
       else if (a === "undo-live") {
         // Deshacer una línea anotada: si era una veta, vuelve a quedar por extraer.
         const [e] = this.d.live.splice(+el.dataset.i, 1);

@@ -176,7 +176,8 @@ def find_creature(name):
 for it in load("materials.json")["items"]:
     put("materials", {"id": "material:" + slug(it["name"]), "type": "material", "name": it["name"],
                       "page": it.get("page"), "kind": it.get("kind"),
-                      "stats": {k: it[k] for k in ("HP", "Hardness", "Uses") if k in it}})
+                      "stats": {k: it[k] for k in ("HP", "Hardness", "Uses") if k in it},
+                      **({"uses_es": it["Uses_es"]} if "Uses_es" in it else {})})
 for it in load("magic.json")["items"]:
     stats = {k: (it[k].lstrip(": ") if isinstance(it[k], str) else it[k])
              for k in ("element", "Category", "Rarity") if k in it}
