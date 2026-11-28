@@ -2056,18 +2056,19 @@
      {
       "kind": "loot",
       "of": {
-       "en": "water, as much as can be carried; collect patiently from stalactites or pools",
-       "es": "agua, tanta como puedan cargar; recoger con paciencia de estalactitas o lagos"
+       "en": "As much as they can carry; collect it patiently from stalactites or pools",
+       "es": "Tanta como puedan cargar; se recoge con paciencia de estalactitas o lagos"
       },
-      "id": "audit20260921-0"
+      "id": "audit20260921-0",
+      "name": "Water"
      },
      {
       "kind": "loot",
       "die": "1d%",
       "table": "4.3",
       "of": {
-       "en": "one roll on Common Metals Table 4.3 only if the special-metal check fails",
-       "es": "una tirada en Metales Comunes 4.3 solo si falla la prueba de metal especial"
+       "en": "Common metal",
+       "es": "Metal común"
       },
       "id": "audit20260921-1",
       "unless": "audit20260921-2"
@@ -2078,8 +2079,8 @@
       "die": "1d%",
       "table": "4.4",
       "of": {
-       "en": "special metal instead of common metal — Table 4.4",
-       "es": "metal especial en vez de metal común — Tabla 4.4"
+       "en": "Special metal instead of common",
+       "es": "Metal especial en vez de común"
       },
       "id": "audit20260921-2"
      },
@@ -2119,18 +2120,19 @@
      {
       "kind": "loot",
       "of": {
-       "en": "water, as much as can be carried; collect patiently from stalactites or pools",
-       "es": "agua, tanta como puedan cargar; recoger con paciencia de estalactitas o lagos"
+       "en": "As much as they can carry; collect it patiently from stalactites or pools",
+       "es": "Tanta como puedan cargar; se recoge con paciencia de estalactitas o lagos"
       },
-      "id": "audit20260921-0"
+      "id": "audit20260921-0",
+      "name": "Water"
      },
      {
       "kind": "loot",
       "die": "1d%",
       "table": "4.3",
       "of": {
-       "en": "one roll on Common Metals Table 4.3 only if the special-metal check fails",
-       "es": "una tirada en Metales Comunes 4.3 solo si falla la prueba de metal especial"
+       "en": "Common metal",
+       "es": "Metal común"
       },
       "id": "audit20260921-1",
       "unless": "audit20260921-2"
@@ -2141,8 +2143,8 @@
       "die": "1d%",
       "table": "4.4",
       "of": {
-       "en": "special metal instead of common metal — Table 4.4",
-       "es": "metal especial en vez de metal común — Tabla 4.4"
+       "en": "Special metal instead of common",
+       "es": "Metal especial en vez de común"
       },
       "id": "audit20260921-2"
      },
@@ -2182,18 +2184,19 @@
      {
       "kind": "loot",
       "of": {
-       "en": "water, as much as can be carried; collect patiently from stalactites or pools",
-       "es": "agua, tanta como puedan cargar; recoger con paciencia de estalactitas o lagos"
+       "en": "As much as they can carry; collect it patiently from stalactites or pools",
+       "es": "Tanta como puedan cargar; se recoge con paciencia de estalactitas o lagos"
       },
-      "id": "audit20260921-0"
+      "id": "audit20260921-0",
+      "name": "Water"
      },
      {
       "kind": "loot",
       "die": "1d%",
       "table": "4.3",
       "of": {
-       "en": "one roll on Common Metals Table 4.3 only if the special-metal check fails",
-       "es": "una tirada en Metales Comunes 4.3 solo si falla la prueba de metal especial"
+       "en": "Common metal",
+       "es": "Metal común"
       },
       "id": "audit20260921-1",
       "unless": "audit20260921-2"
@@ -2204,8 +2207,8 @@
       "die": "1d%",
       "table": "4.4",
       "of": {
-       "en": "special metal instead of common metal — Table 4.4",
-       "es": "metal especial en vez de metal común — Tabla 4.4"
+       "en": "Special metal instead of common",
+       "es": "Metal especial en vez de común"
       },
       "id": "audit20260921-2"
      },
@@ -2246,18 +2249,19 @@
      {
       "kind": "loot",
       "of": {
-       "en": "water, as much as can be carried; collect patiently from stalactites or pools",
-       "es": "agua, tanta como puedan cargar; recoger con paciencia de estalactitas o lagos"
+       "en": "As much as they can carry; collect it patiently from stalactites or pools",
+       "es": "Tanta como puedan cargar; se recoge con paciencia de estalactitas o lagos"
       },
-      "id": "audit20260921-0"
+      "id": "audit20260921-0",
+      "name": "Water"
      },
      {
       "kind": "loot",
       "die": "1d%",
       "table": "4.3",
       "of": {
-       "en": "one roll on Common Metals Table 4.3 only if the special-metal check fails",
-       "es": "una tirada en Metales Comunes 4.3 solo si falla la prueba de metal especial"
+       "en": "Common metal",
+       "es": "Metal común"
       },
       "id": "audit20260921-1",
       "unless": "audit20260921-2"
@@ -2268,8 +2272,8 @@
       "die": "1d%",
       "table": "4.4",
       "of": {
-       "en": "special metal instead of common metal — Table 4.4",
-       "es": "metal especial en vez de metal común — Tabla 4.4"
+       "en": "Special metal instead of common",
+       "es": "Metal especial en vez de común"
       },
       "id": "audit20260921-2"
      },
@@ -2309,18 +2313,19 @@
      {
       "kind": "loot",
       "of": {
-       "en": "water, as much as can be carried; collect patiently from stalactites or pools",
-       "es": "agua, tanta como puedan cargar; recoger con paciencia de estalactitas o lagos"
+       "en": "As much as they can carry; collect it patiently from stalactites or pools",
+       "es": "Tanta como puedan cargar; se recoge con paciencia de estalactitas o lagos"
       },
-      "id": "audit20260921-0"
+      "id": "audit20260921-0",
+      "name": "Water"
      },
      {
       "kind": "loot",
       "die": "1d%",
       "table": "4.3",
       "of": {
-       "en": "one roll on Common Metals Table 4.3 only if the special-metal check fails",
-       "es": "una tirada en Metales Comunes 4.3 solo si falla la prueba de metal especial"
+       "en": "Common metal",
+       "es": "Metal común"
       },
       "id": "audit20260921-1",
       "unless": "audit20260921-2"
@@ -2331,8 +2336,8 @@
       "die": "1d%",
       "table": "4.4",
       "of": {
-       "en": "special metal instead of common metal — Table 4.4",
-       "es": "metal especial en vez de metal común — Tabla 4.4"
+       "en": "Special metal instead of common",
+       "es": "Metal especial en vez de común"
       },
       "id": "audit20260921-2"
      },
@@ -5504,8 +5509,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5514,7 +5519,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5523,7 +5528,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
@@ -5593,8 +5598,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5603,7 +5608,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5612,7 +5617,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
@@ -5682,8 +5687,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5692,7 +5697,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5701,7 +5706,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
@@ -5771,8 +5776,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5781,7 +5786,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5790,7 +5795,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
@@ -5860,8 +5865,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5870,7 +5875,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5879,7 +5884,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
@@ -5949,8 +5954,8 @@
      {
       "kind": "ultimate",
       "of": {
-       "en": "A pond of Night's Water",
-       "es": "Un estanque de Agua de la Noche"
+       "en": "Night's Water in a pond",
+       "es": "Night's Water en un estanque"
       },
       "chance": ">70%",
       "id": "audit20260921-5"
@@ -5959,7 +5964,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Astral Matter in the mud",
-       "es": "Materia Astral en el lodo"
+       "es": "Astral Matter en el lodo"
       },
       "chance": ">90%",
       "id": "audit20260921-6"
@@ -5968,7 +5973,7 @@
       "kind": "ultimate",
       "of": {
        "en": "Primordial Soil",
-       "es": "Tierra Primordial"
+       "es": "Primordial Soil"
       },
       "chance": ">90%",
       "id": "audit20260921-7"
